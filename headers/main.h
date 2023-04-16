@@ -3,6 +3,7 @@
 
 #include "../demo/Print.c"
 #include "../demo/Pointers.c"
+#include "../demo/Variable.c"
 
-void Func();
+void Print();
 void PointerInt();

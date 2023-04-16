@@ -16,9 +16,8 @@ void PointerInt() {
     fflush(stdin);
     printf("b 값을 입력하세요: ");
     scanf("%d", pb);
-
-    scanf
     fflush(stdin);
+    
     int *pTotal = &total;
     double *pAvg = &avg;
     *pTotal = *pa + *pb;
