@@ -8,9 +8,11 @@
 #include "../demo/Variable.c"
 #include "../demo/ArithmeticOperators.c"
 #include "../demo/Scanf.c"
+#include "../demo/Math.c"
 
 void Print();
 void PointerInt();
 void DataType();
 void ArithmeticOperators();
 void Scanf();
+void Math();

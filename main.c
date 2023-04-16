@@ -1,11 +1,7 @@
 #include "headers/main.h"
 
 int main() {
-
-    // Func();
-    // PointerInt();
     int choice;
-
     do {
         printf("\n");
         printf("********************************\n");
@@ -17,6 +13,7 @@ int main() {
         printf("3. DataType\n");
         printf("4. ArithmeticOperators\n");
         printf("5. Scanf\n");
+        printf("6. Math\n");
         printf("20. Pointer (Integer)\n");
         printf("100. 종료 (Exit)\n");
         //-------------------------------------------//
@@ -29,6 +26,7 @@ int main() {
             case 3: DataType(); break;
             case 4: ArithmeticOperators(); break;
             case 5: Scanf(); break;
+            case 6: Math(); break;
             case 20: PointerInt(); break;
             case 100: {
                 printf("\n");
@@ -40,5 +38,5 @@ int main() {
         }
     } while (choice != 100);
     system("clear");
-    return 0; // 프로그램 완료 성공 -> 0, 실패 -> 1
+    return 0;
 }
