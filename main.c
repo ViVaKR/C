@@ -14,6 +14,7 @@ int main() {
         printf("\n");
         printf("1. Printf\n");
         printf("2. Variable\n");
+        printf("3. DataType\n");
         printf("20. Pointer (Integer)\n");
         printf("100. 종료 (Exit)\n");
         //-------------------------------------------//
@@ -23,6 +24,7 @@ int main() {
         switch (choice) {
             case 1: Print(); break;
             case 2: Variable(); break;
+            case 3: DataType(); break;
             case 20: PointerInt(); break;
             case 100: {
                 printf("\n");
