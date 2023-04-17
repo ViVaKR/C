@@ -20,6 +20,7 @@ int main() {
         fflush(stdin);        // Clear Buffer
         printf(">>> ");       // 프롬프트 (Prompt)
         scanf("%d", &choice); // 입력받기 (User Input by int)
+        system("clear");
         switch (choice) {
             case 1: Print(); break;
             case 2: Variable(); break;
@@ -29,8 +30,6 @@ int main() {
             case 6: Math(); break;
             case 20: PointerInt(); break;
             case 100: {
-                printf("\n");
-                system("clear");
                 printf("***** 종료 *****\n");
                 printf("\n");
                 return 0;
