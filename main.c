@@ -14,6 +14,7 @@ int main() {
         printf("4. ArithmeticOperators\n");
         printf("5. Scanf\n");
         printf("6. Math\n");
+        printf("7. Operator\n");
         printf("20. Pointer (Integer)\n");
         printf("100. 종료 (Exit)\n");
         //-------------------------------------------//
@@ -28,6 +29,7 @@ int main() {
             case 4: ArithmeticOperators(); break;
             case 5: Scanf(); break;
             case 6: Math(); break;
+            case 7: Operator(); break;
             case 20: PointerInt(); break;
             case 100: {
                 printf("***** 종료 *****\n");

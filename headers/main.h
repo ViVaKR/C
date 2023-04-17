@@ -10,6 +10,7 @@
 #include "../demo/Printf.c"
 #include "../demo/Scanf.c"
 #include "../demo/Variable.c"
+#include "../demo/Operator.c"
 
 void Printf();
 void PointerInt();
@@ -18,3 +19,4 @@ void ArithmeticOperators();
 void Scanf();
 void Math();
 void Function();
+void Operator();
