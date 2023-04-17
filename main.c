@@ -22,7 +22,7 @@ int main() {
         scanf("%d", &choice); // 입력받기 (User Input by int)
         system("clear");
         switch (choice) {
-            case 1: Print(); break;
+            case 1: Printf(); break;
             case 2: Variable(); break;
             case 3: DataType(); break;
             case 4: ArithmeticOperators(); break;
