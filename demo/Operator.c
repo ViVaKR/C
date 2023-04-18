@@ -2,10 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int get_score();
-int grade_score(int score);
-void print_score_grade(int score, char grade);
-
 void Operator() {
     printf("\n");
     printf("***** 연산자 *****");
@@ -34,39 +30,5 @@ void Operator() {
     printf("\n");
     printf("nVar1 = %d, nVar2 = %d\n", nVar1, nVar2);
 
-    int score = get_score();
-    char grade = grade_score(score);
-    print_score_grade(score, grade);
-}
 
-int get_score() {
-    int score;
-    printf("점수를 입력하세요. ");
-    scanf("%d", &score);
-
-    return score;
-}
-
-int grade_score(int score) {
-    char grade;
-    int iscore;
-    iscore = score / 10;
-
-    switch (iscore) {
-        case 9:
-            grade = 'A';
-        case 8:
-            grade = 'B';
-        case 7:
-            grade = 'C';
-        case 6:
-            grade = 'D';
-        default:
-            grade = 'F';
-    }
-    return grade;
-}
-void print_score_grade(int score, char grade) {
-    printf("당신의 성적은 %d입니다.", score);
-    printf("당신의 학점은 %c입니다.", grade);
 }
