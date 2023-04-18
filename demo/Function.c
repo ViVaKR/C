@@ -1,10 +1,9 @@
-#include "stdbool.h"
-#include <ctype.h>
-#include <stdio.h>
-#include <stdlib.h> // rand(), srand()
-#include <time.h>   // time()
+#include "../headers/vivstd.h"
 
 //-> 비표준라이브러리 #include <conio.h>, 비표준함수 getch();
+int Factorial(int nVar);
+enum { A,
+       B } myEnum;
 
 void Function() {
 
@@ -30,9 +29,11 @@ void Function() {
     */
 
     printf(" 함수 ");
-    
+
     char cMum = 'A';
-    cMum = tolower(cMum);
+    int  q    = 10;
+    int  k    = 20;
+    cMum      = tolower(cMum);
 
     // 함수명 자체는 메모리 주소를 의미
     printf("Function %p, %c\n", Function, cMum);
@@ -52,7 +53,7 @@ void Function() {
     printf("\n");
 
     char str[100];
-    int size = sizeof(str) / sizeof(str[0]);
+    int  size = sizeof(str) / sizeof(str[0]);
 
     // gets : 문자열 입력 받기 (unsafe -> fgets 권장)
     printf("100자 이내의 문자를 입력하세요: ");
@@ -76,15 +77,15 @@ void Function() {
     const char fileName[] = "function.txt";
     printf("입력받은 문자열 화면출력 및 파일 저장(fputs): ");
     fputs(chArr, stdout);
-    FILE *file = fopen(fileName, "a+");
-    int result = fputs(chArr, file);
+    FILE *file   = fopen(fileName, "a+");
+    int   result = fputs(chArr, file);
     fclose(file);
     printf("파일저장완료 : (%d)", result);
 
     // fgets : 파일 읽기
     char lines[1000 + 1] = ""; /* initialize all to 0 ('\0') */
-    size = sizeof(lines);
-    FILE *readFile = fopen(fileName, "r");
+    size                 = sizeof(lines);
+    FILE *readFile       = fopen(fileName, "r");
     if (readFile == NULL) {
         printf("파일읽기 실패");
         return;
@@ -113,8 +114,8 @@ void Function() {
     printf("Randeom %d\n", rand() % (10 + 1 - 5) + 5);
 
     // time
-    time_t timer = time(NULL);
-    struct tm *t = localtime(&timer);
+    time_t     timer = time(NULL);
+    struct tm *t     = localtime(&timer);
     /* struct tm
         int tm_sec      // 초, 0 to 59
         int tm_min      // 분, 0 to 59
@@ -133,4 +134,18 @@ void Function() {
            t->tm_hour,
            t->tm_min,
            t->tm_sec);
+
+    /* 재귀함수 ( Recursive Fuction ) */
+    // 함수내부에서 함수 자신을 호출하는 함수
+    // 조건
+    // 재귀함수 안에는 종료 조건이 반드시 있어야 함
+
+    printf("Factorial(3) = %d\n", Factorial(3));
+}
+
+int Factorial(int nVar) {
+
+    if (nVar == 0) return 1;
+    int factorial = Factorial(nVar - 1) * nVar;
+    return factorial;
 }

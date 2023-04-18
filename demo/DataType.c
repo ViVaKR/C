@@ -1,6 +1,5 @@
-#include "stdbool.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "../headers/vivstd.h"
+
 void DataType() {
     system("clear");
     int j = 2147483647;          // 4 bytes (-2,147,483,648 ~ 2,147,483,647)

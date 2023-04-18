@@ -1724,6 +1724,42 @@
 			],
 			"type" : "STATIC",
 			"value" : "/Users/vivabm/GitProjects/C"
+		},
+		{
+			"name" : "Viv_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/Users/vivabm/GitProjects/C/build"
+		},
+		{
+			"name" : "Viv_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "Viv_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/Users/vivabm/GitProjects/C"
 		}
 	],
 	"kind" : "cache",

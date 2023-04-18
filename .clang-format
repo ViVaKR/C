@@ -1,9 +1,19 @@
 ---
 BasedOnStyle: LLVM
+Language: Cpp
 IndentWidth: 4
+TabWidth: 4
 IndentCaseLabels: true
 AllowShortCaseLabelsOnASingleLine: true
 AllowShortBlocksOnASingleLine: Always
+AllowShortIfStatementsOnASingleLine: WithoutElse
+AllowShortEnumsOnASingleLine: true
 BreakBeforeBraces: Attach
 ColumnLimit: 0
+AlignConsecutiveDeclarations: true
+AlignConsecutiveAssignments: true # Style of aligning consecutive (할당) assignments.
+AlignConsecutiveMacros:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: false
 ---

@@ -18,9 +18,9 @@ int main() {
 
 void PrintMenu() {
     printf("\n");
-    printf("********************************\n");
-    printf("*** 실행할 메뉴를 선택하세요 ***\n");
-    printf("********************************\n");
+    printf("**********************************\n");
+    printf("***** 실행할 메뉴를 선택하세요 *****\n");
+    printf("**********************************\n");
     printf("\n");
     printf("1. Printf\n");
     printf("2. Variable\n");
@@ -34,6 +34,7 @@ void PrintMenu() {
     printf("10. Do While Loop\n");
     printf("11. Jisikin\n");
     printf("12. Function\n");
+    printf("13. Array\n");
     printf("20. Pointer (Integer)\n");
     printf("100. 종료 (Exit)\n");
 }
@@ -52,6 +53,7 @@ void Exec(int choice) {
         case 10: DoWhileLoop(); break;
         case 11: Jisikin(); break;
         case 12: Function(); break;
+        case 13: Array(); break;
         case 20: PointerInt(); break;
         case 100:; break;
     }

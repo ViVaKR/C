@@ -334,6 +334,15 @@ VivCProject_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 VivCProject_SOURCE_DIR:STATIC=/Users/vivabm/GitProjects/C
 
+//Value Computed by CMake
+Viv_BINARY_DIR:STATIC=/Users/vivabm/GitProjects/C/build
+
+//Value Computed by CMake
+Viv_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+Viv_SOURCE_DIR:STATIC=/Users/vivabm/GitProjects/C
+
 
 ########################
 # INTERNAL cache entries

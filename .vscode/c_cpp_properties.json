@@ -10,8 +10,9 @@
                 "/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks"
             ],
             "compilerPath": "/usr/local/bin/g++-12",
-            "intelliSenseMode": "macos-clang-x64",
-            "configurationProvider": "/usr/local/bin/g++-12",
+            "intelliSenseMode": "clang-x64",
+            "configurationProvider": "vector-of-bool.cmake-tool",
+            // "configurationProvider": "/usr/local/bin/g++-12",
             "cStandard": "c23",
             "cppStandard": "c++23"
         }

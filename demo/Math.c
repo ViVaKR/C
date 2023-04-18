@@ -1,7 +1,4 @@
-#include "stdbool.h"
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "../headers/vivstd.h"
 
 void Math() {
     system("clear");

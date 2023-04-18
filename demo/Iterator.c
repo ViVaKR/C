@@ -1,9 +1,7 @@
-#include "stdbool.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "../headers/vivstd.h"
 
-int Switch();
-int GetGrade(int score);
+int  Switch();
+int  GetGrade(int score);
 void PrintScoreGrade(int score, char grade);
 
 /// @brief For Loop
@@ -11,7 +9,7 @@ void ForLoop() {
     printf("\n");
     printf("***** For Loop *****\n");
 
-    int score = Switch();
+    int  score = Switch();
     char grade = GetGrade(score);
     PrintScoreGrade(score, grade);
 }
@@ -19,7 +17,12 @@ void ForLoop() {
 /// @brief While Loop
 void WhileLoop() {
     printf("\n");
-    printf("***** While Loop *****\n");
+    printf("***** While Loop ( 1 to 100, 짝수찾기) *****\n");
+    int start = 1;
+    while (start <= 100) {
+        if (start % 2 == 0) printf("짝수 (1-100): %d\n", start);
+        start++;
+    }
 }
 
 /// @brief Do While Loop
@@ -38,7 +41,7 @@ int Switch() {
 
 int GetGrade(int score) {
     char grade;
-    int iscore;
+    int  iscore;
     iscore = score / 10;
 
     switch (iscore) {

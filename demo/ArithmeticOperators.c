@@ -1,6 +1,4 @@
-#include "stdbool.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "../headers/vivstd.h"
 
 /// @brief Ref. Bro Code
 void ArithmeticOperators() {

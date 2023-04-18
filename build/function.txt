@@ -9,3 +9,11 @@ files
 rice
 time
 gets is unsafe
+Factorial
+Print Pactorial
+df
+sdfsd
+ㅁ
+2
+xcvb
+sdfsdf
