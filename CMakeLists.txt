@@ -1,5 +1,10 @@
-cmake_minimum_required(VERSION 3.20.0)
-project(VivCProject)
+cmake_minimum_required(VERSION 3.16...3.23)
+project(
+VivCProject
+VERSION 0.0.1
+DESCRIPTION ""
+HOMEPAGE_URL "%%https://www.vivabm.com%%"
+LANGUAGES CXX C)
 
 include(CTest)
 enable_testing()

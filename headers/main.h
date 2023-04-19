@@ -12,7 +12,7 @@
 #include "../demo/Scanf.c"
 #include "../demo/Variable.c"
 #include "../demo/Array.c"
-
+#include "../demo/Array2D.c"
 
 void PrintMenu();
 void Exec(int choice);
@@ -25,3 +25,4 @@ void Math();
 void Function();
 void Operator();
 void Array();
+void Array2D();
