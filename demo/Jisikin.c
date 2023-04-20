@@ -1,7 +1,8 @@
 #include "../headers/vivstd.h"
 void Calendar();
 
-void Jisikin() {
+void Jisikin()
+{
     printf("***** 지식인 답변 ******\n");
 
     int i = 1;
@@ -18,7 +19,8 @@ end:
 
 
 /// @brief 윤년찾기 지식인 답변용
-void Calendar() {
+void Calendar()
+{
 
     fflush(stdin);
     printf("년도 입력 >> ");
@@ -44,23 +46,23 @@ void Calendar() {
 
     struct tm utm;
     strptime(datetime, "%F", &utm);
-    int  yyyy       = utm.tm_year + 1900;
-    int  months[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    int *m          = months;
+    int yyyy = utm.tm_year + 1900;
+    int months[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    int *m = months;
 
     //--- 그레고리력 기준 ---//
     // 4로 나누어 떨어지는 해를 기준으로...
     // 100으로 나누어 떨어지되 400으로 나누어 떨어지지 않는 해는 평년으로 한다.
     // (엑셀식 =)IF(OR(MOD(A1,400)=0,AND(MOD(A1,4)=0,MOD(A1,100)<>0))
-    
+
     // 1단계. 연도를 4으로 균등하게 나눌 수 있는 경우 2단계로 이동합니다.그렇지 않으면 5단계로 이동하세요.
     // 2단계. 연도를 100으로 균등하게 나눌 수 있는 경우 3단계로 이동합니다.그렇지 않으면 4단계로 이동하세요.
     // 3단계. 연도를 400으로 균등하게 나눌 수 있는 경우 4단계로 이동합니다.그렇지 않으면 5단계로 이동하세요.
     // 4단계. 해당 연도는 윤년(366일) 입니다.
-    // 5단계. 해당 연도는 윤년이 아닙니다(365일) 
-    
+    // 5단계. 해당 연도는 윤년이 아닙니다(365일)
+
     bool check = 0;
-    
+
     // (1단계)
     check = yyyy % 4 == 0;
     if (check) {
@@ -77,24 +79,23 @@ void Calendar() {
     // (5단계) => chekc == false;
 
     // 가장 어려운 윤년이 아닌해 -> 1900년 체크해보기
-    // 윤년 (X) : 1700, 1800, 1900, 2100, 2300, 2500, 2600 
-    // 유년 (O) : 1600, 2000, 2400 
+    // 윤년 (X) : 1700, 1800, 1900, 2100, 2300, 2500, 2600
+    // 유년 (O) : 1600, 2000, 2400
 
 
     printf("\n");
-    m[1]                = check ? 29 : 28;
-    char *weekday_str[] = {"일", "월", "화", "수", "목", "금", "토"};
+    m[1] = check ? 29 : 28;
+    char *weekday_str[] = { "일", "월", "화", "수", "목", "금", "토" };
 
-    int   wnum    = utm.tm_wday;
+    int wnum = utm.tm_wday;
     char *weekday = weekday_str[wnum];
 
     printf("%4d년 %2d월 %s 요일\n", utm.tm_year + 1900, utm.tm_mon + 1, weekday);
-    for (size_t i = 0; i < 7; i++)
-        printf("%s ", weekday_str[i]);
+    for (size_t i = 0; i < 7; i++) printf("%s ", weekday_str[i]);
     printf("\n");
 
-    int i     = wnum;
-    int j     = m[utm.tm_mon];
+    int i = wnum;
+    int j = m[utm.tm_mon];
     int count = 0;
     for (int i = 1 - wnum; i <= j; i++) {
         count++;

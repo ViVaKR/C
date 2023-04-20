@@ -64,11 +64,9 @@ IncludeCategories:
 - Priority: 1
   Regex: .*
 IncludeIsMainRegex: (Test)?$
-IndentCaseLabels: false
+IndentCaseLabels: true
 IndentWidth: 4
 IndentWrappedFunctionNames: true
-JavaScriptQuotes: Leave
-JavaScriptWrapImports: true
 KeepEmptyLinesAtTheStartOfBlocks: true
 Language: Cpp
 MacroBlockBegin: ''

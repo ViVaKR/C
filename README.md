@@ -81,51 +81,145 @@ int main(void)
 
 ```json
 {
+  "Viv Printf HelloWorld": {
+    "prefix": "pf", // 일반 문자
+    "body": [
+      "printf(\"${1:Hello World}\");$0"
+    ],
+    "description": "Viv printf hello world"
+  },
   "Viv Printf Number": {
-    "prefix": "pfd",
-    "body": ["printf(\"${1:Text} \\%d\\n\",${2:var});$0"],
+    "prefix": "pfd", // 정수형
+    "body": [
+      "printf(\"${1:Text} %d\\n\",${2:var});$0"
+    ],
     "description": "Viv printf number"
   },
   "Viv Printf Character": {
-    "prefix": "pfc",
-    "body": ["printf(\"${1:Text} \\%c\\n\",${2:var});$0"],
+    "prefix": "pfc", // 문자형
+    "body": [
+      "printf(\"${1:Text} %c\\n\",${2:var});$0"
+    ],
     "description": "Viv printf character (char)"
   },
   "Viv Printf String": {
-    "prefix": "pfs",
-    "body": ["printf(\"${1:Text} \\%s\\n\",${2:var});$0"],
+    "prefix": "pfs", // 문자열 형
+    "body": [
+      "printf(\"${1:Text} %s\\n\",${2:var});$0"
+    ],
     "description": "Viv printf string (char[])"
   },
   "Viv Printf Float": {
-    "prefix": "pff",
-    "body": ["printf(\"${1:Text} \\%${2:.2f}\\n\",${3:var});$0"],
-    "description": "Viv printf float"
+    "prefix": "pff", // 실수 float 형
+    "body": [
+      "printf(\"${1:Text} %${2:.2f}\\n\",${3:var});$0"
+    ],
+    "description": "Viv printf 실수float"
+  },
+  "Viv Printf Double": {
+    "prefix": "pflf", // 실수 더블형
+    "body": [
+      "printf(\"${1:Text} %${2:.2lf}\\n\",${3:var});$0"
+    ],
+    "description": "Viv printf 실수 double"
+  },
+  "Viv Printf UnSigned": {
+    "prefix": "pfu",
+    "body": [
+      "printf(\"${1:Text} %${2:u}\\n\",${3:var});$0"
+    ],
+    "description": "Viv printf UnSigned"
+  },
+  "Viv Printf Hex": {
+    "prefix": "pfx",
+    "body": [
+      "printf(\"${1:Text} %${2:x}\\n\",${3:var});$0"
+    ],
+    "description": "Viv printf 16진수 Hex"
+  },
+  "Viv Printf Pointer": {
+    "prefix": "pfp",
+    "body": [
+      "printf(\"${1:Text} %${2:p}\\n\",${3:var});$0"
+    ],
+    "description": "Viv printf Pointer"
+  },
+  "Viv Printf Long Long Int": {
+    "prefix": "pflld",
+    "body": [
+      "printf(\"${1:Text} %${2:lld}\\n\",${3:var});$0"
+    ],
+    "description": "Viv printf long long int"
   },
   "Viv Printf Blank": {
-    "prefix": "pfb",
-    "body": ["printf(\"$1\\n\");$0"],
+    "prefix": "bk", // 빈 공간 삽입
+    "body": [
+      "printf(\"$1\\n\");$0"
+    ],
     "description": "Viv printf blank"
   },
   "Viv Scanf": {
     "prefix": "sf",
-    "body": ["scanf(\"%d\", ${1:var});$0"],
-    "description": "Viv blank line with scanf"
+    "body": [
+      "scanf(\"%d\", ${1:var});$0"
+    ],
+    "description": "Viv scanf integer"
+  },
+  "Viv Scanf double": {
+    "prefix": "sflf",
+    "body": [
+      "scanf(\"%lf\", ${1:var});$0"
+    ],
+    "description": "Viv scanf double"
   },
   "Viv Clear Screen": {
     "prefix": "cls",
-    "body": ["system(\"clear\");$0"],
+    "body": [
+      "system(\"clear\");$0"
+    ],
     "description": "Viv termianl clear screen"
   },
   "Viv #include": {
     "prefix": "#i",
-    "body": ["#include <stdio.h>", "#include <stdlib.h>"],
+    "body": [
+      "#include <stdio.h>",
+      "#include <stdlib.h>",
+      "#include \"stdbool.h\""
+    ],
     "description": "Viv default #includes"
   },
-  "Viv function": {
+  "Viv #include Viv Header": {
+    "prefix": "#v",
+    "body": [
+      "#include \"../headers/vivstd.h\""
+    ],
+    "description": "Viv #include Header"
+  },
+  "Viv Create Function Standard": {
     "prefix": "fc",
-    "body": ["void ${1:name}()", "{", "\t$0", "}"],
-    "description": "Viv create function"
-  }
+    "body": [
+      "void ${1:name}()",
+      "{",
+      "\t$0",
+      "}"
+    ],
+    "description": "Viv Create Function Standard"
+  },
+  "Viv For Loop Standard": {
+    "prefix": "forv",
+    "body": "for (int ${1:i} = ${2:0}; ${1:i} < ${3:10}; ${1:i}++) \n{\n\t${0}\n}",
+    "description": "Cpp For Loop Standard"
+  },
+  "Viv Nested For Loop": {
+    "prefix": "forn",
+    "body": "for (int i = ${1:0}; i < ${2:10}; i++)\n{\n\tfor (int j = ${3:0}; j < ${4:10}; j++)\n\t{\n\t\t${0}\n\t}\n}",
+    "description": "Cpp Nested For Loop"
+  },
+  "Viv For Loop Reverse": {
+    "prefix": "forrv",
+    "body": "for (int ${1:i} = ${2:10}; ${1:i} >= ${3:0}; --${1:i}) \n{\n\t${0}\n}",
+    "description": "Cpp For Loop Reverse"
+  },
 }
 ```
 
@@ -255,37 +349,37 @@ int main(void)
 ---
 
 ### C 표준 라이브러리
-| 이름 | 표준	| 상세 |
-|---|---|---|
-| <assert.h>      |     |assert 매크로를 포함하며, 이것은 프로그램의 디버깅 버전들에서 논리 오류들과 버그들의 다른 타입들을 탐지하는 것을 돕는데 사용된다.|
-| <complex.h>	    | C99 | 복소수를 조작하는데 사용되는 함수들의 집합.|
-| <ctype.h>		    |     | 타입에 따라 문자들을 분류하거나 대소문자를 전환하는데 사용되는 함수들의 집합을 정의한다. |
-| <errno.h>		    |     | 라이브러리 함수들에 의해 리포트되는 오류 코드들을 테스팅할 때 사용된다.|
-| <fenv.h>	      | C99 | 부동소수점 환경을 제어하는데 사용되는 함수들의 집합을 정의한다.|
-| <float.h>		    |     | 부동소수점 라이브러리의 구현된 속성을 명시하는 매크로 상수를 정의한다.|
-| <inttypes.h>	  | C99 | 정확한 정수형을 정의한다.|
-| <iso646.h>	    | NA1 | 여러 표준 토큰들을 표현하기 위한 대체 방식들을 구현하는 여러 매크로들을 정의한다.|
-| <limits.h>		  |     | 정수형 타입의 구현된 속성을 명시하는 매크로 상수를 정의한다.|
-| <locale.h>		  |     | 지역화 함수 정의|
-| <math.h>		    |     | 일반적인 수학 함수 정의|
-| <setjmp.h>		  |     | setjmp 와 longjmp 매크로를 선언한다.|
-| <signal.h>		  |     | 시그널 핸들링 함수를 정의한다.|
-| <stdalign.h>	  | C11 | 객체들의 얼라인먼트를 질의하고 명시하기 위한.|
-| <stdarg.h>		  |     | 함수에 전달되는 인자들에 접근하기 위한.|
-| <stdatomic.h>	  | C11 | 스레드 사이에서 공유되는 데이터의 원자적 동작을 위한.|
-| <stdbool.h>	    | C99 | 불린 데이터 형 정의|
-| <stddef.h>		  |     | 여러 유용한 타입과 매크로 정의.|
-| <stdint.h>	    | C99 | 정확한 정수형을 정의.|
-| <stdio.h>		    |     | 핵심 입력과 출력 함수들을 정의한다.|
-| <stdlib.h>		  |     | 숫자 변환 함수들, 슈도 랜덤 숫자 생성 함수들, 메모리 할당, 프로세스 제어 함수들을 정의한다.
-| <stdnoreturn.h>	| C11 | 반환하지 않는 함수들을 명시하기 위한|
-| <string.h>		  |     | 문자열 처리 함수들을 정의한다.|
-| <tgmath.h>	    | C99 | 포괄형 수학 함수들을 정의한다.|
-| <threads.h>	    | C11 | 다중 스레드들과 뮤텍스 그리고 제어 변수들을 관리하는 함수들을 정의한다.|
-| <time.h>		    |     | 데이터와 시간 처리 함수들을 정의한다.|
-| <uchar.h>	      | C11 | 유니코드 문자들과 이것을 조작하는 함수들|
-| <wchar.h>	      | NA1 | wide 문자열 처리 함수들을 정의한다.|
-| <wctype.h>	    | NA1 | 그들의 형에 따라 wide 문자들을 분류하거나 대소문자를 전환하는데 사용되는 함수들의 집합. |
+| 이름            | 표준 | 상세                                                                                                                              |
+| --------------- | ---- | --------------------------------------------------------------------------------------------------------------------------------- |
+| <assert.h>      |      | assert 매크로를 포함하며, 이것은 프로그램의 디버깅 버전들에서 논리 오류들과 버그들의 다른 타입들을 탐지하는 것을 돕는데 사용된다. |
+| <complex.h>     | C99  | 복소수를 조작하는데 사용되는 함수들의 집합.                                                                                       |
+| <ctype.h>       |      | 타입에 따라 문자들을 분류하거나 대소문자를 전환하는데 사용되는 함수들의 집합을 정의한다.                                          |
+| <errno.h>       |      | 라이브러리 함수들에 의해 리포트되는 오류 코드들을 테스팅할 때 사용된다.                                                           |
+| <fenv.h>        | C99  | 부동소수점 환경을 제어하는데 사용되는 함수들의 집합을 정의한다.                                                                   |
+| <float.h>       |      | 부동소수점 라이브러리의 구현된 속성을 명시하는 매크로 상수를 정의한다.                                                            |
+| <inttypes.h>    | C99  | 정확한 정수형을 정의한다.                                                                                                         |
+| <iso646.h>      | NA1  | 여러 표준 토큰들을 표현하기 위한 대체 방식들을 구현하는 여러 매크로들을 정의한다.                                                 |
+| <limits.h>      |      | 정수형 타입의 구현된 속성을 명시하는 매크로 상수를 정의한다.                                                                      |
+| <locale.h>      |      | 지역화 함수 정의                                                                                                                  |
+| <math.h>        |      | 일반적인 수학 함수 정의                                                                                                           |
+| <setjmp.h>      |      | setjmp 와 longjmp 매크로를 선언한다.                                                                                              |
+| <signal.h>      |      | 시그널 핸들링 함수를 정의한다.                                                                                                    |
+| <stdalign.h>    | C11  | 객체들의 얼라인먼트를 질의하고 명시하기 위한.                                                                                     |
+| <stdarg.h>      |      | 함수에 전달되는 인자들에 접근하기 위한.                                                                                           |
+| <stdatomic.h>   | C11  | 스레드 사이에서 공유되는 데이터의 원자적 동작을 위한.                                                                             |
+| <stdbool.h>     | C99  | 불린 데이터 형 정의                                                                                                               |
+| <stddef.h>      |      | 여러 유용한 타입과 매크로 정의.                                                                                                   |
+| <stdint.h>      | C99  | 정확한 정수형을 정의.                                                                                                             |
+| <stdio.h>       |      | 핵심 입력과 출력 함수들을 정의한다.                                                                                               |
+| <stdlib.h>      |      | 숫자 변환 함수들, 슈도 랜덤 숫자 생성 함수들, 메모리 할당, 프로세스 제어 함수들을 정의한다.                                       |
+| <stdnoreturn.h> | C11  | 반환하지 않는 함수들을 명시하기 위한                                                                                              |
+| <string.h>      |      | 문자열 처리 함수들을 정의한다.                                                                                                    |
+| <tgmath.h>      | C99  | 포괄형 수학 함수들을 정의한다.                                                                                                    |
+| <threads.h>     | C11  | 다중 스레드들과 뮤텍스 그리고 제어 변수들을 관리하는 함수들을 정의한다.                                                           |
+| <time.h>        |      | 데이터와 시간 처리 함수들을 정의한다.                                                                                             |
+| <uchar.h>       | C11  | 유니코드 문자들과 이것을 조작하는 함수들                                                                                          |
+| <wchar.h>       | NA1  | wide 문자열 처리 함수들을 정의한다.                                                                                               |
+| <wctype.h>      | NA1  | 그들의 형에 따라 wide 문자들을 분류하거나 대소문자를 전환하는데 사용되는 함수들의 집합.                                           |
 
 ---
 
@@ -337,3 +431,24 @@ int main(void)
 > 요약하면 gcc와 g++는 동일한 컬렉션의 일부이며 각각 C 및 C++ 코드를 컴파일하는 데 주로 사용되지만 llvm과 clang은 여러 언어용 컴파일러를 빌드하는 데 사용할 수 있는 별도의 인프라입니다. Clang은 gcc/g++보다 더 빠른 컴파일 시간과 더 나은 오류 메시지로 유명합니다.
 
 
+### 포인터 변수
+- `메모리 주소를 저장`하는 변수  
+- 일반변수와 포인터 변수와의 차이점
+
+| - | 공통점 | 차이점 |
+|---|---|---
+| 일반 변수 | 값 저장 | 상수 저장 |
+| 포인터 변수 | 값 저장 | 메모리 주소 저장 |
+
+- (간접) 참조 연산자 : `*`, 선언된 변수가 포인터 변수임을 나타냄
+- 참조 : `접근` 과 동일한 의미
+- ( `*` ) 의 의미 :  포인터 변수에 저장된 메모리 주소로 접근한 메모리 영역의 데이터(값)을 의미
+- 선언방식 : *int* `*nVar;` *char* `*cVar;` *float* `*fVar;`
+- 데이터 형에 관계없이 메모리 주소를 저장하므로 *`4바이트`* 크기를 동일하게 가짐
+- `*pVar` : 포인터 변수 `pVar` 에 저장된 메모리 주소에 접근하여 그 주소에 저장 된 값을 의미함 
+- `&` (주소 연산자): 정수형 변수의 메모리 주소
+  - int nVar = 7;
+  - int *nPtr = &nVar;
+- 포인터 역할 : 임의의 메모리에 접근하여 값을 저장하거나 읽는 역할
+- 포인터를 활용한 메모리 생성과 해제  
+- 문자열 다루기  

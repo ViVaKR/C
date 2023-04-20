@@ -49,7 +49,7 @@ void Array()
     printf("C: %d, C++: %d, C#: %d, 총점: %d, 평균: %.2f\n", Grade[0], Grade[1], Grade[2], Sum, Average);
 
     // 배열 초기화 : memset(배열명, 0 or -1, 초기화할 크기)
-    printf("문자열열초기화 : memset example, 숫자형은 이상한 값이 들어감 주의");
+    printf("문자열초기화 : memset example");
     char chArr[20] = "Hello World";
     memset(chArr, '0', 20 * sizeof(char));
     for (int i = 0; i < 20; i++) {

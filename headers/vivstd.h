@@ -9,3 +9,10 @@
 #include <locale.h>
 #include <assert.h>
 #include <float.h>
+#include <unistd.h> // Get PID
+#include <setjmp.h> // try ~ catch 
+
+#define macos
+#define windows
+#define linux
+#define logfile "/Users/vivabm/GitProjects/C/log.txt"
