@@ -8,7 +8,7 @@ void PointerInt()
     // 메모리 주소와 데이터 형을 알면 데이터를 읽거나 저장할 수 있다.
 
     // fflush(stdin);
-    
+
     // // 문자형 포인터 예시
     // int var = 10;
     // int *pVar = &var;
@@ -41,4 +41,23 @@ void PointerInt()
     // Eception 처리 하도록 약속이 되어 있습니다.
     // 우리가 + 기호를 보고 왜 더하기를 하느냐고 묻지 않듯
     // 0으로 나누는 것은 묻지도 따지지도 않고 오류 처리 입니다.
+}
+
+void Array2DPointer()
+{
+    /****** Array2DPointer *****/
+    int arr[3][4] = {
+        { 1, 2, 3, 4 },
+        { 5, 6, 7, 8 },
+        { 9, 10, 11, 12 }
+    };
+
+    // 배열의 값을 출력합니다.
+    printf("The array elements are:\n");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 4; j++) {
+            printf("%d ", *((*(arr + i)) + j));
+        }
+        printf("\n");
+    }
 }

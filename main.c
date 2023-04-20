@@ -1,9 +1,22 @@
 #include "headers/main.h"
 
-/// @brief Start Point
-/// @return isSuccess 0
-int main()
+/// @brief 메인함수
+/// @param argc 전달된 정보의 갯수
+/// @param argv 전달된 실질 데이터 배열
+/// $0 = 프로그램경로, $1 = 첫번째...
+/// @return
+int main(int argc, char *argv[])
 {
+    if (argc > 0) {// 전달받은 인수 확인
+        for (int i = 0; i < argc; i++) {
+            printf("argv[%d] = %s\n", i, argv[i]);
+        }
+    }
+
+    char nData = 'a';
+    printf("nData %p\n", &nData);
+    printf("\n");
+
     // 로그파일 데모
     time_t rawtime;
     time(&rawtime);
@@ -15,20 +28,25 @@ int main()
     Files(true, NULL);
 
     // 메뉴선택
-    int choice;
-    do {
-        // system("read");
-        PrintMenu();
-        //-------------------------------------------//
-        fflush(stdin);// Clear Buffer
-        printf("(번호) >>> ");// 프롬프트 (Prompt)
-        scanf("%d", &choice);// 입력받기 (User Input by int)
-        ScreenClear();
-
+    long choice;
+    char *p;
+    if (argc > 1) {
+        choice = strtol(argv[1], &p, 10);
         Exec(choice);
-    } while (choice != 100);
+    } else {
+        do {
+            // system("read");
+            PrintMenu();
+            //-------------------------------------------//
+            fflush(stdin);// Clear Buffer
+            printf("(번호) >>> ");// 프롬프트 (Prompt)
+            scanf("%ld", &choice);// 입력받기 (User Input by int)
+            ScreenClear();
 
-    ScreenClear();
+            Exec(choice);
+        } while (choice != 100);
+    }
+    // ScreenClear();
 
     return 0;
     //   exit(EXIT_SUCCESS);

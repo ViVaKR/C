@@ -74,75 +74,77 @@ int main(void)
 
 ---
 
-### VSCode User `Snippets` : 사용자 단축키 지정, 코드 생산성 향상목적
-
+### VSCode User `Snippets` : 사용자 단축키 지정
+>
+> 학습용 데모코드 생산성 향상 목적
+>
 > `VSCode` -> `CMD(CTRL) + SHIFT + P` -> `Snippets: Configure User Snippets` -> `c.json (C)` 
 >
-
+>
 ```json
 {
   "Viv Printf HelloWorld": {
-    "prefix": "pf", // 일반 문자
+    "prefix": "pfh", // 일반 문자
     "body": [
       "printf(\"${1:Hello World}\");$0"
     ],
-    "description": "Viv printf hello world"
+    "description": "Viv printf With Hello World"
   },
   "Viv Printf Number": {
     "prefix": "pfd", // 정수형
     "body": [
       "printf(\"${1:Text} %d\\n\",${2:var});$0"
     ],
-    "description": "Viv printf number"
+    "description": "Viv printf Number Type"
   },
   "Viv Printf Character": {
     "prefix": "pfc", // 문자형
     "body": [
       "printf(\"${1:Text} %c\\n\",${2:var});$0"
     ],
-    "description": "Viv printf character (char)"
+    "description": "Viv printf Character Type"
   },
   "Viv Printf String": {
     "prefix": "pfs", // 문자열 형
     "body": [
       "printf(\"${1:Text} %s\\n\",${2:var});$0"
     ],
-    "description": "Viv printf string (char[])"
+    "description": "Viv printf String (char[]) Type"
   },
   "Viv Printf Float": {
     "prefix": "pff", // 실수 float 형
     "body": [
       "printf(\"${1:Text} %${2:.2f}\\n\",${3:var});$0"
     ],
-    "description": "Viv printf 실수float"
+    "description": "Viv printf Float Type"
   },
   "Viv Printf Double": {
-    "prefix": "pflf", // 실수 더블형
+    "prefix": "pflf", // 실수 double 형
     "body": [
       "printf(\"${1:Text} %${2:.2lf}\\n\",${3:var});$0"
     ],
-    "description": "Viv printf 실수 double"
+    "description": "Viv printf Double Type"
   },
   "Viv Printf UnSigned": {
     "prefix": "pfu",
     "body": [
       "printf(\"${1:Text} %${2:u}\\n\",${3:var});$0"
     ],
-    "description": "Viv printf UnSigned"
+    "description": "Viv printf UnSigned Type"
   },
   "Viv Printf Hex": {
     "prefix": "pfx",
     "body": [
       "printf(\"${1:Text} %${2:x}\\n\",${3:var});$0"
     ],
-    "description": "Viv printf 16진수 Hex"
+    "description": "Viv printf 16진수 Hex Type"
   },
   "Viv Printf Pointer": {
     "prefix": "pfp",
     "body": [
       "printf(\"${1:Text} %${2:p}\\n\",${3:var});$0"
     ],
-    "description": "Viv printf Pointer"
+    "description": "Viv printf Pointer Type"
   },
   "Viv Printf Long Long Int": {
     "prefix": "pflld",
@@ -151,17 +153,24 @@ int main(void)
     ],
     "description": "Viv printf long long int"
   },
-  "Viv Printf Blank": {
+  "Viv Printf Insert One Line Blank": {
     "prefix": "bk", // 빈 공간 삽입
     "body": [
       "printf(\"$1\\n\");$0"
     ],
-    "description": "Viv printf blank"
+    "description": "Viv printf Blank"
+  },
+  "Viv Printf Insert Two Line Blank": {
+    "prefix": "bbk", // 두칸 빈 공간 삽입
+    "body": [
+      "printf(\"$1\\n\\n\");$0"
+    ],
+    "description": "Viv printf Insert Two Line Blank"
   },
   "Viv Scanf": {
     "prefix": "sf",
     "body": [
-      "scanf(\"%d\", ${1:var});$0"
+      "scanf(\"%${1:d}\", ${2:var});$0"
     ],
     "description": "Viv scanf integer"
   },
@@ -200,6 +209,7 @@ int main(void)
     "body": [
       "void ${1:name}()",
       "{",
+      "\t/****** ${1:name} *****/",
       "\t$0",
       "}"
     ],
@@ -435,9 +445,9 @@ int main(void)
 - `메모리 주소를 저장`하는 변수  
 - 일반변수와 포인터 변수와의 차이점
 
-| - | 공통점 | 차이점 |
-|---|---|---
-| 일반 변수 | 값 저장 | 상수 저장 |
+| -           | 공통점  | 차이점           |
+| ----------- | ------- | ---------------- |
+| 일반 변수   | 값 저장 | 상수 저장        |
 | 포인터 변수 | 값 저장 | 메모리 주소 저장 |
 
 - (간접) 참조 연산자 : `*`, 선언된 변수가 포인터 변수임을 나타냄
