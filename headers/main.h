@@ -1,26 +1,28 @@
 #include "vivstd.h"
 
+#include "../common/defines.c"
 #include "../demo/ArithmeticOperators.c"
 #include "../demo/Array.c"
 #include "../demo/Array2D.c"
+#include "../demo/ArrayPointer.c"
+#include "../demo/CallByValue.c"
+#include "../demo/CharArrayPointer.c"
+#include "../demo/CopyMemory.c"
+#include "../demo/DataStruct.c"
 #include "../demo/DataType.c"
+#include "../demo/Files.c"
 #include "../demo/Function.c"
 #include "../demo/Iterator.c"
 #include "../demo/Jisikin.c"
+#include "../demo/MallocMemset.c"
 #include "../demo/Math.c"
 #include "../demo/Operator.c"
 #include "../demo/Pointers.c"
 #include "../demo/Printf.c"
+#include "../demo/Recursion.c"
 #include "../demo/Scanf.c"
 #include "../demo/Variable.c"
-#include "../common/defines.c"
-#include "../demo/Files.c"
-#include "../demo/Recursion.c"
-#include "../demo/DataStruct.c"
-#include "../demo/ArrayPointer.c"
-#include "../demo/MallocMemset.c"
-#include "../demo/CopyMemory.c"
-#include "../demo/CharArrayPointer.c"
+#include "../demo/CallByPointer.c"
 
 void PrintMenu();
 void Exec(int choice);
@@ -42,3 +44,5 @@ void ArrayPointer();
 void MallocMemset();
 void CopyMemory();
 void CharArrayPointer();
+void CallByValue();
+void CallByPointer();
