@@ -2,8 +2,8 @@
     "files.associations": {
         "chrono": "c"
     },
-    "lldb.displayFormat": "auto",
     "lldb.dereferencePointers": true,
     "lldb.consoleMode": "commands",
+    "lldb.displayFormat": "hex",
     "lldb.showDisassembly": "auto"
 }

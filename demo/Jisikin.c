@@ -1,5 +1,7 @@
 #include "../headers/vivstd.h"
 void Calendar();
+void ArrayAvgCaller();
+float ArrayAvg(int length, int *array);
 
 void Jisikin()
 {
@@ -17,8 +19,7 @@ end:
     return;
 }
 
-
-/// @brief 윤년찾기 지식인 답변용
+/// @brief 윤년찾기
 void Calendar()
 {
 
@@ -118,4 +119,29 @@ void Calendar()
         int tm_yday     // 1년 중 경과 일수, range o to 365
         int tm_isdst    // 섬머타임 실시여부 (양수, 0, 음수)
      */
+}
+
+/// @brief 배열파라미터 (1/2)
+void ArrayAvgCaller()
+{
+    int scores[5] = { 88, 88, 88, 88, 88 };
+    printf("\n평균 = %.2f\n(`scores`)\t -> %p\n", ArrayAvg(5, scores), scores);
+}
+
+/// @brief 배열파라미터 (2/2)
+/// @param length 배열의 길이
+/// @param array 합계를 구할 배열
+/// @return 배열 요소들의 합계
+float ArrayAvg(int length, int *array)
+{
+    printf("\n");
+    printf("//*** float average 함수 ***//\n");
+    printf("(`*arrary`)\tmemory address -> %p\n", array);
+    printf("\n");
+    
+    int sum = 0;
+    for (int i = 0; i < length; i++) {
+        sum += array[i];
+    }
+    return sum / (float)length;
 }

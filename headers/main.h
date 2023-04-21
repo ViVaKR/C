@@ -17,6 +17,10 @@
 #include "../demo/Files.c"
 #include "../demo/Recursion.c"
 #include "../demo/DataStruct.c"
+#include "../demo/ArrayPointer.c"
+#include "../demo/MallocMemset.c"
+#include "../demo/CopyMemory.c"
+#include "../demo/CharArrayPointer.c"
 
 void PrintMenu();
 void Exec(int choice);
@@ -34,3 +38,7 @@ void ScreenClear();
 void Files(bool rw, char *message);
 void Recursion();
 void DataStruct();
+void ArrayPointer();
+void MallocMemset();
+void CopyMemory();
+void CharArrayPointer();

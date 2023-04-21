@@ -1,6 +1,7 @@
 #include "../headers/vivstd.h"
 
 void ArrayParam(char *cArray, int size);
+void Disp(int size, int *x);
 
 void Array()
 {
@@ -30,7 +31,7 @@ void Array()
     // 배열의 메모리 주소 보기 방식 2종
     printf("-- 배열의 메모리 주소 보기 방식 2종 --");
     printf("\n");
-    printf("arrA = %p, &arrA[0] = %p\n",arrA, &arrA[0]);
+    printf("arrA = %p, &arrA[0] = %p\n", arrA, &arrA[0]);
     printf("\n");
     printf("\n");
 
@@ -40,7 +41,7 @@ void Array()
 
     int Grade[3], Sum;
     float Average;
-    printf("성적을 입력하세요 >> C, C++, C# >> ");
+    printf("성적을 입력하세요 ( 3번 ) >> C, C++, C# >> ");
 
     // 연속 입력시 띄여 쓰기 또는 엔터키로 구분가능
     scanf(" %d %d %d", &Grade[0], &Grade[1], &Grade[2]);
@@ -58,17 +59,24 @@ void Array()
         printf("Char %d : %c\n", i, chArr[i]);
     }
 
-    // 배열을 포인터로 전달
+    //***** 배열을 포인터로 전달 *****//
     ArrayParam(chArr, sizeof(chArr));
-
     // 배열을 포인터로 전달 된 후 값 변화 확인
     printf("배열 포인터 전달 후");
     printf("\n");
     for (size_t i = 0; i < sizeof(chArr) / sizeof(chArr[0]); i++) {
-
         // 숫자를 Ascii 코드 문자로 변경됨 확인
         printf("chArr %d %c\n", i, chArr[i]);
     }
+
+    //***** 배열이 함수의 인수로 전달하는 데모 *****//
+    int y[6] = { 0, 1, 2, 3, 4, 5 };
+    // 시작주소만 보냄, 즉 복사되어 넘어가는 것이 아님
+    // 넘길때는 배열식 표현이지만,
+    // 전달받은 함수에서는 포인터식으로 해석하는 것이 일반적임
+    // 또한 전체 크기를 넘겨주어야 함
+    int size = sizeof(y) / sizeof(*y);
+    Disp(size, y);
 }
 
 /// @brief 배열을 포인터로 받은 값 변경, cArray[] 도 동일 결과
@@ -92,6 +100,26 @@ void ArrayParam(char *cArray, int size)
     for (size_t i = 0; i < size; i++) {
         cArray[i] = (char)(i + 65);
         printf("nArray %d %c %c\n", i, cArray[i], *cArray + i);
+    }
+}
 
+/// @brief 배열을 파라미터로 받는 함수
+/// @param size 배열을 전달 받을 때에는 크기도 함께 받아야 함
+/// @param x x[], x[5], *x 모두 같은 의미, 4바이트
+void Disp(int size, int *x)
+{
+    // 함수 내부에서는 x의 시작 주소와 데이터형 즉 하나의 크기는 알지만
+    // 전체 배열의 크기는 알수 없음으로 해당 인수를 동시에 전달 받아야 함
+    printf("size %d\n", size);
+
+    // ( 포인터식 표현 )
+    // *x
+    // *(x + 1) 또는 x[1] 도 가능하나 보통 포인터식 표현사용
+    // *(x + 2)
+    // *(x + 3)
+    // ... 이런식으로 처리함
+
+    for (int i = 0; i < size; i++) {
+        printf("%i %d\n", i, *(x + i));
     }
 }

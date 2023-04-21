@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# clear
+clear
 
 read -p "Press [Enter] key to start"
 $(which gcc-12) -o main main.c

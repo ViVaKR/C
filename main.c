@@ -13,11 +13,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    char nData = 'a';
-    printf("nData %p\n", &nData);
-    printf("\n");
-
-    // 로그파일 데모
+    // 로그 & 파일처리
     time_t rawtime;
     time(&rawtime);
     struct tm *info;
@@ -76,7 +72,11 @@ void PrintMenu()
     printf("(%03d) Array2D\n", 14);
     printf("(%03d) Recursion\n", 15);
     printf("(%03d) DataStruct\n", 16);
+    printf("(%03d) ArrayPoint\n", 17);
+    printf("(%03d) CopyMemory\n", 18);
+    printf("(%03d) MallocMemset\n", 19);
     printf("(%03d) Pointer (Integer)\n", 20);
+    printf("(%03d) CharArrayPointer\n", 21);
     printf("(%03d) 종료 (Exit)\n", 100);
 }
 
@@ -104,7 +104,11 @@ void Exec(int choice)
         case 14: Array2D(); break;
         case 15: Recursion(); break;
         case 16: DataStruct(); break;
+        case 17: ArrayPointer(); break;
+        case 18: CopyMemory(); break;
+        case 19: MallocMemset(); break;
         case 20: PointerInt(); break;
+        case 21: CharArrayPointer(); break;
         case 100: {
 
         } break;

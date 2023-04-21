@@ -249,13 +249,14 @@ int main(void)
    */
 
     /* [ 기본 데이터 형식 ]
-        char, unsigned char     1 Byte
-        short, unsigned short   2 Byte
-        int, unsigned int       4 Byte
-        long, unsigned long     4 Byte
-        float                   4 Byte
-        double                  8 Byte
-        long double             8 Byte
+        char, unsigned char     1 byte
+        short, unsigned short   2 byte
+        int, unsigned int       4 byte
+        long, unsigned long     4 byte
+        long long               4 byte
+        float                   4 byte
+        double                  8 byte
+        long double             8 byte or 12byte or 16byte
     */
 
     /* [ 변수명 ]
@@ -440,14 +441,16 @@ int main(void)
 
 > 요약하면 gcc와 g++는 동일한 컬렉션의 일부이며 각각 C 및 C++ 코드를 컴파일하는 데 주로 사용되지만 llvm과 clang은 여러 언어용 컴파일러를 빌드하는 데 사용할 수 있는 별도의 인프라입니다. Clang은 gcc/g++보다 더 빠른 컴파일 시간과 더 나은 오류 메시지로 유명합니다.
 
+---
 
-### 포인터 변수
+### 포인터
+
 - `메모리 주소를 저장`하는 변수  
 - 일반변수와 포인터 변수와의 차이점
 
-| -           | 공통점  | 차이점           |
-| ----------- | ------- | ---------------- |
-| 일반 변수   | 값 저장 | 상수 저장        |
+|-| 공통점 | 차이점 |
+|-|-|-|
+| 일반 변수   | 값 저장 | 상수 저장 |
 | 포인터 변수 | 값 저장 | 메모리 주소 저장 |
 
 - (간접) 참조 연산자 : `*`, 선언된 변수가 포인터 변수임을 나타냄
@@ -456,9 +459,50 @@ int main(void)
 - 선언방식 : *int* `*nVar;` *char* `*cVar;` *float* `*fVar;`
 - 데이터 형에 관계없이 메모리 주소를 저장하므로 *`4바이트`* 크기를 동일하게 가짐
 - `*pVar` : 포인터 변수 `pVar` 에 저장된 메모리 주소에 접근하여 그 주소에 저장 된 값을 의미함 
-- `&` (주소 연산자): 정수형 변수의 메모리 주소
+- `&` ( ampersand ): 주소연산자 변수의 메모리 주소
   - int nVar = 7;
   - int *nPtr = &nVar;
+  - 포인터 -> `nPtr`
 - 포인터 역할 : 임의의 메모리에 접근하여 값을 저장하거나 읽는 역할
 - 포인터를 활용한 메모리 생성과 해제  
 - 문자열 다루기  
+
+---
+
+|메모리 기본구조|||
+|-|-|-|
+| Stack | 지역변수, 매개변수 |
+| Heap | 동적할당 |
+| Data | 정적변수, 상수 (데이터세그먼트) |
+| Code | 함수코드 (코드세그먼트) |
+>
+> 32비트 CPU / 4바이트 (8 * 4 = 32) 표현범위 : 42.9억 ( 0 ~ FFFF FFFF)
+>
+> *`char`* : | 1 |
+>
+> *`int`* : | 1 | 1 | 1 | 1 |
+>
+> 주소연산자 : ` & ` 
+>
+
+---
+
+### 문자열 배열 vs 문자열 포인터
+
+---
+
+| 일반 배열 | 포인터 배열|
+|-|-|
+| char a[] = "apple" | char *b = "banana", 
+| a 와 apple 문자열 모두 스택영역에 있으며 a는 시작(0) 주소 상수 | 스택영역에는 변수 b -> data 영역에 상수로 "banana"  위치함 |
+| a -> `"a"` | b -> `"banana"` |
+| (안됨)| `b = "change";` (됨)|
+| - | `printf("%c", b);` -> `change` |
+| 요소별로 할당 및 변경처리 | 새로운 문자상수 주소로 갱신 (기존 문자 상수가 가비지로 유지됨)
+| - |즉, b에 지정된 값이 `banana` 에서 `change` 문자상수가 저장된 주소값으로 변경됨|
+| strcpy(a, "mango"); (됨) | (안됨) |
+| n 차원 배열 | 포인터 배열|
+
+---
+
+- `"Song"` 의 자료형 은 `char*`

@@ -1,6 +1,6 @@
 #include "../headers/vivstd.h"
 
-/// @brief 노드 구조체
+/// @brief Step #1
 typedef struct NODE
 {
     // 관리될 데이터
@@ -10,7 +10,20 @@ typedef struct NODE
     struct NODE *next;
 } NODE;
 
+/// @brief Step #2
+typedef struct NODE_B
+{
+
+    char szData[64];
+    struct NB *next;
+
+} NB;
+
+/// @brief 전역변수 : NB
+NB *g_pHead = NULL;
+
 void SingleList();
+void PrintList();
 
 /// @brief 자료구조 (데이터베이스)
 void DataStruct()
@@ -42,35 +55,81 @@ void DataStruct()
     // -> 3. 출력은 별도의 함수로 분리
     // -> 4. 디버거로 노드를 추적하며 메모리 위치를 확인함
 
-    SingleList();
+    // ( 순서 )
+    // 1. 전체 리스트 출력 함수 작성
+    // 2. 새로운 로드의 추가 및 삭제 수정 함수 작성 (CRUD)
+    // 4. 테스트 코드 실행
+
+    SingleList();// Step #1
+    PrintList();
 }
 
+/// @brief Part2. 데이터 출력
+void PrintList()
+{
+    /****** PrintList *****/
+    while (g_pHead != NULL) {
+        printf("[%p] %s, next[%p]\n", g_pHead, g_pHead->szData, g_pHead->next);
+        //g_pHead = g_pHead->next;
+    }
+}
+
+/// @brief NB 노드 추가하기
+/// @param pszDate 
+/// @return 
+int InsertNewNode(char *pszDate)
+{
+    NB *nb = (NB *)malloc(sizeof(NB));
+    memset(nb, 0, sizeof(NB));// 초기화 : 선택사항
+    strncpy(nb->szData, pszDate, sizeof(nb->szData)); // strcpy_s 대안
+
+    if (g_pHead == NULL)
+    {
+        g_pHead = nb;
+    }
+    else{
+        
+    }
+
+
+    return 1;
+}
+
+/// @brief Part1. 연결리스트 기본모델
 void SingleList()
 {
     /****** SingleList *****/
-    NODE list[5] = { 0 };
-    list[0].next = &list[1];
-    list[1].next = &list[2];
-    list[2].next = &list[3];
-    list[3].next = &list[4];
-    list[4].next = NULL;// 0 : 널포인트
 
+    NODE list[5] = { 0 };
+
+    // 데이터 초기화
     list[0].nData = 100;
     list[1].nData = 200;
     list[2].nData = 300;
     list[3].nData = 400;
     list[4].nData = 500;
 
+    // 연결 리스트 구조화
+    list[0].next = &list[1];
+    list[1].next = &list[2];
+    list[2].next = &list[3];
+    list[3].next = &list[4];
+    list[4].next = NULL;// 0 : 널포인트
+
     for (size_t i = 0; i < 5; i++)
         printf("list[%d]: %d\n", i, list[i].nData);
 
     printf("\n");
-    
+
+    // 연결 고리가 끊어지면 문제가 발생함
+    int i = 1;
     NODE *pTemp = &list[0];
-    while (pTemp != NULL)
-    {
-        printf("list %p: %d\n", pTemp, pTemp->nData);
+    while (pTemp != NULL) {
+        printf("(%d) - list %p: %d\n", i++, pTemp, pTemp->nData);
         pTemp = pTemp->next;
+        // sleep(1);
     }
+    printf("\n\n");
 }
+
 // Ref. [널널한 개발자]
