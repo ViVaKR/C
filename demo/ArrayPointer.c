@@ -1,6 +1,4 @@
-
 #include "../headers/vivstd.h"
-
 
 void ArrayPointer()
 {
@@ -24,7 +22,7 @@ void ArrayPointer()
     // *(p+3) == 8
     // *(p+4) == 10
 
-    // 배열은 포인터이다.
+    // 배열은 포인터
     // 즉 컴퓨터는 배열이라는 개념은 보다는 포인터로 개념으로 처리
     // 시작번지 + 자료형 + 전체크기 가 배열이 됨
 
@@ -43,6 +41,32 @@ void ArrayPointer()
     // &a[2]; vs a + 2
     printf("배열식 표현 : &a[2] -> %p\n포인터식 표현: a + 2 -> %p\n", &a[2], a + 2);
     printf("\n");
+
     printf("배열명은 상수\n");
-    printf("포인터는 변수\n");
+    printf("포인터는 변수\n\n");
+
+
+    // ** 2차원 배열 포인터 ** //
+    int arr2d[3][5] = {
+        { 1, 2, 3, 4, 5 },
+        { 10, 20, 30, 40, 50 },
+        { 100, 200, 300, 400, 500 }
+    };
+    printf("*** 2 배열 포인터 데모 ***\n");
+    int(*pa)[5] = arr2d;
+    printf("%p - %d\n%p - %d\n%p - %d\n", pa, (*pa)[1], p + 1, (*(pa + 1))[1], pa + 2, (*(pa + 2))[1]);
+
+    printf("\n");
+
+
+    printf("sizeof(pa[0][0]) : %d\n", sizeof(pa[0][0]));
+    printf("sizeof(*pa) : %d\n", sizeof(*pa));
+
+    printf("arr2d\t\t(p)\t-> %p\narr2d + 1\t(p)\t-> %p\n", arr2d, arr2d + 1);
+    printf("arr2d[1][3]\t\t-> %d\n(*(arr2d + 1))[3]\t-> %d\n", arr2d[1][3], (*(arr2d + 1))[3]);
+
+    // 포인터 변수의 크기 구하기
+    int value = 12;
+    int *ppp = &value;
+    printf("size %d\n",sizeof(ppp)); // OS 에 따라 4 또는 8 바이트
 }

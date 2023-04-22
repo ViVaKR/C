@@ -1,7 +1,7 @@
 [
 {
   "directory": "/Users/vivabm/GitProjects/C/build",
-  "command": "/usr/local/bin/gcc-12 -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -o CMakeFiles/VivCProject.dir/main.c.o -c /Users/vivabm/GitProjects/C/main.c",
+  "command": "/usr/local/bin/gcc-12  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -o CMakeFiles/VivCProject.dir/main.c.o -c /Users/vivabm/GitProjects/C/main.c",
   "file": "/Users/vivabm/GitProjects/C/main.c",
   "output": "CMakeFiles/VivCProject.dir/main.c.o"
 }

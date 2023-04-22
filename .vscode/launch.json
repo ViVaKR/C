@@ -3,15 +3,17 @@
     
     "configurations": [
         {
+            "name": "Debug with LLDB",
             "type": "lldb",
             "request": "launch",
-            "name": "(lldb) Launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            // "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "program": "${fileDirname}/main",
             "args": [],
             "preLaunchTask": "Viv C Build",
             "cwd": "${workspaceFolder}",
             "terminal": "integrated",
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "reverseDebugging": true
         }
 
     ]

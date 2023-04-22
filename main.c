@@ -76,9 +76,12 @@ void PrintMenu()
     printf("(%03d) CopyMemory\n", 18);
     printf("(%03d) MallocMemset\n", 19);
     printf("(%03d) Pointer (Integer)\n", 20);
-    printf("(%03d) CharArrayPointer\n", 21);
-    printf("(%03d) CallByValue\n", 22);
-    printf("(%03d) CallByPointer\n", 23);
+    printf("(%03d) Pointer Array\n", 21);
+    printf("(%03d) CharArrayPointer\n", 22);
+
+    printf("(%03d) CallByValue\n", 30);
+    printf("(%03d) CallByPointer\n", 31);
+    
     printf("(%03d) 종료 (Exit)\n", 100);
 }
 
@@ -110,9 +113,10 @@ void Exec(int choice)
         case 18: CopyMemory(); break;
         case 19: MallocMemset(); break;
         case 20: PointerInt(); break;
-        case 21: CharArrayPointer(); break;
-        case 22: CallByValue(); break;
-        case 23: CallByPointer(); break;
+        case 21: PointerArray(); break;
+        case 22: CharArrayPointer(); break;
+        case 30: CallByValue(); break;
+        case 31: CallByPointer(); break;
         case 100: {
 
         } break;

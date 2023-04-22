@@ -219,7 +219,7 @@ build cmake_object_order_depends_target_VivCProject: phony || CMakeFiles/VivCPro
 
 build CMakeFiles/VivCProject.dir/main.c.o: C_COMPILER__VivCProject_unscanned_Debug /Users/vivabm/GitProjects/C/main.c || cmake_object_order_depends_target_VivCProject
   DEP_FILE = CMakeFiles/VivCProject.dir/main.c.o.d
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15
+  FLAGS = -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15
   OBJECT_DIR = CMakeFiles/VivCProject.dir
   OBJECT_FILE_DIR = CMakeFiles/VivCProject.dir
 
@@ -232,7 +232,7 @@ build CMakeFiles/VivCProject.dir/main.c.o: C_COMPILER__VivCProject_unscanned_Deb
 # Link the executable VivCProject
 
 build VivCProject: C_EXECUTABLE_LINKER__VivCProject_Debug CMakeFiles/VivCProject.dir/main.c.o
-  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15
+  FLAGS = -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15
   LINK_FLAGS = -L/usr/local/opt/ruby/lib
   OBJECT_DIR = CMakeFiles/VivCProject.dir
   POST_BUILD = :

@@ -17,16 +17,19 @@
 #include "../demo/MallocMemset.c"
 #include "../demo/Math.c"
 #include "../demo/Operator.c"
+#include "../demo/PointerArray.c"
 #include "../demo/Pointers.c"
 #include "../demo/Printf.c"
 #include "../demo/Recursion.c"
 #include "../demo/Scanf.c"
 #include "../demo/Variable.c"
 #include "../demo/CallByPointer.c"
+#include "../demo/WhileLoop.c"
 
 void PrintMenu();
 void Exec(int choice);
 void Printf();
+void PointerArray();
 void PointerInt();
 void DataType();
 void ArithmeticOperators();
@@ -46,3 +49,4 @@ void CopyMemory();
 void CharArrayPointer();
 void CallByValue();
 void CallByPointer();
+void WhileLoop();

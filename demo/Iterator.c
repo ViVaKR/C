@@ -22,17 +22,17 @@ void ForLoop()
     printf("1 부터 10 까지의 합계 = %d\n", sum);
 }
 
-/// @brief While Loop
-void WhileLoop()
-{
-    printf("\n");
-    printf("***** While Loop ( 1 to 100, 짝수찾기) *****\n");
-    int start = 1;
-    while (start <= 100) {
-        if (start % 2 == 0) printf("짝수 (1-100): %d\n", start);
-        start++;
-    }
-}
+// /// @brief While Loop
+// void WhileLoop()
+// {
+//     printf("\n");
+//     printf("***** While Loop ( 1 to 100, 짝수찾기) *****\n");
+//     int start = 1;
+//     while (start <= 100) {
+//         if (start % 2 == 0) printf("짝수 (1-100): %d\n", start);
+//         start++;
+//     }
+// }
 
 /// @brief Do While Loop
 void DoWhileLoop()

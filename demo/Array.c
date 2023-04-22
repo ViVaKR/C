@@ -3,6 +3,7 @@
 void ArrayParam(char *cArray, int size);
 void Disp(int size, int *x);
 
+/// @brief 배열 데모 진입점
 void Array()
 {
     printf("***** Array *****\n");
@@ -124,3 +125,4 @@ void Disp(int size, int *x)
         printf("%i %d\n", i, *(x + i));
     }
 }
+
