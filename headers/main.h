@@ -25,6 +25,9 @@
 #include "../demo/Variable.c"
 #include "../demo/CallByPointer.c"
 #include "../demo/WhileLoop.c"
+#include "../demo/ArrayShift.c"
+#include "../demo/Struct.c"
+#include "../demo/Database.c"
 
 void PrintMenu();
 void Exec(int choice);
@@ -50,3 +53,6 @@ void CharArrayPointer();
 void CallByValue();
 void CallByPointer();
 void WhileLoop();
+void ArrayShift();
+void Struct();
+void Database();

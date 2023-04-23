@@ -1,5 +1,41 @@
 #include "headers/main.h"
 
+int string_concat()
+{
+    int arr1[3] = { 1, 2, 3 };
+    int arr2[3] = { 4, 5, 6 };
+    int arr3[3] = { 7, 8, 9 };
+    int result[9];// 합쳐진 배열
+
+    // arr1의 요소를 result에 복사
+    for (int i = 0; i < 3; i++) {
+        result[i] = arr1[i];
+    }
+
+    // arr2의 요소를 result에 복사
+    for (int i = 0; i < 3; i++) {
+        result[i + 3] = arr2[i];
+    }
+
+    // arr3의 요소를 result에 복사
+    for (int i = 0; i < 3; i++) {
+        result[i + 6] = arr3[i];
+    }
+
+    // result 출력
+    for (int i = 0; i < 9; i++) {
+        printf("%d ", result[i]);
+    }
+}
+
+char *concat_string(char *s1, char *s2, char *s3, char *s4)
+{
+    char *result = malloc(strlen(s1) + strlen(s2) + strlen(s3) + strlen(s4) + 1);// 널종결자 + 1
+    strcat(strcat(strcat(strcpy(result, s1), s2), s3), s4);
+    free(result);
+    return result;
+}
+
 /// @brief 메인함수
 /// @param argc 전달된 정보의 갯수
 /// @param argv 전달된 실질 데이터 배열
@@ -7,11 +43,17 @@
 /// @return
 int main(int argc, char *argv[])
 {
-    if (argc > 0) {// 전달받은 인수 확인
-        for (int i = 0; i < argc; i++) {
-            printf("argv[%d] = %s\n", i, argv[i]);
-        }
-    }
+    // char myString[30] = "ABCDEFG";
+    // char ch[30] = "abcd";
+    // char *ps = "12";
+    // char *string = concat_string(myString, "M", ps, ch);
+    // printf("%s\n", string);
+
+    // if (argc > 0) {// 전달받은 인수 확인
+    //     for (int i = 0; i < argc; i++) {
+    //         printf("argv[%d] = %s\n", i, argv[i]);
+    //     }
+    // }
 
     // 로그 & 파일처리
     time_t rawtime;
@@ -78,10 +120,14 @@ void PrintMenu()
     printf("(%03d) Pointer (Integer)\n", 20);
     printf("(%03d) Pointer Array\n", 21);
     printf("(%03d) CharArrayPointer\n", 22);
+    printf("(%03d) Array Shift\n", 23);
+    printf("(%03d) Struct\n", 24);
 
     printf("(%03d) CallByValue\n", 30);
     printf("(%03d) CallByPointer\n", 31);
-    
+
+    printf("(%03d) Database\n", 50);
+
     printf("(%03d) 종료 (Exit)\n", 100);
 }
 
@@ -115,11 +161,14 @@ void Exec(int choice)
         case 20: PointerInt(); break;
         case 21: PointerArray(); break;
         case 22: CharArrayPointer(); break;
+        case 23: ArrayShift(); break;
+        case 24: Struct(); break;
+
         case 30: CallByValue(); break;
         case 31: CallByPointer(); break;
-        case 100: {
 
-        } break;
+        case 50: Database(); break;
+        case 100: break;
     }
 
     printf("\n\n==> ( Press Enter View Menus ) <==\n");

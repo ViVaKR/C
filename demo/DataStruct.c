@@ -13,7 +13,6 @@ typedef struct NODE
 /// @brief Step #2
 typedef struct NODE_B
 {
-
     char szData[64];
     struct NB *next;
 
@@ -40,6 +39,7 @@ void DataStruct()
     // 재귀호출
 
     /* 1. Single Linked List */
+    // 선행 학습 내용 : 구조체, 함수, 자기참조 구조체, 동적할당 (포인터)
     // 자료 데이터를 관리하는 컨테이너의 종류
     // 연결 리스트는 여러 구조체 인스턴스를 체인처럼 줄줄이 포인터로 연결한 자료구조
     // 연결에 사용된 포인터 숫자가 한개이고 자기 다음을 가리키는 것이 특징
@@ -59,6 +59,13 @@ void DataStruct()
     // 1. 전체 리스트 출력 함수 작성
     // 2. 새로운 로드의 추가 및 삭제 수정 함수 작성 (CRUD)
     // 4. 테스트 코드 실행
+
+    // C R U D
+    // Append (추가) C
+    // Insert (삽입) 
+    // Update (수정) U
+    // Delete (삭제) D
+    // Search (찾기) R
 
     SingleList();// Step #1
     PrintList();
@@ -90,8 +97,6 @@ int InsertNewNode(char *pszDate)
     else{
         
     }
-
-
     return 1;
 }
 
