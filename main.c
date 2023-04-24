@@ -127,6 +127,7 @@ void PrintMenu()
     printf("(%03d) CallByPointer\n", 31);
 
     printf("(%03d) Database\n", 50);
+    printf("(%03d) BST\n", 60);
 
     printf("(%03d) 종료 (Exit)\n", 100);
 }
@@ -168,6 +169,7 @@ void Exec(int choice)
         case 31: CallByPointer(); break;
 
         case 50: Database(); break;
+        case 60: BinarySearchTree(); break;
         case 100: break;
     }
 

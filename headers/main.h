@@ -28,6 +28,7 @@
 #include "../demo/ArrayShift.c"
 #include "../demo/Struct.c"
 #include "../demo/Database.c"
+#include "../demo/BinarySearchTree.c"
 
 void PrintMenu();
 void Exec(int choice);
@@ -56,3 +57,4 @@ void WhileLoop();
 void ArrayShift();
 void Struct();
 void Database();
+void BinarySearchTree();
