@@ -12,8 +12,7 @@
             "compilerPath": "/usr/local/bin/gcc-12",
             "intelliSenseMode": "gcc-x64",
             "configurationProvider": "vector-of-bool.cmake-tool",
-            // "configurationProvider": "/usr/local/bin/gcc-12",
-            "cStandard": "c23",
+            "cStandard": "c17",
             "cppStandard": "c++23"
         }
     ],

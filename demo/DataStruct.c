@@ -14,12 +14,12 @@ typedef struct NODE
 typedef struct NODE_B
 {
     char szData[64];
-    struct NB *next;
+    struct NODE_B *next;
 
 } NB;
 
-/// @brief 전역변수 : NB
-NB *g_pHead = NULL;
+int InsertNewNode(char *pszDate);
+void ReleaseList();
 
 void SingleList();
 void PrintList();
@@ -30,8 +30,8 @@ void DataStruct()
     printf("***** 자료구조 *****");
     printf("\n");
 
-    int nData = 300;
-    printf("\n");
+    // int nData = 300;
+    // printf("\n");
 
     /* 선행학습 */
     // 포인터 (함수포인터 포함)
@@ -62,40 +62,52 @@ void DataStruct()
 
     // C R U D
     // Append (추가) C
-    // Insert (삽입) 
+    // Insert (삽입)
     // Update (수정) U
     // Delete (삭제) D
     // Search (찾기) R
 
-    SingleList();// Step #1
+    // SingleList();// Step #1
+
+    // 데이터 삽입
+    InsertNewNode("Viv1");
     PrintList();
+    InsertNewNode("Viv2");
+    PrintList();
+    InsertNewNode("Viv3");
+    PrintList();
+    InsertNewNode("Viv4");
+    PrintList();
+    InsertNewNode("Viv5");
+    PrintList();
+
+    // 메모리 해제
+    ReleaseList();
 }
 
-/// @brief Part2. 데이터 출력
-void PrintList()
-{
-    /****** PrintList *****/
-    while (g_pHead != NULL) {
-        printf("[%p] %s, next[%p]\n", g_pHead, g_pHead->szData, g_pHead->next);
-        //g_pHead = g_pHead->next;
-    }
-}
+NB *ptr = NULL;
 
 /// @brief NB 노드 추가하기
-/// @param pszDate 
-/// @return 
+/// @param pszDate
+/// @return
 int InsertNewNode(char *pszDate)
 {
-    NB *nb = (NB *)malloc(sizeof(NB));
-    memset(nb, 0, sizeof(NB));// 초기화 : 선택사항
-    strncpy(nb->szData, pszDate, sizeof(nb->szData)); // strcpy_s 대안
+    // 새 노드를 만든 후
+    // 기존 노드의 포인터로 새노드 포이터를 갱신 후
+    // 부모 노드의 포인터에 새노드 포인터를 갱신하는 순서로 진행
 
-    if (g_pHead == NULL)
-    {
-        g_pHead = nb;
-    }
-    else{
-        
+    // (1) 새노드 만들기
+    NB *nb = (NB *)malloc(sizeof(NB));
+
+    memset(nb, 0, sizeof(NB));// 초기화 : 선택사항
+    strncpy(nb->szData, pszDate, sizeof(nb->szData));// strcpy_s 대안
+
+    if (ptr == NULL) {
+        ptr = nb;
+    } else {
+        // 기존 연결을 새로운 노드로 복사 카피
+        nb->next = ptr;
+        ptr = nb;
     }
     return 1;
 }
@@ -137,4 +149,30 @@ void SingleList()
     printf("\n\n");
 }
 
+/// @brief Part2. 데이터 출력
+void PrintList()
+{
+    /****** PrintList *****/
+
+    NB *temp = ptr;
+    while (temp != NULL) {
+        printf("[%p] %s, next[%p]\n",
+          temp,
+          temp->szData,
+          temp->next);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+
+void ReleaseList()
+{
+    NB *tmp = ptr;
+    while (tmp != NULL) {
+        NB *delete = tmp;
+        tmp = tmp->next;
+        printf("Delete: [%p] %s\n", delete, delete->szData);
+        free(delete);
+    }
+}
 // Ref. [널널한 개발자]

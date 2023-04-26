@@ -1,5 +1,5 @@
 #include "headers/main.h"
-
+/*
 int string_concat()
 {
     int arr1[3] = { 1, 2, 3 };
@@ -27,14 +27,14 @@ int string_concat()
         printf("%d ", result[i]);
     }
 }
-
-char *concat_string(char *s1, char *s2, char *s3, char *s4)
-{
-    char *result = malloc(strlen(s1) + strlen(s2) + strlen(s3) + strlen(s4) + 1);// 널종결자 + 1
-    strcat(strcat(strcat(strcpy(result, s1), s2), s3), s4);
-    free(result);
-    return result;
-}
+ */
+// char *concat_string(char *s1, char *s2, char *s3, char *s4)
+// {
+//     char *result = malloc(strlen(s1) + strlen(s2) + strlen(s3) + strlen(s4) + 1);// 널종결자 + 1
+//     strcat(strcat(strcat(strcpy(result, s1), s2), s3), s4);
+//     free(result);
+//     return result;
+// }
 
 /// @brief 메인함수
 /// @param argc 전달된 정보의 갯수
@@ -56,14 +56,14 @@ int main(int argc, char *argv[])
     // }
 
     // 로그 & 파일처리
-    time_t rawtime;
-    time(&rawtime);
-    struct tm *info;
-    info = localtime(&rawtime);
-    char str[100];
-    sprintf(str, "%s", asctime(info));
-    Files(false, str);
-    Files(true, NULL);
+    //  time_t rawtime;
+    //  time(&rawtime);
+    //  struct tm *info;
+    //  info = localtime(&rawtime);
+    //  char str[100];
+    //  sprintf(str, "%s", asctime(info));
+    //  Files(false, str);
+    //  Files(true, NULL);
 
     // 메뉴선택
     long choice;
@@ -79,15 +79,12 @@ int main(int argc, char *argv[])
             fflush(stdin);// Clear Buffer
             printf("(번호) >>> ");// 프롬프트 (Prompt)
             scanf("%ld", &choice);// 입력받기 (User Input by int)
-            ScreenClear();
-
             Exec(choice);
         } while (choice != 100);
     }
-    // ScreenClear();
 
+    // system("leaks executablename");
     return 0;
-    //   exit(EXIT_SUCCESS);
 }
 
 void PrintMenu()
@@ -122,6 +119,8 @@ void PrintMenu()
     printf("(%03d) CharArrayPointer\n", 22);
     printf("(%03d) Array Shift\n", 23);
     printf("(%03d) Struct\n", 24);
+    printf("(%03d) Fibo\n", 25);
+    printf("(%03d) NumberReal\n", 26);
 
     printf("(%03d) CallByValue\n", 30);
     printf("(%03d) CallByPointer\n", 31);
@@ -164,6 +163,8 @@ void Exec(int choice)
         case 22: CharArrayPointer(); break;
         case 23: ArrayShift(); break;
         case 24: Struct(); break;
+        case 25: FiboStart(); break;
+        case 26: NumberReal(); break;
 
         case 30: CallByValue(); break;
         case 31: CallByPointer(); break;

@@ -22,7 +22,7 @@ void ForLoop()
     printf("1 부터 10 까지의 합계 = %d\n", sum);
 }
 
-// /// @brief While Loop
+/// @brief While Loop
 // void WhileLoop()
 // {
 //     printf("\n");

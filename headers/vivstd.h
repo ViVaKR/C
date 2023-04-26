@@ -12,9 +12,6 @@
 #include <time.h>// time()
 #include <unistd.h>// Get PID
 
-#define macos
-#define windows
-#define linux
 #define logfile "/Users/vivabm/GitProjects/C/log.txt"
 
 

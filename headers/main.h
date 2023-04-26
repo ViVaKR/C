@@ -1,6 +1,5 @@
 #include "vivstd.h"
 
-#include "../common/defines.c"
 #include "../demo/ArithmeticOperators.c"
 #include "../demo/Array.c"
 #include "../demo/Array2D.c"
@@ -29,6 +28,8 @@
 #include "../demo/Struct.c"
 #include "../demo/Database.c"
 #include "../demo/BinarySearchTree.c"
+#include "../demo/Fibo.c"
+#include "../demo/NumberReal.c"
 
 void PrintMenu();
 void Exec(int choice);
@@ -43,7 +44,6 @@ void Function();
 void Operator();
 void Array();
 void Array2D();
-void ScreenClear();
 void Files(bool rw, char *message);
 void Recursion();
 void DataStruct();
@@ -58,3 +58,5 @@ void ArrayShift();
 void Struct();
 void Database();
 void BinarySearchTree();
+void FiboStart();
+void RealNumber();
