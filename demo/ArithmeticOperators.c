@@ -1,9 +1,76 @@
 #include "../headers/vivstd.h"
 
-/// @brief Ref. Bro Code
-void ArithmeticOperators() {
 
-    /* 산술연산자 (Arithmetic Operators)
+/// @brief Decimal To Hexa
+/// @param decimal 
+void DecimalToHexa(int decimal)
+{
+    int quotient, remainder, i = 1, j;
+    char hexadecimal[100];
+
+    quotient = decimal;
+
+    while (quotient != 0) {
+        remainder = quotient % 16;
+
+        if (remainder < 10)
+            hexadecimal[i++] = remainder + 48;
+        else
+            hexadecimal[i++] = remainder + 55;
+
+        quotient = quotient / 16;
+    }
+
+    printf("16진수로 변환한 값: ");
+
+    for (j = i - 1; j > 0; j--)
+        printf("%c", hexadecimal[j]);
+
+    printf("\n");
+}
+
+/// @brief Hexa Convert to Decimal
+/// @param hexadecimal 
+void HexaToDecimal(char hexadecimal[])
+{
+    int length, decimal = 0, i, digit;
+    length = strlen(hexadecimal);
+    length--;
+
+    for (i = 0; hexadecimal[i] != '\0'; i++) {
+        if (hexadecimal[i] >= '0' && hexadecimal[i] <= '9')
+            digit = hexadecimal[i] - '0';
+        else if (hexadecimal[i] >= 'a' && hexadecimal[i] <= 'f')
+            digit = hexadecimal[i] - 'a' + 10;
+        else if (hexadecimal[i] >= 'A' && hexadecimal[i] <= 'F')
+            digit = hexadecimal[i] - 'A' + 10;
+
+        decimal += digit * pow(16, length);
+        length--;
+    }
+
+    printf("10진수로 변환한 값: %d\n", decimal);
+}
+
+void HexerAndDecimal()
+{
+    int decimal;
+    printf("10진수를 입력하세요: ");
+    scanf("%d", &decimal);
+    DecimalToHexa(decimal);
+
+    char hexadecimal[100];
+    printf("16진수를 입력하세요: ");
+    scanf("%s", hexadecimal);
+    HexaToDecimal(hexadecimal);
+}
+
+/// @brief Ref. Bro Code
+void ArithmeticOperators()
+{
+    printf("\n");
+    printf("***** 산술연산자 (Arithmetic Operators) *****");
+    /* [ 산술연산자 (Arithmetic Operators) ]
         +   덧셈 (addition)
         -   뺄셈 (subtraction)
         *   곱셈 (multiplication)
@@ -17,15 +84,16 @@ void ArithmeticOperators() {
         전위식 : ++A (A = A + 1), --A (A = A - 1)
         후위식 : A++, A-- (세미콜론이 지난후 처리)
     */
+    printf("\n");
 
     int nVar1 = 7, nVar2 = 8, nVar3;
     nVar3 = ++nVar1 + nVar2;
-    printf("++nVar1 + nVar2 =  %d\n", nVar3); // 8 + 8 = 16
+    printf("++nVar1 + nVar2 =  %d\n", nVar3);// 8 + 8 = 16
 
     nVar3 = nVar1++ + nVar2;
-    printf("nVar1++ + nVar2 = %d\n", nVar3); // 16
+    printf("nVar1++ + nVar2 = %d\n", nVar3);// 16
     nVar3 = nVar1 + nVar2;
-    printf("nVar1++ + nVar2 = %d\n", nVar3); // 17
+    printf("nVar1++ + nVar2 = %d\n", nVar3);// 17
 
     //= 관계 (비교) 연산자 =// : 비교의 결과는 항상 0 (false)과 1 (true)이다.
     printf("nVar1(%d) == nVar2(%d) -> ( %s ), \n", nVar1, nVar2, nVar1 == nVar2 ? "true" : "false");
@@ -37,9 +105,9 @@ void ArithmeticOperators() {
     // true (1)  : 0 이외의 값
     // false (0) : 0
     printf("0 || -1 = %d, 4 || 20 = %d, 0 || 0 = %d\n", 0 || -1, 4 || 20, 0 || 0);
-    printf("!-1 = %d\n", !-1); // 0
-    printf("!4 = %d\n", !4);   // 0
-    printf("!0 = %d\n", !0);   // 1
+    printf("!-1 = %d\n", !-1);// 0
+    printf("!4 = %d\n", !4);// 0
+    printf("!0 = %d\n", !0);// 1
 
     //= 비트 연산자 (bitwise operator, 이미지 처리에 주로 사용됨) =//
     // & : and (둘다 1일 때 1)
@@ -47,10 +115,10 @@ void ArithmeticOperators() {
     // ~ : not
     // xor (^): 피연산자 비트값이 같으면 0, 다르면 1
     // <<, >> : 비트이동, 7 << 2 or 7 >> 2
-    printf("~2 = %d\n", ~2);                                               // not
-    printf("1 ^ 1 = %d, 1 ^ 0 = %d : 같으면 0, 다르면 1\n", 1 ^ 1, 1 ^ 0); // xor
-    printf("1 << 2 = %d\n", 1 << 2);                                       // 0000 0001 의 1을 왼쪽으로 2칸 이동 0000 0100
-    printf("4 >> 1 = %d\n", 4 >> 1);                                       // 0000 0100 을 오른쪽으로 1칸 이동 0000 0010
+    printf("~2 = %08d\n", ~2);// not 0010 -> 1101
+    printf("\n\nxor 같으면 0, 다르면 1\n(1 ^ 1) = %d, 1 ^ 0 = %d\n\n", 1 ^ 1, 1 ^ 0);// xor
+    printf("1 << 2 = %d\n", 1 << 2);// 0000 0001 의 1을 왼쪽으로 2칸 이동 0000 0100
+    printf("4 >> 1 = %d\n", 4 >> 1);// 0000 0100 을 오른쪽으로 1칸 이동 0000 0010
 
     //= 형변환 연산자 =//
     // (데이터형)변수/상수;
@@ -58,7 +126,7 @@ void ArithmeticOperators() {
 
     //= 연산사 우선순위 =//
     // 운선순위를 믿기 보다는 괄호를 사용하여 확실히 하여야 함
-    int result = 2 * 6 + 4 * 9 / 3; // 12 + 12 = 24
+    int result = 2 * 6 + 4 * 9 / 3;// 12 + 12 = 24
     printf("2 * 6 + 4 * 9 / 3 = %d\n", result);
 
     // 라이브러리 함수는 기본 프로그램 코드와 별도로 컴파일됨
@@ -83,7 +151,7 @@ void ArithmeticOperators() {
     //[철수] 101호  -> 메모리 공간의 주소
     //[영희] 201호
     //[민수] 301호
-    int 철수 = 1; // 암호
+    int 철수 = 1;// 암호
     int 영희 = 2;
     int 민수 = 3;
 
@@ -91,5 +159,17 @@ void ArithmeticOperators() {
     printf("영희네 주소 : %p, %ld, %x  암호: %d\n", &영희, &영희, &영희, 영희);
     printf("민수네 주소 : %p, %ld, %x  암호: %d\n", &민수, &민수, &민수, 민수);
 
-    //
+    int z = -25;
+    // 부호화 2의 보수
+    // 0001 1001 -> 1110 0111 (E7, 부호)
+
+    printf("z = %p - %8x\n", &z, z);
+
+    HexerAndDecimal();
 }
+
+// 0x7ffeefbff4a0
+
+// memory read -s1 -fu -c10000 7ffeefbff4a0 --force
+// me read -c4 0x7ffeefbff4a0
+// 1111

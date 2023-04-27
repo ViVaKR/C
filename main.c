@@ -128,6 +128,8 @@ void PrintMenu()
     printf("(%03d) Database\n", 50);
     printf("(%03d) BST\n", 60);
 
+    printf("(%03d) Calculate\n", 61);
+
     printf("(%03d) 종료 (Exit)\n", 100);
 }
 
@@ -171,6 +173,13 @@ void Exec(int choice)
 
         case 50: Database(); break;
         case 60: BinarySearchTree(); break;
+
+        case 61: Calculate(); break;
+        case 62: BinarySearchTree(); break;
+        case 63: BinarySearchTree(); break;
+        case 64: BinarySearchTree(); break;
+        case 65: BinarySearchTree(); break;
+
         case 100: break;
     }
 

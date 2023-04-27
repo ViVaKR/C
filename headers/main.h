@@ -30,6 +30,7 @@
 #include "../demo/BinarySearchTree.c"
 #include "../demo/Fibo.c"
 #include "../demo/NumberReal.c"
+#include "../demo/Calculate.c"
 
 void PrintMenu();
 void Exec(int choice);
@@ -59,4 +60,5 @@ void Struct();
 void Database();
 void BinarySearchTree();
 void FiboStart();
-void RealNumber();
+void NumberReal();
+void Calculate();
