@@ -33,6 +33,7 @@
 #include "../demo/Calculate.c"
 #include "../demo/Advenced.c"
 #include "../demo/Bits.c"
+#include "../demo/FileReadWrite.c"
 
 void PrintMenu();
 void Exec(int choice);
@@ -66,3 +67,4 @@ void NumberReal();
 void Calculate();
 void Advenced();
 void Bits();
+void FileReadWrite();

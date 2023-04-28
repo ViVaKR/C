@@ -73,7 +73,7 @@ void Bits()
     //  9 = 1001
     for (int i = 0; i < 4; i++) {
         // printf("9 %02d번 비트 %d\n", i, GetBits(-9, i));
-        printf("%d ",GetBits(-9, i));
+        printf("%d ", GetBits(-9, i));
     }
 
     printf("\n***** Get Bit (1 ~ 15) 까지 비트 확인, And (&) 연산 *****\n");

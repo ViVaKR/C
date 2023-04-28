@@ -13,5 +13,3 @@
 #include <unistd.h>// Get PID
 
 #define logfile "/Users/vivabm/GitProjects/C/log.txt"
-
-

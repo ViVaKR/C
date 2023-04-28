@@ -122,6 +122,7 @@ void PrintMenu()
     printf("(%03d) Struct\n", 24);
     printf("(%03d) Fibo\n", 25);
     printf("(%03d) NumberReal\n", 26);
+    printf("(%03d) File Read Write\n", 27);
 
     printf("(%03d) CallByValue\n", 30);
     printf("(%03d) CallByPointer\n", 31);
@@ -170,6 +171,7 @@ void Exec(int choice)
         case 24: Struct(); break;
         case 25: FiboStart(); break;
         case 26: NumberReal(); break;
+        case 27: FileReadWrite(); break;
 
         case 30: CallByValue(); break;
         case 31: CallByPointer(); break;

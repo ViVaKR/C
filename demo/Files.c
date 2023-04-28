@@ -1,7 +1,7 @@
 #include "../headers/vivstd.h"
 
 void ReadFile();
-void WriteFie();
+void WriteFile(char *message);
 
 /// @brief File Read OR Write
 /// @param rw : true = Read, false = Write
@@ -10,7 +10,7 @@ void Files(bool rw, char *message)
     if (rw)
         ReadFile();
     else
-        WriteFie(message);
+        WriteFile(message);
 }
 
 void ReadFile()
@@ -24,7 +24,7 @@ void ReadFile()
     printf("%s\n",chRead);
 }
 
-void WriteFie(char *message)
+void WriteFile(char *message)
 {
     const char fileName[] = logfile;
     char chArr[100];
