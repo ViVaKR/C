@@ -1,0 +1,156 @@
+{
+    "Viv Printf HelloWorld": {
+        "prefix": "pfh",
+        "body": [
+            "printf(\"${1:\\nHello World\\n}\");$0"
+        ],
+        "description": "Viv printf With Hello World"
+    },
+    "Viv Printf Number": {
+        "prefix": "pfd",
+        "body": [
+            "printf(\"${1:Text} %d\\n\",${2:var});$0"
+        ],
+        "description": "Viv printf Number Type"
+    },
+    "Viv Printf Character": {
+        "prefix": "pfc",
+        "body": [
+            "printf(\"${1:Text} %c\\n\",${2:var});$0"
+        ],
+        "description": "Viv printf Character Type"
+    },
+    "Viv Printf String": {
+        "prefix": "pfs",
+        "body": [
+            "printf(\"${1:Text} %s\\n\",${2:var});$0"
+        ],
+        "description": "Viv printf String (char[]) Type"
+    },
+    "Viv Printf Float": {
+        "prefix": "pff",
+        "body": [
+            "printf(\"${1:Text} %${2:.2f}\\n\",${3:var});$0"
+        ],
+        "description": "Viv printf Float Type"
+    },
+    "Viv Printf Double": {
+        "prefix": "pflf",
+        "body": [
+            "printf(\"${1:Text} %${2:.2lf}\\n\",${3:var});$0"
+        ],
+        "description": "Viv printf Double Type"
+    },
+    "Viv Printf UnSigned": {
+        "prefix": "pfu",
+        "body": [
+            "printf(\"${1:Text} %${2:u}\\n\",${3:var});$0"
+        ],
+        "description": "Viv printf UnSigned Type"
+    },
+    "Viv Printf Hex": {
+        "prefix": "pfx",
+        "body": [
+            "printf(\"${1:Text} %${2:x}\\n\",${3:var});$0"
+        ],
+        "description": "Viv printf 16진수 Hex Type"
+    },
+    "Viv Printf Pointer": {
+        "prefix": "pfp",
+        "body": [
+            "printf(\"${1:Text} %${2:p}\\n\",${3:var});$0"
+        ],
+        "description": "Viv printf Pointer Type"
+    },
+    "Viv Printf Long Long Int": {
+        "prefix": "pflld",
+        "body": [
+            "printf(\"${1:Text} %${2:lld}\\n\",${3:var});$0"
+        ],
+        "description": "Viv printf long long int"
+    },
+    "Viv Printf Insert One Line Blank": {
+        "prefix": "bk",
+        "body": [
+            "printf(\"$1\\n\");$0"
+        ],
+        "description": "Viv printf Blank"
+    },
+    "Viv Printf Insert Two Line Blank": {
+        "prefix": "bbk",
+        "body": [
+            "printf(\"$1\\n\\n\");$0"
+        ],
+        "description": "Viv printf Insert Two Line Blank"
+    },
+    "Viv Scanf": {
+        "prefix": "sf",
+        "body": [
+            "scanf(\"%${1:d}\", ${2:var});$0"
+        ],
+        "description": "Viv scanf integer"
+    },
+    "Viv Scanf double": {
+        "prefix": "sflf",
+        "body": [
+            "scanf(\"%lf\", ${1:var});$0"
+        ],
+        "description": "Viv scanf double"
+    },
+    "Viv Clear Screen": {
+        "prefix": "cls",
+        "body": [
+            "system(\"clear\");$0"
+        ],
+        "description": "Viv termianl clear screen"
+    },
+    "Viv #include": {
+        "prefix": "#i",
+        "body": [
+            "#include <stdio.h>",
+            "#include <stdlib.h>",
+            "#include \"stdbool.h\""
+        ],
+        "description": "Viv default #includes"
+    },
+    "Viv #include Viv Header": {
+        "prefix": "#v",
+        "body": [
+            "#include \"../headers/vivstd.h\""
+        ],
+        "description": "Viv #include Header"
+    },
+    "Viv Create Function Standard": {
+        "prefix": "fc",
+        "body": [
+            "void ${1:name}()",
+            "{",
+            "\t/****** ${1:name} *****/",
+            "\t$0",
+            "}"
+        ],
+        "description": "Viv Create Function Standard"
+    },
+    "Viv Printf Insert Herizontal Line Blank": {
+        "prefix": "bkl",
+        "body": [
+            "printf(\"\\n***** ${1:title} *****\\n\");$0"
+        ],
+        "description": "Viv Printf Insert Herizontal Line Blank"
+    },
+    "Viv For Loop Standard": {
+        "prefix": "forv",
+        "body": "for (int ${1:i} = ${2:0}; ${1:i} < ${3:10}; ${1:i}++) \n{\n\t${0}\n}",
+        "description": "Cpp For Loop Standard"
+    },
+    "Viv Nested For Loop": {
+        "prefix": "forn",
+        "body": "for (int i = ${1:0}; i < ${2:10}; i++)\n{\n\tfor (int j = ${3:0}; j < ${4:10}; j++)\n\t{\n\t\t${0}\n\t}\n}",
+        "description": "Cpp Nested For Loop"
+    },
+    "Viv For Loop Reverse": {
+        "prefix": "forrv",
+        "body": "for (int ${1:i} = ${2:10}; ${1:i} >= ${3:0}; --${1:i}) \n{\n\t${0}\n}",
+        "description": "Cpp For Loop Reverse"
+    }
+}

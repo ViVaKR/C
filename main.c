@@ -74,6 +74,7 @@ int main(int argc, char *argv[])
     } else {
         do {
             // system("read");
+            
             PrintMenu();
             //-------------------------------------------//
             fflush(stdin);// Clear Buffer
@@ -129,6 +130,8 @@ void PrintMenu()
     printf("(%03d) BST\n", 60);
 
     printf("(%03d) Calculate\n", 61);
+    printf("(%03d) Advenced\n", 62);
+    printf("(%03d) Bits\n", 63);
 
     printf("(%03d) 종료 (Exit)\n", 100);
 }
@@ -175,10 +178,8 @@ void Exec(int choice)
         case 60: BinarySearchTree(); break;
 
         case 61: Calculate(); break;
-        case 62: BinarySearchTree(); break;
-        case 63: BinarySearchTree(); break;
-        case 64: BinarySearchTree(); break;
-        case 65: BinarySearchTree(); break;
+        case 62: Advenced(); break;
+        case 63: Bits(); break; //  비트연산
 
         case 100: break;
     }
