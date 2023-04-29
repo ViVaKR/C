@@ -174,7 +174,7 @@ void Bits()
 // p variable
 
 /*
-B' or "boolean"
+'B' or "boolean"
 'b' or "binary"
 'y' or "bytes"
 'Y' or "bytes with ASCII"

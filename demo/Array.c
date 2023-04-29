@@ -35,7 +35,7 @@ void Array()
     printf("arrA = %p, &arrA[0] = %p\n", arrA, &arrA[0]);
     printf("\n");
     printf("\n");
-
+    
     // 배열크기 구하기 : sizeof(배열명) / sizeof(데이터형 또는 배열의 첫번째 인덱스 요소)
     printf("size %d\n", sizeof arr / sizeof arr[0]);
     for (int i = 0; i < sizeof arrA / sizeof arrA[0]; i++) printf("Arr value %d\n", arrA[i]);
@@ -44,7 +44,7 @@ void Array()
     float Average;
     printf("성적을 입력하세요 ( 3번 ) >> C, C++, C# >> ");
 
-    // 연속 입력시 띄여 쓰기 또는 엔터키로 구분가능
+    // 연속 입력시 띄여 쓰기 또는 엔터키로 구분가능+
     scanf(" %d %d %d", &Grade[0], &Grade[1], &Grade[2]);
     Sum = Grade[0] + Grade[1] + Grade[2];
     Average = (double)Sum / (double)3;
