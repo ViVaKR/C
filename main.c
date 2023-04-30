@@ -64,8 +64,9 @@ int main(int argc, char *argv[])
     //  sprintf(str, "%s", asctime(info));
     //  Files(false, str);
     //  Files(true, NULL);
-
+    
     // 메뉴선택
+    printf("\n***** Press Enter To Start *****\n");
     long choice;
     char *p;
     if (argc > 1) {
@@ -73,7 +74,7 @@ int main(int argc, char *argv[])
         Exec(choice);
     } else {
         do {
-            // system("read");
+            system("read");
             
             PrintMenu();
             //-------------------------------------------//
@@ -84,7 +85,6 @@ int main(int argc, char *argv[])
         } while (choice != 100);
     }
 
-    // system("leaks executablename");
     return 0;
 }
 
