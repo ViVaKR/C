@@ -14,7 +14,7 @@ CostDataFile:
 Site: vivaBM.local
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
-BuildName: Darwin-g++-12
+BuildName: Darwin-g++-13
 
 # Subprojects
 LabelsForSubprojects: 
@@ -63,8 +63,8 @@ UpdateOptions:
 UpdateType: git
 
 # Compiler info
-Compiler: /usr/local/bin/g++-12
-CompilerVersion: 12.2.0
+Compiler: /usr/local/bin/g++-13
+CompilerVersion: 13.1.0
 
 # Dynamic analysis (MemCheck)
 PurifyCommand: 

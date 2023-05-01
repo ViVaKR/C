@@ -1,6 +1,14 @@
-# `C` Examples
+# `C`
 
-## Ready Programming (macOS)
+> 1972년 켄 톰슨과 데니스 리치에 의해 개발
+> 
+> 운영체제인 유닉스 (UNIX) 개발에 사용
+>
+> Structured Language
+
+
+
+## Ready To Programming (macOS)
 
 1. [brew install](https://formulae.brew.sh/) [cmake](https://cmake.org/)
 2. Create _`C`_ Project Folder and Move To...
@@ -396,9 +404,9 @@ int main(void)
 
 ### 변환문자
 
-`%d` : 정수형  
+`%d`, `%ld` : 정수형  
 `%c` : 문자형  
-`%f` : 실수형  
+`%f`, `lf` : 실수형  
 `%s` : 문자열  
 `%o` : 8진수  
 `%x` : 16진수  

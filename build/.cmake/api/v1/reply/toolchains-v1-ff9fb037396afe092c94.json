@@ -10,17 +10,17 @@
 				{
 					"includeDirectories" : 
 					[
-						"/usr/local/Cellar/gcc/12.2.0/lib/gcc/current/gcc/x86_64-apple-darwin19/12/include",
-						"/usr/local/Cellar/gcc/12.2.0/lib/gcc/current/gcc/x86_64-apple-darwin19/12/include-fixed",
+						"/usr/local/Cellar/gcc/13.1.0/lib/gcc/current/gcc/x86_64-apple-darwin19/13/include",
+						"/usr/local/Cellar/gcc/13.1.0/lib/gcc/current/gcc/x86_64-apple-darwin19/13/include-fixed",
 						"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include",
 						"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/System/Library/Frameworks"
 					],
 					"linkDirectories" : 
 					[
 						"/usr/local/opt/ruby/lib",
-						"/usr/local/Cellar/gcc/12.2.0/lib/gcc/current/gcc/x86_64-apple-darwin19/12",
-						"/usr/local/Cellar/gcc/12.2.0/lib/gcc/current/gcc",
-						"/usr/local/Cellar/gcc/12.2.0/lib/gcc/current",
+						"/usr/local/Cellar/gcc/13.1.0/lib/gcc/current/gcc/x86_64-apple-darwin19/13",
+						"/usr/local/Cellar/gcc/13.1.0/lib/gcc/current/gcc",
+						"/usr/local/Cellar/gcc/13.1.0/lib/gcc/current",
 						"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/lib"
 					],
 					"linkFrameworkDirectories" : 
@@ -33,8 +33,8 @@
 						"gcc"
 					]
 				},
-				"path" : "/usr/local/bin/gcc-12",
-				"version" : "12.2.0"
+				"path" : "/usr/local/bin/gcc-13",
+				"version" : "13.1.0"
 			},
 			"language" : "C",
 			"sourceFileExtensions" : 
@@ -51,20 +51,20 @@
 				{
 					"includeDirectories" : 
 					[
-						"/usr/local/Cellar/gcc/12.2.0/include/c++/12",
-						"/usr/local/Cellar/gcc/12.2.0/include/c++/12/x86_64-apple-darwin19",
-						"/usr/local/Cellar/gcc/12.2.0/include/c++/12/backward",
-						"/usr/local/Cellar/gcc/12.2.0/lib/gcc/current/gcc/x86_64-apple-darwin19/12/include",
-						"/usr/local/Cellar/gcc/12.2.0/lib/gcc/current/gcc/x86_64-apple-darwin19/12/include-fixed",
+						"/usr/local/Cellar/gcc/13.1.0/include/c++/13",
+						"/usr/local/Cellar/gcc/13.1.0/include/c++/13/x86_64-apple-darwin19",
+						"/usr/local/Cellar/gcc/13.1.0/include/c++/13/backward",
+						"/usr/local/Cellar/gcc/13.1.0/lib/gcc/current/gcc/x86_64-apple-darwin19/13/include",
+						"/usr/local/Cellar/gcc/13.1.0/lib/gcc/current/gcc/x86_64-apple-darwin19/13/include-fixed",
 						"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include",
 						"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/System/Library/Frameworks"
 					],
 					"linkDirectories" : 
 					[
 						"/usr/local/opt/ruby/lib",
-						"/usr/local/Cellar/gcc/12.2.0/lib/gcc/current/gcc/x86_64-apple-darwin19/12",
-						"/usr/local/Cellar/gcc/12.2.0/lib/gcc/current/gcc",
-						"/usr/local/Cellar/gcc/12.2.0/lib/gcc/current",
+						"/usr/local/Cellar/gcc/13.1.0/lib/gcc/current/gcc/x86_64-apple-darwin19/13",
+						"/usr/local/Cellar/gcc/13.1.0/lib/gcc/current/gcc",
+						"/usr/local/Cellar/gcc/13.1.0/lib/gcc/current",
 						"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/lib"
 					],
 					"linkFrameworkDirectories" : 
@@ -78,8 +78,8 @@
 						"gcc"
 					]
 				},
-				"path" : "/usr/local/bin/g++-12",
-				"version" : "12.2.0"
+				"path" : "/usr/local/bin/g++-13",
+				"version" : "13.1.0"
 			},
 			"language" : "CXX",
 			"sourceFileExtensions" : 
@@ -90,7 +90,6 @@
 				"cc",
 				"cpp",
 				"cxx",
-				"m",
 				"mm",
 				"mpp",
 				"CPP",
