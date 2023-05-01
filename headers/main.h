@@ -34,6 +34,7 @@
 #include "../demo/Advenced.c"
 #include "../demo/Bits.c"
 #include "../demo/FileReadWrite.c"
+#include "../demo/RecursiveForLoop.c"
 
 void PrintMenu();
 void Exec(int choice);
@@ -68,3 +69,4 @@ void Calculate();
 void Advenced();
 void Bits();
 void FileReadWrite();
+void RecursiveForLoop();
