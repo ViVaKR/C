@@ -13,5 +13,6 @@
 #include <unistd.h>// Get PID
 #include <fcntl.h>
 #include <stdio.h>
+#define _GNU_SOURCE
 
 #define logfile "/Users/vivabm/GitProjects/C/log.txt"

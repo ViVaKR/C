@@ -1,7 +1,9 @@
 #include "../headers/vivstd.h"
 
-/// @brief (14) 이차원 배열
-void Array2D()
+void PrintCurrentFile();
+void PrintCurrentFileLineByLine(char *source, size_t from, size_t to);
+  /// @brief (14) 이차원 배열
+  void Array2D()
 {
     printf("\n\n***** 이차원 배열 *****");
 
@@ -18,21 +20,47 @@ void Array2D()
     // (1) data[5] 라는 배열을 만들겠다.
     // (2) data 배열의 각 요소는 char[4] 의 크기를 가진다는 의미
 
+    //* 수학의 좌표 (x, y) 는 -> char data[y][x] 으로 표현하는 것이 일반적임
 
-
-    // 선언과 동시에 초기화 방식
+    //* 초기화
     int arrA[2][3] = { { 1, 2, 3 }, { 4, 5, 6 } };
     int arrB[][3] = { { 7, 8, 9 }, { 55, 66, 99 } };
     int arrC[2][3] = { { 11, 22, 33 } };// 첫 요소만 초기화
     printf("\n\n");
 
-    // 행의 갯수 구하기
+    //* 행의 갯수 구하기
     // ((int 4byte * items 2 * 3 = 24) / (int 4byte * 3 = 12) = 2)
     int sizeOfRow = sizeof(arrA) / sizeof(arrA[0]);
     printf("행 갯수 :  %d\n", sizeOfRow);
     printf("\n");
 
-    // 열의 갯수 구하기
+    //* 열의 갯수 구하기
     int sizeOfCol = sizeof(arrA[0]) / sizeof(arrA[0][0]);
     printf("열 갯수 :  %d\n", sizeOfCol);
+
+    //* 배열포인터 vs 포인터배열
+    int a[3][5] = {
+        { 200, 201, 202, 203, 204 },
+        { 220, 221, 222, 223, 224 },
+        { 240, 241, 242, 243, 244 }
+    };
+
+    int(*aP)[5] = a;// 배열포인터
+    printf(
+      "- (aP = %p)\n"
+      "- (*aP[1] = %d)\n"
+      "- (sizeof(*aP) = %d)\n"
+      "- (aP + 2 =  %p)\n",
+      aP,
+      *aP[1],
+      sizeof(*aP),
+      aP + 2);
+
+    int *pA[3];// 포인터 배열
+    pA[0] = a[0];
+    pA[1] = a[1];
+    pA[2] = a[2];
+
+    // PrintCurrentFile();
+    PrintCurrentFileLineByLine(__FILE__, 47, 58);
 }

@@ -39,6 +39,7 @@
 #include "../demo/StringConcat.c"
 #include "../demo/GetStringLength.c"
 #include "../demo/StringCopy.c"
+#include "../demo/PrintCurrentFile.c"
 
 void PrintMenu();
 void Exec(int choice);

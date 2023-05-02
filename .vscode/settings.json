@@ -1,6 +1,7 @@
 {
     "files.associations": {
-        "chrono": "c"
+        "chrono": "c",
+        "stringcopy.c": "cpp"
     },
     "lldb.dereferencePointers": true,
     "lldb.consoleMode": "commands",
