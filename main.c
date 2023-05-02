@@ -1,40 +1,4 @@
 #include "headers/main.h"
-/*
-int string_concat()
-{
-    int arr1[3] = { 1, 2, 3 };
-    int arr2[3] = { 4, 5, 6 };
-    int arr3[3] = { 7, 8, 9 };
-    int result[9];// 합쳐진 배열
-
-    // arr1의 요소를 result에 복사
-    for (int i = 0; i < 3; i++) {
-        result[i] = arr1[i];
-    }
-
-    // arr2의 요소를 result에 복사
-    for (int i = 0; i < 3; i++) {
-        result[i + 3] = arr2[i];
-    }
-
-    // arr3의 요소를 result에 복사
-    for (int i = 0; i < 3; i++) {
-        result[i + 6] = arr3[i];
-    }
-
-    // result 출력
-    for (int i = 0; i < 9; i++) {
-        printf("%d ", result[i]);
-    }
-}
- */
-// char *concat_string(char *s1, char *s2, char *s3, char *s4)
-// {
-//     char *result = malloc(strlen(s1) + strlen(s2) + strlen(s3) + strlen(s4) + 1);// 널종결자 + 1
-//     strcat(strcat(strcat(strcpy(result, s1), s2), s3), s4);
-//     free(result);
-//     return result;
-// }
 
 /// @brief 메인함수
 /// @param argc 전달된 정보의 갯수
@@ -43,28 +7,24 @@ int string_concat()
 /// @return
 int main(int argc, char *argv[])
 {
-    // char myString[30] = "ABCDEFG";
-    // char ch[30] = "abcd";
-    // char *ps = "12";
-    // char *string = concat_string(myString, "M", ps, ch);
-    // printf("%s\n", string);
+    printf("\n***** Main Start *****\n");
 
-    // if (argc > 0) {// 전달받은 인수 확인
-    //     for (int i = 0; i < argc; i++) {
-    //         printf("argv[%d] = %s\n", i, argv[i]);
-    //     }
-    // }
-
+    if (argc > 0) {// 전달받은 인수 확인
+        for (int i = 0; i < argc; i++) {
+            printf("argv[%d] = %s\n", i, argv[i]);
+        }
+    }
+    printf("\n");
     // 로그 & 파일처리
-    //  time_t rawtime;
-    //  time(&rawtime);
-    //  struct tm *info;
-    //  info = localtime(&rawtime);
-    //  char str[100];
-    //  sprintf(str, "%s", asctime(info));
-    //  Files(false, str);
-    //  Files(true, NULL);
-    
+    time_t rawtime;
+    time(&rawtime);
+    struct tm *info;
+    info = localtime(&rawtime);
+    char str[100];
+    sprintf(str, "%s", asctime(info));
+    Files(false, str);
+    Files(true, NULL);
+
     // 메뉴선택
     printf("\n***** Press Enter To Start *****\n");
     long choice;
@@ -75,7 +35,7 @@ int main(int argc, char *argv[])
     } else {
         do {
             system("read");
-            
+
             PrintMenu();
             //-------------------------------------------//
             fflush(stdin);// Clear Buffer
@@ -96,42 +56,43 @@ void PrintMenu()
     printf("************************************\n");
     printf("\n");
     printf("(%03d) 재시작 (ReStart)\n", 0);
-    printf("(%03d) Printf\n", 1);
-    printf("(%03d) Variable\n", 2);
+    printf("(%03d) Printf\t\t", 1);
+    printf("(%03d) Variable\t\t", 2);
     printf("(%03d) DataType\n", 3);
-    printf("(%03d) ArithmeticOperators\n", 4);
-    printf("(%03d) Scanf\n", 5);
+    printf("(%03d) Operators\t\t", 4);
+    printf("(%03d) Scanf\t\t", 5);
     printf("(%03d) Math\n", 6);
-    printf("(%03d) Operator\n", 7);
-    printf("(%03d) For Loop\n", 8);
-    printf("(%03d) While Loop\n", 9);
-    printf("(%03d) Do While Loop\n", 10);
-    printf("(%03d) Jisikin\n", 11);
+    printf("(%03d) Operator\t\t", 7);
+    printf("(%03d) ForLoop\t\t", 8);
+    printf("(%03d) WhileLoop\n", 9);
+    printf("(%03d) DoWhile\t\t", 10);
+    printf("(%03d) Jisikin\t\t", 11);
     printf("(%03d) Function\n", 12);
-    printf("(%03d) Array\n", 13);
-    printf("(%03d) Array2D\n", 14);
-    printf("(%03d) Recursion\n", 15);
-    printf("(%03d) DataStruct\n", 16);
-    printf("(%03d) ArrayPoint\n", 17);
+    printf("(%03d) Array\t\t", 13);
+    printf("(%03d) Array2D\t\t", 14);
+    printf("(%03d) RecursA\n", 15);
+    printf("(%03d) StructA\t\t", 16);
+    printf("(%03d) ArrayPtrA\t\t", 17);
     printf("(%03d) CopyMemory\n", 18);
-    printf("(%03d) MallocMemset\n", 19);
-    printf("(%03d) Pointer (Integer)\n", 20);
-    printf("(%03d) Pointer Array\n", 21);
-    printf("(%03d) CharArrayPointer\n", 22);
-    printf("(%03d) Array Shift\n", 23);
-    printf("(%03d) Struct\n", 24);
-    printf("(%03d) Fibo\n", 25);
-    printf("(%03d) NumberReal\n", 26);
-    printf("(%03d) File Read Write\n", 27);
-    printf("(%03d) Recursive ForLoop\n", 28);
-
-    printf("(%03d) CallByValue\n", 30);
-    printf("(%03d) CallByPointer\n", 31);
+    printf("(%03d) Memset\t\t", 19);
+    printf("(%03d) Pointers\t\t", 20);
+    printf("(%03d) ArrayPtrB\n", 21);
+    printf("(%03d) CharPtr\t\t", 22);
+    printf("(%03d) ArrayShift\t", 23);
+    printf("(%03d) StructB\n", 24);
+    printf("(%03d) Fibo\t\t", 25);
+    printf("(%03d) Numbers\t\t", 26);
+    printf("(%03d) FileRW\n", 27);
+    printf("(%03d) RecursB\t\t", 28);
+    printf("(%03d) StrConcat\t\t", 29);
+    printf("(%03d) ByValue\n", 30);
+    printf("(%03d) ByPtr\t\t", 31);
+    printf("(%03d) ArrayB\t\t", 32);
 
     printf("(%03d) Database\n", 50);
-    printf("(%03d) BST\n", 60);
+    printf("(%03d) BST\t\t", 60);
 
-    printf("(%03d) Calculate\n", 61);
+    printf("(%03d) Calculate\t\t", 61);
     printf("(%03d) Advenced\n", 62);
     printf("(%03d) Bits\n", 63);
 
@@ -165,7 +126,7 @@ void Exec(int choice)
         case 17: ArrayPointer(); break;
         case 18: CopyMemory(); break;
         case 19: MallocMemset(); break;
-        case 20: PointerInt(); break;
+        case 20: Pointers(); break;
         case 21: PointerArray(); break;
         case 22: CharArrayPointer(); break;
         case 23: ArrayShift(); break;
@@ -174,16 +135,17 @@ void Exec(int choice)
         case 26: NumberReal(); break;
         case 27: FileReadWrite(); break;
         case 28: RecursiveForLoop(); break;
-
+        case 29: StringConcat(); break;
         case 30: CallByValue(); break;
         case 31: CallByPointer(); break;
+        case 32: ArrayB(); break;
 
         case 50: Database(); break;
         case 60: BinarySearchTree(); break;
 
         case 61: Calculate(); break;
         case 62: Advenced(); break;
-        case 63: Bits(); break; //  비트연산
+        case 63: Bits(); break;//  비트연산
 
         case 100: break;
     }

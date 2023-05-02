@@ -11,5 +11,7 @@
 #include <string.h>
 #include <time.h>// time()
 #include <unistd.h>// Get PID
+#include <fcntl.h>
+#include <stdio.h>
 
 #define logfile "/Users/vivabm/GitProjects/C/log.txt"

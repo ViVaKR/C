@@ -6,9 +6,7 @@ void Disp(int size, int *x);
 /// @brief 배열 데모 진입점
 void Array()
 {
-    printf("***** Array *****\n");
-
-    /* 배열 */
+    printf("\n***** 배열 *****\n");
     // 일반변수의 단점을 보완
     // 데이터형과 변수명이 같은 변수의 집합
     // 연속적인 메모리 할당
@@ -16,7 +14,7 @@ void Array()
     // 배열명은 배열의 첫번째 메모리 주소를 의미
     // int nArray[7];
     // nArray == &Array[0]; 과 같은 의미, 같은 맥락으로
-    // *nArray + 1 == nArray[1] 도 같음
+    // nArray[1] == *nArray + 1
 
     // 배열 선언과 동시 초기화 방식
     int arrA[3] = { 1, 2, 3 };
@@ -29,6 +27,7 @@ void Array()
     arrA[1] = 20;
     arrA[2] = 30;
     printf("\n");
+
     // 배열의 메모리 주소 보기 방식 2종
     printf("-- 배열의 메모리 주소 보기 방식 2종 --");
     printf("\n");
@@ -55,7 +54,6 @@ void Array()
     char chArr[20] = "Hello World";
     memset(chArr, '0', 20 * sizeof(char));
     for (int i = 0; i < 20; i++) {
-
         // '0' 으로 초기화 출력
         printf("Char %d : %c\n", i, chArr[i]);
     }
@@ -125,4 +123,3 @@ void Disp(int size, int *x)
         printf("%i %d\n", i, *(x + i));
     }
 }
-

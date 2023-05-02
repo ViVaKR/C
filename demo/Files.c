@@ -21,7 +21,7 @@ void ReadFile()
     sprintf(chRead, "%s", stream);
     fgets(chRead, sizeof(chRead), stream);
     fclose(stream);
-    printf("%s\n",chRead);
+    printf("%s\n", chRead);
 }
 
 void WriteFile(char *message)
@@ -34,9 +34,10 @@ void WriteFile(char *message)
     fclose(stream);
 }
 
-void checker(FILE *fp) {
-  if (fp == NULL){
-    perror("The following error occurred");
-    exit(EXIT_FAILURE);
-  }
+void checker(FILE *fp)
+{
+    if (fp == NULL) {
+        perror("The following error occurred");
+        exit(EXIT_FAILURE);
+    }
 }

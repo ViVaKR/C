@@ -7,31 +7,6 @@ float ByRecursive(int n, float *pSum)
     return ByRecursive(n - 1, pSum);
 }
 
-void LValue()
-{
-    int a[11][11] = { 0 };
-    int b = 0;
-    int k = 1;
-    scanf("%d", &b);
-
-    for (int i = 0; i < b; i++) {
-        for (int j = 0; j < b; j++) {
-            bool tf = (i == j) || (i + j) == (b - 1);
-            if (tf) {
-                a[i][j] = k;
-                k++;
-            }
-        }
-    }
-
-    for (int i = 0; i < b; i++) {
-        for (int j = 0; j < b; j++) {
-            printf("%2d ", a[i][j]);
-        }
-        printf("\n");
-    }
-}
-
 void RecursiveForLoop()
 {
     /****** RecursiveForLoop *****/
