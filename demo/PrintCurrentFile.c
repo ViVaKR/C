@@ -20,7 +20,7 @@ void PrintCurrentFile()
     exit(EXIT_SUCCESS);
 }
 
-/// @brief 소스코드 프린트
+/// @brief 소스코드 프린트, (caller) PrintCurrentFileLineByLine(__FILE__, 47, 58);
 /// @param source __FILE__
 /// @param from 시작라인 번호 - 1
 /// @param to 끝 라인 번호
@@ -37,7 +37,7 @@ void PrintCurrentFileLineByLine(char *source, size_t from, size_t to)
     fp = fopen(source, "r");
     if (fp == NULL)
         exit(EXIT_FAILURE);
-        
+
     size_t count = 0;
     while ((read = getline(&line, &len, fp)) != -1) {
         if(count++ < from) continue;

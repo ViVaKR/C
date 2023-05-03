@@ -63,4 +63,13 @@ void PrintCurrentFileLineByLine(char *source, size_t from, size_t to);
 
     // PrintCurrentFile();
     PrintCurrentFileLineByLine(__FILE__, 47, 58);
+
+    //* 1차원 데이터를 2차원 데이터로 변환하기
+    //*-> char temp[M][N];, char test[L]
+    // char[L] ==> char[L / N][L % N]
+    int temp[3][5];
+    int test[15] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+
+    //* 2차원 데이터를 1차원 데이터로 변환하기
+    //*-> char temp[M][N] --> char text[M * N + index]
 }

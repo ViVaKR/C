@@ -42,16 +42,71 @@ void Array2DPointer()
     }
 }
 
-/// @brief
+void CheckComputerBits()
+{
+    // 컴퓨터 포인터의 크기 확인
+    int iData = 30;
+    int *pi = &iData;
+    char *pc;
+    long *pl;
+    float *pf;
+    double *pd;
+
+    printf("%d-(%p) ", sizeof(pi), pi);
+    printf("%d-(%p) ", sizeof(pc));
+    printf("%d ", sizeof(pl));
+    printf("%d ", sizeof(pf));
+    printf("%d ", sizeof(pd));
+}
+
+/// @brief 참조에 의한 전달
+/// @param ptr
+void PassValue(short *ptr)
+{
+    short data = 0;
+    data = *ptr;
+    printf("pass data %d\n", data);
+    *ptr = 45;
+}
+
+/// @brief 스왑함수
+/// @param a 주소 변경방지 포인터
+/// @param b 주소 변경방지 포인터
+void SwapWithPointer(int *const a, int *const b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+/// @brief (20) 포인터 데모
 void Pointers()
 {
-    // Array2DPointer();
+    printf("\n***** 포인터 *****\n");
 
-    // char *p1; 
-    short **pp, *p, data = 3;
-    p = &data;
-    pp = &p;
+    // todo PrintCurrentFileLineByLine(__FILE__, 52, 58); //* 소스코드 프린트
+    // todo CheckComputerBits(); //* 포인터 크기 확인
+    // todo Array2DPointer(); //* 배열포인터 예시
 
-    printf("%d", **pp );
+    short data = 1234;
+    printf("befor caller = %d\n", data);
+
+    PassValue(&data);
+    printf("after caller =  %d\n", data);
+
+    // 스왑
+    int a = 10;
+    int b = 5;
+
+    printf("a = %d, b = %d\n", a, b);
+
+    if (a > b) {
+        SwapWithPointer(&a, &b);
+    }
+
+    printf("a = %d, b = %d, %d\n", a, b, 1 << 3);
+
+    char *p1 = (char*)'A';
+    printf("p1 %p\n",p1 + 1);
 
 }
