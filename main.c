@@ -35,9 +35,7 @@ int main(int argc, char *argv[])
     } else {
         do {
             system("read");
-
             PrintMenu();
-            //-------------------------------------------//
             fflush(stdin);// Clear Buffer
             printf("(번호) >>> ");// 프롬프트 (Prompt)
             scanf("%ld", &choice);// 입력받기 (User Input by int)
@@ -90,6 +88,7 @@ void PrintMenu()
     printf("(%03d) ArrayB\t\t", 32);
     printf("(%03d) UnionStruct\n", 33);
     printf("(%03d) DefineTypedef\t\t", 34);
+    printf("(%03d) LinkedList\t\t", 35);
 
     printf("(%03d) Database\n", 50);
     printf("(%03d) BST\t\t", 60);
@@ -143,6 +142,7 @@ void Exec(int choice)
         case 32: ArrayB(); break;
         case 33: UnionAndStruct(); break;
         case 34: DefineTypedef(); break;
+        case 35: LinkedList(); break;
 
         case 50: Database(); break;
         case 60: BinarySearchTree(); break;
@@ -154,7 +154,7 @@ void Exec(int choice)
         case 100: break;
     }
 
-    printf("\n\n==> ( Press Enter View Menus ) <==\n");
+    // printf("\n\n==> ( Press Enter View Menus ) <==\n");
 }
 
 /* Print Source Code */
