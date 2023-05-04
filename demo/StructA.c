@@ -9,10 +9,14 @@ struct IT
 
 typedef struct IT It;
 
-/// @brief 구조체
-void Struct()
+/// @brief (24) 구조체 A 형
+void StructA()
 {
-    /****** Struct *****/
+    printf("\n***** (16) 구조체 *****\n");
+
+    /* 비슷한 형태의 데이터를 관리 */
+    //* 다수의 사람들의 나이, 키 그리고 몸무게를 관리하는 프로그램
+    //* 
 
     // 선언
     It t1 = { "google", 55000 };
@@ -27,7 +31,7 @@ void Struct()
     t1.employee = 54500;
     t2.employee = 45500;
 
-    // 구조체 맞 교환 : 
+    // 구조체 맞 교환 :
     // 메모리 복사 형식 정수 교환과 동일, 맞 교환 후 구조체 주소는 바뀌지 않음
 
     It tmp;

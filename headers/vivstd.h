@@ -1,7 +1,9 @@
-#include "stdbool.h"
+#include <stdbool.h>
 #include <assert.h>
 #include <ctype.h>
+#include <fcntl.h>
 #include <float.h>
+#include <limits.h>
 #include <locale.h>
 #include <math.h>
 #include <setjmp.h>// try ~ catch
@@ -11,8 +13,7 @@
 #include <string.h>
 #include <time.h>// time()
 #include <unistd.h>// Get PID
-#include <fcntl.h>
-#include <stdio.h>
 #define _GNU_SOURCE
 
 #define logfile "/Users/vivabm/GitProjects/C/log.txt"
+#define bool _Bool

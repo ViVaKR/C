@@ -22,8 +22,8 @@ int main(int argc, char *argv[])
     info = localtime(&rawtime);
     char str[100];
     sprintf(str, "%s", asctime(info));
-    Files(false, str);
-    Files(true, NULL);
+    Files(FALSE, str);
+    Files(TRUE, NULL);
 
     // 메뉴선택
     printf("\n***** Press Enter To Start *****\n");
@@ -88,6 +88,8 @@ void PrintMenu()
     printf("(%03d) ByValue\n", 30);
     printf("(%03d) ByPtr\t\t", 31);
     printf("(%03d) ArrayB\t\t", 32);
+    printf("(%03d) UnionStruct\n", 33);
+    printf("(%03d) DefineTypedef\t\t", 34);
 
     printf("(%03d) Database\n", 50);
     printf("(%03d) BST\t\t", 60);
@@ -130,7 +132,7 @@ void Exec(int choice)
         case 21: PointerArray(); break;
         case 22: CharArrayPointer(); break;
         case 23: ArrayShift(); break;
-        case 24: Struct(); break;
+        case 24: StructA(); break;
         case 25: FiboStart(); break;
         case 26: NumberReal(); break;
         case 27: FileReadWrite(); break;
@@ -139,6 +141,8 @@ void Exec(int choice)
         case 30: CallByValue(); break;
         case 31: CallByPointer(); break;
         case 32: ArrayB(); break;
+        case 33: UnionAndStruct(); break;
+        case 34: DefineTypedef(); break;
 
         case 50: Database(); break;
         case 60: BinarySearchTree(); break;

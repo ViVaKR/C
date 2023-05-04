@@ -2,8 +2,12 @@
 
 float ByRecursive(int n, float *pSum)
 {
-    if (n == 1) return *pSum += n / (n + 1.0);
-    *pSum = (n % 2 == 0) ? *pSum - n / (n + 1.0) : *pSum + n / (n + 1.0);
+    if (n < 1) return *pSum;
+
+    *pSum = (n % 2 == 0)
+              ? *pSum - n / (n + 1.0)
+              : *pSum + n / (n + 1.0);
+              
     return ByRecursive(n - 1, pSum);
 }
 

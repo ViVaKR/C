@@ -11,7 +11,7 @@ void Advenced()
 
 void Etc()
 {
-
+    
     // case 1
     // int or unsigned int or unsigned long == ?; unsigned vs signed
     // 정수크기를 비교할 때 sizeof 는 부호 없는 유형을 반환함
