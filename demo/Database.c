@@ -65,7 +65,6 @@ void Create()
     //
     printf("Create\n");
 
-
     int id;
     char name[20];
     int score;

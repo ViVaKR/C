@@ -11,10 +11,10 @@ typedef struct Member
 typedef struct
 {
     unsigned long id;        // 고유번호 : 8바이트
-    char name[12];           // 이름 :  12바이트
-    unsigned short int age;  // 나이 : 2바이트
-    float height;            // 키 : 4바이트
-    float weight;            // 몸무게 : 4바이트
+    char name[12];           // 이름 :    12바이트
+    unsigned short int age;  // 나이 :    2바이트
+    float height;            // 키 :      4바이트
+    float weight;            // 몸무게 :   4바이트
 } People;
 
 /// @brief 구조체 샘플 3 : 구조체 변수선언
@@ -29,7 +29,6 @@ struct Score
 void StructA()
 {
     printf("\n***** (16) 구조체 *****\n");
-
     //* 비슷한 형태의 데이터를 관리
     //* 다수의 사람들의 나이, 키 그리고 몸무게를 관리하는 프로그램등에 사용
     //* 구조체의 크기 : 내부의 데이터 타입 크기의 총합 (가장큰 사이즈에 규격을 맞춤)
@@ -40,6 +39,7 @@ void StructA()
     //* C 컴파일러가 구조체 멤버 정렬(Struct Member Algnment) 기능을 제공
     //* 1, 2, 4, 8 바이트 단위로 정렬 (기본 : 8)
     //* 정렬 기준에 따라 기준 배수로 주소로 할당됨
+    //* 작은 바이트 부터 큰 바이트 순으로 정렬하는 것을 권장
 
 
     // 선언 예시 //

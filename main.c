@@ -154,7 +154,7 @@ void Exec(int choice)
         case 100: break;
     }
 
-    // printf("\n\n==> ( Press Enter View Menus ) <==\n");
+    printf("\n\n==> ( Press Enter View Menus ) <==\n");
 }
 
 /* Print Source Code */
