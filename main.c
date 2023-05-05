@@ -87,7 +87,7 @@ void PrintMenu()
     printf("(%03d) ByPtr\t\t", 31);
     printf("(%03d) ArrayB\t\t", 32);
     printf("(%03d) UnionStruct\n", 33);
-    printf("(%03d) DefineTypedef\t\t", 34);
+    printf("(%03d) DefineTypedef\t", 34);
     printf("(%03d) LinkedList\t\t", 35);
 
     printf("(%03d) Database\n", 50);
