@@ -49,6 +49,7 @@
 #include "../demo/Variable.c"
 #include "../demo/WhileLoop.c"
 #include "../demo/LinkedList.c"
+#include "../demo/PrimeNumber.c"
 
 void PrintMenu();
 void Exec(int choice);
@@ -90,3 +91,4 @@ void StringCopy();
 void MaxAndMin();
 void DefineTypedef();
 void LinkedList();
+void PrimeNumber();

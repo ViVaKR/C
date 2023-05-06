@@ -17,4 +17,8 @@
 
 #define logfile "/Users/vivabm/GitProjects/C/log.txt"
 #define bool _Bool
+
 #define COUNT_5 5
+
+#define true 1
+#define false 0

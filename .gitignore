@@ -54,3 +54,7 @@ dkms.conf
 # build
 **/.cmake/
 build/
+build/.ninja_deps
+build/.ninja_log
+log.txt
+.gitingore

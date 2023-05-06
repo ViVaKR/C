@@ -8,13 +8,12 @@
 int main(int argc, char *argv[])
 {
     printf("\n***** Main Start *****\n");
-
     if (argc > 0) {// 전달받은 인수 확인
         for (int i = 0; i < argc; i++) {
             printf("argv[%d] = %s\n", i, argv[i]);
         }
     }
-    printf("\n");
+    // printf("\n");
     // 로그 & 파일처리
     time_t rawtime;
     time(&rawtime);
@@ -89,6 +88,7 @@ void PrintMenu()
     printf("(%03d) UnionStruct\n", 33);
     printf("(%03d) DefineTypedef\t", 34);
     printf("(%03d) LinkedList\t\t", 35);
+    printf("(%03d) PrimeNumber\n", 36);
 
     printf("(%03d) Database\n", 50);
     printf("(%03d) BST\t\t", 60);
@@ -143,6 +143,7 @@ void Exec(int choice)
         case 33: UnionAndStruct(); break;
         case 34: DefineTypedef(); break;
         case 35: LinkedList(); break;
+        case 36: PrimeNumber(); break;
 
         case 50: Database(); break;
         case 60: BinarySearchTree(); break;
