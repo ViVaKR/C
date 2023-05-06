@@ -9,6 +9,15 @@ bool GetBits(int num, int i)
     return (num & (1 << i)) != 0;
 }
 
+/// @brief 프린트 비트
+/// @param num
+/// @param size
+void PrintBits(int num, int size)
+{
+    for (int i = size - 1; i >= 0; --i)
+        printf("%d%c", (num >> i) & 1, (i % 4 == 0) ? ' ' : '\0');
+}
+
 /// @brief 비트값변경 | (OR 연산)
 /// @param num
 /// @param i
@@ -60,38 +69,46 @@ int UpdateBit(int num, int i, bool value)
     // return (first | ((value ? 1 : 0)) << i);
 }
 
-/// @brief 비트연산
+void ConvertToBinary(int n)
+{
+    printf("\n");
+    printf("10진수 ( %d ) -> 2진수 변환\n", n);
+
+    for (int i = 31; i >= 0; --i) {
+        printf("%d%c", (n >> i) & 1, i % 4 == 0 ? ' ' : '\0');
+    }
+    printf("\n");
+}
+
+/// @brief (63) 비트연산
 void Bits()
 {
-    /****** Bits *****/
-    printf("\n***** Bit *****\n");
+    printf("\n***** 비트연산 *****\n");
+    printf("\n");
 
-    //* 비트 확인하기 *//
-    printf("\n***** 숫자 9의 비트 확인하기 *****\n");
+    printf("\n***** 숫자 52의 비트 확인하기 (1) *****\n");
+    PrintBits(52, 32);// 0011 0100
+    printf("\n");
+
+    printf("\n***** 숫자 52의 비트 확인하기 (2) *****\n");
     // And (&) + Left Shift Step 1 연산 :
     // 1 이면 1, 0 이면 0을 반환하는 속성을 이용
     //  9 = 1001
-    for (int i = 0; i < 4; i++) {
-        // printf("9 %02d번 비트 %d\n", i, GetBits(-9, i));
-        printf("%d ", GetBits(-9, i));
+    for (int i = 31; i >= 0; --i) {
+        printf("%d%c", GetBits(52, i), i % 4 == 0 ? ' ' : '\0');
     }
+    printf("\n");
 
-    printf("\n***** Get Bit (1 ~ 15) 까지 비트 확인, And (&) 연산 *****\n");
-    for (int i = 1; i <= 15; i++) {
-        for (int j = 0; j < 4; j++) {
-            printf("%02d - %02d번 비트 %d\n", i, j, GetBits(i, j));
-        }
-        printf("\n");
-    }
 
-    //* 해당 비트를 1로 변경 *//
-    printf("\n***** Set Bit비트 값 1로 변경, OR (|) 연산 *****\n");
+    printf("\n***** Set Bit비트 값 1로 변경, OR (|) 연산 %d *****\n", 0b0101);
     // 5 = 0101
     // After Change = 1101 (13)
-    printf("(%d | 1 << 3) Change To %d\n", 5, SetBit(5, 3));
+    int t1 = SetBit(5, 3);
+    PrintBits(t1, 32);
+    printf("\n");
+    ConvertToBinary(-8 << 3 );
+    // printf("(%d | 1 << 3) Change To %d\n", 5, SetBit(5, 3));
 
-
-    //* 해당 비트를 0으로 변경 *//
     printf("\n***** Clear Bit 해당비트를 0으로 변경, NOT (~) 연산 *****\n");
     // int num = 9, i = 3
     // 나머지는 그대로 두고, 해당 인덱스만 0으로 변경하기

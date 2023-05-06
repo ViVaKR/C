@@ -69,5 +69,7 @@ void Printf()
     //todo Shape();
     //todo GetChar();
     FGets();
+
+    
     
 }

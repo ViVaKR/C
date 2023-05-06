@@ -1,9 +1,8 @@
 # `C`
 
 > 1972년 켄 톰슨과 데니스 리치에 의해 개발
-> 
-> 운영체제인 유닉스 (UNIX) 개발에 사용
 >
+> 운영체제인 유닉스 (UNIX) 개발에 사용
 
 ## Ready To Programming (macOS)
 
@@ -20,6 +19,7 @@
 1. `Print.c` : printf, escape sequence
 
 ### C 언어 주요 키워드 목록
+
 - auto
 - break
 - case
@@ -54,6 +54,7 @@
 - while
 
 ### 식별자 (Identifier)
+
 - 변수, 형식, 함수 및 레이블에 제공하는 이름
 - 식별자 이름은 키워드와 달라야 함
 
@@ -89,121 +90,91 @@ int main(void)
     - 엔터키 -> 문자를 한개만 입력받는 표준 입력 함수 호출
     - 입력버퍼에 `a` 만사용하고 입력버퍼에는 쓰지 못한 `b, c` 가 남음으로 문제가 발생할 소지가 있음
       - 입력 버퍼를 초기화 함수 : fflush, rewind, stdin 포인터와 함께 사용하여 정보제거
-      - 
+      -
 
 ---
+
 ### VSCode User `Snippets` : 사용자 단축키 지정
->
+
 > 학습용 데모코드 생산성 향상 목적
 >
-> `VSCode` -> `CMD(CTRL) + SHIFT + P` -> `Snippets: Configure User Snippets` -> `c.json (C)` 
->
->
+> `VSCode` -> `CMD(CTRL) + SHIFT + P` -> `Snippets: Configure User Snippets` -> `c.json (C)`
+
 ```json
 {
   "Viv Printf HelloWorld": {
     "prefix": "pfh", // 일반 문자
-    "body": [
-      "printf(\"${1:Hello World}\");$0"
-    ],
+    "body": ["printf(\"${1:Hello World}\");$0"],
     "description": "Viv printf With Hello World"
   },
   "Viv Printf Number": {
     "prefix": "pfd", // 정수형
-    "body": [
-      "printf(\"${1:Text} %d\\n\",${2:var});$0"
-    ],
+    "body": ["printf(\"${1:Text} %d\\n\",${2:var});$0"],
     "description": "Viv printf Number Type"
   },
   "Viv Printf Character": {
     "prefix": "pfc", // 문자형
-    "body": [
-      "printf(\"${1:Text} %c\\n\",${2:var});$0"
-    ],
+    "body": ["printf(\"${1:Text} %c\\n\",${2:var});$0"],
     "description": "Viv printf Character Type"
   },
   "Viv Printf String": {
     "prefix": "pfs", // 문자열 형
-    "body": [
-      "printf(\"${1:Text} %s\\n\",${2:var});$0"
-    ],
+    "body": ["printf(\"${1:Text} %s\\n\",${2:var});$0"],
     "description": "Viv printf String (char[]) Type"
   },
   "Viv Printf Float": {
     "prefix": "pff", // 실수 float 형
-    "body": [
-      "printf(\"${1:Text} %${2:.2f}\\n\",${3:var});$0"
-    ],
+    "body": ["printf(\"${1:Text} %${2:.2f}\\n\",${3:var});$0"],
     "description": "Viv printf Float Type"
   },
   "Viv Printf Double": {
     "prefix": "pflf", // 실수 double 형
-    "body": [
-      "printf(\"${1:Text} %${2:.2lf}\\n\",${3:var});$0"
-    ],
+    "body": ["printf(\"${1:Text} %${2:.2lf}\\n\",${3:var});$0"],
     "description": "Viv printf Double Type"
   },
   "Viv Printf UnSigned": {
     "prefix": "pfu",
-    "body": [
-      "printf(\"${1:Text} %${2:u}\\n\",${3:var});$0"
-    ],
+    "body": ["printf(\"${1:Text} %${2:u}\\n\",${3:var});$0"],
     "description": "Viv printf UnSigned Type"
   },
   "Viv Printf Hex": {
     "prefix": "pfx",
-    "body": [
-      "printf(\"${1:Text} %${2:x}\\n\",${3:var});$0"
-    ],
+    "body": ["printf(\"${1:Text} %${2:x}\\n\",${3:var});$0"],
     "description": "Viv printf 16진수 Hex Type"
   },
   "Viv Printf Pointer": {
     "prefix": "pfp",
-    "body": [
-      "printf(\"${1:Text} %${2:p}\\n\",${3:var});$0"
-    ],
+    "body": ["printf(\"${1:Text} %${2:p}\\n\",${3:var});$0"],
     "description": "Viv printf Pointer Type"
   },
   "Viv Printf Long Long Int": {
     "prefix": "pflld",
-    "body": [
-      "printf(\"${1:Text} %${2:lld}\\n\",${3:var});$0"
-    ],
+    "body": ["printf(\"${1:Text} %${2:lld}\\n\",${3:var});$0"],
     "description": "Viv printf long long int"
   },
   "Viv Printf Insert One Line Blank": {
     "prefix": "bk", // 빈 공간 삽입
-    "body": [
-      "printf(\"$1\\n\");$0"
-    ],
+    "body": ["printf(\"$1\\n\");$0"],
     "description": "Viv printf Blank"
   },
   "Viv Printf Insert Two Line Blank": {
     "prefix": "bbk", // 두칸 빈 공간 삽입
-    "body": [
-      "printf(\"$1\\n\\n\");$0"
-    ],
+    "body": ["printf(\"$1\\n\\n\");$0"],
     "description": "Viv printf Insert Two Line Blank"
   },
   "Viv Scanf": {
     "prefix": "sf",
-    "body": [
-      "scanf(\"%${1:d}\", ${2:var});$0"
-    ],
+    "body": ["scanf(\"%${1:d}\", ${2:var});$0"],
     "description": "Viv scanf integer"
   },
   "Viv Scanf double": {
     "prefix": "sflf",
-    "body": [
-      "scanf(\"%lf\", ${1:var});$0"
-    ],
+    "body": ["scanf(\"%lf\", ${1:var});$0"],
     "description": "Viv scanf double"
   },
   "Viv Clear Screen": {
     "prefix": "cls",
-    "body": [
-      "system(\"clear\");$0"
-    ],
+    "body": ["system(\"clear\");$0"],
     "description": "Viv termianl clear screen"
   },
   "Viv #include": {
@@ -217,9 +188,7 @@ int main(void)
   },
   "Viv #include Viv Header": {
     "prefix": "#v",
-    "body": [
-      "#include \"../headers/vivstd.h\""
-    ],
+    "body": ["#include \"../headers/vivstd.h\""],
     "description": "Viv #include Header"
   },
   "Viv Create Function Standard": {
@@ -247,11 +216,12 @@ int main(void)
     "prefix": "forrv",
     "body": "for (int ${1:i} = ${2:10}; ${1:i} >= ${3:0}; --${1:i}) \n{\n\t${0}\n}",
     "description": "Cpp For Loop Reverse"
-  },
+  }
 }
 ```
 
 ### 변수 및 상수 일반사항
+
 ```c
 /* [ 상수 ]
           숫자상수 : 정수, 실수
@@ -339,12 +309,11 @@ int main(void)
 
         (기타 다양한 표기법)
         파스칼 표기법 : 모든 단어의 첫번째 문자가 대문자이며 나머지는 소문자 C# 클래스 함수명 등 (예) PascalCaseExample
-        카멜 표기법 : 최초 단어의 첫 문자는 소문자 이며 나머지는 파스칼 표기법과 동일 C# 지역변수, Java (예) camelCaseExample 
+        카멜 표기법 : 최초 단어의 첫 문자는 소문자 이며 나머지는 파스칼 표기법과 동일 C# 지역변수, Java (예) camelCaseExample
         스네이크 표기법 : 단어와 단어 사이를 "_" 연결, (예) snake_case_example
         케밥 표기법 : 단어와 단어 사이를 "-" 로 연결 url, html tag 등 (예) kebab-case-example
         스크림이 스테이크 표기법 : 상수의 표현은 대문자에 snake case 로 표기함 (예) SCREAM_SNAKE_CASE
    */
-
 
 ```
 
@@ -355,12 +324,12 @@ int main(void)
 ---
 
 ### 전 처리기 지시문 (매크로)
->
+
 > 컴파일 전에 프로그램의 소스에 특정한 작업을 수행
 > 추가적인 작업, 작성한 소스코드를 변경하지는 않음
-> 
-> ( 종류 ) 
-> 
+>
+> ( 종류 )
+
 ```c
 #define
 #include : 컴파일할 때 포함 할 라이브러리 파일 지시
@@ -378,6 +347,7 @@ int main(void)
 ---
 
 ### C 표준 라이브러리
+
 | 이름            | 표준 | 상세                                                                                                                              |
 | --------------- | ---- | --------------------------------------------------------------------------------------------------------------------------------- |
 | <assert.h>      |      | assert 매크로를 포함하며, 이것은 프로그램의 디버깅 버전들에서 논리 오류들과 버그들의 다른 타입들을 탐지하는 것을 돕는데 사용된다. |
@@ -412,17 +382,25 @@ int main(void)
 
 ---
 
-### 변환문자
+### 출력문자 (Format Character)  
 
-`%d`, `%ld` : 정수형  
+`%d`, : 10진 정수 (부호 있음)
+`%ld` : long (부호 있음)  
 `%c` : 문자형  
-`%f`, `lf` : 실수형  
+`%f`, `lf` : 실수  
+`ld` : long (부호 있음)
+`lld` : long long (부호 있음)
+`u` : 10진 정수 (부호 없음)
+`lu` : long (부호 없음)
 `%s` : 문자열  
 `%o` : 8진수  
 `%x` : 16진수  
-`%p` : 메모리 주소 출력  
-`%%` : % 부호 출력  
-`%u` : 10진수 양수 출력  
+`%p` : 메모리 주소  
+`%u` : 10진 정수 (부호 없음)
+`%e` : 실수를 지수 표기법으로 표기 (소문자)
+
+`%-4d` : 4자리 공간을 확보하고왼쪽으로 정렬
+`%#x` : 16진수 표기법인 0x 까지 출력
 
 ---
 
@@ -430,24 +408,23 @@ int main(void)
 
 > Character combination consisting of a backslah -> `\`  
 > followed by a letter or combination of digits.  
-> They specify actions within a line or string of text.  
+> They specify actions within a line or string of text.
 >
-`\n` : (newline) 커서를 다음 줄로 이동 == `\r\n`  
-`\r` : 커서를 줄 처음으로 이동  
-`\b` : 백스페이스  
-`\v` : 수직 탭  
-`\t` : 수평 탭  
-`\\` : 백슬레쉬 출력 -> `\`  
-`\'` : 작은 따옴표 출력 -> `'`  
-`\"` : 큰 따옴표 출력 -> `"`  
+> `\n` : (newline) 커서를 다음 줄로 이동 == `\r\n`  
+> `\r` : 커서를 줄 처음으로 이동  
+> `\b` : 백스페이스  
+> `\v` : 수직 탭  
+> `\t` : 수평 탭  
+> `\\` : 백슬레쉬 출력 -> `\`  
+> `\'` : 작은 따옴표 출력 -> `'`  
+> `\"` : 큰 따옴표 출력 -> `"`
 
 ---
 
 ### 컴파일러간 차이점
 
 > gcc, g++, llvm 및 clang은 모두 다양한 프로그래밍 언어로 코드를 컴파일하는 데 사용되는 서로 다른 컴파일러.
-> 주요 차이점 개요  
->
+> 주요 차이점 개요
 
 - `gcc`(GNU Compiler Collection)는 C, C++, Objective-C, Fortran, Ada 등 여러 프로그래밍 언어를 위한 컴파일러 모음입니다. 가장 널리 사용되는 컴파일러 중 하나이며 많은 플랫폼에서 사용할 수 있습니다.
 
@@ -463,45 +440,44 @@ int main(void)
 
 ### 포인터
 
-- `메모리 주소를 저장`하는 변수  
+- `메모리 주소를 저장`하는 변수
 - 일반변수와 포인터 변수와의 차이점
 
-|-| 공통점 | 차이점 |
-|-|-|-|
-| 일반 변수   | 값 저장 | 상수 저장 |
+| -           | 공통점  | 차이점           |
+| ----------- | ------- | ---------------- |
+| 일반 변수   | 값 저장 | 상수 저장        |
 | 포인터 변수 | 값 저장 | 메모리 주소 저장 |
 
 - (간접) 참조 연산자 : `*`, 선언된 변수가 포인터 변수임을 나타냄
 - 참조 : `접근` 과 동일한 의미
-- ( `*` ) 의 의미 :  포인터 변수에 저장된 메모리 주소로 접근한 메모리 영역의 데이터(값)을 의미
-- 선언방식 : *int* `*nVar;` *char* `*cVar;` *float* `*fVar;`
-- 데이터 형에 관계없이 메모리 주소를 저장하므로 *`4바이트`* 크기를 동일하게 가짐
-- `*pVar` : 포인터 변수 `pVar` 에 저장된 메모리 주소에 접근하여 그 주소에 저장 된 값을 의미함 
+- ( `*` ) 의 의미 : 포인터 변수에 저장된 메모리 주소로 접근한 메모리 영역의 데이터(값)을 의미
+- 선언방식 : _int_ `*nVar;` _char_ `*cVar;` _float_ `*fVar;`
+- 데이터 형에 관계없이 메모리 주소를 저장하므로 _`4바이트`_ 크기를 동일하게 가짐
+- `*pVar` : 포인터 변수 `pVar` 에 저장된 메모리 주소에 접근하여 그 주소에 저장 된 값을 의미함
 - `&` ( ampersand ): 주소연산자 변수의 메모리 주소
   - int nVar = 7;
-  - int *nPtr = &nVar;
+  - int \*nPtr = &nVar;
   - 포인터 -> `nPtr`
 - 포인터 역할 : 임의의 메모리에 접근하여 값을 저장하거나 읽는 역할
-- 포인터를 활용한 메모리 생성과 해제  
-- 문자열 다루기  
+- 포인터를 활용한 메모리 생성과 해제
+- 문자열 다루기
 
 ---
 
-|메모리 기본구조|||
-|-|-|-|
-| Stack | 지역변수, 매개변수 |
-| Heap | 동적할당 |
-| Data | 정적변수, 상수 (데이터세그먼트) |
-| Code | 함수코드 (코드세그먼트) |
+| 메모리 기본구조 |                                 |     |
+| --------------- | ------------------------------- | --- |
+| Stack           | 지역변수, 매개변수              |
+| Heap            | 동적할당                        |
+| Data            | 정적변수, 상수 (데이터세그먼트) |
+| Code            | 함수코드 (코드세그먼트)         |
+
+> 32비트 CPU / 4바이트 (8 \* 4 = 32) 표현범위 : 42.9억 ( 0 ~ FFFF FFFF)
 >
-> 32비트 CPU / 4바이트 (8 * 4 = 32) 표현범위 : 42.9억 ( 0 ~ FFFF FFFF)
+> _`char`_ : | 1 |
 >
-> *`char`* : | 1 |
+> _`int`_ : | 1 | 1 | 1 | 1 |
 >
-> *`int`* : | 1 | 1 | 1 | 1 |
->
-> 주소연산자 : ` & `
->
+> 주소연산자 : `&`
 
 ---
 
@@ -509,40 +485,40 @@ int main(void)
 
 ---
 
-| 일반 배열 | 포인터 배열|
-|-|-|
-| char a[] = "apple" | char *b = "banana", 
-| a 와 apple 문자열 모두 스택영역에 있으며 a는 시작(0) 주소 상수 | 스택영역에는 변수 b -> data 영역에 상수로 "banana"  위치함 |
-| a -> `"a"` | b -> `"banana"` |
-| (안됨)| `b = "change";` (됨)|
-| - | `printf("%c", b);` -> `change` |
-| 요소별로 할당 및 변경처리 | 새로운 문자상수 주소로 갱신 (기존 문자 상수가 가비지로 유지됨)
-| - |즉, b에 지정된 값이 `banana` 에서 `change` 문자상수가 저장된 주소값으로 변경됨|
-| strcpy(a, "mango"); (됨) | (안됨) |
-| n 차원 배열 | 포인터 배열|
+| 일반 배열                                                      | 포인터 배열                                                                    |
+| -------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| char a[] = "apple"                                             | char \*b = "banana",                                                           |
+| a 와 apple 문자열 모두 스택영역에 있으며 a는 시작(0) 주소 상수 | 스택영역에는 변수 b -> data 영역에 상수로 "banana" 위치함                      |
+| a -> `"a"`                                                     | b -> `"banana"`                                                                |
+| (안됨)                                                         | `b = "change";` (됨)                                                           |
+| -                                                              | `printf("%c", b);` -> `change`                                                 |
+| 요소별로 할당 및 변경처리                                      | 새로운 문자상수 주소로 갱신 (기존 문자 상수가 가비지로 유지됨)                 |
+| -                                                              | 즉, b에 지정된 값이 `banana` 에서 `change` 문자상수가 저장된 주소값으로 변경됨 |
+| strcpy(a, "mango"); (됨)                                       | (안됨)                                                                         |
+| n 차원 배열                                                    | 포인터 배열                                                                    |
 
 ---
 
 ### 배열포인터 vs 포인터배열
 
 - 배열 포인터
-  - int [*p](5);
+  - int [\*p](5);
   - 각각 int 형 5개 크기의 배열들을 저장하는 포인터
 - 포인터 배열
-  - int *p[5];
+  - int \*p[5];
   - 배열의 첫번째 주소(포인터) 들을 저장하는 배열
 
 ### const 위치에따른 의미 차이
 
 > `const int *p;` --> `*p` 값을 못바꿈  
 > `int * const p;` --> `p` 값을 못바꿈  
-> `const int * const p;` --> `*p`, `p` 값을 못바꿈  
+> `const int * const p;` --> `*p`, `p` 값을 못바꿈
 
 ### 보수
 
 1. 양수는 보수 처리 하지 않음
 2. 가중치 x
-3. +0, -0  공존
+3. +0, -0 공존
 4. 연산결과 음수일 때 : 2의 보수 처리
 
 ### 함수내부의 지역변수
@@ -568,10 +544,10 @@ int main(void)
     int iData;        /* 4byte */
   } CD;
 
-  CD temp; 
+  CD temp;
   temp.iData = 0x12345678;
   | 0x78 | 0x56 | 0x34 | 0x12 |
-  
+
   /* union ConvertData temp; 와 동일 */
   // 공용체의 요소들은 할당된 메모리를 공유함
   // 공용체로 만든 자료형의 크기는 요소 중 가장 큰 요소의 크기와 동일
