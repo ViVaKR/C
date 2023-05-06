@@ -13,7 +13,6 @@ int main(int argc, char *argv[])
             printf("argv[%d] = %s\n", i, argv[i]);
         }
     }
-    // printf("\n");
     // 로그 & 파일처리
     time_t rawtime;
     time(&rawtime);
@@ -87,8 +86,10 @@ void PrintMenu()
     printf("(%03d) ArrayB\t\t", 32);
     printf("(%03d) UnionStruct\n", 33);
     printf("(%03d) DefineTypedef\t", 34);
-    printf("(%03d) LinkedList\t\t", 35);
+    printf("(%03d) LinkedList\t", 35);
     printf("(%03d) PrimeNumber\n", 36);
+    printf("(%03d) Ascii\t\t", 37);
+    printf("(%03d) Shape\t\t", 38);
 
     printf("(%03d) Database\n", 50);
     printf("(%03d) BST\t\t", 60);
@@ -144,6 +145,8 @@ void Exec(int choice)
         case 34: DefineTypedef(); break;
         case 35: LinkedList(); break;
         case 36: PrimeNumber(); break;
+        case 37: Ascii(); break;
+        case 38: Shape(); break;
 
         case 50: Database(); break;
         case 60: BinarySearchTree(); break;

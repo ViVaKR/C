@@ -22,3 +22,5 @@
 
 #define true 1
 #define false 0
+
+long long int N_0;

@@ -2,7 +2,9 @@
     "files.associations": {
         "chrono": "c",
         "stringcopy.c": "cpp",
-        "vivstd.h": "c"
+        "vivstd.h": "c",
+        "clocale": "c",
+        "*.tcc": "c"
     },
     "lldb.dereferencePointers": true,
     "lldb.consoleMode": "commands",

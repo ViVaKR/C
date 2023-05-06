@@ -50,6 +50,12 @@
 #include "../demo/WhileLoop.c"
 #include "../demo/LinkedList.c"
 #include "../demo/PrimeNumber.c"
+#include "../demo/Ascii.c"
+
+
+#include "../common/Clock.c"
+#include "../common/Hanoi.c"
+#include "../common/DiffTime.c" 
 
 void PrintMenu();
 void Exec(int choice);
@@ -92,3 +98,8 @@ void MaxAndMin();
 void DefineTypedef();
 void LinkedList();
 void PrimeNumber();
+void Ascii();
+void Shape();
+
+void Clock();
+void Hanoi(int n, const char *src, const char *use, const char *dest);
