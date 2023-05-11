@@ -90,6 +90,7 @@ void PrintMenu()
     printf("(%03d) PrimeNumber\n", 36);
     printf("(%03d) Ascii\t\t", 37);
     printf("(%03d) Shape\t\t", 38);
+    printf("(%03d) CallbackEx\n", 39);
 
     printf("(%03d) Database\n", 50);
     printf("(%03d) BST\t\t", 60);
@@ -147,6 +148,7 @@ void Exec(int choice)
         case 36: PrimeNumber(); break;
         case 37: Ascii(); break;
         case 38: Shape(); break;
+        case 39: CallbackEx(); break;
 
         case 50: Database(); break;
         case 60: BinarySearchTree(); break;

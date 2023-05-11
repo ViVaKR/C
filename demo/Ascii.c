@@ -5,6 +5,35 @@
 void Clock();
 void DiffTime();
 
+/// @brief 콜백메서드 1
+/// @param p
+void Abs(int *p)
+{
+    if (*p < 0) *p = (*p) * -1;
+}
+
+int Odd_Number(int *arr)
+{
+
+    for (int i = 0; i < sizeof(arr); i++) {
+        printf("%d", arr + i);
+    }
+}
+
+void Sum(int a, int b, void (*p)(int *p))
+{
+    if (p != NULL) {
+        (*p)(&a);
+        (*p)(&b);
+        printf("\n%d + %d = %d\n", a, b, a + b);
+    }
+}
+
+void DemoB(int (*p)(int, int))
+{
+    printf("%d", p);
+}
+
 void Ascii()
 {
     setlocale(LC_ALL, "");
@@ -22,4 +51,7 @@ void Ascii()
 
     // Clock();
     DiffTime();
+
+    Sum(-3, -2, Abs);
+
 }

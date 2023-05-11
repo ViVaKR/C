@@ -51,7 +51,7 @@
 #include "../demo/LinkedList.c"
 #include "../demo/PrimeNumber.c"
 #include "../demo/Ascii.c"
-
+#include "../demo/CallbackEx.c"
 
 #include "../common/Clock.c"
 #include "../common/Hanoi.c"
@@ -100,6 +100,7 @@ void LinkedList();
 void PrimeNumber();
 void Ascii();
 void Shape();
+void CallbackEx();
 
 void Clock();
 void Hanoi(int n, const char *src, const char *use, const char *dest);
