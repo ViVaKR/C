@@ -20,6 +20,10 @@ void CallbackCaller(bool (*p)(int, int))
     }
 }
 
+/// @brief 콜백함수
+/// @param rows
+/// @param cols
+/// @param arr
 void CallbackSum(int rows, int cols, int *arr)
 {
     int total = 0;
@@ -44,56 +48,6 @@ void CallbackSum(int rows, int cols, int *arr)
 void Print(int rows, int cols, int *pa, void (*p)(int, int, int *arr))
 {
     p(rows, cols, pa);
-}
-
-void Array2DSum(int rows, int cols, int *arr)
-{
-    int total = 0;
-    int subtotal = 0;
-    for (int j = 0; j < rows * cols; j++) {
-        total += *(arr + j);
-        subtotal += *(arr + j);
-        if ((j + 1) % rows == 0) {
-            printf("%d\n", subtotal);
-            subtotal = 0;
-        }
-    }
-    printf("\n");
-    printf("%d", total);
-}
-
-/// @brief (1) 호출
-void Run()
-{
-    int rows = 0;
-    int cols = 0;
-    int check = -1;
-
-    // 행과 열의 개수 입력 (입력확인)
-    do {
-        printf("행수? : ");
-        fflush(stdin);
-        check = scanf("%d", &rows);
-        printf("열수? : ");
-        fflush(stdin);
-        check = scanf("%d", &cols);
-    } while (check != 1);
-
-    // 데이터 입력 (입력확인)
-    int arr[rows][cols];
-    check = -1;
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            do {
-                printf("%d 행, %d 열 : ", i, j);
-                fflush(stdin);
-                check = scanf("%d", &arr[i][j]);
-            } while (check != 1);
-        }
-    }
-
-    // Print Call
-    Array2DSum(rows, cols, *arr);
 }
 
 /// @brief (37) 호출
@@ -126,12 +80,15 @@ void CallbackEx()
         }
     }
 
-    // Print Call
-    // Array2DSum(rows, cols, *arr);
+    // 일반콜
+    // CallbackSum(rows, cols, *arr);
 
+    // 콜백 견본 (1)
     // void (*p)(int, int, int *arr) = CallbackSum;
     // p(rows, cols, *arr);
-    Print(rows, cols, *arr, CallbackSum);
+
+    // 콜백 견본 (2)
+    // Print(rows, cols, *arr, CallbackSum);
 }
 // CallbackCaller(Callback);
 /*  = { { 4, 2, 3 },
@@ -141,5 +98,5 @@ void CallbackEx()
     9
     10
     6
-    25 
+    25
 */
