@@ -90,6 +90,7 @@ void CallbackEx()
     // 콜백 견본 (2)
     // Print(rows, cols, *arr, CallbackSum);
 }
+
 // CallbackCaller(Callback);
 /*  = { { 4, 2, 3 },
         { 5, 2, 3 },
