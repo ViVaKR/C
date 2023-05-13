@@ -8,7 +8,7 @@ typedef enum {
     X = 5
 } manage;
 
-void Create(), Read(), Update(), Delete();
+void Create();
 
 struct Node
 {
@@ -50,10 +50,6 @@ void Database()
 
         switch (mng) {
             case C: Create(); break;
-            case R: Read(); break;
-            case U: Update(); break;
-            case D: Delete(); break;
-            case X:
             default: exit(EXIT_SUCCESS); return;
         }
         printf("\n");
@@ -67,6 +63,7 @@ void Create()
     int id;
     char name[20];
     int score;
+    
     printf("\n");
     fflush(stdin);
     printf("id >> ");
@@ -99,24 +96,4 @@ void Create()
     tail = p;
 
     printf("신규추가 완료\n");
-
-    Read();
-}
-
-void Read()
-{
-    //
-    printf("Read");
-}
-
-void Update()
-{
-    //
-    printf("Update");
-}
-
-void Delete()
-{
-    //
-    printf("Delete");
 }

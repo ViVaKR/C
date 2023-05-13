@@ -3,7 +3,6 @@
 typedef char data;
 typedef struct _Node
 {
-
     char key;
     struct _Node *left;
     struct _Node *right;
