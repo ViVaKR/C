@@ -1,22 +1,83 @@
 #include "../headers/vivstd.h"
+
+enum Item {
+    생수 = 1,
+    아이스크림 = 2,
+    감자칩 = 3,
+    젤리 = 4,
+    초콜릿 = 5,
+    맥주 = 6
+};
+
+/// @brief 포인터배열
+const char *ItemName[] = {
+    "생수",
+    "아이스크림",
+    "감자칩",
+    "젤리",
+    "초콜릿",
+    "맥주",
+};
+
 void Calendar();
 void ArrayAvgCaller();
+void AnsEnums();
 float ArrayAvg(int length, int *array);
 
+/// @brief enum 과 매칭된 포인터배열로 부터 인덱스 가져오기
+/// @param str 찾은 문자열
+/// @param arr 참조 배열
+/// @param arrSize 참조 배열 사이즈
+/// @return
+int GetIndex(const char *str, const char **arr, int arrSize)
+{
+    printf("\nHello World\n");
+    for (int i = 0; i < arrSize; i++) {
+        if (strcmp(str, arr[i]) == 0) {
+            return i;
+        }
+    }
+    return -1;// string not found
+}
+
+/// @brief (11) 지식인 답변
 void Jisikin()
 {
     printf("***** 지식인 답변 ******\n");
-
-    int i = 1;
-loop:
-    printf("%d + %d = %d\n", 3, i, 3 * i);
-    i++;
-    if (i == 10) goto end;
-    goto loop;
-end:
-
+    AnsEnums();
     Calendar();
-    return;
+}
+
+void AnsEnums()
+{
+    // 상품번호 -> 상품명
+    enum Item item;
+    printf("상품 번호 입력 : ");
+    fflush(stdin);
+    scanf("%d", &item);
+    printf("상품명 :  %s\n", ItemName[item - 1]);
+
+    // 상품명 -> 상품번호
+    char str[100];
+    printf("상품명을 입력하십시오 : ");
+    fflush(stdin);
+    scanf("%s", str);
+    enum Item itemNumber = GetIndex(str, ItemName, sizeof(ItemName) / sizeof(ItemName[0])) + 1;
+    printf("상품번호 : %d\n", itemNumber);
+    printf("\n");
+
+    // (문의 사항의 답) 멀티타입 -> 상품명
+        printf("\n(문의사항에 대한 답)\n");
+    char input[100];
+    enum Item num;
+    printf("상품명 또는 상품번호 입력 => ");
+    fflush(stdin);
+    scanf("%s", input);
+    if (sscanf(input, "%d", &num) == 1) {
+        printf("상품번호 -> 상품명 : %s\n", ItemName[num - 1]);
+    } else {
+        printf("상품명 -> 상품명 : %s\n", input);
+    }
 }
 
 /// @brief 윤년찾기
@@ -138,7 +199,7 @@ float ArrayAvg(int length, int *array)
     printf("//*** float average 함수 ***//\n");
     printf("(`*arrary`)\tmemory address -> %p\n", array);
     printf("\n");
-    
+
     int sum = 0;
     for (int i = 0; i < length; i++) {
         sum += array[i];
