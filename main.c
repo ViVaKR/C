@@ -1,5 +1,40 @@
 #include "headers/main.h"
 
+/// 주인공 이넘
+enum Item {
+    생수 = 1,
+    아이스크림 = 2,
+    감자칩 = 3,
+    젤리 = 4,
+    초콜릿 = 5,
+    맥주 = 6
+};
+
+/// @brief 포인터배열
+const char *ItemName[] = {
+    "생수",
+    "아이스크림",
+    "감자칩",
+    "젤리",
+    "초콜릿",
+    "맥주",
+};
+
+/// @brief enum 과 매칭된 포인터배열로 부터 인덱스 가져오기
+/// @param str 찾은 문자열
+/// @param arr 참조 배열
+/// @param arrSize 참조 배열 사이즈
+/// @return 
+int GetIndex(const char *str, const char **arr, int arrSize)
+{
+    for (int i = 0; i < arrSize; i++) {
+        if (strcmp(str, arr[i]) == 0) {
+            return i;
+        }
+    }
+    return -1;// string not found
+}
+
 /// @brief 메인함수
 /// @param argc 전달된 정보의 갯수
 /// @param argv 전달된 실질 데이터 배열
@@ -7,12 +42,39 @@
 /// @return
 int main(int argc, char *argv[])
 {
+    // 상품번호 -> 상품명
+    enum Item item;
+    printf("상품 번호 입력 : ");
+    scanf("%d", &item);
+    printf("상품명 :  %s\n", ItemName[item - 1]);
+
+    // 상품명 -> 상품번호
+    char *string;
+    printf("상품명을 입력하십시오 : ");
+    scanf("%s", string);
+    enum Item itemNumber = GetIndex(string, ItemName, sizeof(ItemName) / sizeof(ItemName[0])) + 1;
+    printf("상품번호 : %d\n", itemNumber);
+    printf("\n");
+    printf("\n(문의사항에 대한 답)\n");
+    // (문의 사항의 답) 멀티타입 -> 상품명
+    char input[100];
+    enum Item num;
+    printf("상품명 또는 상품번호 입력 => ");
+    scanf("%s", input);
+    if (sscanf(input, "%d", &num) == 1) {
+        printf("상품번호 -> 상품명 : %s\n", ItemName[num - 1]);
+    } else {
+        printf("상품명 -> 상품명 : %s\n", input);
+    }
+
+
     printf("\n***** Main Start *****\n");
     if (argc > 0) {// 전달받은 인수 확인
         for (int i = 0; i < argc; i++) {
             printf("argv[%d] = %s\n", i, argv[i]);
         }
     }
+
     // 로그 & 파일처리
     time_t rawtime;
     time(&rawtime);
