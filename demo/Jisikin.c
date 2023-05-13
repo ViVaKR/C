@@ -40,12 +40,48 @@ int GetIndex(const char *str, const char **arr, int arrSize)
     return -1;// string not found
 }
 
+double Add(double a, double b)
+{
+    return a + b;
+}
+double Sub(double a, double b)
+{
+    return a - b;
+}
+double Mul(double a, double b)
+{
+    return a * b;
+}
+double Div(double a, double b)
+{
+    return a / b;
+}
+
 /// @brief (11) 지식인 답변
 void Jisikin()
 {
     printf("***** 지식인 답변 ******\n");
-    AnsEnums();
-    Calendar();
+
+    // 함수 포인터 배열 4개
+    double (*p[4])(double, double) = { Add, Sub, Mul, Div };
+
+    // 문의에 대한 데모 답
+    printf("\n박혜자씨 사칙연산을 위하여 각 연산에 대한 번호를 입력하세요 >> ");
+    char *ops[4] = { "더하기", "빼기", "곱하기", "나누기" };
+    char *opc[4] = { "+", "-", "x", "/"};
+
+    printf("\n[%s]: 0, [%s]]: 1, [%s]: 2, [%s]: 3 >> ", ops[0], ops[1], ops[2], ops[3]);
+    int op = 0;
+    scanf("%d", &op);
+    printf("\n사칙연산을 수행할 실수 2개를 입력하세요 >> "); // 22.3   33.4
+    double a, b;
+    scanf("%lf %lf", &a, &b);
+    
+    printf("%s 수행 : %lf %s %lf == %lf\n", ops[op], a, opc[op], b, p[op](a, b));
+
+
+    // AnsEnums();
+    // Calendar();
 }
 
 void AnsEnums()
@@ -67,7 +103,7 @@ void AnsEnums()
     printf("\n");
 
     // (문의 사항의 답) 멀티타입 -> 상품명
-        printf("\n(문의사항에 대한 답)\n");
+    printf("\n(문의사항에 대한 답)\n");
     char input[100];
     enum Item num;
     printf("상품명 또는 상품번호 입력 => ");

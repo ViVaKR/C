@@ -18,20 +18,65 @@ typedef struct NODE_B
 
 } NB;
 
+/// @brief 지식인 답변용
+typedef struct
+{
+    char name[100];
+    int age;
+    double heigh;
+} Profile;
+
+typedef struct ListNode
+{
+    Profile pro;
+    struct ListNode *list;
+} NL;
+
+NL *pnl = NULL;
+
 int InsertNewNode(char *pszDate);
 void ReleaseList();
-
 void SingleList();
 void PrintList();
+
+void PrintNL();
+void ReleaseNL();
 
 /// @brief 자료구조 (데이터베이스)
 void DataStruct()
 {
     printf("***** 자료구조 *****");
     printf("\n");
+    char *name[6] = {
+        "Hello", "World", "Fine", "Thanks", "And", "You"
+    };
+    for (int i = 0; i < 6; i++) {
+        NL *nl = (NL *)malloc(sizeof(NL));
+        memset(nl, 0, sizeof(NL));
+        Profile profile;
+        profile.age = 23 + i;
+        strncpy(profile.name, name[i], 100);
+        profile.heigh = 170 + (double)i;
 
-    // int nData = 300;
-    // printf("\n");
+        nl->pro = profile;
+
+        if (pnl = NULL) {
+            pnl = nl;
+        } else {
+            nl->list = pnl;
+            pnl = nl;
+        }
+
+        PrintNL();
+    }
+    ReleaseNL();
+
+    // printf("\n***** 출력 *****\n");
+    // PrintNL();
+
+
+    //  int nData = 300;
+    //  printf("\n");
 
     /* 선행학습 */
     // 포인터 (함수포인터 포함)
@@ -70,19 +115,45 @@ void DataStruct()
     // SingleList();// Step #1
 
     // 데이터 삽입
-    InsertNewNode("Viv1");
-    PrintList();
-    InsertNewNode("Viv2");
-    PrintList();
-    InsertNewNode("Viv3");
-    PrintList();
-    InsertNewNode("Viv4");
-    PrintList();
-    InsertNewNode("Viv5");
-    PrintList();
+    // InsertNewNode("Viv1");
+    // PrintList();
+    // InsertNewNode("Viv2");
+    // PrintList();
+    // InsertNewNode("Viv3");
+    // PrintList();
+    // InsertNewNode("Viv4");
+    // PrintList();
+    // InsertNewNode("Viv5");
+    // PrintList();
 
     // 메모리 해제
-    ReleaseList();
+    // ReleaseList();
+}
+
+void PrintNL()
+{
+    NL *temp = pnl;
+    while (temp != NULL) {
+        printf("\n*******************\n");
+        printf("Name\t:\t%s\nAge\t:\t%d\nHeight\t:\t%.1f\n%p",
+          temp->pro.name,
+          temp->pro.age,
+          temp->pro.heigh,
+          temp);
+        temp = temp->list;
+        printf("\n*******************\n");
+    }
+}
+
+void ReleaseNL()
+{
+    NL *tmp = pnl;
+    while (tmp != NULL) {
+        NL *delete = tmp;
+        tmp = tmp->list;
+        printf("Delete: [%p] %s\n", delete, delete->pro);
+        free(delete);
+    }
 }
 
 NB *ptr = NULL;
@@ -98,7 +169,6 @@ int InsertNewNode(char *pszDate)
 
     // (1) 새노드 만들기
     NB *nb = (NB *)malloc(sizeof(NB));
-
     memset(nb, 0, sizeof(NB));// 초기화 : 선택사항
     strncpy(nb->szData, pszDate, sizeof(nb->szData));// strcpy_s 대안
 

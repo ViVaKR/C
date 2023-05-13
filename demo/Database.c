@@ -62,7 +62,6 @@ void Database()
 
 void Create()
 {
-    //
     printf("Create\n");
 
     int id;

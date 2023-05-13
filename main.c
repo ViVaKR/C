@@ -68,7 +68,7 @@ void PrintMenu()
     printf("(%03d) Array\t\t", 13);
     printf("(%03d) Array2D\t\t", 14);
     printf("(%03d) RecursA\n", 15);
-    printf("(%03d) StructA\t\t", 16);
+    printf("(%03d) DataStruct\t\t", 16);
     printf("(%03d) ArrayPtrA\t\t", 17);
     printf("(%03d) CopyMemory\n", 18);
     printf("(%03d) Memset\t\t", 19);
