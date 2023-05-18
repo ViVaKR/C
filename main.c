@@ -6,7 +6,7 @@
 /// @return
 int main(int argc, char *argv[])
 {
-    printf("\n***** Main Start *****\n");
+    printf("\n***** Main *****\n");
 
     if (argc > 0) {// 전달받은 인수 확인
         for (int i = 0; i < argc; i++) {

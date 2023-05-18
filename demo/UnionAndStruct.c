@@ -13,10 +13,6 @@ struct MyData
     union SharedType data;
 };
 
-
-
-
-
 /// @brief 비트 단위 정보를 다룰 수 있도록 선언된 구조체
 struct BitTypes
 {

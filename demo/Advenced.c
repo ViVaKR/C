@@ -106,7 +106,6 @@ void Advenced()
 
     printf("\n");
 
-
     unsigned short max = 0x8000;
     for (size_t i = 0; i < 8; i++) {
         printf("Right : %d\n", max >> i);

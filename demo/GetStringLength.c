@@ -5,8 +5,6 @@
 /// @return 
 int GetStringLength(char data[])
 {
-    /****** GetStringLength *****/
-    
     int count = 0;
     // while 문 내부에서 ` != 0` 불필요
     while(data[count]) count++;
