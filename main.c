@@ -92,6 +92,7 @@ void PrintMenu()
     printf("(%03d) Ascii\t\t", 37);
     printf("(%03d) Shape\t\t", 38);
     printf("(%03d) CallbackEx\n", 39);
+    printf("(%03d) HanoiTower\n", 40);
 
     printf("(%03d) Database\n", 50);
     printf("(%03d) BST\t\t", 60);
@@ -150,6 +151,7 @@ void Exec(int choice)
         case 37: Ascii(); break;
         case 38: Shape(); break;
         case 39: CallbackEx(); break;
+        case 40: HanoiTower(); break;
 
         case 50: Database(); break;
         case 60: BinarySearchTree(); break;

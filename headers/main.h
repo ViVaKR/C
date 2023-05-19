@@ -52,6 +52,7 @@
 #include "../demo/PrimeNumber.c"
 #include "../demo/Ascii.c"
 #include "../demo/CallbackEx.c"
+#include "../demo/HanoiTower.c"
 
 #include "../common/Clock.c"
 #include "../common/Hanoi.c"
@@ -101,6 +102,7 @@ void PrimeNumber();
 void Ascii();
 void Shape();
 void CallbackEx();
+void HanoiTower();
 
 void Clock();
 void Hanoi(int n, const char *src, const char *use, const char *dest);
