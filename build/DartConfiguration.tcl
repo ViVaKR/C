@@ -27,7 +27,7 @@ SubmitInactivityTimeout:
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/usr/local/Cellar/cmake/3.26.3/bin/cmake" "/Users/vivabm/GitProjects/C"
+ConfigureCommand: "/Applications/CMake.app/Contents/bin/cmake" "/Users/vivabm/GitProjects/C"
 MakeCommand: /usr/local/Cellar/cmake/3.26.3/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
 DefaultCTestConfigurationType: Release
 
