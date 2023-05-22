@@ -24,7 +24,7 @@ int ReadText()
 
     while (fgets(line, sizeof(line), stream) != NULL)
         printf("%s", line);
-
+    
     // 성공 0
     return fclose(stream);
 }
