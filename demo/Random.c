@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include "../headers/vivstd.h"
 
 void Random()
@@ -17,3 +18,26 @@ void Random()
     printf("Randeom %d\n", rand() % (10 + 1 - 5) + 5);
     printf("Randeom %d\n", rand() % (10 + 1 - 5) + 5);
 }
+=======
+#include "../headers/vivstd.h"
+
+void Random()
+{
+    /****** Random *****/
+
+    // 랜덤함수 범위설정하기
+    // rand() % (max_number + 1 - minimum_number) + minimum_number
+    srand((unsigned int)time(NULL));
+    printf("Randeom %d\n", rand() % (10 + 1 - 5) + 5);
+    printf("Randeom %d\n", rand() % (100 + 1 - 1) + 1);
+    printf("Randeom %d\n", rand() % (1000 + 1 - 10) + 10);
+    printf("Randeom %d\n", rand() % (10 + 1 - 5) + 5);
+    printf("Randeom %d\n", rand() % (10 + 1 - 5) + 5);
+    printf("Randeom %d\n", rand() % (10 + 1 - 5) + 5);
+    printf("Randeom %d\n", rand() % (10 + 1 - 5) + 5);
+    printf("Randeom %d\n", rand() % (10 + 1 - 5) + 5);
+    printf("Randeom %d\n", rand() % (10 + 1 - 5) + 5);
+    printf("Randeom %d\n", rand() % (10 + 1 - 5) + 5);
+    printf("Randeom %d\n", rand() % (10 + 1 - 5) + 5);
+}
+>>>>>>> 4e6914f (update dmeo/)
