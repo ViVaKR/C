@@ -7,9 +7,9 @@
             ],
             "defines": [],
             "macFrameworkPath": [
-                "/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks"
+                "/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/System/Library/Frameworks"
             ],
-            "compilerPath": "/usr/local/bin/gcc-13",
+            "compilerPath": "/usr/bin/clang",
             "intelliSenseMode": "${default}",
             "configurationProvider": "vector-of-bool.cmake-tool",
             "cStandard": "gnu23",

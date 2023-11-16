@@ -4,7 +4,7 @@
 		{
 			"type": "process",
 			"label": "Viv C Build",
-			"command": "/usr/local/bin/gcc-13",
+			"command": "/usr/bin/clang",
 			"args": [
 				"-g",
 				"${file}",
