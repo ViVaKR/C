@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include "../headers/vivstd.h"
 
 /// @brief 비트 프린트
