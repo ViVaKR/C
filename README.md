@@ -382,20 +382,20 @@ int main(void)
 
 ---
 
-### 출력문자 (Format Character)  
+### 출력문자 (Format Character)
 
 `%d`, : 10진 정수 (부호 있음)
-`%ld` : long (부호 있음)  
-`%c` : 문자형  
-`%f`, `lf` : 실수  
+`%ld` : long (부호 있음)
+`%c` : 문자형
+`%f`, `lf` : 실수
 `ld` : long (부호 있음)
 `lld` : long long (부호 있음)
 `u` : 10진 정수 (부호 없음)
 `lu` : long (부호 없음)
-`%s` : 문자열  
-`%o` : 8진수  
-`%x` : 16진수  
-`%p` : 메모리 주소  
+`%s` : 문자열
+`%o` : 8진수
+`%x` : 16진수
+`%p` : 메모리 주소
 `%u` : 10진 정수 (부호 없음)
 `%e` : 실수를 지수 표기법으로 표기 (소문자)
 
@@ -406,17 +406,17 @@ int main(void)
 
 ### 탈출/특수문자 ( Escape Sequence )
 
-> Character combination consisting of a backslah -> `\`  
-> followed by a letter or combination of digits.  
+> Character combination consisting of a backslah -> `\`
+> followed by a letter or combination of digits.
 > They specify actions within a line or string of text.
 >
-> `\n` : (newline) 커서를 다음 줄로 이동 == `\r\n`  
-> `\r` : 커서를 줄 처음으로 이동  
-> `\b` : 백스페이스  
-> `\v` : 수직 탭  
-> `\t` : 수평 탭  
-> `\\` : 백슬레쉬 출력 -> `\`  
-> `\'` : 작은 따옴표 출력 -> `'`  
+> `\n` : (newline) 커서를 다음 줄로 이동 == `\r\n`
+> `\r` : 커서를 줄 처음으로 이동
+> `\b` : 백스페이스
+> `\v` : 수직 탭
+> `\t` : 수평 탭
+> `\\` : 백슬레쉬 출력 -> `\`
+> `\'` : 작은 따옴표 출력 -> `'`
 > `\"` : 큰 따옴표 출력 -> `"`
 
 ---
@@ -510,8 +510,8 @@ int main(void)
 
 ### const 위치에따른 의미 차이
 
-> `const int *p;` --> `*p` 값을 못바꿈  
-> `int * const p;` --> `p` 값을 못바꿈  
+> `const int *p;` --> `*p` 값을 못바꿈
+> `int * const p;` --> `p` 값을 못바꿈
 > `const int * const p;` --> `*p`, `p` 값을 못바꿈
 
 ### 보수
@@ -556,3 +556,16 @@ int main(void)
 
 
 ```
+
+## MSVCRT vs UCRT
+
+>Microsoft Windows의 C 표준 라이브러리 2가지 유형
+
+1. MSVCRT(Microsoft Visual C++ Runtime)
+   1. Microsoft Windows 버전에 기본적으로 사용할 수 있는 버전
+   2. C99 과 호환 되지 않음
+   3. UTF-8 로케일을 지원하지 않음
+
+2. UCRT(유니버설 C 런타임)
+   1. 최신 버전의 Microsoft Visual Studio 에 지본 적으로 사용됨
+   2. MSVC 로 컴파일된 것 처럼 작동하고 동작함
