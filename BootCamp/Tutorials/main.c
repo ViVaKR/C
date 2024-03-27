@@ -1,59 +1,61 @@
-#include<stdio.h>
+#include <stdio.h>
 
-int calculator(int num1, int num2) {
-    const int result = num1 + num2;
+void demo(int (*p)[3]) {
 
-    return result;
+    printf("size((*p)[])==> %ld, %d", sizeof(p), p[0][1]);
 }
 
-int main() {
-    int first_num, second_num;
+//=> O(N2)
+// [ 버블정렬 ]
+// 패스
+void BubleSort(int *arr,const int size) {
+    for (int i = 0; i < size - 1;i++) {         // 패스 (행)
+        for (int j = 0; j < size - 1 -i; j++) {  // 비교횟수 (열)
 
-    printf("첫번째 숫자를 입력해 주세요 >> ");
+            if(arr[j] > arr[j + 1]) {
+                const int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
 
-    scanf("%d", &first_num);
-
-    printf("두번째 숫자를 입력해 주세요 >> ");
-
-    scanf("%d", &second_num);
-
-    printf("%d + %d = %d\n", first_num, second_num, first_num + second_num);
-
-    return 0;
+    printf("버블정렬 => ");
+    for (int i = 0; i < size; i++) {
+        printf("%d, ", arr[i]);
+    }
 }
 
+// 선택정렬 : (Selection Sort)
 
-// int a[50][50] = {0,};
-//
-// int n;
-// printf("가로세로 사이즈: ");
-// scanf("%d", &n);
-//
-// int i = 1;
-// int j = n / 2 + 1;
-//
-// for (int k = 1; k <= n * n; k++) {
-//     if ((j < 1 || j > n) && (i < 1 || i > n)) {
-//         i -= 2;
-//         j -= 1;
-//         if (a[i][j] != 0) {
-//             i -= 2;
-//             j -= 1;
-//         }
-//     } else if (j > n) {
-//         j = 1;
-//     } else if (i < 1) {
-//         i = n;
-//     }
-//     a[i][j] = k;
-//     i--;
-//     j++;
-// }
-//
-// for (i = 1; i <= n; i++) {
-//     for (j = 1; j <= n; j++) {
-//         printf("|%03d|\t", a[i][j]);
-//     }
-//     printf("\n\n");
-// }
-// return 0;
+// 삽입정렬 (Insertion Sort)
+
+//=> O(NlogN)
+// 퀵정렬 (Quick Sort)
+
+// 병합정렬 (Merge Sort)
+
+// 힙정렬 (Heap Sort)
+
+//=> O(N)
+// 버킷정렬 (Buket Sort)
+
+
+int main(void) {
+    int target[] = { 3, 5, 1, 4, 2, 45, 23, 99, 33 };
+    BubleSort(target, sizeof(target) / sizeof(int));
+    // PrintLexicographicOrder(arr);
+    // long number;
+    // printf("3의 배수여부를 판단할 양의 정수를 하나를 입력하세요\n>> ");
+    // scanf("%ld", &number);
+    // char *result[30] = {{"3의 배수입니다."}, {"3의 배수가 아닙니다."}};
+    // printf("%ld -> %s\n", number, result[(number % 3) && 1 ]);
+    // long a, b, c;
+    // printf("비교할 숫자 3개를 한칸씩 띄워서 입력하세요\n>> ");
+    // fflush(stdin);
+    // scanf("%ld %ld %ld", &a, &b, &c);
+    // result[(input[0] > input[1]) + (input[0] > input[2])] = input[0];
+    // result[(input[1] > input[0]) + (input[1] > input[2])] = input[1];
+    // result[(input[2] > input[0]) + (input[2] > input[1])] = input[2];
+    // printf("(%d - %d - %d) 중 두번째로 큰수는 => (%d) 입니다. ", input[0], input[1], input[2], result[1]);
+}
