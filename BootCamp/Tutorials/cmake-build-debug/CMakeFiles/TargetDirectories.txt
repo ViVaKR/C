@@ -1,3 +1,0 @@
-/Users/vivakr/GitWorkspace/C/BootCamp/Tutorials/cmake-build-debug/CMakeFiles/Tutorials.dir
-/Users/vivakr/GitWorkspace/C/BootCamp/Tutorials/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/vivakr/GitWorkspace/C/BootCamp/Tutorials/cmake-build-debug/CMakeFiles/rebuild_cache.dir
