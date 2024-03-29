@@ -3,7 +3,7 @@ project(
 VivCProject
 VERSION 0.0.1
 DESCRIPTION ""
-HOMEPAGE_URL "%%https://www.vivabm.com%%"
+HOMEPAGE_URL "%%https://www.vivabm.com"
 LANGUAGES CXX C)
 
 include(CTest)

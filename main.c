@@ -94,14 +94,11 @@ void PrintMenu()
     printf("(%03d) CallbackEx\n", 39);
     printf("(%03d) HanoiTower\n", 40);
     printf("(%03d) CreateRandomNumber\n", 41);
-
     printf("(%03d) Database\n", 50);
     printf("(%03d) BST\t\t", 60);
-
     printf("(%03d) Calculate\t\t", 61);
     printf("(%03d) Advenced\n", 62);
     printf("(%03d) Bits\n", 63);
-
     printf("(%03d) 종료 (Exit)\n", 100);
 }
 
