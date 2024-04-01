@@ -1,4 +1,4 @@
-#include "../headers/vivstd.h"
+#include "../../headers/vivstd.h"
 
 enum Item {
     생수 = 1,
@@ -68,15 +68,15 @@ void Jisikin()
     // 문의에 대한 데모 답
     printf("\n박혜자씨 사칙연산을 위하여 각 연산에 대한 번호를 입력하세요 >> ");
     char *ops[4] = { "더하기", "빼기", "곱하기", "나누기" };
-    char *opc[4] = { "+", "-", "x", "/"};
+    char *opc[4] = { "+", "-", "x", "/" };
 
     printf("\n[%s]: 0, [%s]]: 1, [%s]: 2, [%s]: 3 >> ", ops[0], ops[1], ops[2], ops[3]);
     int op = 0;
     scanf("%d", &op);
-    printf("\n사칙연산을 수행할 실수 2개를 입력하세요 >> "); // 22.3   33.4
+    printf("\n사칙연산을 수행할 실수 2개를 입력하세요 >> ");// 22.3   33.4
     double a, b;
     scanf("%lf %lf", &a, &b);
-    
+
     printf("%s 수행 : %lf %s %lf == %lf\n", ops[op], a, opc[op], b, p[op](a, b));
 
 

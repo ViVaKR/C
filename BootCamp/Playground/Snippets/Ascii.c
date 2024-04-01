@@ -1,4 +1,4 @@
-#include "../headers/vivstd.h"
+#include "../../headers/vivstd.h"
 
 #include <locale.h>
 
@@ -53,5 +53,4 @@ void Ascii()
     DiffTime();
 
     Sum(-3, -2, Abs);
-
 }

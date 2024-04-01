@@ -1,19 +1,21 @@
+#include <_ctype.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
-#include <_ctype.h>
 
 int usleep(useconds_t useconds);
 
-int MakeRandom(const int min, const int max) {
+int MakeRandom(const int min, const int max)
+{
     const int number = (rand() % (max - min + 1)) + min;
     return number;
 }
 
-void PointerSize() {
+void PointerSize()
+{
     // ex. 2차원 배열.
     // 괄호가 없으면 => 포인터 배열, *p[3];
     // 괄호가 있으면 => 배열 포인터, (*p)[3];
@@ -24,7 +26,8 @@ void PointerSize() {
     // }
 }
 
-void Print(const int* arr, const int size, char* title) {
+void Print(const int *arr, const int size, char *title)
+{
     printf("%s\t=>\t", title);
     for (int i = 0; i < size; i++) {
         printf("%3d ", arr[i]);
@@ -36,14 +39,29 @@ void Print(const int* arr, const int size, char* title) {
 
 //=> O(N2)
 // [ 버블정렬 ]
-// 패스
-void BubleSort(int* arr, const int size) {
+// 인접한 데이터를 비교하면서, 정렬
+// 인접한 2개를 비교해서 더 큰 데이를 뒤로 보냄.
+// 맨 뒤에서 부터 정렬하는 방식
+
+// array    [ 3 - 5 - 1 - 2 - 4 ]
+// ------------------------------
+// (패스 -> 인덱스)
+// (1    ->   0  ) 0-1, 1-2, 2-3, 3-4  [j, 4회]
+// (2    ->   1  ) 0-1, 1-2, 2-3       [j, 3회]
+// (3    ->   2  ) 0-1, 1-2            [j, 2회]
+// (4    ->   3  ) 0-1                 [j, 1회]
+// i => 행 (횟수는 4회, 인덱스로는 3까지 이므로 i < size -1; 이 됨.
+// j => 열
+void BubleSort(int *arr, const int size)
+{
     for (int i = 0; i < size - 1; i++) {
         // 패스 (행)
         for (int j = 0; j < size - 1 - i; j++) {
+            // i 의 인덱스가 0 부터 시작하므로
             // 비교횟수 (열)
 
             if (arr[j] > arr[j + 1]) {
+                // 현제 다음 것과 비교하므로
                 const int temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
@@ -58,7 +76,8 @@ void BubleSort(int* arr, const int size) {
 // 0번 부터 가장 작은 데이터를 두기 위하여 나머지를 모두 비교하는 방식을 반복.
 // 오버 헤드 방지을 위해 작은 값을 찾기 위하여 한번에 모두 비교 검색
 // 패스당 1회 교환 횟수.
-void SelectionSort(int* arr, const int size) {
+void SelectionSort(int *arr, const int size)
+{
     // 가장 작은 값을 저장하기 위한 인덱스
     int minIdx = 0;
 
@@ -80,13 +99,14 @@ void SelectionSort(int* arr, const int size) {
 // 삽입정렬 (Insertion Sort, O(N2))
 // 트럼프 카드에 비교, 카드를 뽑아서(temp 변수에 할당) 위치를 찾은 후 삽입 하는 방식..
 // 1번 부터 시작 하여 이전 인덱스와 비교하여 크면 대상을 한칸 오른쪽으로 미는 방식
-void InsertionSort(int* arr, const int size) {
+void InsertionSort(int *arr, const int size)
+{
     int j;
     for (int i = 1; i < size; i++) {
-        const int temp = arr[i]; // 1번 인덱스 부터 카드 뽑기.
+        const int temp = arr[i];// 1번 인덱스 부터 카드 뽑기.
         for (j = i; j > 0 && arr[j - 1] > temp; j--) {
             // 뽑아낸 위치에서 한칸씩 왼쪽(arr[j-1])과 비교 후 `arr[j-1]` 값이 크면 오른쪽 밀기
-            arr[j] = arr[j - 1]; // 앞의 것이 크면, 뒤로 밀기
+            arr[j] = arr[j - 1];// 앞의 것이 크면, 뒤로 밀기
         }
         arr[j] = temp;
     }
@@ -117,10 +137,11 @@ void InsertionSort(int* arr, const int size) {
 // 각각의 그룹의 시작 과 끝은 변하지 않음. 원래의 left, right
 // 즉, pL 과 pR 의 인덱스가 같아 질때 원소가 1개 남았다고 판달할 수 있음.
 // 재귀 호출 필요
-void QuickSort(int* arr, const int left, const int right) {
-    int pL = left; // 0 에서 시작
-    int pR = right; // 배열의 마지막 인덱스 (size - 1)
-    const int pv = arr[(pL + pR) / 2]; // 중간값 ->arr[pL + pR] / 2
+void QuickSort(int *arr, const int left, const int right)
+{
+    int pL = left;// 0 에서 시작
+    int pR = right;// 배열의 마지막 인덱스 (size - 1)
+    const int pv = arr[(pL + pR) / 2];// 중간값 ->arr[pL + pR] / 2
 
     do {
         // 왼쪽 통과 기준 => ++ (인덱스)
@@ -163,23 +184,24 @@ void QuickSort(int* arr, const int left, const int right) {
 // [7] [5] [2] [4] [1] [3] [8] [6]
 // => 병합 개시
 // (3)
-void Merge(int* arr, int* arrMerge, const int left, const int mid, const int right) {
+void Merge(int *arr, int *arrMerge, const int left, const int mid, const int right)
+{
     // 비교는 arrMerge
     // 병합은 arr
     int idx1 = left;
     int idx2 = mid + 1;
-    int idxM = left; // arrMerge's left
+    int idxM = left;// arrMerge's left
 
     for (int i = 0; i <= right; i++) {
         // 일반 복사
-        arrMerge[i] = arr[i]; // copy to arrMerge
+        arrMerge[i] = arr[i];// copy to arrMerge
     }
 
     while (idx1 <= mid && idx2 <= right) {
-        if (arrMerge[idx1] < arrMerge[idx2]) // 임시 배열의 값을 비교해서, arrMerge[idx1] 이 작을 때
-            arr[idxM++] = arrMerge[idx1++]; // 실제 arr 배열에 넣는 작업
+        if (arrMerge[idx1] < arrMerge[idx2])// 임시 배열의 값을 비교해서, arrMerge[idx1] 이 작을 때
+            arr[idxM++] = arrMerge[idx1++];// 실제 arr 배열에 넣는 작업
         else
-            arr[idxM++] = arrMerge[idx2++]; // arrMerge[idx2] 작을 때
+            arr[idxM++] = arrMerge[idx2++];// arrMerge[idx2] 작을 때
     }
 
     while (idx1 <= mid) {
@@ -189,35 +211,38 @@ void Merge(int* arr, int* arrMerge, const int left, const int mid, const int rig
 }
 
 // (2)
-void MergeSortUtil(int* arr, int* arrMerge, const int left, const int right) {
+void MergeSortUtil(int *arr, int *arrMerge, const int left, const int right)
+{
     if (left < right) {
         const int mid = (left + right) / 2;
-        MergeSortUtil(arr, arrMerge, left, mid); // left
-        MergeSortUtil(arr, arrMerge, mid + 1, right); // right
+        MergeSortUtil(arr, arrMerge, left, mid);// left
+        MergeSortUtil(arr, arrMerge, mid + 1, right);// right
         Merge(arr, arrMerge, left, mid, right);
     }
 }
 
 // (1)
-void MergeSort(int* arr, const int size) {
-    int* arrMerge = malloc(sizeof(int) * size); // 값을 비교할 배열. 공간 복잡도 O(N)
+void MergeSort(int *arr, const int size)
+{
+    int *arrMerge = malloc(sizeof(int) * size);// 값을 비교할 배열. 공간 복잡도 O(N)
     memset(arrMerge, 0, sizeof(int) * size);
     MergeSortUtil(arr, arrMerge, 0, size - 1);
     free(arrMerge);
 }
 
 //=> O(N)
-// 버킷정렬 (Buket Sort), 계수정렬
+// 버킷정렬 (Bucket Sort), 계수정렬
 // 범위가 정해진 경우 엄격한 조건
 // 예를 들어 1 ~ 5 까지 배열일 경우, 6개의 버캣을 만듦
-void BucketSort(int* arr, const int size, const int range) {
+void BucketSort(int *arr, const int size, const int range)
+{
     // 배열사이즈, 배열의 범위
-    int* bucket = calloc(range, sizeof(int)); //  할당된 메모리가 모두 0으로 채워짐. ( 양동이 )
+    int *bucket = calloc(range, sizeof(int));//  할당된 메모리가 모두 0으로 채워짐. ( 양동이 )
 
     for (int i = 0; i < size; i++) {
         // 버캣의 인덱스가 배열의 값으로 사용됨
         bucket[arr[i]]++;
-    } // 갯수 카운팅 완료.
+    }// 갯수 카운팅 완료.
 
     int idx = 0;
     for (int i = 1; i < range; i++) {
@@ -256,7 +281,8 @@ void BucketSort(int* arr, const int size, const int range) {
 // (ex, max-heap)
 // 자식노드의 수 = 원소의 갯수 / 2, 100 / 2 = 50개의 자식노드.
 // 부모 : 자식보다 크거나 같음
-void HeapSort(int* heap, const int size) {
+void HeapSort(int *heap, const int size)
+{
     // (1) 전체 트리 구조를 최대 힙 구조로 바꾸는 작업
     for (int i = 1; i < size; ++i) {
         int c = i;
@@ -293,7 +319,7 @@ void HeapSort(int* heap, const int size) {
             // 자식 중에 더 큰 값을 찾기
             // left right 비교  && 범위를 벗어나지 않도록 함.
             if (heap[c] < heap[c + 1] && c < i - 1) {
-                c++; // right value 가 더 크다면? 이동.
+                c++;// right value 가 더 크다면? 이동.
             }
 
             // 루트보다 자식이 더 크면 교환하고 && 범위를 벗어나지 않도록 함.
@@ -309,8 +335,9 @@ void HeapSort(int* heap, const int size) {
     Print(heap, size, "힙 정렬");
 }
 
-void funPtr(int** p, const int size, int* arr) {
-    //TODO
+void funPtr(int **p, const int size, int *arr)
+{
+    // TODO
     for (int i = 0; i < size; i++) {
         p[i] = &arr[i];
     }
@@ -321,20 +348,23 @@ void funPtr(int** p, const int size, int* arr) {
 }
 
 // 힙 구조체
-typedef struct heap {
+typedef struct heap
+{
     // Total Size => 16byte
-    int* arr; // 힙 메모리(배열)의 주소 저장, 8byte
-    int cursor; // 저장된 원소이 갯수, 4byte
-    int capacity; // 힙(배열)의 최대 용량, 4byte
+    int *arr;// 힙 메모리(배열)의 주소 저장, 8byte
+    int cursor;// 저장된 원소이 갯수, 4byte
+    int capacity;// 힙(배열)의 최대 용량, 4byte
 } Heap;
 
-void CreateHeap(Heap* heap, const int capacity) {
-    heap->arr = (int *) malloc(sizeof(int) * capacity);
+void CreateHeap(Heap *heap, const int capacity)
+{
+    heap->arr = (int *)malloc(sizeof(int) * capacity);
     heap->cursor = 0;
     heap->capacity = capacity;
 }
 
-void ShiftUp(int* arr, const int childIdx) {
+void ShiftUp(int *arr, const int childIdx)
+{
     const int parentIdx = (childIdx - 1) / 2;
 
     if (parentIdx >= 0 && arr[parentIdx] < arr[childIdx]) {
@@ -345,8 +375,9 @@ void ShiftUp(int* arr, const int childIdx) {
     }
 }
 
-void AddHeap(Heap* heap, const int value) {
-    if (heap->capacity == heap->cursor) // 최대저장 용량
+void AddHeap(Heap *heap, const int value)
+{
+    if (heap->capacity == heap->cursor)// 최대저장 용량
     {
         printf("저장할 공간이 부족합니다.");
         return;
@@ -359,20 +390,21 @@ void AddHeap(Heap* heap, const int value) {
     heap->cursor++;
 }
 
-size_t FindIndex(const int a[], size_t size, int value) {
+size_t FindIndex(const int a[], const size_t size, const int value)
+{
     size_t index = 0;
     while (index < size && a[index] != value) ++index;
-
     return (index == size ? -1 : index);
 }
 
-void HeapRunner() {
-    Heap heap; // 힙 구조체 변수
+void HeapRunner()
+{
+    Heap heap;// 힙 구조체 변수
     heap.cursor = 0;
     CreateHeap(&heap, 14);
 
     // const int values[] = {57, 32, 48, 10, 15, 25, 20, 9, 60};
-    const int values[] = {6, 8, 9, 10, 15, 19, 20, 28, 30, 45, 50};
+    const int values[] = { 6, 8, 9, 10, 15, 19, 20, 28, 30, 45, 50 };
     const int size = sizeof(values) / sizeof(int);
     for (int i = 0; i < size; ++i) {
         AddHeap(&heap, values[i]);
@@ -400,7 +432,8 @@ void HeapRunner() {
 /// @param num 원본 숫자
 /// @param i 지정한 인덱스 번호
 /// @return 정수 결과값
-int ClearLeftBits(int num, int i) {
+int ClearLeftBits(int num, int i)
+{
     return (num & ((1 << i) - 1));
 }
 
@@ -409,23 +442,183 @@ int ClearLeftBits(int num, int i) {
 /// @param num 변경할 숫자
 /// @param i 0 으로 만들 비트
 /// @return 변경된 int 정수
-int ClearBits(const int num, int i) {
+int ClearBits(const int num, int i)
+{
     return ((num & (~(1 << i))));
 }
 
-void PrintBit(const long long num, const int size) {
+void PrintBit(const long long num, const int size)
+{
     printf("0b_");
     for (long long i = size - 1; i >= 0; --i) {
-        printf("%lld\n", (num >> i) & 1); // 0011
+        printf("%lld", (num >> i) & 1);// 0011
 
-        if (i != 0) // under bar insert, except last char
+        if (i != 0)// under bar insert, except last char
             printf("%s", i % 4 == 0 ? "_" : "");
     }
     printf(" (%lld)\n", num);
 }
 
 
-int main(void) {
+void VariableSize()
+{
+    /* [사전 몸풀기 */
+    //
+    // => 16진수 1자리는 2진수 4자리와 동일함, F == 1111, A == 1010
+    // => 2진수 4자리는 각각 8 4 2 1 값의 가중치로 10진수를 만들 수 있다.
+    //    2진수 1011 은 => 순서대로 8 4 2 1 에서 1일 있는 비트 즉, 8 + 2 + 1를 더하면 10진수 11이다.
+    // 그래서 예를 들어 1111 -> 15가 됨으로 16진수 F 1 자릿수에 맞 대응 된다.
+
+    //... 위 내용을 기반으로 해서 아래의 풀이 과정을 보시면 됩니다. ....//
+    // (요약 ) 컴퓨터 없이 손가락으로 풀수 있는 과정
+
+    // 즉, 16진수 1 자리는 2 진수 4자리와 동일하는 것만 알면 모두 푸실 수 있는 문제가 됨.
+    // 그럼... 수기로 아래와 같이 푸실 수 있습니다.
+    // 16진수를 사용하는 이유기도 한 2진수 4 자리는 정확히
+    // 가중치가 8 - 4 - 2 - 1 이 됩니다.
+    // 2진수 1111 은 8 + 4 + 2 + 1 이 되어 10진수로는 15가 되고 16진수로는 F라는 것 명심보감.
+
+    // 그것으로 문의 하신 모든 문제가 해결이 됩니다.
+    // 추가로 컴퓨터는 음수를 2의 보수로 표기 하는 것을 염두에 두시고
+    // 아래의 설명글을 참조 하여 보세요...
+
+    // 시작 ....
+    // 8421 가중치 방식으로
+    // => A 는 10 이므로 (8421) 에서 순서대로 8과 2만 있으면 되니 => 1010
+    // => B 는 11 이므로 (8421) 에서 순서대로 8 2 1 이 있으면 되니 => 1011 됩니다.
+
+    /*   [ (1) 번 풀이 ]
+                 <0xAB + 0x55>
+            ----------------------------
+                  1010 1011 (0xAB)
+                + 0101 0101 (0x55)
+            ----------------------------
+              1   0000 0000 (0x100, 256)
+            (버림)       0   (256 - 256)  // (1) 문제의 답
+            // => 버리는 이유는 1byte 는 8bit 이므로 그 이상의 비트 캐리는
+            //    무시함.
+     */
+    const unsigned char ab = 0xAB;// 0b1010
+    const unsigned char _55 = 0x55;// 0b1011
+    const unsigned char resultAB55 = ab + _55;// ==> 0
+
+    /*     [ (2) 번 풀이 ]
+                  0xAB + 0xB8
+            ----------------------------
+                  1010 1011 (0xAB)
+                + 1011 1000 (0xB8)
+            ----------------------------
+              1   0110 0011 (0x163, 355)
+            (버림)   6   3   (355 - 256) // (2)번 문제의 답 : 0x63
+     */
+    const unsigned char b8 = 0xB8;// 0b1000
+    const unsigned char resultABB8 = ab + b8;// == 0x63
+
+    /*      [ (3) 번 풀이 ]
+                  0xBB - 0xA6
+            ----------------------------
+                  1011 1011 (0xBB) // 11 11 이므로 ...
+                - 1010 0110 (0xA6) // 10 6.. 여기서 6은 가중치 (4, 2) 자리이므로 두번째 세번째가 1
+            ----------------------------
+                  0001 0101 (16 + 4 + 1)
+                    1   5   (355 - 256) // (3)번 문제의 답 0x15
+     */
+    const unsigned char bb = 0xBB;// 0b1010
+    const unsigned char a6 = 0xA6;// 0b1011
+    const unsigned char resultBBA6 = bb - a6;// ==> 0x15
+
+
+    // [ 2. 문제 풀이 ]...//
+    // 부호 있는 1바이트 (-128 ~ 127)
+    const unsigned us1 = 0xCB;// C => 12 이므로 (8 + 4), B => 11 (8 + 2 + 1)
+    //                   1100 1011 ( C B 의 2진수)
+    // 그런데?
+    // 8비트에서 가장 좌측이 1이므로 음수로 판정합니다.
+
+    // 하여...
+    // => 사람다운 계산 법
+    //   1      1   0   0   1   0   1   1
+    // -128  + 64 + 0 + 0 + 8 + 0 + 2 + 1
+    // = -53 (답 1)
+
+    // => 컴퓨터 식 2의 보수로 계산법
+    // 1100 1011 ( C B )
+    // 0011 0101 (2의 보수)
+    //   5   3
+    // = -53 (답 2)
+
+    // [ 부호있는 1 바이트 ]
+    // => CB => 1100 1011
+    // => 최상위 비트 (msb, most significant bit) 1이므로 음수
+    // => 사람답게 계산 => -128 + 64 + 8 + 2 + 1 ==> (답: -53)
+    // => 컴퓨터식으로 2의 보수 => 0011 0100 + 1 => 00110101 => (32 + 16 + 4 + 1) => 53 => -53
+
+    const signed char signed1Byte = 0xCB;
+
+    // [ 부호없는 1 바이트 ]
+    // 최상위 비트가 부호 비트가 아님으로 그대로 가중치를 더해줌
+    // => CB => 1100 1011 => 가중치 (128 + 64 + 8 + 2 + 1) ==> 203
+    const unsigned char unSigned1Byte = 0xCB;
+
+
+    // 부호 있는 2바이트 (-32768 ~ 32767)
+    // 사이트가 큼으로 그대로 더해주면 됨..
+    const short signed2Bytes = 0xCB;
+
+    // 부호 없는 2바이트 (0 ~ 65535)
+    // 위와 동
+    const unsigned short unSigned2Bytes = 0xCB;// 203
+
+    // 맞는 지 확인 출력 해보기..
+    printf(
+      "(0xCB)\n"
+      "0xAB + 0x55\t=>\t0x%x\n"
+      "0xAB + 0xB8\t=>\t0x%x\n"
+      "0xBB - 0xA6\t=>\t0x%x\n"
+      "signed 1 byte\t=>\t%d\n"
+      "unsigned 1 byte\t=>\t%d\n"
+      "signed 2 bytes\t=>\t%d\n"
+      "unsigned 2 bytes\t=>\t%d\n",
+      resultAB55,
+      resultABB8,
+      resultBBA6,
+      signed1Byte,
+      unSigned1Byte,
+      signed2Bytes,
+      unSigned2Bytes);
+}
+
+void ToUniqueSortedArray(int *arr, const int size)
+{
+    int even_numbers[32] = {};
+    int odd_numbers[32] = {};
+    int even = 0;
+    int odd = 0;
+    int index = 0;
+    for (int i = 0; i < size; i++) {
+        if (arr[i] % 2 == 0) {
+            while (index < size && even_numbers[index] != arr[i]) index++;
+            if (index == size)// 같은 값이 없다는 의미.
+                even_numbers[even++] = arr[i];
+        } else {
+            while (index < size && odd_numbers[index] != arr[i]) index++;
+            if (index == size)
+                odd_numbers[odd++] = arr[i];
+        }
+        index = 0;
+    }
+
+    printf("Even numbers:\t");
+    for (int i = 0; i < even; i++) printf("%3d ", even_numbers[i]);
+    printf("\n");
+
+    printf("Odd numbers:\t");
+    for (int i = 0; i < odd; i++) printf("%3d ", odd_numbers[i]);
+    printf("\n");
+}
+
+int main(void)
+{
     srand(time(NULL));
     // 정렬
     int target[MakeRandom(30, 50)];
@@ -434,20 +627,23 @@ int main(void) {
         target[i] = MakeRandom(1, 100);
     }
     Print(target, size, "원 소스");
-    BubleSort(target, size); // 버블정렬
-    SelectionSort(target, size); // 선택정렬
-    MergeSort(target, size); // 병합정렬
+    BubleSort(target, size);// 버블정렬
+    SelectionSort(target, size);// 선택정렬
+    MergeSort(target, size);// 병합정렬
     Print(target, size, "병합 정렬");
-
     BucketSort(target, size, 100);
     Print(target, size, "버캣 정렬");
-
     HeapSort(target, size);
-
     HeapRunner();
-
-    const int b1 = -3; // (0011)
+    const int b1 = -3;// (0011)
     PrintBit(b1, 32);
+    VariableSize();
+    ToUniqueSortedArray(target, size);
 
+    short num1 = -30;
+    unsigned short num2 = num1;
+
+    printf("%d, %#x\n", num1, num2);
+    printf("%d, %#x\n", num2, num2);
     return 0;
 }

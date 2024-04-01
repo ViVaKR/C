@@ -1,10 +1,10 @@
-#include "../headers/vivstd.h"
+#include "../../headers/vivstd.h"
 
 /// @brief 비트확인 & (And 연산)
 /// @param num 확인할 정수
 /// @param i 시프트할 자릿수
 /// @return true = 1, false = 0
-bool GetBits(int num, int i)
+int GetBits(int num, int i)
 {
     return (num & (1 << i)) != 0;
 }
@@ -106,7 +106,7 @@ void Bits()
     int t1 = SetBit(5, 3);
     PrintBits(t1, 32);
     printf("\n");
-    ConvertToBinary(-8 << 3 );
+    ConvertToBinary(-8 << 3);
     // printf("(%d | 1 << 3) Change To %d\n", 5, SetBit(5, 3));
 
     printf("\n***** Clear Bit 해당비트를 0으로 변경, NOT (~) 연산 *****\n");

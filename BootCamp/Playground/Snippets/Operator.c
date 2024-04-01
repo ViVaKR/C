@@ -1,6 +1,7 @@
-#include "../headers/vivstd.h"
+#include "../../headers/vivstd.h"
 
-void Operator() {
+void Operator()
+{
     printf("\n");
     printf("***** 연산자 *****");
     printf("\n");
@@ -23,10 +24,8 @@ void Operator() {
      */
 
     int nVar1, nVar2;
-    nVar1 = 7;     // 대입연산자 (상수 할당)
-    nVar2 = nVar2; // 대입연산자 (복사 할당)
+    nVar1 = 7;// 대입연산자 (상수 할당)
+    nVar2 = nVar2;// 대입연산자 (복사 할당)
     printf("\n");
     printf("nVar1 = %d, nVar2 = %d\n", nVar1, nVar2);
-
-
 }
