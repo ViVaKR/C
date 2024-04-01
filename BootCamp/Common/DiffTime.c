@@ -1,10 +1,9 @@
-#include "../headers/vivstd.h"
+#include "../Headers/vivstd.h"
 
 /// @brief 시간차이 구하기
-void DiffTime()
-{
+void DiffTime() {
     /****** DiffTime *****/
-    
+
     struct tm *gmt, *localt;
 
     time_t now, gm_time;
@@ -12,7 +11,7 @@ void DiffTime()
     char buf[256];
 
     time(&now); // 현재 초 단위 시간
-    
+
     localt = localtime(&now);
     gmt = localtime(&gm_time);
 
