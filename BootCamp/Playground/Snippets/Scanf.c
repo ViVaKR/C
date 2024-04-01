@@ -1,7 +1,4 @@
-#include "../../headers/vivstd.h"
-#include <cstdio>
 #include <stdio.h>
-
 
 void Scanf()
 {
