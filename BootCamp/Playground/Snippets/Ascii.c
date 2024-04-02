@@ -1,27 +1,23 @@
 #include "../../headers/vivstd.h"
-
 #include <locale.h>
 
 void Clock();
 void DiffTime();
 
-/// @brief 콜백메서드 1
+/// @brief 콜백
 /// @param p
-void Abs(int *p)
-{
-    if (*p < 0) *p = (*p) * -1;
+void Abs(int *p) {
+    if (*p < 0)
+        *p = (*p) * -1;
 }
 
-int Odd_Number(int *arr)
-{
-
+int Odd_Number(int *arr) {
     for (int i = 0; i < sizeof(arr); i++) {
         printf("%d", arr + i);
     }
 }
 
-void Sum(int a, int b, void (*p)(int *p))
-{
+void Sum(int a, int b, void (*p)(int *p)) {
     if (p != NULL) {
         (*p)(&a);
         (*p)(&b);
@@ -29,13 +25,9 @@ void Sum(int a, int b, void (*p)(int *p))
     }
 }
 
-void DemoB(int (*p)(int, int))
-{
-    printf("%d", p);
-}
+void DemoB(int (*p)(int, int)) { printf("%d", p); }
 
-void Ascii()
-{
+void Ascii() {
     setlocale(LC_ALL, "");
 
     for (int i = 0; i <= 255; i++) {

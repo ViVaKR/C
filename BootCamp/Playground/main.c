@@ -98,7 +98,8 @@ bool GetBit(int index) {
 int main(int argc, char **argv) {
     short originNumber = 30;
     short target = -30;
-    printf("\n*** ==> 부호를 가지고 있는 signed short (%hi) 이진표현 ***\n", target);
+    printf("\n*** 부호를 가지고 있는 signed short (%hi) 이진표현 ***\n", target);
+
     // -30 은 부호있는 short 에서는 변수의 범위 벗어 나지 않으므로
     // 음수의 일반적인 표기법인 2의 보수로 표현 하면됨.
     // => +30의 이진수 는 => 0b 0000 0000 0001 1110 이므로
@@ -122,65 +123,9 @@ int main(int argc, char **argv) {
     unsigned short num2 = target;
     PrintBit(num2, 16); // 출력 확인 파트
     printf("\n---------------------------------------------------------------------------\n");
-    // 기타 참고 사항 들 //
-    printf("\n*** 이진 표현에 대한 이해를 돕기 위한 코드 조각들.. (참조 용) ***\n");
-    printf("\n[ 부호를 가지고 있는 signed short (short 음수의 최소값, -32,768) 이진표현 (%hi)]\n", SHRT_MIN);
-
-    PrintBit(SHRT_MIN, 16);
-    printf("\n[ 부호를 가지고 있는 signed short (short 음수의 최대값, -1) 이진표현 (%hi) ]\n", SHRT_MAX);
-
-    short _1 = -1;
-    PrintBit(_1, 16);
-
-    printf("\n[ 부호가 없는 unsigned short (unsigned 의 최대값 이진표현, (%hu) ]\n", USHRT_MAX);
-    PrintBit(SHRT_MAX, 16);
-    printf("\n");
-
-    // [ 기타 참조 용 테스트 코드 ]
-    // 변수 범위를 초가하는 숫자를 할당하여, 코드 오버플로 발생시!
-    // 실제 비트가 어떻게 순회가 되는지 확인하는 파트
-    printf("\n[ 부호 없는 짧은 8비트 정수의 최대값(65,535)을 넘어서는 오바플로 발생시 일어나는 비트 처리 현황 (65535 ~ "
-           "+ 16개 출력) ]\n");
-    for (size_t i = 1; i <= 16; i++) {
-        unsigned int title = USHRT_MAX + i;
-        unsigned short overflow = USHRT_MAX;
-        overflow += i;
-        printf("(%2d) => ", title);
-        PrintBit(overflow, 16);
-    }
-
-    if (argc > 0) {
-
-        char *p;
-        int num;
-        errno = 0;
-        long conv = strtol(argv[1], &p, 10);
-
-        if (errno != 0 || *p != '\0' || conv > INT_MAX || conv > INT_MIN) {
-            // Put here the handling of the error, like exiting the program with an erro message
-            return errno;
-        }
-
-        num = conv;
-
-        printf("num => %d\n", num);
-        switch (num) {
-        case 1:
-            printf("Hello, World %d\n", num);
-            break;
-
-        default:
-            break;
-        }
-
-        // for (int i = 0; i < argc; i++) {
-        //     printf("%3d =>\t%s\n", i, argv[i]);
-        // }
-    }
 
     return 0;
 }
-
 /*
 상수	의미	값
 CHAR_BIT	비트 필드가 없는 가장 작은 변수의 비트 수입니다.	8
