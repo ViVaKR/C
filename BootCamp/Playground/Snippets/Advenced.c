@@ -1,7 +1,5 @@
 #include "../headers/vivstd.h"
 
-/// @brief 비트 프린트
-/// @param bits
 void PrintBitsArray(char bits)
 {
     for (int i = 8 - 1; i >= 0; --i) {
@@ -15,7 +13,7 @@ void LoopChar()
     unsigned int n;
     char ch;
     bool check;
-    do {// 오류 검출 (숫자 또는 알파벳 범위 내)
+    do { // 오류 검출 (숫자 또는 알파벳 범위 내)
         fflush(stdin);
         printf("시작문자 입력하세요 : ");
         check = scanf("%c", &ch);
@@ -57,13 +55,6 @@ void LoopChar()
     }
 }
 
-void Pattern()
-{
-
-    char ch = 'A';
-    unsigned int n = 5;
-}
-
 void PyramidA()
 {
     char start;
@@ -92,7 +83,6 @@ void PyramidA()
 // k 부터 출력할 문자 수를 입력하세요 : 100
 // k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f
 
-/// @brief (62) 기타
 void Advenced()
 {
     // LoopChar();
@@ -103,8 +93,6 @@ void Advenced()
     for (size_t i = 0; i < 8; i++) {
         printf("Left : %d\n", data << i);
     }
-
-    printf("\n");
 
     unsigned short max = 0x8000;
     for (size_t i = 0; i < 8; i++) {
@@ -117,32 +105,6 @@ void Advenced()
     //!
     printf("Text %08d\n", 1);
     printf("Text %#x\n", 0xFF11);
-
-    //! `sprintf` 배열에 형식 문자열 저장
-    char sprn[128];
-    sprintf(sprn, "%d + %d = %d", 14, 45, 14 + 45);
-    printf("%s\n", sprn);
-
-    //! `fprintf` 파일에 형식 문자열 저장
-
-    FILE *fp = fopen("fprintf.txt", "w");
-    fprintf(fp, "%d + %d = %d", 45, 83, 45 + 83);
-    fclose(fp);
-
-    //! `clock` 수행시간 채크하기
-    double start, end;
-
-    // for 루프 시작 시간
-    start = (double)clock() / CLOCKS_PER_SEC;
-
-    // for루프 100000000번 돌아보기
-    int sum = 0;
-    for (int i = 0; i < 1000000; i++) {
-        sum++;
-    }
-    // for 루프 끝난 시간
-    end = (((double)clock()) / CLOCKS_PER_SEC);
-    printf("프로그램 수행 시간 :%lf\n", (end - start));
 
     // bit 연산
     printf("\n***** 비트 연산 *****\n");
@@ -225,7 +187,7 @@ void Etc()
     // 타입만 보고 실제 괄호안에는 진입하지 않음으로 b, c 는 변하지 않음
     // 결과적으로 a = 4; b = 그대로 1, c 역시 1을 반환하고 끝남
     int a, b = 1, c = 1;
-    a = sizeof(c = ++b + 1);// b = 2; c = 3; 을 기대하나?
+    a = sizeof(c = ++b + 1); // b = 2; c = 3; 을 기대하나?
     // 결과는 -> (a = 4, b = 1, c = 1;)
     printf("a= %d, b = %d, c = %d\n", a, b, c);
 
@@ -263,7 +225,7 @@ void LoopChar()
     unsigned int n;
     char ch;
     bool check;
-    do {// 오류 검출 (숫자 또는 알파벳 범위 내)
+    do { // 오류 검출 (숫자 또는 알파벳 범위 내)
         fflush(stdin);
         printf("시작문자 입력하세요 : ");
         check = scanf("%c", &ch);
@@ -353,7 +315,6 @@ void Advenced()
     }
 
     printf("\n");
-
 
     unsigned short max = 0x8000;
     for (size_t i = 0; i < 8; i++) {
@@ -474,7 +435,7 @@ void Etc()
     // 타입만 보고 실제 괄호안에는 진입하지 않음으로 b, c 는 변하지 않음
     // 결과적으로 a = 4; b = 그대로 1, c 역시 1을 반환하고 끝남
     int a, b = 1, c = 1;
-    a = sizeof(c = ++b + 1);// b = 2; c = 3; 을 기대하나?
+    a = sizeof(c = ++b + 1); // b = 2; c = 3; 을 기대하나?
     // 결과는 -> (a = 4, b = 1, c = 1;)
     printf("a= %d, b = %d, c = %d\n", a, b, c);
 
@@ -494,4 +455,3 @@ void Etc()
             printf("Something else\n");
     }
 }
->>>>>>> 4e6914f (update dmeo/)
