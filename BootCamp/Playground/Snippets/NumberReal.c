@@ -7,12 +7,12 @@
 void FloatToBinary(float num)
 {
     int exp, sign;
-    float mantissa = frexpf(num, &exp);// 가수부와 지수부 계산
+    float mantissa = frexpf(num, &exp); // 가수부와 지수부 계산
     if (num < 0) {
-        sign = 1;// 음수 처리
+        sign = 1;                       // 음수 처리
         mantissa = -mantissa;
     } else {
-        sign = 0;// 양수 처리
+        sign = 0;                       // 양수 처리
     }
     printf("실수 값 %f의 2진수 표현: %d ", num, sign);
     for (int i = FLT_MANT_DIG - 1; i >= 0; i--) {
@@ -134,10 +134,9 @@ void BinConvertToComplement(int *bin, int size)
     printf("\n");
 
     // 2의 보수 출력기
-    for (size_t i = 0; i < size; i++)
-    {
-        printf("%d",comp[i]);
-        printf("%d",comp[i]);
+    for (size_t i = 0; i < size; i++) {
+        printf("%d", comp[i]);
+        printf("%d", comp[i]);
     }
 }
 
@@ -200,7 +199,7 @@ void NumberReal()
 
 e.g. 3.14159 -> 11 -> 1.1 * 2^1
 1023(double bias) + 1 (exponet) = 1024(지수부, 100 0000 0000)
-01000000 0000   10010010000111111001 11110000 00011011 10000110 01101110
+0 100 0000 0000   10010010000111111001 11110000 00011011 10000110 01101110
 0.14159 * 2 = 0.28318  --> 0
 0.28318 * 2 = 0.56636  --> 0
 0.56636 * 2 = 1.13272  --> 1

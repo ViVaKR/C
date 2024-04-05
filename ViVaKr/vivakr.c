@@ -1,6 +1,7 @@
 #include <Kernel/stdbool.h> // _Bool
 #include <assert.h>         // assert
 #include <ctype.h>          // tolowere(int argument),
+#include <float.h>
 #include <limits.h>         // 정수 유형에 대한 다양한 구현 밸 제한을 정의
 #include <math.h>           // 수학함수
 #include <stdbool.h>        // true, false 를 정의
@@ -9,7 +10,6 @@
 #include <string.h>         // strcpy, strlen 등 문자열 조작
 #include <time.h>           // 날짜와 시간으로 작업한는 기능
 #include <unistd.h>         // sleep(unsigned int)
-
 /// 매크로와 상수
 #define PI 3.141592
 
@@ -22,9 +22,7 @@ int MakeRandom(int min, int max)
     return number;
 }
 
-/// ----------------------------------------------------------------------------- End of Utils
-
-/// (String Compress & DeCompress)=============================================================
+/// (String Compress & DeCompress)
 void compress(char *instr, char *outstr)
 {
     char c = instr[0];
@@ -54,6 +52,7 @@ void compress(char *instr, char *outstr)
     }
     outstr[p] = 0; /* 문자열 마지막에 NULL 입력 */
 } // 1번
+
 void compress_2(char *instr, char *outstr)
 {
     _Bool tf = true;
@@ -119,9 +118,6 @@ void StringCompressStart()
     printf("%s\n", output);
 }
 
-///------------------------------------------------------- (String Compress DeCompress)
-
-/// @brief Node
 typedef struct vnode
 {
     int value;
@@ -130,7 +126,7 @@ typedef struct vnode
 
 node *head = NULL;
 
-/// @brief 첫번째 노드삭제
+// 첫번째 노드삭제
 node *RemoveFrontNode()
 {
     if (head == NULL)
@@ -220,7 +216,6 @@ int LinkedListMemoryFree()
 
 void LinkedListStartAtLast(int count)
 {
-
     // TODO
 }
 // (2) LIFO 노드 만들기
@@ -277,7 +272,7 @@ void InsertTailNode(int data)
     printf("( %3d ) 일반 노드 연결 (후미)\t=> %11p (%5d)\n", GetNodeCount(), current->next, newNode->value);
 }
 
-/// (1) 링크드리스트 시작지점
+// Linked List
 void LinkedListStart(int count, bool order)
 {
     srand(time(NULL));
@@ -395,6 +390,7 @@ void GetMax()
     printf("ULONG_MAX   :   %lu\n", (unsigned long)ULONG_MAX);
     printf("USHRT_MAX   :   %d\n", (unsigned short)USHRT_MAX);
 }
+
 void SPrintfEx(int a, int b)
 {
     char str[128];
@@ -519,7 +515,8 @@ void PointerArray()
 
 long long Fibonacci(int n);
 
-long long memo[200];                // 중복된 값 처리..
+long long memo[200]; // 중복된 값 처리..
+
 long long Fibonacci_memoization(int num)
 {
     if (memo[num] == -1)            // 새로운 값이면?
@@ -562,6 +559,187 @@ void StringCopy(char *university, char *school)
     printf("\n%s, %s\n\n", university, school);
 }
 
+void CompareNumbers()
+{
+    long number;
+    printf("3의 배수여부를 판단할 양의 정수를 하나를 입력하세요\n>> ");
+    scanf("%ld", &number);
+    char *result[] = {"3의 배수입니다.", "3의 배수가 아닙니다."};
+    printf("%ld -> %s\n", number, result[(number % 3) && 1]);
+    long a, b, c;
+    printf("비교할 숫자 3개를 한칸씩 띄워서 입력하세요\n>> ");
+    fflush(stdin);
+
+    long rs[] = {};
+    long input[] = {0, 0, 0};
+    scanf("%ld %ld %ld", &input[0], &input[1], &input[2]);
+    rs[(input[0] > input[1]) + (input[0] > input[2])] = input[0];
+    rs[(input[1] > input[0]) + (input[1] > input[2])] = input[1];
+    rs[(input[2] > input[0]) + (input[2] > input[1])] = input[2];
+    printf("(%ld - %ld - %ld) 중 두번째로 큰수는 => (%ld) 입니다. ", input[0], input[1], input[2], rs[1]);
+}
+
+// DateTime
+typedef struct
+{
+    int y; // 년
+    int m; // 월(1~12)
+    int d; // 일(1~31)
+} Date;
+
+Date Before(Date x, int n);
+Date After(Date x, int n);
+/*--- 각 달의 날 수 ---*/
+static int mdays[2][13] = {
+    {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}, // 평년
+    {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}, // 윤년
+};
+
+/*--- year년이 윤년인가? ---*/
+int isleap(int year)
+{
+    return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+}
+
+/*--- y년 m월 d일을 나타내는 구조체를 반환하는 DateOf 함수 ---*/
+Date DateOf(int y, int m, int d)
+{
+    Date temp;
+
+    temp.y = y;
+    temp.m = m;
+    temp.d = d;
+
+    return temp;
+}
+
+/*--- 날짜 x의 n일 뒤의 날짜를 반환하는 함수 ---*/
+Date After(Date x, int n)
+{
+    if (n < 0)
+        return Before(x, -n);
+
+    x.d += n;
+
+    while (x.d > mdays[isleap(x.y)][x.m - 1]) {
+        x.d -= mdays[isleap(x.y)][x.m - 1];
+        if (++x.m > 12) {
+            x.y++;
+            x.m = 1;
+        }
+    }
+    return x;
+}
+
+/*--- 날짜 x의 n일 앞의 날짜를 반환하는 함수 ---*/
+Date Before(Date x, int n)
+{
+    if (n < 0)
+        return After(x, -n);
+
+    x.d -= n;
+
+    while (x.d < 1) {
+        if (--x.m < 1) {
+            x.y--;
+            x.m = 12;
+        }
+        x.d += mdays[isleap(x.y)][x.m - 1];
+    }
+
+    return x;
+}
+
+/*--- 날짜를 표시 ---*/
+void Print(Date x)
+{
+    int y = x.y;
+    int m = x.m;
+    int d = x.d;
+
+    char *ws[] = {"일", "월", "화", "수", "목", "금", "토"};
+    if (m == 1 || m == 2) {
+        y--;
+        m += 12;
+    }
+    printf("%04d년%02d월%02d일(%s)", x.y, x.m, x.d,
+           ws[(y + y / 4 - y / 100 + y / 400 + (13 * m + 8) / 5 + d) % 7]);
+}
+
+void GetDate()
+{
+    int y, m, d;
+
+    printf("날짜를 입력하세요.\n");
+    printf("년: ");
+    scanf("%d", &y);
+    printf("월: ");
+    scanf("%d", &m);
+    printf("일: ");
+    scanf("%d", &d);
+
+    Date x = DateOf(y, m, d);
+
+    int n;
+
+    printf("며칠 전/후의 날짜를 원합니까?: ");
+    scanf("%d", &n);
+
+    printf("%d일 후의 날짜: ", n);
+    Print(After(x, n));
+    putchar('\n');
+
+    printf("%d일 전의 날짜: ", n);
+    Print(Before(x, n));
+    putchar('\n');
+}
+
+void FloatToBinary(float num)
+{
+    int exp, sign;
+    float mantissa = frexpf(num, &exp); // 가수부와 지수부 계산
+    if (num < 0) {
+        sign = 1;                       // 음수 처리
+        mantissa = -mantissa;
+    } else {
+        sign = 0;                       // 양수 처리
+    }
+    printf("실수 값 %f의 2진수 표현: %d ", num, sign);
+    for (int i = FLT_MANT_DIG - 1; i >= 0; i--) {
+        mantissa *= 2;
+        if (mantissa >= 1) {
+            printf("1");
+            mantissa -= 1;
+        } else {
+            printf("0");
+        }
+    }
+    printf(" x 2^%d\n", exp - 1);
+}
+
+typedef struct p
+{
+    int x, y;
+} PT;
+
+void calcPoint(PT *x, PT *y, PT *z)
+{
+    z->x = x->x + y->x;
+    z->y = x->y + y->y;
+}
+
+void BigO(int number)
+{
+    // 등차수열의 합의 공식
+    int sum = (number + 1) * number / 2;
+    printf("O(1) => %d\n", sum);
+    sum = 0;
+    for (size_t i = 1; i <= number; i++) {
+        sum += i;
+    }
+    printf("O(N) => %d\n", sum);
+}
+
 void Menu()
 {
     char *items[] = {
@@ -585,7 +763,11 @@ void Menu()
         " 16. _Bool()",
         " 17. PointerArray()",
         " 18. Fibonacci()",
-        " 19. StringCopy()",
+        " 19. CompareNumbers()",
+        " 20. StringCopy()",
+        " 21. Signal()",
+        " 22. Float Memory",
+        " 23. Big(O)",
         "200. 프로그램 종료"};
 
     int count = sizeof(items) / sizeof(*items);
@@ -598,23 +780,12 @@ void Menu()
 
 int main(void)
 {
-    char *s1 = malloc(20);
-    char *s2 = malloc(20);
-
-    strcpy(s1, "University");
-    strcpy(s2, "School");
-    StringCopy(s1, s2);
-
-    strcpy(s1, "University");
-    strcpy(s2, "School");
-    StringCopy(s2, s1);
-
-    free(s1);
-    free(s2);
+    // PT p1 = {10, 20}, p2 = {30, 40}, p3 = {0, 0};
+    // calcPoint(&p1, &p2, &p3);
+    // printf("(%d, %d)\n", p3.x, p3.y);
+    // return 0;
 
     int choice;
-    // signal
-    // signal(SIGINT, SignalHandler);
 
     while (choice != 200) {
         Menu();
@@ -667,20 +838,30 @@ int main(void)
             case 16: BoolEx(true); break;
             case 17: PointerArray(); break;
             case 18: FibonacciStart(); break;
+            case 19: CompareNumbers(); break;
+            case 20: { // String Copy
+                char *s1 = malloc(20);
+                char *s2 = malloc(20);
+                strcpy(s1, "University");
+                strcpy(s2, "School");
+                StringCopy(s1, s2);
+                strcpy(s1, "University");
+                strcpy(s2, "School");
+                StringCopy(s2, s1);
+                free(s1);
+                free(s2);
+            } break;
+            case 21: signal(SIGINT, SignalHandler); break;
+            case 22: FloatToBinary(3.14); break;
+            case 23: BigO(10);
+
             default: break;
         }
     }
 
-    // int intention = getchar();
-    // if (intention != 1) {
-    //     main();
-    // }
-
-    printf("\nProgram Exited\n");
+    printf("\n*** Program Exited ***\n");
     return 0;
 } /// end main
-
-///------------------------------------------------------------------------------------- Main Bottom
 
 /** C
 1999 - C99
