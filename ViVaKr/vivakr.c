@@ -10,19 +10,15 @@
 #include <string.h>         // strcpy, strlen 등 문자열 조작
 #include <time.h>           // 날짜와 시간으로 작업한는 기능
 #include <unistd.h>         // sleep(unsigned int)
-/// 매크로와 상수
+
 #define PI 3.141592
 
-/// Global function declaration
-
-/// (Utilities) =============================================================================
 int MakeRandom(int min, int max)
 {
     const int number = (rand() % (max - min + 1)) + min;
     return number;
 }
 
-/// (String Compress & DeCompress)
 void compress(char *instr, char *outstr)
 {
     char c = instr[0];
@@ -99,11 +95,10 @@ void decompress(char *instr, char *outstr)
         }
     }
     outstr[p] = 0; // output[0] = 0인가요?
-} // 2번
+}
 
 void StringCompressStart()
 {
-
     char *origin = "zzzzzzzzaaabbcdddeee";
     printf("[ %s ]\n", origin);
     char output[sizeof(origin)];
@@ -193,9 +188,7 @@ int LinkedListMemoryFree()
 
     // 링크드리스트 노드 메모리 해제 작업
     // 선두 노드를 제거하는 작업을 반복하는 알고리즘.
-
     node *temp;
-
     if (head == NULL)
         return 1;
 
@@ -739,43 +732,78 @@ void BigO(int number)
     }
     printf("O(N) => %d\n", sum);
 }
+void Menu();
 
-void Menu()
+void GetPrimeNumber(int a)
 {
-    char *items[] = {
-        "=========================",
-        "  1. 노드 생성 (Front)",
-        "  2. 노드 생성 (Tail)",
-        "  3. 노드 현황",
-        "  4. 노드 갯수",
-        "  5. 첫번째 노드삭제",
-        "  6. 선택값 삭제",
-        "  7. 모든 연결리스트 제거",
-        "=========================",
-        "  8. 문자 압축 및 해제",
-        "  9. 최대 최소값",
-        " 10. fprintf()",
-        " 11. clock()",
-        " 12. sprintf()",
-        " 13. assert()",
-        " 14. ctype()",
-        " 15. sscanf()",
-        " 16. _Bool()",
-        " 17. PointerArray()",
-        " 18. Fibonacci()",
-        " 19. CompareNumbers()",
-        " 20. StringCopy()",
-        " 21. Signal()",
-        " 22. Float Memory",
-        " 23. Big(O)",
-        "200. 프로그램 종료"};
-
-    int count = sizeof(items) / sizeof(*items);
-    printf("== Menus (%d) ==\n", count);
-
-    for (size_t i = 0; i < count; i++) {
-        printf("%s\n", items[i]);
+    int isPrime;
+    printf("[ ( %d ) Prime numbers ]\n%3d\t", a, 2);
+    for (int i = 3; i <= a; i++) {
+        isPrime = 0;
+        for (int j = 2; j <= i / 2; j++) {
+            if (i % j == 0) // substitute the 'rem' variable for an operation
+            {
+                isPrime = 1;
+                break;
+            }
+        }
+        if (isPrime == 0) {
+            printf("%3d\t", i);
+        }
     }
+
+    printf("\n");
+}
+
+typedef int *Score;
+typedef struct stack
+{
+    int max;
+    int top;
+    Score *score;
+} Stack;
+
+Stack *CreateStack(int max)
+{
+    Stack *s = (Stack *)malloc(sizeof(struct stack));
+    s->max = max;
+    s->top = -1;
+    s->score = (Score *)malloc(max * sizeof(Score));
+    return s;
+}
+
+int IsEmpty(Stack *s)
+{
+    return s->top == -1;
+}
+
+int IsFull(Stack s)
+{
+    return s.top == s.max - 1;
+}
+
+void Push(Score score, Stack *s)
+{
+    if (IsFull(*s)) {
+        s->max *= 2;
+        s->score = (Score *)realloc(s->score, s->max * sizeof(Score));
+    }
+    s->top++;
+    s->score[s->top] = score;
+}
+
+Score Pop(Stack *s)
+{
+    if (IsEmpty(s)) {
+        printf("================ Stack empty! =================\n");
+        exit(1);
+    }
+    return s->score[s->top--];
+}
+void DestroyStack(Stack *s)
+{
+    free(s->score);
+    free(s);
 }
 
 int main(void)
@@ -854,14 +882,76 @@ int main(void)
             case 21: signal(SIGINT, SignalHandler); break;
             case 22: FloatToBinary(3.14); break;
             case 23: BigO(10);
+            case 24: GetPrimeNumber(100);
+            case 25: {
+                printf("Stack Start\n");
+
+                int size = 10;
+                Stack *s = CreateStack(size);
+
+                for (int i = 1; i <= size * 3; i++) {
+                    Score score = (Score)i;
+                    Push(score, s);
+                }
+
+                for (int i = 1; i <= s->max; i++) {
+                    Score score = (Score)Pop(s);
+                    printf("=> %ld\n", (int)score);
+                }
+
+                printf("\n");
+                DestroyStack(s);
+                printf("끝..");
+
+            } break;
 
             default: break;
         }
     }
-
     printf("\n*** Program Exited ***\n");
     return 0;
 } /// end main
+
+void Menu()
+{
+    char *items[] = {
+        "=========================",
+        "  1. 노드 생성 (Front)",
+        "  2. 노드 생성 (Tail)",
+        "  3. 노드 현황",
+        "  4. 노드 갯수",
+        "  5. 첫번째 노드삭제",
+        "  6. 선택값 삭제",
+        "  7. 모든 연결리스트 제거",
+        "=========================",
+        "  8. 문자 압축 및 해제",
+        "  9. 최대 최소값",
+        " 10. fprintf()",
+        " 11. clock()",
+        " 12. sprintf()",
+        " 13. assert()",
+        " 14. ctype()",
+        " 15. sscanf()",
+        " 16. _Bool()",
+        " 17. PointerArray()",
+        " 18. Fibonacci()",
+        " 19. CompareNumbers()",
+        " 20. StringCopy()",
+        " 21. Signal()",
+        " 22. Float Memory",
+        " 23. Big(O)",
+        " 24. Prime Numbers",
+        " 25. Stack",
+        "200. 프로그램 종료"};
+
+    int count = sizeof(items) / sizeof(*items);
+    printf("== Menus (%d) ==\n", count);
+
+    for (size_t i = 0; i < count; i++) {
+
+        printf("%s\n", items[i]);
+    }
+}
 
 /** C
 1999 - C99
