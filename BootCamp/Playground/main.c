@@ -91,10 +91,6 @@ bool GetBit(int index) {
     return (a & (1 << index));
 }
 
-/// @brief Start Point
-/// @param
-/// @param
-/// @return
 int main(int argc, char **argv) {
     short originNumber = 30;
     short target = -30;

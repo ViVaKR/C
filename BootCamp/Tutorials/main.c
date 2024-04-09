@@ -61,7 +61,7 @@ void BubleSort(int *arr, const int size)
             // 비교횟수 (열)
 
             if (arr[j] > arr[j + 1]) {
-                // 현제 다음 것과 비교하므로
+                // 현재 다음 것과 비교하므로
                 const int temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
