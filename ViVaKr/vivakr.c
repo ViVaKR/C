@@ -756,6 +756,7 @@ void GetPrimeNumber(int a)
 }
 
 typedef int *Score;
+
 typedef struct stack
 {
     int max;
@@ -804,6 +805,156 @@ void DestroyStack(Stack *s)
 {
     free(s->score);
     free(s);
+}
+
+// 국가 타입별 고유번호 설정
+typedef enum Nation {
+    Korea = 1,
+    USA = 2,
+    Venus = 3,
+    Saturn = 4,
+    Mars = 5,
+    Andromeda = 6,
+    Last = 7
+} Nation;
+
+const char *ToString(Nation n)
+{
+    switch (n) {
+        case Korea    : return "대한민국";
+        case USA      : return "미국"; break;
+        case Venus    : return "금성국";
+        case Saturn   : return "토성국";
+        case Mars     : return "화성국"; ;
+        case Andromeda: return "안드로메다제국";
+        case Last     : return "--";
+    }
+    return "<none>";
+}
+
+void JisikIn()
+{
+    char *genre[] =
+        {"로맨스", "판타지", "드라마", "코미디", "귀신", "스릴러", "SF",
+         "판탑지", "다큐", "키즈/가족", "애니메이션",
+         "한국", "미국", "금성", "토성", "화성", "안드로메다", "기타"};
+
+    printf("\n=== 국가를 선택하세요 ===\n");
+
+    Nation nation;
+
+    // 국가 번호별 국각명 메뉴로 표현하기.
+    for (int i = Korea; i != Last; i++)
+        printf("%d. %s\n", i, ToString(i));
+
+    printf("\u21E2 "); // 입력 모냥내기.
+
+    scanf("%d", &nation);
+
+    // 출력 파트 국가별 시작 인덱로 2썩 건너뛰며 추천 장르 출력하기 (문의에 대한 답별)
+    printf("[ %s 추천영화목록 ]\n", ToString(nation));
+
+    for (int i = nation; i < sizeof(genre) / sizeof(*genre); i += 2)
+        printf("\u21E2 %s\n", genre[i]);
+}
+
+// 전치행렬
+#define MAX_TERMS 100
+typedef struct
+{
+    int row;
+    int col;
+    int value;
+} element;
+
+typedef struct
+{
+    element data[MAX_TERMS];
+    int rows;  // 행의 개수
+    int cols;  // 열의 개수
+    int terms; // 항의 개수
+} SparseMatrix;
+
+SparseMatrix MatrixTranspose(SparseMatrix a)
+{
+    SparseMatrix matrix;
+
+    int index; // 행렬 b에서 현재 저장 위치
+    matrix.rows = a.cols;
+    matrix.cols = a.rows;
+    matrix.terms = a.terms;
+
+    if (a.terms > 0) {
+        index = 0;
+        for (int c = 0; c < a.cols; c++) {
+            for (int i = 0; i < a.terms; i++) {
+                if (a.data[i].col == c) {
+                    matrix.data[index].row = a.data[i].col;
+                    matrix.data[index].col = a.data[i].row;
+                    matrix.data[index].value = a.data[i].value;
+                    index++;
+                }
+            }
+        }
+    }
+    return matrix;
+}
+
+void matrix_print(SparseMatrix a)
+{
+    printf("====================\n");
+    for (int i = 0; i < a.terms; i++) {
+        printf("(%d, %d, %d) \n", a.data[i].row, a.data[i].col, a.data[i].value);
+    }
+    printf("====================\n");
+}
+
+void MatrixRunner()
+{
+
+    // int trans[cols][rows];
+
+    // for (int row = 0; row < rows; row++) {
+    //     for (int col = 0; col < cols; col++) {
+    //         trans[col][row] = matrix[row][col];
+    //     }
+    // }
+    // for (int row = 0; row < rows; row++) {
+    //     for (int col = 0; col < cols; col++) {
+    //         printf("%d\t%d\t%d", trans[col][row])
+    //     }
+    // }
+
+    int m = 3;
+    int n = 3;
+    int matrix2[3][3] = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}};
+
+    // printf("== (원본) ==\n");
+    // for (int i = 0; i < n; i++) {
+    //     for (int j = 0; j < m; j++) {
+    //         printf("%d\t", matrix2[i][j]);
+    //     }
+    //     printf("\n");
+    // }
+
+    // printf("== (전치) ==\n");
+    // int transpose[3][3];
+
+    // for (int i = 0; i < m; i++) {
+    //     for (int j = 0; j < n; j++) {
+    //         transpose[i][j] = matrix2[j][i];
+    //     }
+    // }
+
+    // for (int i = 0; i < n; i++) {
+    //     for (int j = 0; j < m; j++) {
+    //         printf("%d\t", transpose[i][j]);
+    //     }
+    //     printf("\n");
+    // }
 }
 
 int main(void)
@@ -896,14 +1047,17 @@ int main(void)
 
                 for (int i = 1; i <= s->max; i++) {
                     Score score = (Score)Pop(s);
-                    printf("=> %ld\n", (int)score);
+                    printf("=> %ld\n", score);
                 }
 
                 printf("\n");
                 DestroyStack(s);
                 printf("끝..");
 
+
             } break;
+            case 26: JisikIn(); break;
+            case 27: MatrixRunner(); break;
 
             default: break;
         }
@@ -942,6 +1096,8 @@ void Menu()
         " 23. Big(O)",
         " 24. Prime Numbers",
         " 25. Stack",
+        " 26. Movies",
+        " 27. Matrix",
         "200. 프로그램 종료"};
 
     int count = sizeof(items) / sizeof(*items);

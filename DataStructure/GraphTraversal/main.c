@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 typedef struct
 {
     int vertexCount; // 정점의 갯수
@@ -73,9 +74,9 @@ void AdjacencyMatrix()
 // 노드 리스트
 typedef struct node
 {
-    int vertext;      // 정점.
-    int cost;         // 비용.
-    struct Node *next // 다음 노드 주소.
+    int vertext;       // 정점.
+    int cost;          // 비용.
+    struct Node *next; // 다음 노드 주소.
 } Node;
 
 // 노드 관리
@@ -262,6 +263,12 @@ int main(int argc, const char *argv[])
 
     int arr[] = {7, 23, 9, 1, 95, 2, 8, 4};
     BubleSort(arr, 8);
+
+    // int ta = 10;
+    // int tb = 5;
+    // ta = (ta * tb) / (tb = ta);
+
+    // printf("%d %d\n", ta, tb);
 }
 
 /*
@@ -293,4 +300,13 @@ int main(int argc, const char *argv[])
     5. 0번을 팝하면서 방문했다는 것으로.
     6. 꺼내면서 푸시
 - BFS (Breadth First Search, 너비우선 탐색)
+ */
+
+/**
+ * scanf("%c", &c1);
+ * 1. 버퍼를 읽어봄.
+ * 2. 버퍼가 비어있으면? 키보드로 부터 입력을 대기함.
+ * 3. 키보드로 입력을 하면, 데이터는 버퍼로 들어감.
+ * 4. 키보드로 엔터 키를 입력하면? 그때 비로서 scacnf 는 버퍼에서 문자 하나를 읽어 들임.
+ *
  */

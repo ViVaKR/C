@@ -660,21 +660,21 @@ int main(void)
 
     int j = 0;
     char buffer[20];
-    // memset(buffer, '\0', 20);
-    // char *s = "원 소스 ";
-    // j = sprintf(buffer, "%s", s);
-    // j += sprintf(buffer + j, "(%d)", size);
+    memset(buffer, '\0', 20);
+    char *s = "원 소스 ";
+    j = sprintf(buffer, "%s", s);
+    j += sprintf(buffer + j, "(%d)", size);
 
-    // Print(target, size, buffer);
+    Print(target, size, buffer);
 
-    // BubleSort(target, size);     // 버블정렬
-    // SelectionSort(target, size); // 선택정렬
-    // MergeSort(target, size);     // 병합정렬
-    // Print(target, size, "병합 정렬");
-    // BucketSort(target, size, 100);
-    // Print(target, size, "버캣 정렬");
-    // HeapSort(target, size);
-    // HeapRunner();
+    BubleSort(target, size);     // 버블정렬
+    SelectionSort(target, size); // 선택정렬
+    MergeSort(target, size);     // 병합정렬
+    Print(target, size, "병합 정렬");
+    BucketSort(target, size, 100);
+    Print(target, size, "버캣 정렬");
+    HeapSort(target, size);
+    HeapRunner();
 
     int arr[] = {45, 271, 27, 5, 1, 10, 55, 135, 8, 82, 7, 9};
     size = sizeof(arr) / sizeof(int);
@@ -692,18 +692,18 @@ int main(void)
     j = sprintf(buffer, "%s", q);
     j += sprintf(buffer + j, "(%d)", size);
     Print(arr, size, buffer);
-    // Print(target, size, buffer);
+    Print(target, size, buffer);
 
-    // const int b1 = -3; // (0011)
-    // PrintBit(b1, 32);
-    // VariableSize();
-    // ToUniqueSortedArray(target, size);
+    const int b1 = -3; // (0011)
+    PrintBit(b1, 32);
+    VariableSize();
+    ToUniqueSortedArray(target, size);
 
-    // short num1 = -30;
-    // unsigned short num2 = num1;
+    short num1 = -30;
+    unsigned short num2 = num1;
 
-    // printf("%d, %#x\n", num1, num2);
-    // printf("%d, %#x\n", num2, num2);
+    printf("%d, %#x\n", num1, num2);
+    printf("%d, %#x\n", num2, num2);
 
     return 0;
 }
