@@ -191,8 +191,9 @@ int main(int argc, const char *argv[])
                 // 출력
                 // 중위 순회 (오름차순): 윈쪽 -> 부모 -> 오른쪽
                 printf("\u27AD 중위순회 출력 \n");
+                memmove
 
-                DisplayAsc(root);
+                    DisplayAsc(root);
 
             } break;
             case 0 : return 257;

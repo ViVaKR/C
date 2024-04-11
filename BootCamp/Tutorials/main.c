@@ -104,13 +104,13 @@ void InsertionSort(int *arr, const int size)
     int j;
     for (int i = 1; i < size; i++) {
         const int temp = arr[i]; // 1번 인덱스 부터 카드 뽑기.
+
         for (j = i; j > 0 && arr[j - 1] > temp; j--) {
             // 뽑아낸 위치에서 한칸씩 왼쪽(arr[j-1])과 비교 후 `arr[j-1]` 값이 크면 오른쪽 밀기
             arr[j] = arr[j - 1]; // 앞의 것이 크면, 뒤로 밀기
         }
         arr[j] = temp;
     }
-    Print(arr, size, "삽입정렬");
 }
 
 // 퀵정렬 (Quick Sort) : 정렬의 꽃으로 불리는 빠른 정렬 => O(N logN)
@@ -146,7 +146,7 @@ void QuickSort(int *arr, const int left, const int right, char pos)
     //       다를 때에는 왼쪽 과 오른쪽 모두 원칙을 위반한 두값을 스왑을 반복해 주는 작업이 요점.
     ///      until -> 왼쪽과 오른 쪽이 같거나 크로스 되어 더이상 비교할 데이터가 없을 때 까지...
 
-    printf("(%c) pivot = %3d\n", pos, pivot);
+    // printf("(%c) pivot = %3d\n", pos, pivot);
     do {
         // pivot 보다 작은 값인지 큰값인지 체크.
         // 왼쪽 통과 기준 => ++ (인덱스)
@@ -648,62 +648,107 @@ void ToUniqueSortedArray(int *arr, const int size)
     printf("\n");
 }
 
-int main(void)
+void BinaryTest()
 {
-    srand(time(NULL));
-    // 정렬
-    int target[MakeRandom(10, 15)];
-    int size = sizeof(target) / sizeof(int);
-    for (int i = 0; i < size; i++) {
-        target[i] = MakeRandom(1, 100);
-    }
-
-    int j = 0;
-    char buffer[20];
-    memset(buffer, '\0', 20);
-    char *s = "원 소스 ";
-    j = sprintf(buffer, "%s", s);
-    j += sprintf(buffer + j, "(%d)", size);
-
-    Print(target, size, buffer);
-
-    BubleSort(target, size);     // 버블정렬
-    SelectionSort(target, size); // 선택정렬
-    MergeSort(target, size);     // 병합정렬
-    Print(target, size, "병합 정렬");
-    BucketSort(target, size, 100);
-    Print(target, size, "버캣 정렬");
-    HeapSort(target, size);
-    HeapRunner();
-
-    int arr[] = {45, 271, 27, 5, 1, 10, 55, 135, 8, 82, 7, 9};
-    size = sizeof(arr) / sizeof(int);
-    memset(buffer, '\0', 20);
-    char *s = "원 소스 ";
-    j = sprintf(buffer, "%s", s);
-    j += sprintf(buffer + j, "(%d)", size);
-    Print(arr, size, buffer);
-
-    // QuickSort(target, 0, size - 1, 'P');
-    QuickSort(arr, 0, size - 1, 'P');
-    memset(buffer, '\0', 20);
-    char *q = "퀵 정렬 ";
-    j = 0;
-    j = sprintf(buffer, "%s", q);
-    j += sprintf(buffer + j, "(%d)", size);
-    Print(arr, size, buffer);
-    Print(target, size, buffer);
 
     const int b1 = -3; // (0011)
     PrintBit(b1, 32);
-    VariableSize();
-    ToUniqueSortedArray(target, size);
 
     short num1 = -30;
     unsigned short num2 = num1;
 
     printf("%d, %#x\n", num1, num2);
     printf("%d, %#x\n", num2, num2);
+}
+void StringUtils()
+{
+    // CSV with comma read
+    char fname[50], lname[50];
+    int id;
+    float weight, hgnum;
+
+    FILE *fp = fopen("hello.txt", "r");
+    if (fp == NULL) {
+        perror("Error: Failed to open file.");
+        return;
+    }
+
+    char line[1024];
+    while (fgets(line, 1024, fp)) {
+        char *tmp = strdup(line);
+        const char *tok;
+        for (tok = strtok(line, ","); tok && *tok; tok = strtok(NULL, ",")) {
+            printf("%s\t", tok);
+        }
+
+        printf("\n");
+
+        free(tmp);
+    }
+
+    fclose(fp);
+
+    char temp[] = "   \t  hi  \t  ,  \t  everyone,  \t fine  \t  , thanks , \t  and , you";
+
+    char *t = strtok(temp, ",");
+
+    while (t != NULL) {
+
+        // ltrim
+        while (isspace(*t)) t++;
+
+        // rtrim
+        char *b = t;
+        char *back = b + strlen(b);
+        while (isspace(*--back));
+        *(back + 1) = '\0';
+        printf("%s-%s\n", t, b);
+
+        t = strtok(NULL, ",");
+    }
+
+    // FILE *file = fopen("../data/data.txt", "ab+");
+    // if (file == NULL) {
+
+    //     perror("Error: Failed to open file.");
+    //     return 1;
+    // }
+    // fprintf(file, "Hi Everyone.\n");
+    // // system("touch hello.txt");
+
+    // fclose(file);
+}
+int main(void)
+{
+    srand(time(NULL));
+    // 정렬
+    int target[MakeRandom(10, 15)];
+    int size = sizeof(target) / sizeof(int);
+    for (int i = 0; i < size; i++)
+        target[i] = MakeRandom(1, 100);
+
+    int j = 0;
+    Print(target, size, "원소스");
+
+    BubleSort(target, size);     // 버블정렬
+    SelectionSort(target, size); // 선택정렬
+    MergeSort(target, size);     // 병합정렬
+    Print(target, size, "병합 정렬");
+
+    BucketSort(target, size, 100);
+    Print(target, size, "버캣 정렬");
+
+    HeapSort(target, size);
+    HeapRunner();
+
+    InsertionSort(target, size);         // 삽입정렬
+    Print(target, size, "삽입 정렬");
+
+    QuickSort(target, 0, size - 1, 'P'); // 퀵정렬
+    Print(target, size, "퀵 정렬");
+
+    VariableSize();
+    ToUniqueSortedArray(target, size);
 
     return 0;
 }
