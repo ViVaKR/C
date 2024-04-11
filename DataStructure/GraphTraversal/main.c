@@ -2,6 +2,142 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Utilities
+void ToLowerCase()
+{
+    char A[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    int n = strlen(A);
+    for (int i = 0; i < n; i++) {
+
+        if (A[i] >= 'A' && A[i] <= 'Z') {
+            A[i] |= 0b100000;
+        }
+    }
+    printf("%s\n", A);
+}
+
+void ToUpperCase()
+{
+    char A[] = "abcdefghijklmnopqrstuvwxyz";
+    int n = strlen(A);
+    for (int i = 0; i < n; i++) {
+        if (A[i] >= 'a' && A[i] <= 'z') {
+            A[i] &= '_';
+        }
+    }
+    printf("%s\n", A);
+
+    n = 100;
+    printf("%d = %s\n", n, n & 1 ? "odd" : "even");
+    n = 33;
+    printf("%d = %s\n", n, n & 1 ? "odd" : "even");
+}
+
+void ToggleCase()
+{
+    char A[] = "AbCdEfGhIjKlMnOpQrStUvWxYz";
+    int n = strlen(A);
+    for (int i = 0; i < n; i++) A[i] ^= 0b00100000;
+    printf("%s\n", A);
+}
+
+void Print(const int *arr, const int size, char *title)
+{
+    printf("%s=> ", title);
+    for (int i = 0; i < size; i++) {
+        printf("%3d ", arr[i]);
+    }
+    printf("\n");
+    // sleep(1);
+    // usleep(1000);
+}
+
+void BubleSort(int *arr, const int size)
+{
+    for (int i = 0; i < size - 1; i++) {
+        // 패스 (행)
+        for (int j = 0; j < size - 1 - i; j++) {
+            // i 의 인덱스가 0 부터 시작하므로
+            // 비교횟수 (열)
+
+            if (arr[j] > arr[j + 1]) {
+                // 현재 다음 것과 비교하므로
+                // const int temp = arr[j];
+                // arr[j] = arr[j + 1];
+                // arr[j + 1] = temp;
+                arr[j] ^= arr[j + 1];
+                arr[j + 1] ^= arr[j];
+                arr[j] ^= arr[j + 1];
+            }
+        }
+    }
+    Print(arr, size, "버블정렬\n");
+}
+
+void SwapTwoNumberWithoutTemp()
+{
+    int x = 12, y = 20;
+    printf("%d %d\n", x, y);
+    x ^= y; // x=x^y
+    y ^= x; // y=x^y
+    x ^= y; // x=x^y
+    printf("%d %d\n", x, y);
+
+    /*
+        x=12 y=20
+        now for x=x^y
+        12 = b01100
+        ^20 = b10100
+        -------------
+        x = b11000
+
+        now for y=x^y
+        x = b11000
+        ^20 = b10100
+        -------------
+        y = b01100 =12 (swapped)
+
+        now for y=x^y
+        x = b11000
+        ^y = b01100
+        -------------
+        x = b10100 =20 (swapped)
+     */
+}
+
+void MultiplyWithBitWiseShift()
+{
+    int n = 3;
+    int b = 4 << n;
+    printf("%d\n", b); // 4 x 2 ^3;
+}
+
+void Divide()
+{
+    int n = 3;
+    int b = 32 >> n;
+    printf("%d\n", b); // 32 / 2^3 = 4
+}
+
+void ToLowerSolution()
+{
+    char text[100];
+    printf("문장을 입력해 보세요 영문으로..>> ");
+    scanf("%[^\n]s", text);
+    printf("문장 입력 : %s\n", text);
+    int n = strlen(text);
+    int changesCount = 0;
+    for (int i = 0; i < n; i++) {
+        if (text[i] >= 'A' && text[i] <= 'Z') {
+            text[i] |= 0b100000;
+            changesCount++;
+        }
+    }
+    printf("바뀐 문장 : %s\n바뀐 문자수 = %d\n", text, changesCount);
+}
+
+// Graph... Start
 typedef struct
 {
     int vertexCount; // 정점의 갯수
@@ -71,7 +207,7 @@ void AdjacencyMatrix()
     Dispose(&grp);
 }
 
-// 노드 리스트
+//*** 노드 리스트 ***//
 typedef struct node
 {
     int vertext;       // 정점.
@@ -79,7 +215,7 @@ typedef struct node
     struct Node *next; // 다음 노드 주소.
 } Node;
 
-// 노드 관리
+//*** 노드 관리 ***//
 typedef struct
 {
     Node *head;      // 출발지 노드 배열의 주소
@@ -87,12 +223,41 @@ typedef struct
 
 } GraphNodeList;
 
+// (2)
+void AddDirectedEdge(GraphNodeList *grp, int src, int dst, int cost)
+{
+    Node *newNode;
+    newNode = (Node *)malloc(sizeof(Node));
+    newNode->vertext = dst;
+    newNode->cost = cost;
+    newNode->next = NULL;
+    if (grp->head[src].next == NULL) {
+        grp->head[src].next = newNode;
+        return;
+    }
+
+    // (1) 새로운 노드에게 직전 선두 노드를 가르키게 하고...(헤드가 가지고 있으므로..)
+    newNode->next = grp->head[src].next;
+    // (2) 헤드의 다음 노드를 새로 만든 노드로 교체하는 작업 (매우 중요.)
+    grp->head[src].next = newNode;
+}
+
+// (1)
+void AddUnDirectedEdge(GraphNodeList *grp, int src, int dst, int cost)
+{
+    // 맨앞에 추가하는 방식으로 수행. (속도가 빠름.)
+    // 각각의 출발지 마다 연결리스트를 만드는 방식.
+    // 정점 4개..
+    // 양방향 (무방향)이므로 각각 2번씩 수행해야 함.
+    // 방향그래프가 2개.
+    AddDirectedEdge(grp, src, dst, cost);
+    AddDirectedEdge(grp, dst, src, cost);
+}
+
 void GraphListInit(GraphNodeList *grp, int count)
 {
     grp->vertexCount = count; // 정점의 갯수.
-
     grp->head = (Node *)malloc(sizeof(Node) * count);
-
     for (int i = 0; i < count; i++) {
         grp->head[i].vertext = i;
         grp->head[i].cost = 1;
@@ -100,166 +265,32 @@ void GraphListInit(GraphNodeList *grp, int count)
     }
 }
 
-void AddUnDirectedEdge()
-{
-}
-
 void AdjacencyList()
 {
     GraphNodeList *grp;
+    GraphListInit(&grp, 4);
 
-    // GraphListInit(&grp, 4);
-
-    AddUnDirectedEdge();
+    // 간선정보 저장.
+    AddUnDirectedEdge(&grp, 0, 1, 1);
+    AddUnDirectedEdge(&grp, 0, 2, 5);
+    AddUnDirectedEdge(&grp, 1, 2, 2);
+    AddUnDirectedEdge(&grp, 2, 3, 7);
 }
 
-void ToLowerCase()
-{
-    char A[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-    int n = strlen(A);
-    for (int i = 0; i < n; i++) {
-
-        if (A[i] >= 'A' && A[i] <= 'Z') {
-            A[i] |= 0b100000;
-        }
-    }
-    printf("%s\n", A);
-}
-
-void Test2()
-{
-    char A[] = "abcdefghijklmnopqrstuvwxyz";
-    int n = strlen(A);
-    for (int i = 0; i < n; i++) {
-        if (A[i] >= 'a' && A[i] <= 'z') {
-            A[i] &= '_';
-        }
-    }
-    printf("%s\n", A);
-
-    n = 100;
-    printf("%d = %s\n", n, n & 1 ? "odd" : "even");
-    n = 33;
-    printf("%d = %s\n", n, n & 1 ? "odd" : "even");
-}
-
-void ToggleCase()
-{
-    char A[] = "AbCdEfGhIjKlMnOpQrStUvWxYz";
-    int n = strlen(A);
-    for (int i = 0; i < n; i++) {
-        A[i] ^= 0b00100000;
-    }
-    printf("%s\n", A);
-}
-
-void Print(const int *arr, const int size, char *title)
-{
-    printf("%s\t=> ", title);
-    for (int i = 0; i < size; i++) {
-        printf("%3d ", arr[i]);
-    }
-    printf("\n");
-    // sleep(1);
-    // usleep(1000);
-}
-void BubleSort(int *arr, const int size)
-{
-    for (int i = 0; i < size - 1; i++) {
-        // 패스 (행)
-        for (int j = 0; j < size - 1 - i; j++) {
-            // i 의 인덱스가 0 부터 시작하므로
-            // 비교횟수 (열)
-
-            if (arr[j] > arr[j + 1]) {
-                // 현재 다음 것과 비교하므로
-                // const int temp = arr[j];
-                // arr[j] = arr[j + 1];
-                // arr[j + 1] = temp;
-                arr[j] ^= arr[j + 1];
-                arr[j + 1] ^= arr[j];
-                arr[j] ^= arr[j + 1];
-            }
-        }
-    }
-    Print(arr, size, "버블정렬");
-}
-
-void SwapTwoNumberWithoutTemp()
-{
-    int x = 12, y = 20;
-    printf("%d %d\n", x, y);
-    x ^= y; // x=x^y
-    y ^= x; // y=x^y
-    x ^= y; // x=x^y
-    printf("%d %d\n", x, y);
-
-    /*
-        x=12 y=20
-        now for x=x^y
-        12 = b01100
-        ^20 = b10100
-        -------------
-        x = b11000
-
-        now for y=x^y
-        x = b11000
-        ^20 = b10100
-        -------------
-        y = b01100 =12 (swapped)
-
-        now for y=x^y
-        x = b11000
-        ^y = b01100
-        -------------
-        x = b10100 =20 (swapped)
-     */
-}
-
-void Multiply()
-{
-    int n = 3;
-    int b = 4 << n;
-    printf("%d\n", b); // 4 x 2 ^3;
-}
-
-void Divide()
-{
-    int n = 3;
-    int b = 32 >> n;
-    printf("%d\n", b); // 32 / 2^3 = 4
-}
-
-void ToLowerSolution()
-{
-    char text[100];
-    printf("문장을 입력해 보세요 영문으로..>> ");
-    scanf("%[^\n]s", text);
-    printf("문장 입력 : %s\n", text);
-    int n = strlen(text);
-    int changesCount = 0;
-    for (int i = 0; i < n; i++) {
-        if (text[i] >= 'A' && text[i] <= 'Z') {
-            text[i] |= 0b100000;
-            changesCount++;
-        }
-    }
-    printf("바뀐 문장 : %s\n바뀐 문자수 = %d\n", text, changesCount);
-}
 int main(int argc, const char *argv[])
 {
-    // Matrix
-    AdjacencyMatrix();
-
-    // Node List
-    AdjacencyList();
-
-    Test2();
+    printf("ToggleCase\n");
     ToggleCase();
+    printf("Swap Number Without Temp\n");
     SwapTwoNumberWithoutTemp();
-    Multiply();
+    printf("Mutlply With BitWise Shift\n");
+    MultiplyWithBitWiseShift();
+
+    printf("\nTo LoewerCase\n");
     ToLowerSolution();
+
+    printf("\nTo UpperCase\n");
+    ToUpperCase();
 
     int arr[] = {7, 23, 9, 1, 95, 2, 8, 4};
     BubleSort(arr, 8);
@@ -268,7 +299,14 @@ int main(int argc, const char *argv[])
     // int tb = 5;
     // ta = (ta * tb) / (tb = ta);
 
+    // Matrix
+    AdjacencyMatrix();
+
+    // Node List
+    AdjacencyList();
+
     // printf("%d %d\n", ta, tb);
+    return 0;
 }
 
 /*

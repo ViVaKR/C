@@ -1,0 +1,35 @@
+cmake_minimum_required(VERSION 3.29.1)
+project(YourProjectFolderName C)
+
+set(CMAKE_C_STANDARD 17)
+
+add_executable(YourProjectFolderName main.c)
+
+find_package(PostgreSQL REQUIRED)
+include_directories("PathTo_PostgreSQL_includefolder")
+include_directories("PathTo_libpq-fe.h")
+target_link_libraries(YourProjectFolderName PRIVATE PostgreSQL::PostgreSQL)
+target_link_libraries(YourProjectFolderName PRIVATE "PathTo_libpq-fe.h")
+
+
+# C:/Program Files/PostgreSQL/16/include
+# C:/Program Files/PostgreSQL/16/include/libpq-fe.h
+
+#include <libpq-fe.h>
+
+
+/**
+cmake_minimum_required(VERSION 3.27)
+project(PI2 C)
+
+set(CMAKE_C_STANDARD 11)
+
+add_executable(PI2 main.c)
+
+find_package(PostgreSQL REQUIRED)
+include_directories("C:/Program Files/PostgreSQL/16/include")
+include_directories("C:/Program Files/PostgreSQL/16/include/libpq-fe.h")
+target_link_libraries(PI2 PRIVATE PostgreSQL::PostgreSQL)
+target_link_libraries(PI2 PRIVATE "C:/Program Files/PostgreSQL/16/include/libpq-fe.h")
+
+*/
