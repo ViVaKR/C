@@ -94,14 +94,50 @@ TreeNode *GetMinValue(TreeNode *minData)
 }
 
 // 노드 삭제
+
 TreeNode *RemoveNode(TreeNode *remove, int target)
 {
-    //
+    TreeNode *temp; // 제거용 임시 노드 포인터 변수.
+
     if (remove->data == target) {
-        // 노드삭제
+        // 노드 삭제
+        // case 1. 자식노드가 없는 경우, 삭제 후 부모에게 -> NULL
+        if (remove->left == NULL && remove->right == NULL) {
+            free(remove);
+            return NULL;
+
+        }
+        // case 2 - 오른쪽 자식 노드 하나만 있는 경우.
+        else if (remove->left == NULL) {
+            temp = remove->right; // 제거 (remove->right) 하기전에 임시변수에 복사할당.
+            free(remove);
+            return temp;          // 오른쪽 자식 노드의 값을 리턴, 부모 에겐 왼쪽 오른쪽 모두 해당함.
+        }
+        // case 2 - 왼쪽 자식 노드 하나만 있는 경우
+        else if (remove->right == NULL) {
+            temp = remove->left;
+            free(remove);
+            return temp; // 왼쪽 자식 노드의 값을 리턴
+        }
+        // case 3 - 왼쪽/오른쪽 자식 노드 둘다 있는 경우
+        else { //  (remove->left != NULL && remove->right != NULL)
+            // (1-left) 왼쪽 : 최대값 찾기 -> GetMax();
+            temp = GetMaxValue(remove->left);
+            // (2) 최대값을 삭제할 노드에 대입하기
+            remove->data = temp->data; // 왼쪽 자식 중 최댓삽을 삭제한 노드 대입.
+            // (3) 부모로 이동한 자식노드 삭제하기 재귀.
+            remove->left = RemoveNode(remove->left, temp->data);
+        }
 
     } else if (remove->data > target) { // 왼쪽
+        // 재귀호출 (with left)
+        remove->left = RemoveNode(remove->left, target);
+
+    } else { // 오른쪽
+        // 재귀호출 (with right)
+        remove->right = RemoveNode(remove->right, target);
     }
+    return remove;
 }
 
 /// @brief main (BST, 이진검색트리)
@@ -117,6 +153,8 @@ int main(int argc, const char *argv[])
 
     // 검색 노드
     TreeNode *find = NULL;
+
+    int *origin;
 
     int data;
     int choice;
@@ -136,7 +174,7 @@ int main(int argc, const char *argv[])
 
                     printf("%d ", rnd);
                     fflush(stdout);
-                    usleep(200000);
+                    usleep(100000);
                     root = AddNode(root, rnd);
                 }
                 printf("\n");
@@ -148,11 +186,9 @@ int main(int argc, const char *argv[])
                 // 1. 자식노드가 없는 경우 -> 제거후 널 값을 리턴
                 // 2. 왼쪽 또는 오른쪽 자식 노드만 있는 경우줌
                 //     -> 자식노드를 임시변수에 저장 -> 삭제 -> 자식노드의 값을 부모와 연결
-                // 3. 자식노드가 둘다 있는 경우
-                //     -> 왼쪽 트리 : 가장 큰값을 부모에게 연결
-                //     -> 우측 트리 : 자식 중에 가장 작은 값 노드를 부모에 연결
+                // 3. 자식노드가 둘다 있는 경우 -> 왼쪽 트리의 가장 큰값을 부모에게 연결, 오른쪽은 볼필요 없음.
 
-                printf("\n\u27AD 삭제할 노드 입력\n\27AD");
+                printf("\n\u27AD 삭제할 노드 입력\n\u27AD ");
                 scanf("%d", &data);
                 root = RemoveNode(root, data);
 
@@ -191,9 +227,7 @@ int main(int argc, const char *argv[])
                 // 출력
                 // 중위 순회 (오름차순): 윈쪽 -> 부모 -> 오른쪽
                 printf("\u27AD 중위순회 출력 \n");
-                memmove
-
-                    DisplayAsc(root);
+                DisplayAsc(root);
 
             } break;
             case 0 : return 257;
@@ -251,11 +285,7 @@ void Clear(bool tf)
         - 왼쪽 자식노드만 있는 경우 :
         - 오른쪽 자식 노드만 있는 경우
         - 자식노드가 둘다 있는 경우
-            - 왼쪽 : 왼쪽 자식 노드 중에 최대값을 삭제 자리에 올림.
-            - 오른 쪽 :
-
-
-
+            - 왼쪽 : 왼쪽 자식 노드 중에 최대값을 삭제 자리에 올리고 올린 자식노드를 부모노드에 연결하여 줌.
  */
 
 /*
