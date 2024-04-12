@@ -1,9 +1,11 @@
+#include "../BootCamp/Playground/Snippets/Advenced.c"
 #include "../BootCamp/Playground/Snippets/ArithmeticOperators.c"
 #include "../BootCamp/Playground/Snippets/Array.c"
 #include "../BootCamp/Playground/Snippets/Array2D.c"
 #include "../BootCamp/Playground/Snippets/ArrayB.c"
 #include "../BootCamp/Playground/Snippets/ArrayPointer.c"
 #include "../BootCamp/Playground/Snippets/ArrayShift.c"
+#include "../BootCamp/Playground/Snippets/Ascii.c"
 #include "../BootCamp/Playground/Snippets/BinarySearchTree.c"
 #include "../BootCamp/Playground/Snippets/Bits.c"
 #include "../BootCamp/Playground/Snippets/Calculate.c"
@@ -43,8 +45,6 @@
 #include "../BootCamp/Playground/Snippets/RecursiveForLoop.c"
 #include "../BootCamp/Playground/Snippets/Scanf.c"
 #include "../BootCamp/Playground/Snippets/Shape.c"
-#include "../BootCamp/Playground/Snippets/Advenced.c"
-#include "../BootCamp/Playground/Snippets/Ascii.c"
 #include "../BootCamp/Playground/Snippets/StringConcat.c"
 #include "../BootCamp/Playground/Snippets/StringCopy.c"
 #include "../BootCamp/Playground/Snippets/StringToNumber.c"
@@ -107,3 +107,5 @@ void CreateRandomNumber();
 
 void Clock();
 void Hanoi(int n, const char *src, const char *use, const char *dest);
+
+void StringUtils();

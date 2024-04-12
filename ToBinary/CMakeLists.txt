@@ -1,14 +1,22 @@
-cmake_minimum_required(VERSION 3.29.1)
-project(Short)
-add_executable(Short main.c)
+cmake_minimum_required(VERSION 3.29.0)
+project(ToBinary)
+add_executable(ToBinary ToBinary.c)
 set(EXECUTABLE_OUTPUT_PATH "bin")
+
+# (add sub CMakeList.txt files)
+# add_subdirectory(app)
+# add_subdirectory(lib)
 
 # 실행파일 경로
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 
-set_target_properties(Short
+# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
+set_target_properties(ToBinary
     PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/lib"
     LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/lib"
