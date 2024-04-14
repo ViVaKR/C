@@ -10,7 +10,10 @@
 #include <string.h>         // strcpy, strlen 등 문자열 조작
 #include <time.h>           // 날짜와 시간으로 작업한는 기능
 #include <unistd.h>         // sleep(unsigned int)
-#define PI 3.141592
+
+#define PI           3.141592
+#define clear()      printf("\033[H\033[J");
+#define gotoxy(x, y) printf("\033[%d;%dH", (y), (x))
 
 int MakeRandom(int min, int max)
 {
@@ -696,6 +699,7 @@ void FloatToBinary(float num)
     } else {
         sign = 0;                       // 양수 처리
     }
+
     printf("실수 값 %f의 2진수 표현: %d ", num, sign);
     for (int i = FLT_MANT_DIG - 1; i >= 0; i--) {
         mantissa *= 2;
@@ -946,9 +950,6 @@ void push_loc(StackType *s, int r, int c)
     }
 }
 
-#define clear()      printf("\033[H\033[J");
-#define gotoxy(x, y) printf("\033[%d;%dH", (y), (x))
-
 void ShowHideCursor(bool show)
 {
 #define CSI "\e["
@@ -1010,7 +1011,6 @@ void MazeMovement()
 
 void MazeRun()
 {
-
     DrawMap();
     MazeMovement();
     getchar();
@@ -1045,15 +1045,148 @@ void MazeRun()
 
 // End Maze
 
+void GreetNight()
+{
+    printf("Good, night!\n");
+}
+void GreetEvening()
+{
+    printf("Good evening!\n");
+}
+
+void GreetMorning()
+{
+    printf("Good morning!\n");
+}
+
+void Greet(void (*greeter)())
+{
+    greeter();
+}
+
+int PtrAdd(int a, int b, char op)
+{
+    int result = 0;
+    switch (op) {
+        case '+': result = a + b; break;
+        case '-': result = a - b; break;
+        case '*': result = a * b; break;
+        case '/': result = a / b; break;
+
+        default : result = a ^ b; break;
+    }
+    return result;
+}
+
+void Calulater(int (*Print)(int, int, char), int a, int b, char op)
+{
+    printf("%d\n", PtrAdd(a, b, op));
+}
+
+void FunctionPointer()
+{
+
+    // Function Pointer Trigger
+    Greet(GreetMorning);
+    Greet(GreetEvening);
+    Greet(GreetNight);
+    Calulater(PtrAdd, 10, 30, '*');
+}
+
+void InputItemsSwap()
+{
+    // 배열 5개 짜리 선언
+    const int arraySize = 5;
+    int array[arraySize];
+
+    // 각각 입력 받기
+    printf("\n\nPlease Repeat (%d) Times For Array Itmes\n", arraySize);
+    for (int i = 0; i < arraySize; i++) {
+        printf("\u27A5 ");
+        scanf("%d", array + i);
+    }
+    printf("\n");
+
+    // 합계내기
+    int sum = 0;
+    for (int i = 0; i < arraySize; i++) {
+        sum += *(array + i);
+    }
+    printf("sum of all values = %d\n", sum);
+    printf("\nOriginal Array\n\u27A5 ");
+    for (int i = 0; i < arraySize; i++) {
+        printf("%d ", *(array + i));
+    }
+    printf("\n");
+
+    // 스왑 하기 (Swap, 첫번째와 막지막 요소간 비트연산으로 교체하기)
+    *(array) ^= *(array + arraySize - 1);
+    *(array + arraySize - 1) ^= *(array);
+    *(array) ^= *(array + arraySize - 1);
+    printf("\nSwap ( array + 0 ) vs ( array + arraySize - 1 )\n\u27a5 ");
+    for (int i = 0; i < arraySize; i++) {
+        printf("%d ", *(array + i));
+    }
+    printf("\n");
+}
+
+void Array2D()
+{
+    int a1[] = {1, 2, 3};
+    // *(a1 + 0) == a1[0] , *(a1 + 1) == a1[1], *(a1 + 2) == a[2]...역참조 연산자.
+    // 1차원 배열은 포인터 1개로 만들어짐.
+    // 배열의 인덱스 .
+
+    int a2[] = {40, 555, 62, 12, 34, 56, 77};
+    int a3[] = {71, 84, 96, 55};
+    int a4[] = {121, 162};
+
+    // 1차원이 여러개 있는 것이
+    // 2차원 배열
+    // 포인터 배열 선언
+
+    int *arr[4];
+    arr[0] = a1;
+    arr[1] = a2;
+    arr[2] = a3;
+    arr[3] = a4;
+
+    printf("%d, %d\n", *(arr[1] + 3), *(*(arr + 1) + 3)); // -> 12
+
+    int b[3][2] = {
+        {1, 2},
+        {23456, 391},
+        {456, 78}};
+
+    int(*p)[2];
+    p = b;
+
+    // index [0..] : 배열의 역참조.
+    printf("%d, %d, %d, %d, %d, %d\n", *(a2 + 1), //
+           *(arr[1] + 1),                         //
+           (*(p + 1)[0]),                         //
+           *(p[2] + 0),                           //
+           *(*(p + 0) + 1),
+           p[0][1]);                              // (p[0][1])
+}
+
+void ConstPointer()
+{
+    // [ 포인터 상수화 ]
+    // 포인터가 변경할 수 있는 값은
+    // 1. 자신의 값과 ,
+    // 2. 자신이 가리키고 있는 값. 두가지.
+    int t = 3;
+    int k = 5;
+    int temp = 12;
+    const int *ptrA = &t;          // 포인터가 가리키는 메모리 값을 상수화 하는 것. -> ( *ptr = 3; 불가능함. )
+    int *const ptrB = &k;          // 포인터 자신의 값 (주소)을 상수화 하는 것 -> ( ptrB = &abc; 불가능함, 일편단심 )
+    const int *const ptrT = &temp; // 두가지 모두 상수화 하는 것. ( 주소와 값 두가 모두 변결 불가능 )
+}
+
 int main(int argc, char *argv[])
 {
-    // PT p1 = {10, 20}, p2 = {30, 40}, p3 = {0, 0};
-    // calcPoint(&p1, &p2, &p3);
-    // printf("(%d, %d)\n", p3.x, p3.y);
-    // return 0;
-
     int choice;
-
     while (choice != 200) {
         Menu();
         printf("\n메뉴선택\n>> ");
@@ -1061,7 +1194,6 @@ int main(int argc, char *argv[])
         fflush(stdin);
         system("clear");
         int count;
-
         switch (choice) {
             case 1: { // 맨 앞에 노드 추가, 생성된 역순으로 연결. (LIFO) : 스택 (Stack)
                 printf("=> 생성할 노드의 수: ");
@@ -1082,7 +1214,6 @@ int main(int argc, char *argv[])
                 sleep(1);
                 printf("첫번째 노드 ( %p ) 제거가 완료되었습니다.\n", p);
             } break;
-
             case 6: RemoveNodeByValue(); break;
             case 7: { // Node Memory Free
                 int complete = LinkedListMemoryFree();
@@ -1124,24 +1255,19 @@ int main(int argc, char *argv[])
             case 24: GetPrimeNumber(100);
             case 25: {
                 printf("Stack Start\n");
-
                 int size = 10;
                 Stack *s = CreateStack(size);
-
                 for (size_t i = 1; i <= size * 3; i++) {
                     Score sc = (Score)i;
                     Push(sc, s);
                 }
-
                 for (int i = 1; i <= s->max; i++) {
                     Score score = (Score)Pop(s);
                     printf("=> %p\n", score);
                 }
-
                 printf("\n");
                 DestroyStack(s);
                 printf("끝..");
-
             } break;
             case 26: JisikIn(); break;
             case 27: // TODO;
@@ -1159,8 +1285,16 @@ int main(int argc, char *argv[])
                 MazeRun();
             } break;
 
-            default: break;
+            case 30: {
+                Array2D();
+            }; break;
+
+            case 31: InputItemsSwap(); break;
+            case 32: FunctionPointer(); break;
+            case 33: ConstPointer(); break;
+            default: return 123;
         }
+
         getchar();
     }
 
@@ -1201,15 +1335,19 @@ void Menu()
         " 26. Movies",
         " 27. Matrix",
         " 28. SelfXor",
+        " 29. Maze",
+        " 30. Array 2D",
+        " 31. InputItemSwap",
+        " 32. Function Pointer"
+        " 33. Constant Poointer"
         "200. 프로그램 종료"};
 
     int count = sizeof(items) / sizeof(*items);
-    printf("== Menus (%d) ==\n", count);
 
-    for (size_t i = 0; i < count; i++) {
+    printf("== Menus ( %d ) ==\n", count);
 
+    for (size_t i = 0; i < count; i++)
         printf("%s\n", items[i]);
-    }
 }
 
 /** C
