@@ -10,7 +10,6 @@
 #include <string.h>         // strcpy, strlen 등 문자열 조작
 #include <time.h>           // 날짜와 시간으로 작업한는 기능
 #include <unistd.h>         // sleep(unsigned int)
-
 #define PI 3.141592
 
 int MakeRandom(int min, int max)
@@ -808,7 +807,8 @@ void DestroyStack(Stack *s)
 }
 
 // 국가 타입별 고유번호 설정
-typedef enum Nation {
+typedef enum Nation
+{
     Korea = 1,
     USA = 2,
     Venus = 3,
@@ -858,106 +858,194 @@ void JisikIn()
         printf("\u21E2 %s\n", genre[i]);
 }
 
-// 전치행렬
-#define MAX_TERMS 100
+void SelfXor()
+{
+
+    int a = 456;
+    int rs = a ^ a;
+    printf("%d\n", rs);
+}
+
+// Maze
+#define MAX_STACK_SIZE 100
+#define MAZE_SIZE      6
+
 typedef struct
 {
-    int row;
-    int col;
-    int value;
-} element;
+    short r; // 2바이트, 0과 1
+    short c;
+} element;   // element라는 이름의 구조체, 전역함수
 
 typedef struct
 {
-    element data[MAX_TERMS];
-    int rows;  // 행의 개수
-    int cols;  // 열의 개수
-    int terms; // 항의 개수
-} SparseMatrix;
+    element data[MAX_STACK_SIZE];
+    int top;
+} StackType; // 전역함수
 
-SparseMatrix MatrixTranspose(SparseMatrix a)
+void init_struct(StackType *s)
 {
-    SparseMatrix matrix;
+    s->top = -1; // 스택 초기화
+}
 
-    int index; // 행렬 b에서 현재 저장 위치
-    matrix.rows = a.cols;
-    matrix.cols = a.rows;
-    matrix.terms = a.terms;
+int is_empty(StackType *s)
+{
+    return (s->top == -1); // 비었을 때
+}
 
-    if (a.terms > 0) {
-        index = 0;
-        for (int c = 0; c < a.cols; c++) {
-            for (int i = 0; i < a.terms; i++) {
-                if (a.data[i].col == c) {
-                    matrix.data[index].row = a.data[i].col;
-                    matrix.data[index].col = a.data[i].row;
-                    matrix.data[index].value = a.data[i].value;
-                    index++;
-                }
-            }
+int is_full(StackType *s)
+{
+    return (s->top == (MAX_STACK_SIZE - 1)); // 다 채웠을 때
+}
+
+void push(StackType *s, element item)
+{
+    if (is_full(s)) {
+        fprintf(stderr, "스택 포화 에러\n"); // 다 채운상태면 에러
+        return;
+    } else s->data[++(s->top)] = item;       // 1 더하고 push한 것이 top
+}
+
+element pop(StackType *s)
+{
+    if (is_empty(s)) {
+        fprintf(stderr, "스택 공백 에러\n"); // 빈 상태면 에러
+        exit(1);                             // exit(1) = 강제종료, <stdlib.h> 필요
+    } else return s->data[(s->top)--];       // pop하고 1 빼서 가장 위의 값이 top
+}
+
+element peek(StackType *s)
+{
+    if (is_empty(s)) {
+        fprintf(stderr, "스택 공백 에러\n"); // 빈 상태면 에러
+        exit(1);
+    } else return s->data[s->top];           // peek = top
+}
+
+element here = {1, 0}, entry = {1, 0};
+
+char maze[MAZE_SIZE][MAZE_SIZE] = {
+    // = 없어도 문제 없음
+    //
+    {'1', '1', '1', '1', '1', '1'},
+    {'e', '0', '1', '0', '0', '1'},
+    {'1', '0', '0', '0', '1', '1'},
+    {'1', '0', '1', '0', '1', '1'},
+    {'1', '0', '1', '0', '0', 'x'},
+    {'1', '1', '1', '1', '1', '1'},
+};
+
+void push_loc(StackType *s, int r, int c)
+{
+    if (r < 0 || c < 0) return;                 // 미로를 벗어났을 경우,return; = 함수를 끝냄 -> 아무값도 저장되지 않음
+    if (maze[r][c] != '1' && maze[r][c] != '.') // 행,열이 1이 아니고 .도 아닐 때만 push
+    {
+        element tmp;                            // push 함수에 넣기 위해 (r,c)를 tmp로 축소하고 element로 선언
+        tmp.r = r;
+        tmp.c = c;
+        push(s, tmp);                           // top = tmp[r][c]
+    }
+}
+
+#define clear()      printf("\033[H\033[J");
+#define gotoxy(x, y) printf("\033[%d;%dH", (y), (x))
+
+void ShowHideCursor(bool show)
+{
+#define CSI "\e["
+    if (show) {
+        fputs(CSI "?25h", stdout);
+    } else {
+        fputs(CSI "?25l", stdout);
+    }
+#undef CSI
+}
+
+void DrawMap()
+{
+    clear();
+    ShowHideCursor(false);
+    // TODO
+    //<esc>[n;mH:   Move cursor to absolute coordinates. n: line (1=top), m: column (1=left). n and m defaults to 1 if absent.
+    for (int i = 0; i < MAZE_SIZE; i++) {
+        for (int j = 0; j < MAZE_SIZE; j++) {
+
+            char ah = maze[i][j];
+            char *c = ah == '1' ? "\u274f" : (ah == 'e' ? "\u27ab" : (ah == 'x' ? "\u2766" : "\u2b58"));
+            printf("%s ", c);
+            fflush(stdout);
+            usleep(50000);
         }
+        printf("\n");
     }
-    return matrix;
+
+    printf("\033[2;1H\u27ab");
+    ShowHideCursor(true);
 }
 
-void matrix_print(SparseMatrix a)
+void MazeMovement()
 {
-    printf("====================\n");
-    for (int i = 0; i < a.terms; i++) {
-        printf("(%d, %d, %d) \n", a.data[i].row, a.data[i].col, a.data[i].value);
+    ShowHideCursor(true);
+    int x = 1;
+    int y = 1;
+    for (int i = 1; i <= MAZE_SIZE; i++) {
+        for (int j = 1; j <= MAZE_SIZE; j++) {
+            //     가로 , 세로
+            gotoxy(x, y);
+            printf("\u27ab");
+            fflush(stdout);
+            usleep(500000);
+            x += 2;
+        }
+        printf("\n");
+        x = 1;
+        y += 1;
     }
-    printf("====================\n");
+
+    // // print current location of x.
+    // printf("current location of x is:%d\n", wherex());
+
+    // // print the current location of y.
+    // print("currentlocation of y is:%d", wherey());
 }
 
-void MatrixRunner()
+void MazeRun()
 {
 
-    // int trans[cols][rows];
+    DrawMap();
+    MazeMovement();
+    getchar();
+    int r, c;                           // 행,열 선언
+    StackType s;                        // 지역변수 -> &s을 통해 해당 함수의 s(주소)에 main 함수의 s(주소)를 넣어 지역변수여도 해당함수에 간섭이 가능
 
-    // for (int row = 0; row < rows; row++) {
-    //     for (int col = 0; col < cols; col++) {
-    //         trans[col][row] = matrix[row][col];
-    //     }
-    // }
-    // for (int row = 0; row < rows; row++) {
-    //     for (int col = 0; col < cols; col++) {
-    //         printf("%d\t%d\t%d", trans[col][row])
-    //     }
-    // }
+    init_struct(&s);                    // 스택 초기화
+    here = entry;                       // 현재위치 = 시작위치
+    printf("(%d,%d) ", here.r, here.c); // 반복되기 전에 시작위치 출력
 
-    int m = 3;
-    int n = 3;
-    int matrix2[3][3] = {
-        {1, 2, 3},
-        {4, 5, 6},
-        {7, 8, 9}};
+    while (maze[here.r][here.c] != 'x') // x 아니면 반복, 괄호 안의 maze 함수의 값도 반복을 통해 값이 변함 -> 책에 있는 maze_print 함수 필요없음
+    {
+        r = here.r;                     // 간편하게 축소
+        c = here.c;
+        maze[r][c] = '.';               // 현재위치를 .으로 표현, 굳이 .아니어도 됨
 
-    // printf("== (원본) ==\n");
-    // for (int i = 0; i < n; i++) {
-    //     for (int j = 0; j < m; j++) {
-    //         printf("%d\t", matrix2[i][j]);
-    //     }
-    //     printf("\n");
-    // }
+        push_loc(&s, r, c - 1);
+        push_loc(&s, r, c + 1);
+        push_loc(&s, r - 1, c); // 다음위치의 이동경로(4방)
+        push_loc(&s, r + 1, c); // push_loc함수에서 갈 수 있는 경로만 push됨(필터링)
 
-    // printf("== (전치) ==\n");
-    // int transpose[3][3];
+        if (is_empty(&s))       // 스택이 비어도 출구를 찾지 못했을 때 -> 오류 대비
+        {
+            printf("실패\n");
+            return;
+        } else here = pop(&s);              // pop을 통하여 이동, push후 pop된 것을 출력하기 때문에 시작위치 while문 전에 미리 출력해야함
 
-    // for (int i = 0; i < m; i++) {
-    //     for (int j = 0; j < n; j++) {
-    //         transpose[i][j] = matrix2[j][i];
-    //     }
-    // }
-
-    // for (int i = 0; i < n; i++) {
-    //     for (int j = 0; j < m; j++) {
-    //         printf("%d\t", transpose[i][j]);
-    //     }
-    //     printf("\n");
-    // }
+        printf("(%d,%d) ", here.r, here.c); // 경로 출력
+    }
+    printf("성공\n");
 }
 
-int main(void)
+// End Maze
+
+int main(int argc, char *argv[])
 {
     // PT p1 = {10, 20}, p2 = {30, 40}, p3 = {0, 0};
     // calcPoint(&p1, &p2, &p3);
@@ -1040,28 +1128,42 @@ int main(void)
                 int size = 10;
                 Stack *s = CreateStack(size);
 
-                for (int i = 1; i <= size * 3; i++) {
-                    Score score = (Score)i;
-                    Push(score, s);
+                for (size_t i = 1; i <= size * 3; i++) {
+                    Score sc = (Score)i;
+                    Push(sc, s);
                 }
 
                 for (int i = 1; i <= s->max; i++) {
                     Score score = (Score)Pop(s);
-                    printf("=> %ld\n", score);
+                    printf("=> %p\n", score);
                 }
 
                 printf("\n");
                 DestroyStack(s);
                 printf("끝..");
 
-
             } break;
             case 26: JisikIn(); break;
-            case 27: MatrixRunner(); break;
+            case 27: // TODO;
+                break;
+            case 28: {
+                SelfXor();
+                int n;
+                int k;
+
+                printf("Enterr a number: ");
+                scanf("%d", &n);
+                printf("%d - %d\n", n, k);
+            } break;
+            case 29: {
+                MazeRun();
+            } break;
 
             default: break;
         }
+        getchar();
     }
+
     printf("\n*** Program Exited ***\n");
     return 0;
 } /// end main
@@ -1098,6 +1200,7 @@ void Menu()
         " 25. Stack",
         " 26. Movies",
         " 27. Matrix",
+        " 28. SelfXor",
         "200. 프로그램 종료"};
 
     int count = sizeof(items) / sizeof(*items);

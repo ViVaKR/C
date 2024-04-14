@@ -1,3 +1,4 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -28,7 +29,6 @@ void MakeBinary(int n, int i, int digit)
 
 int main()
 {
-    system("clear");
     int decimal;
     while (decimal != 0) {
         printf("2진수로 변경할 정수를 입력하세요.\n\u27AD ");
@@ -41,5 +41,15 @@ int main()
         printf("\n0의 갯수 = ( %d )개, 1의 갯수 => ( %d )개\n", digit - sum, sum);
     }
 
+    // [ 알파벳만 추리기 ]
+    // 원본 혼합된 문자열.
+    char s[100] = "x!  \t@ ? za\tq h%^_-$e=l!l    o, w\no$      r\tl^d";
+    char str[100]; // 알파벳만 추릴 배열
+    int t = 0;
+    for (int i = 0; i < 50; i++) {
+        int result = isalpha(s[i]);
+        if (result != 0) str[t++] = s[i];
+    }
+    printf("%s\n", str);
     return 0;
 }
