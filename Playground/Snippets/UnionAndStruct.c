@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-#include "../headers/vivstd.h"
-
 /// @brief 메모리를 공유하는 공용체
-union SharedType {
+union SharedType
+{
     int iData;
     float fData;
 };
@@ -33,13 +31,11 @@ struct BitTypes
 union BitData
 {
     struct BitTypes bit_data; // 1바이트
-    unsigned char byte_data; // 1바이트
+    unsigned char byte_data;  // 1바이트
 };
 
-
 /// @brief 공용체를 이용한 메모리 절약 데모
-void
-  UnionAndStruct()
+void UnionAndStruct()
 {
     /****** UnionAndStruct *****/
 
@@ -67,28 +63,27 @@ void
     bit_7                       bit_1
     */
 
-   //* 사용예시 1
-   unsigned char temp;
-   memcpy(&temp, &data, 1);
-   printf("temp = %x\n",temp);
+    //* 사용예시 1
+    unsigned char temp;
+    memcpy(&temp, &data, 1);
+    printf("temp = %x\n", temp);
 
     //* 사용예시 2
     union BitData bitData;
     bitData.byte_data = 0x63;
-    
+
     /* 0x63
     |0|1|1|0|0|0|1|1|
     */
-    
+
     printf("bitData =  %x, %x\n", bitData.bit_data, bitData.bit_data.bit_1);
-    
-    
 }
-=======
+== == == =
 #include "../headers/vivstd.h"
 
-/// @brief 메모리를 공유하는 공용체
-union SharedType {
+             /// @brief 메모리를 공유하는 공용체
+    union SharedType
+{
     int iData;
     float fData;
 };
@@ -99,10 +94,6 @@ struct MyData
     char type;
     union SharedType data;
 };
-
-
-
-
 
 /// @brief 비트 단위 정보를 다룰 수 있도록 선언된 구조체
 struct BitTypes
@@ -123,13 +114,11 @@ struct BitTypes
 union BitData
 {
     struct BitTypes bit_data; // 1바이트
-    unsigned char byte_data; // 1바이트
+    unsigned char byte_data;  // 1바이트
 };
 
-
 /// @brief 공용체를 이용한 메모리 절약 데모
-void
-  UnionAndStruct()
+void UnionAndStruct()
 {
     /****** UnionAndStruct *****/
 
@@ -157,21 +146,19 @@ void
     bit_7                       bit_1
     */
 
-   //* 사용예시 1
-   unsigned char temp;
-   memcpy(&temp, &data, 1);
-   printf("temp = %x\n",temp);
+    //* 사용예시 1
+    unsigned char temp;
+    memcpy(&temp, &data, 1);
+    printf("temp = %x\n", temp);
 
     //* 사용예시 2
     union BitData bitData;
     bitData.byte_data = 0x63;
-    
+
     /* 0x63
     |0|1|1|0|0|0|1|1|
     */
-    
+
     printf("bitData =  %x, %x\n", bitData.bit_data, bitData.bit_data.bit_1);
-    
-    
 }
 >>>>>>> 4e6914f (update dmeo/)

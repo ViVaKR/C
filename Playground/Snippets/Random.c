@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-#include "../headers/vivstd.h"
-
 void Random()
 {
     //! 랜덤함수 (범위설정)
@@ -18,8 +15,6 @@ void Random()
     printf("Randeom %d\n", rand() % (10 + 1 - 5) + 5);
     printf("Randeom %d\n", rand() % (10 + 1 - 5) + 5);
 }
-=======
-#include "../headers/vivstd.h"
 
 void Random()
 {
@@ -40,4 +35,3 @@ void Random()
     printf("Randeom %d\n", rand() % (10 + 1 - 5) + 5);
     printf("Randeom %d\n", rand() % (10 + 1 - 5) + 5);
 }
->>>>>>> 4e6914f (update dmeo/)

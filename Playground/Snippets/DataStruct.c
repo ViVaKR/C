@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-#include "../headers/vivstd.h"
 
 /// @brief 데이터 모델
 typedef struct
@@ -17,8 +15,8 @@ typedef struct ListNode
     struct ListNode *next;
 } NL;
 
-NL *HomeNL;// 시작 노드
-NL *LastNL;// 최상위 노드
+NL *HomeNL; // 시작 노드
+NL *LastNL; // 최상위 노드
 
 /// @brief 프린트 노드
 void PrintNL()
@@ -28,18 +26,18 @@ void PrintNL()
     while (temp != NULL) {
         printf("\n*******************************\n");
         printf(
-          "Id\t:\t%p\n"
-          "Name\t:\t%s\n"
-          "Age\t:\t%d 살\n"
-          "Height\t:\t%.1f cm\n"
-          "Score\t:\t%d\n"
-          "[Next]\t:\t%p\n",
-          temp->profile.Id,
-          temp->profile.name,
-          temp->profile.age,
-          temp->profile.height,
-          temp->profile.score,
-          temp);
+            "Id\t:\t%p\n"
+            "Name\t:\t%s\n"
+            "Age\t:\t%d 살\n"
+            "Height\t:\t%.1f cm\n"
+            "Score\t:\t%d\n"
+            "[Next]\t:\t%p\n",
+            temp->profile.Id,
+            temp->profile.name,
+            temp->profile.age,
+            temp->profile.height,
+            temp->profile.score,
+            temp);
         temp = temp->next;
         printf("\n*******************************\n");
     }
@@ -81,7 +79,7 @@ void DataStruct()
 {
     printf("\n***** NODE Database *****\n");
     srand((unsigned int)time(NULL));
-    char *name[6] = { "장길산", "임경업", "임꺽정", "한아름", "사임당", "홍영식" };
+    char *name[6] = {"장길산", "임경업", "임꺽정", "한아름", "사임당", "홍영식"};
 
     HomeNL = NULL;
     LastNL = NULL;
@@ -95,7 +93,7 @@ void DataStruct()
         } else {
             LastNL->next = new;
         }
-        LastNL = new;// 최상위 노드
+        LastNL = new; // 최상위 노드
     }
 
     //* printf("\n***** 출력 *****\n");
@@ -104,8 +102,6 @@ void DataStruct()
     //* printf("\n***** 삭제 *****\n");
     ReleaseNL();
 }
-=======
-#include "../headers/vivstd.h"
 
 /// @brief 데이터 모델
 typedef struct
@@ -123,8 +119,8 @@ typedef struct ListNode
     struct ListNode *next;
 } NL;
 
-NL *HomeNL;// 시작 노드
-NL *LastNL;// 최상위 노드
+NL *HomeNL; // 시작 노드
+NL *LastNL; // 최상위 노드
 
 /// @brief 프린트 노드
 void PrintNL()
@@ -134,18 +130,18 @@ void PrintNL()
     while (temp != NULL) {
         printf("\n*******************************\n");
         printf(
-          "Id\t:\t%p\n"
-          "Name\t:\t%s\n"
-          "Age\t:\t%d 살\n"
-          "Height\t:\t%.1f cm\n"
-          "Score\t:\t%d\n"
-          "[Next]\t:\t%p\n",
-          temp->profile.Id,
-          temp->profile.name,
-          temp->profile.age,
-          temp->profile.height,
-          temp->profile.score,
-          temp);
+            "Id\t:\t%p\n"
+            "Name\t:\t%s\n"
+            "Age\t:\t%d 살\n"
+            "Height\t:\t%.1f cm\n"
+            "Score\t:\t%d\n"
+            "[Next]\t:\t%p\n",
+            temp->profile.Id,
+            temp->profile.name,
+            temp->profile.age,
+            temp->profile.height,
+            temp->profile.score,
+            temp);
         temp = temp->next;
         printf("\n*******************************\n");
     }
@@ -187,7 +183,7 @@ void DataStruct()
 {
     printf("\n***** NODE Database *****\n");
     srand((unsigned int)time(NULL));
-    char *name[6] = { "장길산", "임경업", "임꺽정", "한아름", "사임당", "홍영식" };
+    char *name[6] = {"장길산", "임경업", "임꺽정", "한아름", "사임당", "홍영식"};
 
     HomeNL = NULL;
     LastNL = NULL;
@@ -201,7 +197,7 @@ void DataStruct()
         } else {
             LastNL->next = new;
         }
-        LastNL = new;// 최상위 노드
+        LastNL = new; // 최상위 노드
     }
 
     //* printf("\n***** 출력 *****\n");

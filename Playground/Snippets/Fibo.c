@@ -1,4 +1,3 @@
-#include "../../headers/vivstd.h"
 #include <curses.h>
 
 long fibo(long num);
@@ -22,7 +21,7 @@ void FiboStart()
 /// @return
 long fibo(long num)
 {
-    count++;// 순회 횟수 카운팅 목적
-    if (num <= 1) return num;// 1 = 1, 0 = 0
+    count++;                  // 순회 횟수 카운팅 목적
+    if (num <= 1) return num; // 1 = 1, 0 = 0
     return fibo(num - 1) + fibo(num - 2);
 }

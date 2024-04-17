@@ -1,5 +1,9 @@
-#include "../headers/vivstd.h"
-
+#include <math.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
 void PrintBitsArray(char bits)
 {
     for (int i = 8 - 1; i >= 0; --i) {
@@ -207,8 +211,6 @@ void Etc()
             printf("Something else\n");
     }
 }
-=======
-#include "../headers/vivstd.h"
 
 /// @brief 비트 프린트
 /// @param bits

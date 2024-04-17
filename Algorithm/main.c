@@ -1,4 +1,5 @@
 #include <_ctype.h>
+#include <locale.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -718,8 +719,26 @@ void StringUtils()
 
     // fclose(file);
 }
+
+long long memo[100];
+long long Fibonacci(int n);
+long long FibonacciMemoization(int sum)
+{
+    if (memo[sum] == -1)
+        memo[sum] = Fibonacci(sum);
+    return memo[sum];
+}
+
+long long Fibonacci(int n)
+{
+    return //     첫번째 달                       두번째
+        n <= 1 ? n : FibonacciMemoization(n - 1) + FibonacciMemoization(n - 2);
+}
+
 int main(void)
 {
+    setlocale(LC_NUMERIC, "");
+
     srand(time(NULL));
     // 정렬
     int target[MakeRandom(10, 15)];
@@ -747,13 +766,23 @@ int main(void)
     QuickSort(target, 0, size - 1, 'P'); // 퀵정렬
     Print(target, size, "퀵 정렬");
 
-    //
     VariableSize();
 
     // 중복제거 정렬
     printf("\n");
     int temp[] = {1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4};
     ToUniqueSortedArray(temp, 16);
+
+    // 캐시 (memoization array) 초기화
+    for (int i = 20; i <= 50; i++) {
+        for (int j = 0; j < 100; j++)
+            memo[j] = -1;
+
+        int month = i;                            // 3 ~ 50 개월
+        long long sumOfRebbit = Fibonacci(month); // 각 개월 마다 결과
+        // 출력
+        printf("( \033[31m%d\033[0m ) 개월 후 토끼의 전체 개체수 합 : ( \033[32m%'20lld\033[0m )\n", month, sumOfRebbit);
+    }
 
     return 0;
 }
