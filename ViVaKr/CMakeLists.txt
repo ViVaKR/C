@@ -1,28 +1,19 @@
-cmake_minimum_required(VERSION 3.29.1)
-project(vivakr)
+cmake_minimum_required(VERSION 3.1...3.29.2)
+project(
+    vivakr
+    VERSION 1.0
+    LANGUAGES C
+)
+
+set(CMAKE_C_STANDARD 23)
+
 add_executable(vivakr vivakr.c)
 set(EXECUTABLE_OUTPUT_PATH "bin")
 
-# (add sub CMakeList.txt files)
-# add_subdirectory(app)
-# add_subdirectory(lib)
-
 # 실행파일 경로
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
-
-# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 set_target_properties(vivakr
     PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/lib"
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/lib"
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin"
 )
-
-message(PROJECT_BINARY_DIR="${PROJECT_BINARY_DIR}")
-message(PROJECT_SOURCE_DIR="${PROJECT_SOURCE_DIR}")
-

@@ -115,6 +115,7 @@ void StringCompressStart()
     printf("%s\n", output);
 }
 
+/// @brief 노드 공용
 typedef struct vnode
 {
     int value;
@@ -146,7 +147,6 @@ node *RemoveFrontNode()
 /// (3) Print All Nodes
 void DisplayNode()
 {
-
     int count = 0;
     node *current;
 
@@ -187,7 +187,6 @@ int GetNodeCount()
 /// Remove All Nodes, Moemory Free
 int LinkedListMemoryFree()
 {
-
     // 링크드리스트 노드 메모리 해제 작업
     // 선두 노드를 제거하는 작업을 반복하는 알고리즘.
     node *temp;
@@ -204,7 +203,7 @@ int LinkedListMemoryFree()
 
         int remained = GetNodeCount();
         printf("남아있는 노드 =>\t%d \n", remained);
-        sleep(1);
+        usleep(50000);
     }
     return count;
 }
@@ -216,12 +215,12 @@ void LinkedListStartAtLast(int count)
 // (2) LIFO 노드 만들기
 void InsertFrontNode(int data)
 {
-    node *newNode;
-    newNode = (node *)malloc(sizeof(node));
-    newNode->value = data;
-    newNode->next = NULL;
+    node *newNode;                          // 새로운 노드 포인터 선언
+    newNode = (node *)malloc(sizeof(node)); // 새로운 노드에 힙 메모리 할당. (객체 생성)
+    newNode->value = data;                  // 새로운 노드에 일단 값은 할당.
+    newNode->next = NULL;                   // 아직 다음 노드 연결 전...
 
-    if (head == NULL) { // 처음 연결시..
+    if (head == NULL) {                     // head 가 없을 때? 즉, 처음 연결시..
         head = newNode;
         char *address = (char *)malloc(32);
         sprintf(address, "%11p", head->next);
@@ -230,10 +229,11 @@ void InsertFrontNode(int data)
         free(address);
         return;
     }
+    // 여기 왔다는 것은 -> header 가 있고.. front 에 삽입하는 장면 ...
 
-    newNode->next = head;
-    head = newNode;
-    printf("일반 노드 연결\t=> %11p (%5d)\n", head->next, head->value);
+    // (header 와 기존 선두 node 앞에 노드 삽입할 때 장면) ... 순서가 매우 중요함.
+    newNode->next = head; // head 노드 포인터가 가르키는 기존 선두 노드 주소를 새로 만든 뉴 노드 next 가 가르키게 리 매핑한후.
+    head = newNode;       // 해더 즉, 루드가 가르키는 노드 시작 포인터를 -> 새로 만든 newNode 로 갱신하는 장면.
 
 } // End InsertFrontNode
 
@@ -249,7 +249,9 @@ void InsertTailNode(int data)
     if (head == NULL) {
         head = newNode;
         char *address = (char *)malloc(32);
+
         sprintf(address, "%11p", head->next);
+
         printf("( %3d ) 첫 노드 연결\t=> %s (%5d)\n", ++count, head->next == NULL ? "Started Head" : address, head->value);
         return;
     }
@@ -259,19 +261,140 @@ void InsertTailNode(int data)
     current = head;
 
     while (current->next != NULL) {
-        current = current->next;
+        // 이곳에 왔다는의미는 current->next 에 다음 노드 포인터인 주소값이 있다는 의미이므로.
+        // 마지막 노드가 아니라는 의미이기도 하므로.. 그
+        //  current-> next 에 저장된 그다음 노드 주소 를
+        // 지금 현재 노드에 다시 갱신 할당하면서
+        // 자연스럽게 current node를 한칸 씩 전진 시키는 장면이됨.
+        // 요약 : current->next 가 null 인 마지막 노드를 찾는 여정.
+        current = current->next; // current++
     }
 
-    // 마지막 노드와 새노드를 연결
+    // 여기에 왔다는 것은
+    // current->next 가 null 인 즉, current 가 마지막 노드 포인터가 됨.
+    // 그래서 그, 마지막 노드와 새노드를 연결하는 장면.
     current->next = newNode;
     printf("( %3d ) 일반 노드 연결 (후미)\t=> %11p (%5d)\n", GetNodeCount(), current->next, newNode->value);
 }
 
-// Linked List
+// (3) 중간 노드 삽입
+void InsertMiddleNode(int data)
+{
+    /* 치장 파트 (신경 쓸 필요 없음.)*/
+    printf("\n삽입할 데이터 : \033[31m( %d )\033[0m \n\u27a5 Ready... ", data);
+    fflush(stdout);
+    usleep(2000000);
+    printf("\033[31m \nGo...\n\033[0m");
+
+    /* Start */
+    node *newNode = (node *)malloc(sizeof(node));
+    newNode->value = data;
+    newNode->next = NULL;
+
+    if (head == NULL)   // 아직 연결리스트가 만들어 지지 않은 상태.(if true )
+    {
+        head = newNode; // 처음 샘플 헤드 값이 -> [ 32 ] 인 경우
+        return;         // 일단 헤더 만 만들고 더이상 진행 할 필요 없으므로 함수 종료.
+    }
+
+    /*  [ 3가지 상황별 분해 ]
+            1. 가장 작은 값을 선두에 삽입하는 상황
+            2. 중간에 삽입하는 상황
+            3. 가장 큰값을 끝에 추가하는 상황.
+     */
+
+    //--> (1) 가장 작은 값 삽입
+    //        맨 앞에 넣어야 함으로 head 가 변경되어야 함으로. 조건 문으로 따로 뺌.
+    // e.g. | 32 | 99 | 122 | 인 현 상태에서 -> `8번 값` 노드를 선두에 삽입하는 시나리오.
+
+    if (head->value > newNode->value) // 물어봄?, 헤드 보다 새로운 노드의 값이 자그냐? -> 가장 작은 값이라는 의미.
+    {
+        //--> `head` 가 --> `32번` 주소를 가르키고 있는 상태에서
+        //--> `newNode` 가 --> `8번`을 가지고 온 상태.
+
+        /* 즉, 기존 32번 노드 앞에 추가해야 하는 상황 */
+
+        // 진행 ...
+        // 현재 탑 노드인 -> `32번 노드` 의 주소값을 알고 있는
+        // `head` 값을 -> `newNode->next` 에 먼저 할당하고...
+        newNode->next = head;
+
+        // 그 다음 head 주소를 `32번 노드 주소` 값에서..
+        // `8 번값 newNode` 주소로 갱신.
+        // 기존에 head 가 가르키던 값 `5 노드` 주소를 `3번 노드` 주소로 변경 갱신하는 장면.
+        head = newNode;
+        return; //--> 가장작은 값 넣기 끝 (함수 종료, 아래 중간값 및 가장 큰값 삽입 단계 진행 안함.)
+    } // (1) 끝.
+
+    //--> (2) 일반적인 경우, 중간에 끼워넣는 경우.
+    //    e.g | 8 | 32 | 99 | 122 | 인 현 상태에서 -> 50번 값 노드를 중간에 삽입하는 시나리오.
+    //    진행 : 앞에서 부터 순회하여 값을 비교 하는 절차가 필요함으로
+    //          임시 current 방문용 노드 를 만들어서 방문하는 노드로 하여 앞에서 부터 순회 방문 시작
+    //    행위 : curent 노드가 방문하는 노드마다 더 큰 값이 있는지 확인하는 판별 절차..
+    //          더 큰 값이 있으면? -> 그 값(더 큰값, 99)을 저장한 상태의 그 current node 를 똭 멈춰 버림.
+    //    그다음 : 32번 노드의 next 를 -> newNode 에 연결, newNode->next 에 -> 99번 노드를 포인팅 (연결) 하면 되는데?
+    //    ... but ???? ...
+    //    newNode->next 에 99번을 연결하는 것은 문제없으나? (current 가 알고 있음으로...)
+    //    32번 노드를 current 가 알지 못함으로, 32번을 newNode 에 연결하는 방법이 없음.
+    //    왜냐하면? -> 다음 주소는 next 에 있음으로 알수 있는데, 이전 주소는 알지 못하는 단일 연결노드,즉 싱글이므로...
+    //    그래서 .. 포인터를 하나 더 만들어야 함. -> 이전 주소를 저장하는 포인터 변수.
+    //    이름하여 -> 두둥 -> `prev`
+    //    하여 prev (한박자 뒤에 따라다니며 이전 주소 저장), current (천둥벌거숭이 노드) 두개의 임시 노드 생성. 후 진행.
+
+    // head 값으로 초기화 하는 것으로 시작.
+    // 즉, 3개의 노드 head, prev, current 가 같은 출발점에서 시작하기.
+    node *prev = head;
+    node *current = head;
+
+    // 이미 첫번째 노드는 위 (1) 번에서 걸러 내었으므로 제외 함. (첫 노드 보다는 크다는 의미이므로)
+    // 두번째 노드 부터 시작..
+    // e.g. Saved nodes => | 8 | 32 | 99 | 122 | 인 현 상태에서
+    //                            |`50`| 노드를 중간에 삽입하는 시나리오.
+    while (current->next != NULL) {
+        // newNode 가 값 50을 들고 온 상태 가정 시나리오...
+
+        // current 를 한박짜 먼저 움직여주는 장면
+        // 첫번째는 비교할 필요가 없으므로...바로 이동시킴..
+        // 위 sample 노드 8 스킵하고 32번 부터..
+        current = current->next; // 즉, 아래 비교 하기 전에 current 를 먼저 움직여 줌이 매우 중요함..
+
+        // | (1) -> 50 이 32 보다 크냐? -> (2)로 이동
+        // | (4) -> 그래 이번에 뉴 페이스 99! 냥?
+        //          99 넌, 50보다 크냐?. -> (5) 로 이동 |
+        if (current->value > newNode->value) {
+            // (5) 큰 상황
+            // (6) 현 상태 현황 중간 분석 : prev 는 `32` 에 있고 current 는 `99` 멈춰 있는 상태 (이 대목이 이해가 되어야 함.!)
+            // (7, 최종)
+            newNode->next = current; // 먼저 현재 잠시 대기 시킨 current 를 newNode next 에 연결하고..
+            prev->next = newNode;    // (8, 끝) 직전노드의 다음 주소값을 newNode 주소로 변경한 후 최종 마무리 되는 결론. 끝...
+            return;                  //--> 중간값 삽입 끝 (함수 종료, 아래 가장 큰값 삽입 단계 진행 안함)
+        }
+        // (2) -> 그래 나 (current) 가 크다. 왜?... -> (3)으로 이동
+        // (3-1) -> 그럼 prev 노드를 다음으로 이동 시키고 돌아라..오바.. -> while 로 가서
+        prev = prev->next;
+        // (3-2) -> 가즈아...,
+        // 이 단계에서는 prev 와 current 가 같아짐...
+        // 그러서 다음..-> while(... )로 갔다. 마지막이 아닌지 확인한 후
+        // -> current 를 한발짝 앞으로 전진시킨 후 -> (4) 로 이동
+    } // (2)  끝
+
+    //--> (3) 가장 큰값을 삽입하는 경우.
+    // e.g. Saved nodes => | 8 | 32 | 99 | 122 | 인 현 상태에서
+    //                             가장 큰 값 -> |`150`| 을 추가하는 상황.
+
+    // 위의
+    // 가장 작은 값
+    // 중간 값 단계를 거치지 않고 여기까지 왔다는 것은
+    // 가장 큰값이 들어 왔다는 의미이므로..
+    // current->next 가 NULL 인 상태이므로..
+    // 바로 newNode 를 할당하면 끝남..
+    current->next = newNode;
+}
+
+// (1) Linked List
 void LinkedListStart(int count, bool order)
 {
     srand(time(NULL));
-
     for (size_t i = 0; i < count; i++) {
         if (order == 1)
             InsertFrontNode(i + 1);
@@ -296,7 +419,7 @@ void RemoveNodeByValue()
     }
     printf("삭제할 노드의 값은 %d 입니다.\n계속하시려면 아무키나 누르세요.", value);
     getchar();
-    sleep(1);
+    usleep(50000);
 
     // 삭제할 노드가 첫번째 노드 삭제할 경우.
     if (head->value == value) {
@@ -560,7 +683,7 @@ void CompareNumbers()
     printf("3의 배수여부를 판단할 양의 정수를 하나를 입력하세요\n>> ");
     scanf("%ld", &number);
     char *result[] = {"3의 배수입니다.", "3의 배수가 아닙니다."};
-    printf("%ld -> %s\n", number, result[(number % 3) && 1]);
+    printf("%ld -> %s\n", number, result[(number % 3) & 1]);
     long a, b, c;
     printf("비교할 숫자 3개를 한칸씩 띄워서 입력하세요\n>> ");
     fflush(stdin);
@@ -1162,12 +1285,14 @@ void Array2D()
     p = b;
 
     // index [0..] : 배열의 역참조.
-    printf("%d, %d, %d, %d, %d, %d\n", *(a2 + 1), //
-           *(arr[1] + 1),                         //
-           (*(p + 1)[0]),                         //
-           *(p[2] + 0),                           //
+    printf("*(arr[1] + 1) = %d," //
+           "%d, %d, %d, %d, %d\n",
+           *(a2 + 1),            //
+           *(arr[1] + 1),        //
+           (*(p + 1)[0]),        //
+           *(p[2] + 0),          //
            *(*(p + 0) + 1),
-           p[0][1]);                              // (p[0][1])
+           p[0][1]);             // (p[0][1])
 }
 
 void ConstPointer()
@@ -1182,6 +1307,188 @@ void ConstPointer()
     const int *ptrA = &t;          // 포인터가 가리키는 메모리 값을 상수화 하는 것. -> ( *ptr = 3; 불가능함. )
     int *const ptrB = &k;          // 포인터 자신의 값 (주소)을 상수화 하는 것 -> ( ptrB = &abc; 불가능함, 일편단심 )
     const int *const ptrT = &temp; // 두가지 모두 상수화 하는 것. ( 주소와 값 두가 모두 변결 불가능 )
+
+    printf("`const int *ptrA = &t;`          // 포인터가 가리키는 메모리 값을 상수화 하는 것. -> ( *ptr = 3; 불가능함. )\n"
+           "`int *const ptrB = &k;`          // 포인터 자신의 값 (주소)을 상수화 하는 것 -> ( ptrB = &abc; 불가능함, 일편단심 )\n"
+           "`const int *const ptrT = &temp;` // 두가지 모두 상수화 하는 것. ( 주소와 값 두가 모두 변결 불가능 )");
+}
+
+void VoidPointer()
+{
+    // void pointer
+    // 타입이 없으므로 역참조가 불가능함.
+    // 단지 주소값만 가지고 있음.
+
+    int a = 5;
+    void *ptr = &a;
+
+    printf("void pointer get value \u27a5 %d\n", *((int *)ptr) = 10);
+}
+
+// ANSI
+void PrintAnsiColor()
+{
+    printf("\n"
+           "\033[30;1m Bright Black\n" // Bright ;1m
+           "\033[31m Red\n"
+           "\033[32m Green "
+           "\033[33m Yellow "
+           "\033[34m Blue "
+           "\033[35m Magenta "
+           "\033[36m Cyan "
+           "\033[0m Reset 0m \n");
+
+    printf("\n");
+    // Background, +10
+    printf("\033[41;1m Bright Red \n\033[0m");
+    printf("\033[42;1m Bright Green \n\033[0m");
+    printf("\n");
+    printf("\033[40m A \033[41m B \033[42m C \033[43m D \033[44m E \033[45m F\n\033[0m");
+
+    printf("\033[1m BOLD \033[4;33m Underline \033[0m \033[7m Reversed \033[0m\n");
+}
+
+void AnsiCursorNavigation()
+{
+    for (int i = 1; i <= 100; i++) {
+        usleep(90000);
+        printf("\033[1000D ( %d )", i); // which means "move cursor left by 1000 characters"
+        fflush(stdout);
+    }
+}
+
+void AnsiGeneral()
+{
+    // ESC -> \x1B
+    // CSI : Control Sequence Introducer -> \x9B
+    // DSC : Device Control String -> \x90
+    // OSC : Operating System Command -> \x9D
+    // usleep(1000000);
+
+    printf("Hello World\v");
+    printf("Fine Thanks\v");
+    printf("How are you?\v");
+    printf("Good Morning\v");
+    printf("\033[H");      // Move Home
+    printf("\033[10;20H"); // Move Cursor, 행:열H, 빈공간으로도 이동가능.
+    printf("\033[2;5f");   // 위와 동일
+    printf("\033[2E");     // Cursor beginning of next line, line down
+    printf("\033[3F");     // Cursor previous line, line up
+    printf("\033[30C");    // Cursor right
+    printf("\033[1A");     // Cursor up
+    printf("\033[10B");    // Cursor Down
+    printf("\033[2D");     // Cursor left
+    printf("\033[H");
+    printf("\033[J");      // erase in display (same as ESC[OJ)
+    printf("Hello World\v");
+    printf("\033[2J");     // erase entrie screen
+    printf("Fine Thanks\v");
+    printf("How are you?\v");
+    printf("Good Morning\v");
+
+    printf("")
+}
+
+void CursorMovement()
+{
+    printf("Hello, World\n");
+    usleep(1000000);
+    fflush(stdout);
+    printf("Hi Everyone\n");
+    usleep(1000000);
+    fflush(stdout);
+    printf("Fine Thanks And You?");
+    usleep(1000000);
+    fflush(stdout);
+    printf("\033[2A");  // up
+    usleep(1000000);
+    fflush(stdout);
+    printf("\033[15D"); // Left
+
+    printf("\033[2B");  // Down
+    printf("\033[20C"); // Right
+    printf("\033[3F");  // Prev Line + Begginning of line
+    printf("\033[1E");  // Next Line + Beginning of line
+
+    // [{n}G  // moves cursor to column
+}
+
+void AnsiExample()
+{
+    //-->  ANSI Escape Sequences
+    // Unicode : \u001b
+    // Hexadecimal : \x1B
+    // Decimal : 27
+    // Octal : \033
+    //--> Sequences
+
+    // Text Color
+    // Black : 30m, Green : 32, Yellow : 33m, Blue : 34, Magenta : 35m, Cyan : 36m, White : 37m, Reset : 0m
+    printf("\n\033[31mHello\033[0m World\033[0m");
+
+    PrintAnsiColor();
+    AnsiCursorNavigation();
+    // printf("\n\033[0m ... End ...\n");
+    // printf("\033[2J");
+}
+
+void FloatPostfix()
+{
+    printf("\n\n");
+    float sum;
+    sum = 1.23 + 45.6;
+
+    // 접미사 없을 때?
+    printf("접미사 f 없으면? ( %f vs %f ) => ", sum, 1.23 + 45.6);
+    if (sum == (1.23 + 45.6))
+        printf("같습니다.");
+    else printf("둘은 달라요.");
+
+    // 접미사 있을 때?
+
+    sum = 1.23f + 45.6f;
+    printf("\n\n접미사 f 있으면? ( %f vs %f ) => ", sum, 1.23f + 45.6f);
+    if (sum == (1.23f + 45.6f))
+        printf("같습니다.");
+    else
+        printf("둘은 같습니다.");
+
+    printf("\n");
+}
+
+void UniCodeArt()
+{
+    char c[2] = {
+        0x005C,
+        0x002F};
+    int size = 1;
+    printf("몇개를 넣을까요? (1 ~ 8)\n\u27a5 ");
+    scanf("%d", &size);
+    printf("\n");
+    if (size > 8) size = 8;
+    int ansiColor = 31;
+
+    while (size >= 1) {
+        for (int i = 0; i < size; i++) {
+            printf("\033[%dm%c", ansiColor, c[0]);
+        }
+        for (int i = 0; i < size; i++) {
+            printf("\033[%dm%c", ansiColor, c[1]);
+        }
+        size--;
+        ansiColor++;
+        if (ansiColor > 40)
+            ansiColor = 31;
+    }
+
+    printf("\033[0m\n");
+
+    getchar();
+}
+
+void Arm64Asm()
+{
+    // TODO
 }
 
 int main(int argc, char *argv[])
@@ -1195,16 +1502,31 @@ int main(int argc, char *argv[])
         system("clear");
         int count;
         switch (choice) {
+            case 0: { // 중간 노드 삽입
+
+                for (int i = 0; i < 10; i++) {
+                    int data = rand() % 1000;
+                    InsertMiddleNode(data);
+                    usleep(1000000);
+                    DisplayNode();
+                }
+
+                getchar();
+            }; break;
+
             case 1: { // 맨 앞에 노드 추가, 생성된 역순으로 연결. (LIFO) : 스택 (Stack)
                 printf("=> 생성할 노드의 수: ");
                 scanf("%d", &count);
                 LinkedListStart(count, 1);
+                getchar();
+
             } break;
             case 2: { // 맨뒤에 노드를 추가 : 생성된 순으로 연결 (FIFO) : 큐 (Queue)
                 // TODO
                 printf("=> 생성할 노드의 수: ");
                 scanf("%d", &count);
                 LinkedListStart(count, 0);
+                getchar();
             } break;
             case 3: DisplayNode(); break; // 현재 전체 연결리스트 노드 출력
             case 4: printf("노드의 수 = %d\n", GetNodeCount()); break;
@@ -1285,13 +1607,18 @@ int main(int argc, char *argv[])
                 MazeRun();
             } break;
 
-            case 30: {
-                Array2D();
-            }; break;
-
+            case 30: Array2D(); break;
             case 31: InputItemsSwap(); break;
             case 32: FunctionPointer(); break;
             case 33: ConstPointer(); break;
+            case 34: VoidPointer(); break;
+            case 35: AnsiExample(); break;
+            case 36: UniCodeArt(); break;
+            case 37: CursorMovement(); break;
+            case 38: FloatPostfix(); break;
+            case 39: Arm64Asm(); break;
+            case 40: AnsiGeneral(); break;
+
             default: return 123;
         }
 
@@ -1304,42 +1631,55 @@ int main(int argc, char *argv[])
 
 void Menu()
 {
+    char line[200];
+    for (int i = 0; i < 100; i++) {
+        line[i] = '*';
+    }
+
+    sprintf(line, "%.*s", 90, line);
     char *items[] = {
-        "=========================",
-        "  1. 노드 생성 (Front)",
-        "  2. 노드 생성 (Tail)",
-        "  3. 노드 현황",
-        "  4. 노드 갯수",
-        "  5. 첫번째 노드삭제",
-        "  6. 선택값 삭제",
-        "  7. 모든 연결리스트 제거",
-        "=========================",
-        "  8. 문자 압축 및 해제",
-        "  9. 최대 최소값",
-        " 10. fprintf()",
-        " 11. clock()",
-        " 12. sprintf()",
-        " 13. assert()",
-        " 14. ctype()",
-        " 15. sscanf()",
-        " 16. _Bool()",
-        " 17. PointerArray()",
-        " 18. Fibonacci()",
-        " 19. CompareNumbers()",
-        " 20. StringCopy()",
-        " 21. Signal()",
-        " 22. Float Memory",
-        " 23. Big(O)",
-        " 24. Prime Numbers",
-        " 25. Stack",
-        " 26. Movies",
-        " 27. Matrix",
-        " 28. SelfXor",
-        " 29. Maze",
-        " 30. Array 2D",
-        " 31. InputItemSwap",
-        " 32. Function Pointer"
-        " 33. Constant Poointer"
+        "  0. 노드 생성 (Insert)"
+        "  1. 노드 생성 (Front)"
+        "\t2. 노드 생성 (Tail)"
+        "\t3. 노드 현황",
+        "  4. 노드 갯수"
+        "\t\t 5. 선두 노드삭제"
+        "\t6. 선택 노드삭제"
+        "\t7. 모든 노드제거",
+        line,
+        "  8. 문자압축/해제"
+        "\t9. 최대 최소값"
+        "\t10. fprintf()",
+        " 11. clock()"
+        "\t12. sprintf()"
+        "\t13. assert()",
+        " 14. ctype()"
+        "\t15. sscanf()"
+        "\t16. _Bool()",
+        " 17. PointerArray()"
+        "\t18. Fibonacci()"
+        "\t19. CompareNumbers()",
+        " 20. StringCopy()"
+        "\t21. Signal()"
+        "\t22. Float Memory",
+        " 23. Big(O)"
+        "\t24. Prime Numbers"
+        "\t25. Stack",
+        " 26. Movies"
+        "\t27. Matrix"
+        "\t28. SelfXor",
+        " 29. Maze"
+        "\t30. Array 2D"
+        "\t31. InputItemSwap",
+        " 32. Function pointer"
+        "\t33. Constant pointer"
+        "\t34. Void pointer",
+        " 35. Ansi"
+        "\t36. Ansi Unicode Art"
+        "\t37. Ansi Cursor",
+        " 38. Float Postfix"
+        "\t39. LLDB With ARM64 Asm"
+        "\t40. AnsiGeneral",
         "200. 프로그램 종료"};
 
     int count = sizeof(items) / sizeof(*items);
