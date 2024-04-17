@@ -7,8 +7,6 @@
 #include <time.h>
 #include <unistd.h>
 
-int usleep(useconds_t useconds);
-
 int MakeRandom(const int min, const int max)
 {
     const int number = (rand() % (max - min + 1)) + min;
@@ -38,12 +36,11 @@ void Print(const int *arr, const int size, char *title)
     // usleep(1000);
 }
 
-//=> O(N2)
 // [ 버블정렬 ]
+// O(N2)
 // 인접한 데이터를 비교하면서, 정렬
 // 인접한 2개를 비교해서 더 큰 데이를 뒤로 보냄.
 // 맨 뒤에서 부터 정렬하는 방식
-
 // array    [ 3 - 5 - 1 - 2 - 4 ]
 // ------------------------------
 // (패스 -> 인덱스)
@@ -72,32 +69,37 @@ void BubleSort(int *arr, const int size)
     Print(arr, size, "버블정렬");
 }
 
-// 선택정렬 (Selection Sort)
+/* [ 선택정렬 ] (Selection Sort) */
 // 앞에서 부터 정렬을 완료해 나가는 방식
-// 0번 부터 가장 작은 데이터를 두기 위하여 나머지를 모두 비교하는 방식을 반복.
+// 0번 부터 가장 작은 데이터를 두기 위하여 index 0 vs 0 + 1 방식으로 이중 for 문을 이용하여 모두 비교하는 방식을 반복.
 // 오버 헤드 방지을 위해 작은 값을 찾기 위하여 한번에 모두 비교 검색
-// 패스당 1회 교환 횟수.
 void SelectionSort(int *arr, const int size)
 {
-    // 가장 작은 값을 저장하기 위한 인덱스
+    // 가장 작은 값을 저장하기 위한 임시 인덱스 변수.
     int minIdx = 0;
 
+    // (1) 원본이 -> {5, 4, 1, 3, 2} 인배열을 오름 차순으로 정렬 하라는 시나리오로 출발
     for (int i = 0; i < size - 1; i++) {
-        // 패스, 정렬 기준
-        minIdx = i;
-        for (int j = i + 1; j < size; j++) {
-            if (arr[minIdx] > arr[j]) {
-                minIdx = j;
+
+        minIdx = i;                          // (2) 예를 들어 처음 i 가 0일 때 arr[0] 은 5가 되고, minIdx에 일단 i 와 동일하게 맞추어 줌. (맞 비교 및 교환용.)
+        for (int j = i + 1; j < size; j++) { // (3) i = 0 일 때 항상 비교 대상은 한발 앞에 있는 (j = i + 1)
+                                             // 즉, 5일 때는 4가 되고 위에서 i 가  size - 1 까지 이므로
+                                             // 서브에서는 size 끝까지 범위 끝까지 를 설정하게 되는 이유
+
+            if (arr[minIdx] > arr[j]) {      // (4) 그래서 아무튼 5 하고 4하고 비교하는데,
+                minIdx = j;                  // (5) 5가 4보다 크다면?  minIdx 에 일단 요소 4, 값이 아닌 배열 인덱스 (j)를 저장해 두고, 아니면 (작으면 패스..)
             }
         }
-        const int temp = arr[i];
-        arr[i] = arr[minIdx];
-        arr[minIdx] = temp;
+        const int temp = arr[i];             // (6) arr[i] 즉, 요소 5을 임시 변수에 일단 저장해두고,
+        arr[i] = arr[minIdx];                // (7) arr[i] 요소(5) 를 위에 저장해둔 minIdx 를 이용, arr[minIdx] (요소4) 의 값으로 변경하고..(즉, 5 자리에 4를 보내고..)
+        arr[minIdx] = temp;                  // (8) arr[minIdx] 자리에 임시 저장해둔 (요소 5) 로 변경 즉, 5를 원래 4자리로 뒤로 보내라..하는 의미.
+
+        // (9) 결론 하여 .. 첨부한 그림 처럼, 원본 배열의 인덱스 0번 을 시작으로 인덱스 1번 부터 끝까지 모두 정렬을 반복하라는 알고 리즘..
     }
     Print(arr, size, "선택정렬");
 }
 
-// 삽입정렬 (Insertion Sort, O(N2))
+// [ 삽입정렬 ] (Insertion Sort, O(N2))
 // 트럼프 카드에 비교, 카드를 뽑아서(temp 변수에 할당) 위치를 찾은 후 삽입 하는 방식..
 // 1번 부터 시작 하여 이전 인덱스와 비교하여 크면 대상을 한칸 오른쪽으로 미는 방식
 void InsertionSort(int *arr, const int size)
@@ -114,7 +116,7 @@ void InsertionSort(int *arr, const int size)
     }
 }
 
-// 퀵정렬 (Quick Sort) : 정렬의 꽃으로 불리는 빠른 정렬 => O(N logN)
+// [ 퀵정렬 ] (Quick Sort) : 정렬의 꽃으로 불리는 빠른 정렬 => O(N logN)
 // 편을 나누어 정렬, 분할 정복 방법론
 // (예)
 // 1. 50 점을 기준으로 좌/우 그룹으로 나눔. : 2 그룹
@@ -201,7 +203,7 @@ void QuickSort(int *arr, const int left, const int right, char pos)
     if (right > pL) QuickSort(arr, pL, right, 'R'); // 오른쪽 그룹, 원소가 하나 남을 때 까지 조건.
 }
 
-// [ 병합정렬, Merge Sort ]
+// [ 2-2 병합정렬, Merge Sort ]
 // 3개의 배열을 사용 (배열1, 배열2, 병합된 배열)
 // 3개의 인덱스 변수 필요 (3개의 배열의 현재 비교 대상 인덱스 저장)
 // => 원소를 반으로 나누어서 정렬하는 방식 : 나눈다 => 병합
@@ -215,7 +217,6 @@ void QuickSort(int *arr, const int left, const int right, char pos)
 // 재귀 호출
 // -> int ex[] = {7, 5, 2, 4, 1, 3, 8, 6};
 // [ 7, 5, 2, 4 ] [ 1, 3, 8, 6 ]
-
 // [ 7, 5 ] [ 2, 4, ] [ 1, 3 ] [ 8, 6 ]
 // [7] [5] [2] [4] [1] [3] [8] [6]
 // => 병합 개시
@@ -246,7 +247,7 @@ void Merge(int *arr, int *arrMerge, const int left, const int mid, const int rig
     }
 }
 
-// (2)
+// [ 2-1 병합정렬 ]
 void MergeSortUtil(int *arr, int *arrMerge, const int left, const int right)
 {
     if (left < right) {
@@ -257,7 +258,7 @@ void MergeSortUtil(int *arr, int *arrMerge, const int left, const int right)
     }
 }
 
-// (1)
+// [ 1 병합정렬 ]
 void MergeSort(int *arr, const int size)
 {
     int *arrMerge = malloc(sizeof(int) * size); // 값을 비교할 배열. 공간 복잡도 O(N)
@@ -266,8 +267,9 @@ void MergeSort(int *arr, const int size)
     free(arrMerge);
 }
 
-//=> O(N)
-// 버킷정렬 (Bucket Sort), 계수정렬
+// [ 버킷정렬 ]
+// (Bucket Sort) 계수정렬
+// O(N)
 // 범위가 정해진 경우 엄격한 조건
 // 예를 들어 1 ~ 5 까지 배열일 경우, 6개의 버캣을 만듦
 void BucketSort(int *arr, const int size, const int range)
@@ -290,7 +292,7 @@ void BucketSort(int *arr, const int size, const int range)
     free(bucket);
 }
 
-// 힙(Heap) 자료구조 (Max Heap, Min Heap)
+// [ 힙(Heap) 정렬 ] (Max Heap, Min Heap)
 // 유의미한 값 => root value, 0 번째 값 구성.
 // Complete binary tree : 말단 노드를 제외한 모든 노드가 꽉 채워진 상태
 // Max Heap : 부모노드의 값은 자식노드의 값보다 크거나 같아야 함.
@@ -299,7 +301,6 @@ void BucketSort(int *arr, const int size, const int range)
 // 자식 노드 끼리 먼저 비교 후, 해당 자식 노드값과 부모 노드값과 비교 작업을 함.
 // 원소 추가 : 항상 가장 마지막 끝에 추가하고, 자식 노드 입장에서 부모노드와 비교를 시작함.
 // 원소 삭제 : 힙에서 삭제는 루트만 함 (유의미한 값이 루트이므로), 가장 마지막을 루트로 옮기고 마지막 노드를 삭제함.
-
 // 힙정렬 (Heap Sort)
 // O(log N) : 2^n, ((n/2) * log N) -> O(N)
 // 예를 들어 데이터의 갯수가 1024개 라면 약 10 개의 깊이가 됨.
@@ -313,7 +314,6 @@ void BucketSort(int *arr, const int size, const int range)
 // 최대힙 : 부모노드가 자식 노드 보다 큰 힙을 말함.
 // Heapify
 // 힙 정렬 : 최상 노드와 최 하단 노드를 교체 후 -> Heapify 작업을 반복. (O(N * log N))
-
 // (ex, max-heap)
 // 자식노드의 수 = 원소의 갯수 / 2, 100 / 2 = 50개의 자식노드.
 // 부모 : 자식보다 크거나 같음
@@ -433,6 +433,7 @@ size_t FindIndex(const int a[], const size_t size, const int value)
     return (index == size ? -1 : index);
 }
 
+// [ 힙 ]
 void HeapRunner()
 {
     Heap heap; // 힙 구조체 변수
@@ -445,6 +446,7 @@ void HeapRunner()
     for (int i = 0; i < size; ++i) {
         AddHeap(&heap, values[i]);
     }
+
     // 60 의 부모 노드 구하는 법
     // (60의 인덱스의 부모 인덱스 - 1 ) / 2, 소숫점은 오른 쪽, 정수는 왼쪽,
     // printf("현재 저장된 힙 요소 => %d, %d, %d\n", capacity, heap.cursor, heap.capacity);
@@ -482,6 +484,9 @@ int ClearBits(const int num, int i)
     return ((num & (~(1 << i))));
 }
 
+/// @brief 비트출력
+/// @param num
+/// @param size
 void PrintBit(const long long num, const int size)
 {
     printf("0b_");
@@ -620,6 +625,9 @@ void VariableSize()
         unSigned2Bytes);
 }
 
+/// @brief 중복 제거 정렬
+/// @param arr
+/// @param size
 void ToUniqueSortedArray(int *arr, const int size)
 {
     int even_numbers[32] = {};
@@ -640,27 +648,26 @@ void ToUniqueSortedArray(int *arr, const int size)
         index = 0;
     }
 
-    printf("Even numbers:\t");
+    printf("Unique Sort (Even numbers):\t");
     for (int i = 0; i < even; i++) printf("%3d ", even_numbers[i]);
     printf("\n");
 
-    printf("Odd numbers:\t");
+    printf("Unique Sort (Odd numbers):\t");
     for (int i = 0; i < odd; i++) printf("%3d ", odd_numbers[i]);
     printf("\n");
 }
 
 void BinaryTest()
 {
-
     const int b1 = -3; // (0011)
     PrintBit(b1, 32);
-
     short num1 = -30;
     unsigned short num2 = num1;
-
     printf("%d, %#x\n", num1, num2);
     printf("%d, %#x\n", num2, num2);
 }
+
+/// @brief CSV Splite
 void StringUtils()
 {
     // CSV with comma read
@@ -681,18 +688,13 @@ void StringUtils()
         for (tok = strtok(line, ","); tok && *tok; tok = strtok(NULL, ",")) {
             printf("%s\t", tok);
         }
-
         printf("\n");
-
         free(tmp);
     }
 
     fclose(fp);
-
     char temp[] = "   \t  hi  \t  ,  \t  everyone,  \t fine  \t  , thanks , \t  and , you";
-
     char *t = strtok(temp, ",");
-
     while (t != NULL) {
 
         // ltrim
@@ -710,13 +712,11 @@ void StringUtils()
 
     // FILE *file = fopen("../data/data.txt", "ab+");
     // if (file == NULL) {
-
     //     perror("Error: Failed to open file.");
     //     return 1;
     // }
     // fprintf(file, "Hi Everyone.\n");
     // // system("touch hello.txt");
-
     // fclose(file);
 }
 
@@ -775,11 +775,11 @@ int main(void)
 
     // 캐시 (memoization array) 초기화
     for (int i = 20; i <= 50; i++) {
-        for (int j = 0; j < 100; j++)
-            memo[j] = -1;
+        for (int j = 0; j < 100; j++) memo[j] = -1;
 
         int month = i;                            // 3 ~ 50 개월
         long long sumOfRebbit = Fibonacci(month); // 각 개월 마다 결과
+
         // 출력
         printf("( \033[31m%d\033[0m ) 개월 후 토끼의 전체 개체수 합 : ( \033[32m%'20lld\033[0m )\n", month, sumOfRebbit);
     }

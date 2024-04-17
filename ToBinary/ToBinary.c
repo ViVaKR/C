@@ -27,9 +27,33 @@ void MakeBinary(int n, int i, int digit)
     printf("%d%c", binary, c);
 }
 
+typedef struct node
+{
+    char *name;
+} Node, *NodePtr;
+
+NodePtr create(char *message)
+{
+    NodePtr new_element = (NodePtr)malloc(sizeof(Node));
+
+    if (!new_element) {
+        printf("Out of memory\n");
+        return NULL;
+    }
+
+    new_element->name = message;
+    return new_element;
+}
+
+void destroy(NodePtr garbage_element)
+{
+    // free(garbage_element->name); // 할 필요 없음, name 멤버는 아래 garbage_element 에 속해 있지 별도 메모리 할당된 것이 아님으로..
+    free(garbage_element);
+}
+
 int main()
 {
-    int decimal;
+    int decimal = -1;
     while (decimal != 0) {
         printf("2진수로 변경할 정수를 입력하세요.\n\u27AD ");
         scanf("%d", &decimal);
