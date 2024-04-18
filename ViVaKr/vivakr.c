@@ -1385,8 +1385,6 @@ void AnsiGeneral()
     printf("Fine Thanks\v");
     printf("How are you?\v");
     printf("Good Morning\v");
-
-    printf("")
 }
 
 void CursorMovement()
@@ -1632,9 +1630,8 @@ int main(int argc, char *argv[])
 void Menu()
 {
     char line[200];
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 100; i++)
         line[i] = '*';
-    }
 
     sprintf(line, "%.*s", 90, line);
     char *items[] = {

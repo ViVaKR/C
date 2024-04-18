@@ -1,4 +1,5 @@
 #include <ctype.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -51,6 +52,11 @@ void destroy(NodePtr garbage_element)
     free(garbage_element);
 }
 
+bool IsEven(int n)
+{
+    return (n ^ 1) == (n + 1);
+}
+
 int main()
 {
     int decimal = -1;
@@ -75,5 +81,35 @@ int main()
         if (result != 0) str[t++] = s[i];
     }
     printf("%s\n", str);
+
+    int a[100] = {
+        100,
+    };
+
+    printf("\n[ 짝수 ]\n");
+    for (int i = 1; i <= 100; i++) {
+        if ((i ^ 1) == (i + 1))
+            printf("%3d ", i);
+        if (i % 10 == 0)
+            printf("\n");
+    }
+    printf("\n\n[ 홀수 ]\n");
+    for (int i = 1; i <= 100; i++) {
+        if ((i ^ 1) != (i + 1))
+            printf("%3d ", i);
+
+        if (i % 10 == 0)
+            printf("\n");
+    }
+
+    // (해석)
+    // 2  -> 0010
+    //    ^  0001
+    //    =  0011 (=3)  == 2(i) + 1 과 같음을 이용
+
+    // 4  -> 0100
+    //    ^  000은
+    //    =  0101 (=5) == 4(i) + 1 과 같음..
+
     return 0;
 }
