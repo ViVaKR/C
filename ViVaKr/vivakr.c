@@ -987,7 +987,6 @@ void JisikIn()
 
 void SelfXor()
 {
-
     int a = 456;
     int rs = a ^ a;
     printf("%d\n", rs);
@@ -1489,6 +1488,20 @@ void Arm64Asm()
     // TODO
 }
 
+void PrintSourceCodeItSelf()
+{
+    printf("%s\n", __FILE__);
+
+    char c;
+    FILE *fp = fopen(__FILE__, "r");
+    do {
+        c = fgetc(fp);
+        putchar(c);
+    } while (c != EOF);
+    fclose(fp);
+
+    printf("\n");
+}
 int main(int argc, char *argv[])
 {
     int choice;
@@ -1596,10 +1609,12 @@ int main(int argc, char *argv[])
                 SelfXor();
                 int n;
                 int k;
+                int j;
 
-                printf("Enterr a number: ");
-                scanf("%d", &n);
-                printf("%d - %d\n", n, k);
+                printf("Enter three numbers: ");
+                int rs = scanf("%d %d %d", &n, &k, &j);
+                printf("first = %d, second = %d, third = %d, counts = %d\n\n", n, k, j, rs);
+
             } break;
             case 29: {
                 MazeRun();
@@ -1616,6 +1631,7 @@ int main(int argc, char *argv[])
             case 38: FloatPostfix(); break;
             case 39: Arm64Asm(); break;
             case 40: AnsiGeneral(); break;
+            case 41: PrintSourceCodeItSelf(); break;
 
             default: return 123;
         }
@@ -1677,6 +1693,7 @@ void Menu()
         " 38. Float Postfix"
         "\t39. LLDB With ARM64 Asm"
         "\t40. AnsiGeneral",
+        " 41. PrintSourceCodeItSelf",
         "200. 프로그램 종료"};
 
     int count = sizeof(items) / sizeof(*items);
