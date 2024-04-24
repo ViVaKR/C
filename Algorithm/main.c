@@ -1,6 +1,7 @@
 #include <_ctype.h>
 #include <locale.h>
 #include <math.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -279,13 +280,14 @@ void BucketSort(int *arr, const int size, const int range)
 
     for (int i = 0; i < size; i++) {
         // 버캣의 인덱스가 배열의 값으로 사용됨
+        // 버킷 값 0은 없는 값 2 이상은 중복 된 값.
         bucket[arr[i]]++;
     } // 갯수 카운팅 완료.
 
     int idx = 0;
     for (int i = 1; i < range; i++) {
-        for (int j = 1; j <= bucket[i]; ++j) {
-            arr[idx++] = i;
+        for (int j = 1; j <= bucket[i]; ++j) { // 앞에서 부터 다시 서칭하여 중복된 값 처리 용.
+            arr[idx++] = i;                    // 버킷의 인덱스를 배열의 값으로 재할당 하면서 정렬하기.
         }
     }
 
@@ -773,16 +775,21 @@ int main(void)
     int temp[] = {1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4};
     ToUniqueSortedArray(temp, 16);
 
-    // 캐시 (memoization array) 초기화
-    for (int i = 20; i <= 50; i++) {
-        for (int j = 0; j < 100; j++) memo[j] = -1;
+    /*    캐시 (memoization array) 초기화
+        for (int i = 20; i <= 50; i++) {
+            for (int j = 0; j < 100; j++) memo[j] = -1;
 
-        int month = i;                            // 3 ~ 50 개월
-        long long sumOfRebbit = Fibonacci(month); // 각 개월 마다 결과
+            int month = i;                            // 3 ~ 50 개월
+            long long sumOfRebbit = Fibonacci(month); // 각 개월 마다 결과
 
-        // 출력
-        printf("( \033[31m%d\033[0m ) 개월 후 토끼의 전체 개체수 합 : ( \033[32m%'20lld\033[0m )\n", month, sumOfRebbit);
-    }
+            // 출력
+            printf("( \033[31m%d\033[0m ) 개월 후 토끼의 전체 개체수 합 : ( \033[32m%'20lld\033[0m )\n", month, sumOfRebbit);
+        }
+     */
 
+    float demo = 3.2f;
+    printf("문의내용\t%%f\t-> %f\n", demo);
+    printf("해결책(1)\t%%g\t-> %g\n", demo);
+    printf("해결책(2)\t%%.2f\t-> %.1f\n", demo);
     return 0;
 }

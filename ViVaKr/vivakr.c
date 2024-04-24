@@ -3,6 +3,7 @@
 #include <ctype.h>          // tolowere(int argument),
 #include <float.h>
 #include <limits.h>         // 정수 유형에 대한 다양한 구현 밸 제한을 정의
+#include <locale.h>         // 천단위 콤마.
 #include <math.h>           // 수학함수
 #include <stdbool.h>        // true, false 를 정의
 #include <stdio.h>          // printf, scanf 입/출력 기능 제공
@@ -18,6 +19,8 @@
 int MakeRandom(int min, int max)
 {
     const int number = (rand() % (max - min + 1)) + min;
+    printf("Hello");
+
     return number;
 }
 
@@ -1502,8 +1505,80 @@ void PrintSourceCodeItSelf()
 
     printf("\n");
 }
+
+void StringArradWith2D()
+{
+    // 서로 다른 사이즈 의 열 갯수를 갖는 배열.
+    char row0[] = "Hello, World!";
+    char row1[] = "Hi Everyone";
+    char row2[] = "Fine Thanks~~~~";
+    char row3[] = "How are You???";
+
+    // 2차원 배열 포인터.
+    char *array[] = {row0, row1, row2, row3};
+
+    // sizeof(array) : 행 4개에 대한 포인터 변수 합계 -> 32
+    // sizeof(*array) : 하나의 행에 대한 포인터 변수 사이즈 -> 8
+    printf("sizeof(array) = %lu, sizeof(*array) = %lu\n", sizeof(array), sizeof(*array));
+    // --> 32 / 8 = 4개의 행
+    for (int i = 0; i < sizeof(array) / sizeof(*array); i++) {
+        printf("%s\t\t%s\n", array[i], *(array + i));
+    }
+}
+size_t f[30];
+size_t factorial(size_t n)
+{
+    if (n == 0 || n == 1)
+        return 1;
+    if (f[n] > 0)
+        return f[n];
+    return f[n] = factorial(n - 1) * n;
+}
+
+void PrintBitWise()
+{
+    printf("\n[ char 8bit test ]\n");
+    unsigned char array[4] = {0b11111111, 0b00000000, 0b01010101, 0b10101010};
+    for (int i = 0; i < sizeof(array) / sizeof(char); i++) {
+        int j = CHAR_BIT; // 8bit
+        printf("%3d => ", array[i]);
+        printf("0b");     // prefix
+                          // ascii '0' == 48 이므로 => 비트 연산 시 (0 == 48, 1 == 49)
+        while (j--)       // 8자리 부터 0 자리 까지...
+            putchar('0' + ((array[i] >> j) & 1));
+
+        printf("\n");
+    }
+
+    printf("\n\n[ int 32bit test ]\n");
+    for (int value = -1; value <= 8; value++) {
+        int i = CHAR_BIT * sizeof value; // 32bit (i = 8 * 4 ==> 32bit)
+        printf("%3d => ", value);
+        printf("0b");
+        while (i--)                      // 32 자리부터 0 자리 까지..
+            putchar('0' + ((value >> i) & 1));
+
+        printf("\n");
+    }
+    printf("\n");
+}
+
+void FastSize()
+{
+    size_t t8 = sizeof(int_fast8_t);
+    size_t t16 = sizeof(int_fast16_t);
+    size_t t32 = sizeof(int_fast32_t);
+    size_t t64 = sizeof(int_fast64_t);
+    printf("%zu %zu %zu %zu\n", t8, t16, t32, t64);
+    printf("short is %d\nint is %d\nlong is %d",
+           (int)sizeof(short) * CHAR_BIT,
+           (int)sizeof(int) * CHAR_BIT,
+           (int)sizeof(long) * CHAR_BIT);
+}
+
 int main(int argc, char *argv[])
 {
+    setlocale(LC_NUMERIC, "");
     int choice;
     while (choice != 200) {
         Menu();
@@ -1632,6 +1707,27 @@ int main(int argc, char *argv[])
             case 39: Arm64Asm(); break;
             case 40: AnsiGeneral(); break;
             case 41: PrintSourceCodeItSelf(); break;
+            case 42: StringArradWith2D(); break;
+            case 43: {
+
+                char a[4][5] = {"ABCK", "DEFK", "GHIK", "JKLK"};
+                printf("%s\n", a[1]);
+                printf("%lu, %lu\n", sizeof(a), sizeof(*a));
+                for (int i = 0; i < sizeof(a) / sizeof(*a); i++)
+                    printf("%s\n", a[i]);
+
+            } break;
+            case 44: {
+                for (size_t i = 1; i <= 20; i++)
+                    printf("%3zu = %'30zu\n", i, factorial(i));
+
+            } break;
+            case 45: {
+                PrintBitWise();
+            } break;
+            case 46: {
+                FastSize();
+            } break;
 
             default: return 123;
         }
