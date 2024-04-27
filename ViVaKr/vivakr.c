@@ -1576,6 +1576,17 @@ void FastSize()
            (int)sizeof(long) * CHAR_BIT);
 }
 
+/* 소수 판별기 */
+bool IsPrime(int n, int i)
+{
+    if (n == 0 || n == 1) return false;
+    if (n == i) return true;
+    if (n % i == 0) return false;
+
+    i++;
+    return IsPrime(n, i);
+}
+
 int main(int argc, char *argv[])
 {
     setlocale(LC_NUMERIC, "");
@@ -1727,6 +1738,51 @@ int main(int argc, char *argv[])
             } break;
             case 46: {
                 FastSize();
+            } break;
+            case 47: {
+                char str[][20] = {"ABC", "123", "QWE"};
+                for (int i = 0; i < 3; i++) {
+                    printf("%s\n", str[i]);
+                }
+
+            } break;
+
+            case 48: {
+                /* 소수 찾기 */
+                printf("1 ~ 100 까지 소수\n");
+                for (int i = 1; i <= 100; i++) {
+                    printf("%d => %s\n", i, IsPrime(i, 2) == true ? "소수" : "-");
+                }
+
+                int input = 2;
+                do {
+                    printf("\u2728 임의의 수를 입력하세요(종료: 0)\n\u2761 ");
+                    scanf("%d", &input);
+                    bool isPrime = IsPrime(input, 2);
+                    if (input < 2) {
+                        printf("\u26DF\t종료합니다...\n");
+                        break;
+                    }
+                    printf("\u2615 (%d)은 소수%s\n", input, isPrime == true ? "입니다." : "가 아닙니다.");
+                } while (input > 1);
+
+            } break;
+
+            case 49: {
+                /* 최대 연속된 번호 카운팅 */
+                // int num[] = {1, 2, 4, 6, 7, 8, 10, 11, 13, 14};
+                int num[] = {1, 2, 3, 9, 10, 11, 12, 13, 14, 18, 19, 20, 23, 24, 25, 27, 47, 50};
+                const int size = sizeof(num) / sizeof(int);
+                int count[size] = {[0 ...(size - 1)] = 1}; // 카운팅 용 배열 초기화
+                int idx = 0;
+                for (int k = 1; k < size - 1; k++)
+                    if (num[k - 1] + 1 == num[k]) count[idx] += 1;
+                    else idx++;
+
+                int max = count[0];
+                for (int i = 0; i < size; i++)
+                    if (max < count[i]) max = count[i];
+                printf("\n최대 일련번호 갯수 = %d\n", max);
             } break;
 
             default: return 123;

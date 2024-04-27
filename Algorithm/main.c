@@ -775,17 +775,17 @@ int main(void)
     int temp[] = {1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4};
     ToUniqueSortedArray(temp, 16);
 
-    /*    캐시 (memoization array) 초기화
-        for (int i = 20; i <= 50; i++) {
-            for (int j = 0; j < 100; j++) memo[j] = -1;
+    // 캐시(memoization array)
+    // 초기화
+    for (int i = 20; i <= 50; i++) {
+        for (int j = 0; j < 100; j++) memo[j] = -1;
 
-            int month = i;                            // 3 ~ 50 개월
-            long long sumOfRebbit = Fibonacci(month); // 각 개월 마다 결과
+        int month = i;                            // 3 ~ 50 개월
+        long long sumOfRebbit = Fibonacci(month); // 각 개월 마다 결과
 
-            // 출력
-            printf("( \033[31m%d\033[0m ) 개월 후 토끼의 전체 개체수 합 : ( \033[32m%'20lld\033[0m )\n", month, sumOfRebbit);
-        }
-     */
+        // 출력
+        printf("( \033[31m%d\033[0m ) 개월 후 토끼의 전체 개체수 합 : ( \033[32m%'20lld\033[0m )\n", month, sumOfRebbit);
+    }
 
     float demo = 3.2f;
     printf("문의내용\t%%f\t-> %f\n", demo);
@@ -793,3 +793,60 @@ int main(void)
     printf("해결책(2)\t%%.2f\t-> %.1f\n", demo);
     return 0;
 }
+
+/**
+ * lldb
+ x -s1 -fx -c60 -l20 &str
+
+memory read -fd -s1 -c60 -l20 &str
+
+register read --formant binary x1
+
+register read --format i
+re r -f i
+register read/d
+re r -a
+register read --all
+
+memory read --size 4 --format x --count 4 0xbffff3c0
+x -s4 -fx -c4 0xbffff3c0
+me r -s4 -fx -c4 0xbffff3c0
+memory read `argv[0]
+
+Save to file
+memory read --outfile /tmp/mem.txt --count 512 0xbffff3c0
+me r -o /tmp/mem.txt -c512 0xbffff3c0
+x/512bx -o /tmp/mem.txt 0xbffff3c0
+
+starting a 0x10000 and ending a 0x2000 to a file
+memory read --outfile /tmp/mem.bin --binary 0x1000 0x2000
+me r -o /tmp/mem.bin -b 0x1000 0x2000
+
+command script import lldb.macosx.heap
+
+ptr_refs EXPR
+ptr_refs str
+ptr_refs &str
+cstr_refs CSTRING
+
+disassemble --frame
+di -f
+
+disassemble --name main
+di -n main
+
+disassemble --frame --bytes
+di -f -b
+
+disassemble --line
+di -l
+
+image list
+image lookup --address 0x1ec4
+
+frame variable
+frame variable i
+
+frame variable -fd &str[1]
+
+* /
