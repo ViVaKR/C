@@ -215,6 +215,7 @@ void LinkedListStartAtLast(int count)
 {
     // TODO
 }
+
 // (2) LIFO 노드 만들기
 void InsertFrontNode(int data)
 {
@@ -473,7 +474,6 @@ void FPrinfEx(int a, int b)
 {
     FILE *fp = fopen("fprintf.txt", "w");
     fprintf(fp, "%d + %d = %d\n", a, b, a + b);
-
     fclose(fp);
 }
 
@@ -558,7 +558,6 @@ void CTypeEx(char ch, int number)
 
 void SScanfEx(char *str)
 {
-
     double pi;
     char ch;
     char name[20];
@@ -653,7 +652,9 @@ long long Fibonacci(int n)
     // 재귀를 구성 자체가 2진 트리 형태이므로
     // 메모, 케쉬된 값으로 중간에 그 악?의 축을 절단하면
     // 엄청난 횟수 차감효과가 발생함.
-    return n <= 1 ? n : Fibonacci_memoization(n - 1) + Fibonacci_memoization(n - 2);
+    return n <= 1
+               ? n
+               : Fibonacci_memoization(n - 1) + Fibonacci_memoization(n - 2);
 }
 
 void FibonacciStart()
@@ -1579,12 +1580,13 @@ void FastSize()
 /* 소수 판별기 */
 bool IsPrime(int n, int i)
 {
-    if (n == 0 || n == 1) return false;
-    if (n == i) return true;
+    // base case
+    if (n < 3) return n == 2;
     if (n % i == 0) return false;
+    if (n < (i * i)) return true;
 
-    i++;
-    return IsPrime(n, i);
+    // next divisor
+    return IsPrime(n, i + 1);
 }
 
 int main(int argc, char *argv[])
@@ -1750,13 +1752,12 @@ int main(int argc, char *argv[])
             case 48: {
                 /* 소수 찾기 */
                 printf("1 ~ 100 까지 소수\n");
-                for (int i = 1; i <= 100; i++) {
+                for (int i = 1; i <= 100; i++)
                     printf("%d => %s\n", i, IsPrime(i, 2) == true ? "소수" : "-");
-                }
 
                 int input = 2;
                 do {
-                    printf("\u2728 임의의 수를 입력하세요(종료: 0)\n\u2761 ");
+                    printf("\u2728 임의의 수를 입력하세요(종료: 0 or 1)\n\u2761 ");
                     scanf("%d", &input);
                     bool isPrime = IsPrime(input, 2);
                     if (input < 2) {
@@ -1770,19 +1771,22 @@ int main(int argc, char *argv[])
 
             case 49: {
                 /* 최대 연속된 번호 카운팅 */
+                // --> 연속된 번호를 별도의 배열(count[]) 아이템으로 저장한 후, 최대값(max)을 출력하는 알고리즘.
+
                 // int num[] = {1, 2, 4, 6, 7, 8, 10, 11, 13, 14};
                 int num[] = {1, 2, 3, 9, 10, 11, 12, 13, 14, 18, 19, 20, 23, 24, 25, 27, 47, 50};
                 const int size = sizeof(num) / sizeof(int);
-                int count[size] = {[0 ...(size - 1)] = 1}; // 카운팅 용 배열 초기화
+
+                int count[size] = {[0 ...(size - 1)] = 1};         // 카운팅 용 배열 초기화, 기본적으로 모두 자기 자신 1개 default value
                 int idx = 0;
                 for (int k = 1; k < size - 1; k++)
-                    if (num[k - 1] + 1 == num[k]) count[idx] += 1;
-                    else idx++;
+                    if (num[k - 1] + 1 == num[k]) count[idx] += 1; // 직전과 비교.
+                    else idx++;                                    // 일련번호가 아니면 인덱스 증가. next assign.
 
                 int max = count[0];
                 for (int i = 0; i < size; i++)
-                    if (max < count[i]) max = count[i];
-                printf("\n최대 일련번호 갯수 = %d\n", max);
+                    if (max < count[i]) max = count[i];     // 카운팅 배열에서 최대값 찾기.
+                printf("\n최대 일련번호 갯수 = %d\n", max); // example : 9 - 14 (6ea)
             } break;
 
             default: return 123;
