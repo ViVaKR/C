@@ -8,6 +8,10 @@
 #include <time.h>
 #include <unistd.h>
 
+#define CASE_MASK ('A' ^ 'a')
+
+// 객체 = 변수(속성) + 함수(메서드, 기능)
+
 int MakeRandom(const int min, const int max)
 {
     const int number = (rand() % (max - min + 1)) + min;
@@ -739,6 +743,24 @@ long long Fibonacci(int n)
         n <= 1 ? n : FibonacciMemoization(n - 1) + FibonacciMemoization(n - 2);
 }
 
+// Is letter uppercase?
+int is_letter_upper(int ch)
+{
+    return (ch & CASE_MASK) == ('A' & CASE_MASK);
+}
+
+// Is letter lowercase?
+int is_letter_lower(int ch)
+{
+
+    return ((ch & CASE_MASK) == ('a' & CASE_MASK));
+}
+
+int is_letter_upperBM(int ch)
+{
+    return !((ch & CASE_MASK) ^ ('A' & CASE_MASK));
+}
+
 int main(void)
 {
     setlocale(LC_NUMERIC, "");
@@ -794,5 +816,28 @@ int main(void)
     printf("문의내용\t%%f\t-> %f\n", demo);
     printf("해결책(1)\t%%g\t-> %g\n", demo);
     printf("해결책(2)\t%%.2f\t-> %.1f\n", demo);
-    return 0;
+
+    char str[100] = "Hello World @$@ 24 134 #$@#$ 86 587 Fine Good! ABCD";
+    int upper_cnt = 0;
+    int lower_cnt = 0;
+    int etc_cnt = 0;
+    int digit_cnt = 0;
+
+    int t = 0;
+
+    for (int i = 0; str[i] != '\0'; i++) {
+
+        // For Uppercase
+        if (str[i] >= 'A' && str[i] <= 'Z') upper_cnt++;
+
+        // For Lowercase
+        if (str[i] >= 'a' && str[i] <= 'z') lower_cnt++;
+
+        // For Number
+        if (isdigit(str[i])) digit_cnt++;
+
+        // For ETC
+    }
+
+    printf("대문자: %d\n소문자: %d\n숫자: %d\n그 외%d\n", upper_cnt, lower_cnt, digit_cnt, etc_cnt);
 }
