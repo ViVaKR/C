@@ -1,0 +1,3 @@
+C:\MSYS\clangarm64\bin\cmake.exe -E rm -f CMakeFiles\Demo.dir/objects.a
+C:\MSYS\clangarm64\bin\llvm-ar.exe qc CMakeFiles\Demo.dir/objects.a @CMakeFiles\Demo.dir\objects1.rsp
+C:\MSYS\clangarm64\bin\clang.exe -g -Wl,--whole-archive CMakeFiles\Demo.dir/objects.a -Wl,--no-whole-archive -o Demo.exe -Wl,--out-implib,libDemo.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Demo.dir\linkLibs.rsp
