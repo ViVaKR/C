@@ -1,8 +1,0 @@
-[
-{
-  "directory": "C:/Temp/C/build",
-  "command": "C:\\MSYS\\clangarm64\\bin\\clang.exe   -g -o CMakeFiles\\Demo.dir\\main.c.obj -c C:\\Temp\\C\\main.c",
-  "file": "C:/Temp/C/main.c",
-  "output": "CMakeFiles/Demo.dir/main.c.obj"
-}
-]

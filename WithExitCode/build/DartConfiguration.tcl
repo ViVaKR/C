@@ -4,8 +4,8 @@
 
 
 # Configuration directories and files
-SourceDirectory: C:/Temp/C
-BuildDirectory: C:/Temp/C/build
+SourceDirectory: C:/GitProjects/C/WithExitCode
+BuildDirectory: C:/GitProjects/C/WithExitCode/build
 
 # Where to place the cost data store
 CostDataFile: 
@@ -14,7 +14,7 @@ CostDataFile:
 Site: ViVaBJ
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
-BuildName: Win32-mingw32-make
+BuildName: Win32-ninja
 
 # Subprojects
 LabelsForSubprojects: 
@@ -27,8 +27,8 @@ SubmitInactivityTimeout:
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "C:/MSYS/clangarm64/bin/cmake.exe" "C:/Temp/C"
-MakeCommand: C:/MSYS/clangarm64/bin/cmake.exe --build . --config "${CTEST_CONFIGURATION_TYPE}" -- -i
+ConfigureCommand: "C:/MSYS/clangarm64/bin/cmake.exe" "C:/GitProjects/C/WithExitCode"
+MakeCommand: C:\MSYS\clangarm64\bin\cmake.exe --build . --config "${CTEST_CONFIGURATION_TYPE}"
 DefaultCTestConfigurationType: Release
 
 # version control
@@ -63,7 +63,7 @@ UpdateOptions:
 UpdateType: 
 
 # Compiler info
-Compiler: C:/MSYS/clangarm64/bin/clang++.exe
+Compiler: 
 CompilerVersion: 
 
 # Dynamic analysis (MemCheck)

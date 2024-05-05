@@ -17,7 +17,7 @@ events:
       - "CMakeLists.txt:2 (project)"
     message: |
       Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
-      Compiler: C:/MSYS/clangarm64/bin/clang.exe 
+      Compiler: C:/MSYS/clangarm64/bin/cc.exe 
       Build flags: 
       Id flags:  
       
@@ -28,7 +28,7 @@ events:
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.exe"
       
       The C compiler identification is Clang, found in:
-        C:/Temp/C/build/CMakeFiles/3.29.2/CompilerIdC/a.exe
+        C:/GitProjects/C/WithExitCode/build/CMakeFiles/3.29.2/CompilerIdC/a.exe
       
   -
     kind: "try_compile-v1"
@@ -39,47 +39,41 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Temp/C/build/CMakeFiles/CMakeScratch/TryCompile-ambw21"
-      binary: "C:/Temp/C/build/CMakeFiles/CMakeScratch/TryCompile-ambw21"
+      source: "C:/GitProjects/C/WithExitCode/build/CMakeFiles/CMakeScratch/TryCompile-7s0fbh"
+      binary: "C:/GitProjects/C/WithExitCode/build/CMakeFiles/CMakeScratch/TryCompile-7s0fbh"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
     buildResult:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Temp/C/build/CMakeFiles/CMakeScratch/TryCompile-ambw21'
+        Change Dir: 'C:/GitProjects/C/WithExitCode/build/CMakeFiles/CMakeScratch/TryCompile-7s0fbh'
         
-        Run Build Command(s): C:/MSYS/clangarm64/bin/cmake.exe -E env VERBOSE=1 C:/MSYS/clangarm64/bin/mingw32-make.exe -f Makefile cmTC_b3f3e/fast
-        C:/MSYS/clangarm64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_b3f3e.dir\\build.make CMakeFiles/cmTC_b3f3e.dir/build
-        mingw32-make[1]: Entering directory 'C:/Temp/C/build/CMakeFiles/CMakeScratch/TryCompile-ambw21'
-        Building C object CMakeFiles/cmTC_b3f3e.dir/CMakeCCompilerABI.c.obj
-        C:\\MSYS\\clangarm64\\bin\\clang.exe   -v -MD -MT CMakeFiles/cmTC_b3f3e.dir/CMakeCCompilerABI.c.obj -MF CMakeFiles\\cmTC_b3f3e.dir\\CMakeCCompilerABI.c.obj.d -o CMakeFiles\\cmTC_b3f3e.dir\\CMakeCCompilerABI.c.obj -c C:\\MSYS\\clangarm64\\share\\cmake\\Modules\\CMakeCCompilerABI.c
+        Run Build Command(s): C:/MSYS/clangarm64/bin/ninja.exe -v cmTC_899bb
+        [1/2] C:\\MSYS\\clangarm64\\bin\\cc.exe   -v -MD -MT CMakeFiles/cmTC_899bb.dir/CMakeCCompilerABI.c.obj -MF CMakeFiles\\cmTC_899bb.dir\\CMakeCCompilerABI.c.obj.d -o CMakeFiles/cmTC_899bb.dir/CMakeCCompilerABI.c.obj -c C:/MSYS/clangarm64/share/cmake/Modules/CMakeCCompilerABI.c
         clang version 18.1.4
         Target: aarch64-w64-windows-gnu
         Thread model: posix
         InstalledDir: C:/MSYS/clangarm64/bin
          (in-process)
-         "C:/MSYS/clangarm64/bin/clang.exe" -cc1 -triple aarch64-w64-windows-gnu -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=none -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -mms-bitfields -funwind-tables=2 -fno-use-init-array -target-cpu generic -target-feature +v8a -target-feature +fp-armv8 -target-feature +neon -target-abi aapcs -debugger-tuning=gdb -fdebug-compilation-dir=C:/Temp/C/build/CMakeFiles/CMakeScratch/TryCompile-ambw21 -v -fcoverage-compilation-dir=C:/Temp/C/build/CMakeFiles/CMakeScratch/TryCompile-ambw21 -resource-dir C:/MSYS/clangarm64/lib/clang/18 -dependency-file "CMakeFiles\\\\cmTC_b3f3e.dir\\\\CMakeCCompilerABI.c.obj.d" -MT CMakeFiles/cmTC_b3f3e.dir/CMakeCCompilerABI.c.obj -sys-header-deps -internal-isystem C:/MSYS/clangarm64/lib/clang/18/include -internal-isystem C:/MSYS/clangarm64/aarch64-w64-mingw32/include -internal-isystem C:/MSYS/clangarm64/aarch64-w64-mingw32/usr/include -internal-isystem C:/MSYS/clangarm64/include -ferror-limit 19 -fno-use-cxa-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -exception-model=seh -faddrsig -o "CMakeFiles\\\\cmTC_b3f3e.dir\\\\CMakeCCompilerABI.c.obj" -x c "C:\\\\MSYS\\\\clangarm64\\\\share\\\\cmake\\\\Modules\\\\CMakeCCompilerABI.c"
-        clang -cc1 version 18.1.4 based upon LLVM 18.1.4 default target aarch64-w64-windows-gnu
-        ignoring nonexistent directory "C:/MSYS/clangarm64/aarch64-w64-mingw32/include"
-        ignoring nonexistent directory "C:/MSYS/clangarm64/aarch64-w64-mingw32/usr/include"
-        #include "..." search starts here:
-        #include <...> search starts here:
-         C:/MSYS/clangarm64/lib/clang/18/include
-         C:/MSYS/clangarm64/include
-        End of search list.
-        Linking C executable cmTC_b3f3e.exe
-        C:\\MSYS\\clangarm64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_b3f3e.dir\\link.txt --verbose=1
-        C:\\MSYS\\clangarm64\\bin\\cmake.exe -E rm -f CMakeFiles\\cmTC_b3f3e.dir/objects.a
-        C:\\MSYS\\clangarm64\\bin\\llvm-ar.exe qc CMakeFiles\\cmTC_b3f3e.dir/objects.a @CMakeFiles\\cmTC_b3f3e.dir\\objects1.rsp
-        C:\\MSYS\\clangarm64\\bin\\clang.exe  -v -Wl,-v -Wl,--whole-archive CMakeFiles\\cmTC_b3f3e.dir/objects.a -Wl,--no-whole-archive -o cmTC_b3f3e.exe -Wl,--out-implib,libcmTC_b3f3e.dll.a -Wl,--major-image-version,0,--minor-image-version,0
+         "C:/MSYS/clangarm64/bin/cc.exe" -cc1 -triple aarch64-w64-windows-gnu -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=none -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -mms-bitfields -funwind-tables=2 -fno-use-init-array -target-cpu generic -target-feature +v8a -target-feature +fp-armv8 -target-feature +neon -target-abi aapcs -debugger-tuning=gdb -fdebug-compilation-dir=C:/GitProjects/C/WithExitCode/build/CMakeFiles/CMakeScratch/TryCompile-7s0fbh -v -fcoverage-compilation-dir=C:/GitProjects/C/WithExitCode/build/CMakeFiles/CMakeScratch/TryCompile-7s0fbh -resource-dir C:/MSYS/clangarm64/lib/clang/18 -dependency-file "CMakeFiles\\\\cmTC_899bb.dir\\\\CMakeCCompilerABI.c.obj.d" -MT CMakeFiles/cmTC_899bb.dir/CMakeCCompilerABI.c.obj -sys-header-deps -internal-isystem C:/MSYS/clangarm64/lib/clang/18/include -internal-isystem C:/MSYS/clangarm64/aarch64-w64-mingw32/include -internal-isystem C:/MSYS/clangarm64/aarch64-w64-mingw32/usr/include -internal-isystem C:/MSYS/clangarm64/include -ferror-limit 19 -fno-use-cxa-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -exception-model=seh -faddrsig -o CMakeFiles/cmTC_899bb.dir/CMakeCCompilerABI.c.obj -x c C:/MSYS/clangarm64/share/cmake/Modules/CMakeCCompilerABI.c
+        clang -cc1 version 18.1.4 based upon LLVM 18.1.4 default target aarch64-w64-windows-gnu\x0d
+        ignoring nonexistent directory "C:/MSYS/clangarm64/aarch64-w64-mingw32/include"\x0d
+        ignoring nonexistent directory "C:/MSYS/clangarm64/aarch64-w64-mingw32/usr/include"\x0d
+        #include "..." search starts here:\x0d
+        #include <...> search starts here:\x0d
+         C:/MSYS/clangarm64/lib/clang/18/include\x0d
+         C:/MSYS/clangarm64/include\x0d
+        End of search list.\x0d
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\MSYS\\clangarm64\\bin\\cc.exe  -v -Wl,-v CMakeFiles/cmTC_899bb.dir/CMakeCCompilerABI.c.obj -o cmTC_899bb.exe -Wl,--out-implib,libcmTC_899bb.dll.a -Wl,--major-image-version,0,--minor-image-version,0   && cd ."
         clang version 18.1.4
         Target: aarch64-w64-windows-gnu
         Thread model: posix
         InstalledDir: C:/MSYS/clangarm64/bin
-         "C:/MSYS/clangarm64/bin/ld.lld" -m arm64pe -Bdynamic -o cmTC_b3f3e.exe C:/MSYS/clangarm64/lib/crt2.o C:/MSYS/clangarm64/lib/crtbegin.o -LC:/MSYS/clangarm64/aarch64-w64-mingw32/lib -LC:/MSYS/clangarm64/aarch64-w64-mingw32/mingw/lib -LC:/MSYS/clangarm64/lib -LC:/MSYS/clangarm64/lib/clang/18/lib/windows -v --whole-archive "CMakeFiles\\\\cmTC_b3f3e.dir/objects.a" --no-whole-archive --out-implib libcmTC_b3f3e.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 C:/MSYS/clangarm64/lib/clang/18/lib/windows/libclang_rt.builtins-aarch64.a -lunwind -lmoldname -lmingwex -lmsvcrt -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 C:/MSYS/clangarm64/lib/clang/18/lib/windows/libclang_rt.builtins-aarch64.a -lunwind -lmoldname -lmingwex -lmsvcrt -lkernel32 C:/MSYS/clangarm64/lib/crtend.o
+         "C:/MSYS/clangarm64/bin/ld.lld" -m arm64pe -Bdynamic -o cmTC_899bb.exe C:/MSYS/clangarm64/lib/crt2.o C:/MSYS/clangarm64/lib/crtbegin.o -LC:/MSYS/clangarm64/aarch64-w64-mingw32/lib -LC:/MSYS/clangarm64/aarch64-w64-mingw32/mingw/lib -LC:/MSYS/clangarm64/lib -LC:/MSYS/clangarm64/lib/clang/18/lib/windows -v CMakeFiles/cmTC_899bb.dir/CMakeCCompilerABI.c.obj --out-implib libcmTC_899bb.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 C:/MSYS/clangarm64/lib/clang/18/lib/windows/libclang_rt.builtins-aarch64.a -lunwind -lmoldname -lmingwex -lmsvcrt -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 C:/MSYS/clangarm64/lib/clang/18/lib/windows/libclang_rt.builtins-aarch64.a -lunwind -lmoldname -lmingwex -lmsvcrt -lkernel32 C:/MSYS/clangarm64/lib/crtend.o\x0d
         LLD 18.1.4 (compatible with GNU linkers)
-        mingw32-make[1]: Leaving directory 'C:/Temp/C/build/CMakeFiles/CMakeScratch/TryCompile-ambw21'
         
       exitCode: 0
   -
@@ -110,43 +104,36 @@ events:
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?))("|,| |$)]
-        ignore line: [Change Dir: 'C:/Temp/C/build/CMakeFiles/CMakeScratch/TryCompile-ambw21']
+        ignore line: [Change Dir: 'C:/GitProjects/C/WithExitCode/build/CMakeFiles/CMakeScratch/TryCompile-7s0fbh']
         ignore line: []
-        ignore line: [Run Build Command(s): C:/MSYS/clangarm64/bin/cmake.exe -E env VERBOSE=1 C:/MSYS/clangarm64/bin/mingw32-make.exe -f Makefile cmTC_b3f3e/fast]
-        ignore line: [C:/MSYS/clangarm64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_b3f3e.dir\\build.make CMakeFiles/cmTC_b3f3e.dir/build]
-        ignore line: [mingw32-make[1]: Entering directory 'C:/Temp/C/build/CMakeFiles/CMakeScratch/TryCompile-ambw21']
-        ignore line: [Building C object CMakeFiles/cmTC_b3f3e.dir/CMakeCCompilerABI.c.obj]
-        ignore line: [C:\\MSYS\\clangarm64\\bin\\clang.exe   -v -MD -MT CMakeFiles/cmTC_b3f3e.dir/CMakeCCompilerABI.c.obj -MF CMakeFiles\\cmTC_b3f3e.dir\\CMakeCCompilerABI.c.obj.d -o CMakeFiles\\cmTC_b3f3e.dir\\CMakeCCompilerABI.c.obj -c C:\\MSYS\\clangarm64\\share\\cmake\\Modules\\CMakeCCompilerABI.c]
+        ignore line: [Run Build Command(s): C:/MSYS/clangarm64/bin/ninja.exe -v cmTC_899bb]
+        ignore line: [[1/2] C:\\MSYS\\clangarm64\\bin\\cc.exe   -v -MD -MT CMakeFiles/cmTC_899bb.dir/CMakeCCompilerABI.c.obj -MF CMakeFiles\\cmTC_899bb.dir\\CMakeCCompilerABI.c.obj.d -o CMakeFiles/cmTC_899bb.dir/CMakeCCompilerABI.c.obj -c C:/MSYS/clangarm64/share/cmake/Modules/CMakeCCompilerABI.c]
         ignore line: [clang version 18.1.4]
         ignore line: [Target: aarch64-w64-windows-gnu]
         ignore line: [Thread model: posix]
         ignore line: [InstalledDir: C:/MSYS/clangarm64/bin]
         ignore line: [ (in-process)]
-        ignore line: [ "C:/MSYS/clangarm64/bin/clang.exe" -cc1 -triple aarch64-w64-windows-gnu -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=none -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -mms-bitfields -funwind-tables=2 -fno-use-init-array -target-cpu generic -target-feature +v8a -target-feature +fp-armv8 -target-feature +neon -target-abi aapcs -debugger-tuning=gdb -fdebug-compilation-dir=C:/Temp/C/build/CMakeFiles/CMakeScratch/TryCompile-ambw21 -v -fcoverage-compilation-dir=C:/Temp/C/build/CMakeFiles/CMakeScratch/TryCompile-ambw21 -resource-dir C:/MSYS/clangarm64/lib/clang/18 -dependency-file "CMakeFiles\\\\cmTC_b3f3e.dir\\\\CMakeCCompilerABI.c.obj.d" -MT CMakeFiles/cmTC_b3f3e.dir/CMakeCCompilerABI.c.obj -sys-header-deps -internal-isystem C:/MSYS/clangarm64/lib/clang/18/include -internal-isystem C:/MSYS/clangarm64/aarch64-w64-mingw32/include -internal-isystem C:/MSYS/clangarm64/aarch64-w64-mingw32/usr/include -internal-isystem C:/MSYS/clangarm64/include -ferror-limit 19 -fno-use-cxa-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -exception-model=seh -faddrsig -o "CMakeFiles\\\\cmTC_b3f3e.dir\\\\CMakeCCompilerABI.c.obj" -x c "C:\\\\MSYS\\\\clangarm64\\\\share\\\\cmake\\\\Modules\\\\CMakeCCompilerABI.c"]
-        ignore line: [clang -cc1 version 18.1.4 based upon LLVM 18.1.4 default target aarch64-w64-windows-gnu]
-        ignore line: [ignoring nonexistent directory "C:/MSYS/clangarm64/aarch64-w64-mingw32/include"]
-        ignore line: [ignoring nonexistent directory "C:/MSYS/clangarm64/aarch64-w64-mingw32/usr/include"]
-        ignore line: [#include "..." search starts here:]
-        ignore line: [#include <...> search starts here:]
-        ignore line: [ C:/MSYS/clangarm64/lib/clang/18/include]
-        ignore line: [ C:/MSYS/clangarm64/include]
-        ignore line: [End of search list.]
-        ignore line: [Linking C executable cmTC_b3f3e.exe]
-        ignore line: [C:\\MSYS\\clangarm64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_b3f3e.dir\\link.txt --verbose=1]
-        ignore line: [C:\\MSYS\\clangarm64\\bin\\cmake.exe -E rm -f CMakeFiles\\cmTC_b3f3e.dir/objects.a]
-        ignore line: [C:\\MSYS\\clangarm64\\bin\\llvm-ar.exe qc CMakeFiles\\cmTC_b3f3e.dir/objects.a @CMakeFiles\\cmTC_b3f3e.dir\\objects1.rsp]
-        ignore line: [C:\\MSYS\\clangarm64\\bin\\clang.exe  -v -Wl -v -Wl --whole-archive CMakeFiles\\cmTC_b3f3e.dir/objects.a -Wl --no-whole-archive -o cmTC_b3f3e.exe -Wl --out-implib libcmTC_b3f3e.dll.a -Wl --major-image-version 0 --minor-image-version 0]
+        ignore line: [ "C:/MSYS/clangarm64/bin/cc.exe" -cc1 -triple aarch64-w64-windows-gnu -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=none -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -mms-bitfields -funwind-tables=2 -fno-use-init-array -target-cpu generic -target-feature +v8a -target-feature +fp-armv8 -target-feature +neon -target-abi aapcs -debugger-tuning=gdb -fdebug-compilation-dir=C:/GitProjects/C/WithExitCode/build/CMakeFiles/CMakeScratch/TryCompile-7s0fbh -v -fcoverage-compilation-dir=C:/GitProjects/C/WithExitCode/build/CMakeFiles/CMakeScratch/TryCompile-7s0fbh -resource-dir C:/MSYS/clangarm64/lib/clang/18 -dependency-file "CMakeFiles\\\\cmTC_899bb.dir\\\\CMakeCCompilerABI.c.obj.d" -MT CMakeFiles/cmTC_899bb.dir/CMakeCCompilerABI.c.obj -sys-header-deps -internal-isystem C:/MSYS/clangarm64/lib/clang/18/include -internal-isystem C:/MSYS/clangarm64/aarch64-w64-mingw32/include -internal-isystem C:/MSYS/clangarm64/aarch64-w64-mingw32/usr/include -internal-isystem C:/MSYS/clangarm64/include -ferror-limit 19 -fno-use-cxa-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -exception-model=seh -faddrsig -o CMakeFiles/cmTC_899bb.dir/CMakeCCompilerABI.c.obj -x c C:/MSYS/clangarm64/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [clang -cc1 version 18.1.4 based upon LLVM 18.1.4 default target aarch64-w64-windows-gnu\x0d]
+        ignore line: [ignoring nonexistent directory "C:/MSYS/clangarm64/aarch64-w64-mingw32/include"\x0d]
+        ignore line: [ignoring nonexistent directory "C:/MSYS/clangarm64/aarch64-w64-mingw32/usr/include"\x0d]
+        ignore line: [#include "..." search starts here:\x0d]
+        ignore line: [#include <...> search starts here:\x0d]
+        ignore line: [ C:/MSYS/clangarm64/lib/clang/18/include\x0d]
+        ignore line: [ C:/MSYS/clangarm64/include\x0d]
+        ignore line: [End of search list.\x0d]
+        ignore line: [[2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\MSYS\\clangarm64\\bin\\cc.exe  -v -Wl -v CMakeFiles/cmTC_899bb.dir/CMakeCCompilerABI.c.obj -o cmTC_899bb.exe -Wl --out-implib libcmTC_899bb.dll.a -Wl --major-image-version 0 --minor-image-version 0   && cd ."]
         ignore line: [clang version 18.1.4]
         ignore line: [Target: aarch64-w64-windows-gnu]
         ignore line: [Thread model: posix]
         ignore line: [InstalledDir: C:/MSYS/clangarm64/bin]
-        link line: [ "C:/MSYS/clangarm64/bin/ld.lld" -m arm64pe -Bdynamic -o cmTC_b3f3e.exe C:/MSYS/clangarm64/lib/crt2.o C:/MSYS/clangarm64/lib/crtbegin.o -LC:/MSYS/clangarm64/aarch64-w64-mingw32/lib -LC:/MSYS/clangarm64/aarch64-w64-mingw32/mingw/lib -LC:/MSYS/clangarm64/lib -LC:/MSYS/clangarm64/lib/clang/18/lib/windows -v --whole-archive "CMakeFiles\\\\cmTC_b3f3e.dir/objects.a" --no-whole-archive --out-implib libcmTC_b3f3e.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 C:/MSYS/clangarm64/lib/clang/18/lib/windows/libclang_rt.builtins-aarch64.a -lunwind -lmoldname -lmingwex -lmsvcrt -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 C:/MSYS/clangarm64/lib/clang/18/lib/windows/libclang_rt.builtins-aarch64.a -lunwind -lmoldname -lmingwex -lmsvcrt -lkernel32 C:/MSYS/clangarm64/lib/crtend.o]
+        link line: [ "C:/MSYS/clangarm64/bin/ld.lld" -m arm64pe -Bdynamic -o cmTC_899bb.exe C:/MSYS/clangarm64/lib/crt2.o C:/MSYS/clangarm64/lib/crtbegin.o -LC:/MSYS/clangarm64/aarch64-w64-mingw32/lib -LC:/MSYS/clangarm64/aarch64-w64-mingw32/mingw/lib -LC:/MSYS/clangarm64/lib -LC:/MSYS/clangarm64/lib/clang/18/lib/windows -v CMakeFiles/cmTC_899bb.dir/CMakeCCompilerABI.c.obj --out-implib libcmTC_899bb.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 C:/MSYS/clangarm64/lib/clang/18/lib/windows/libclang_rt.builtins-aarch64.a -lunwind -lmoldname -lmingwex -lmsvcrt -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 C:/MSYS/clangarm64/lib/clang/18/lib/windows/libclang_rt.builtins-aarch64.a -lunwind -lmoldname -lmingwex -lmsvcrt -lkernel32 C:/MSYS/clangarm64/lib/crtend.o\x0d]
           arg [C:/MSYS/clangarm64/bin/ld.lld] ==> ignore
           arg [-m] ==> ignore
           arg [arm64pe] ==> ignore
           arg [-Bdynamic] ==> search dynamic
           arg [-o] ==> ignore
-          arg [cmTC_b3f3e.exe] ==> ignore
+          arg [cmTC_899bb.exe] ==> ignore
           arg [C:/MSYS/clangarm64/lib/crt2.o] ==> obj [C:/MSYS/clangarm64/lib/crt2.o]
           arg [C:/MSYS/clangarm64/lib/crtbegin.o] ==> obj [C:/MSYS/clangarm64/lib/crtbegin.o]
           arg [-LC:/MSYS/clangarm64/aarch64-w64-mingw32/lib] ==> dir [C:/MSYS/clangarm64/aarch64-w64-mingw32/lib]
@@ -154,11 +141,9 @@ events:
           arg [-LC:/MSYS/clangarm64/lib] ==> dir [C:/MSYS/clangarm64/lib]
           arg [-LC:/MSYS/clangarm64/lib/clang/18/lib/windows] ==> dir [C:/MSYS/clangarm64/lib/clang/18/lib/windows]
           arg [-v] ==> ignore
-          arg [--whole-archive] ==> ignore
-          arg [CMakeFiles\\\\cmTC_b3f3e.dir/objects.a] ==> ignore
-          arg [--no-whole-archive] ==> ignore
+          arg [CMakeFiles/cmTC_899bb.dir/CMakeCCompilerABI.c.obj] ==> ignore
           arg [--out-implib] ==> ignore
-          arg [libcmTC_b3f3e.dll.a] ==> ignore
+          arg [libcmTC_899bb.dll.a] ==> ignore
           arg [--major-image-version] ==> ignore
           arg [0] ==> ignore
           arg [--minor-image-version] ==> ignore
