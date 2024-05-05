@@ -829,7 +829,6 @@ int main(void)
 
         // For Uppercase
         if (str[i] >= 'A' && str[i] <= 'Z') upper_cnt++;
-
         // For Lowercase
         if (str[i] >= 'a' && str[i] <= 'z') lower_cnt++;
 
