@@ -761,11 +761,66 @@ int is_letter_upperBM(int ch)
     return !((ch & CASE_MASK) ^ ('A' & CASE_MASK));
 }
 
+void MemoFiboRun()
+{
+    // 캐시(memoization array)
+    // 초기화
+    for (int i = 20; i <= 50; i++) {
+        for (int j = 0; j < 100; j++) memo[j] = -1;
+
+        int month = i;                            // 3 ~ 50 개월
+        long long sumOfRebbit = Fibonacci(month); // 각 개월 마다 결과
+
+        // 출력
+        printf("( \033[31m%d\033[0m ) 개월 후 토끼의 전체 개체수 합 : ( \033[32m%'20lld\033[0m )\n", month, sumOfRebbit);
+    }
+}
+
+void Get_CharStatus()
+{
+    char str[100] = "Hello World @$@ 24 134 #$@#$ 86 587 Fine Good! ABCD";
+    int upper_cnt = 0;
+    int lower_cnt = 0;
+    int etc_cnt = 0;
+    int digit_cnt = 0;
+
+    int t = 0;
+
+    for (int i = 0; str[i] != '\0'; i++) {
+
+        // For Uppercase
+        if (str[i] >= 'A' && str[i] <= 'Z') upper_cnt++;
+
+        // For Lowercase
+        if (str[i] >= 'a' && str[i] <= 'z') lower_cnt++;
+
+        // For Number
+        if (isdigit(str[i])) digit_cnt++;
+    }
+
+    printf("대문자\t:\t%3d\n소문자\t:\t%3d\n숫자\t:\t%3d\n그 외\t:\t%3d\n", upper_cnt, lower_cnt, digit_cnt, etc_cnt);
+}
+
+void FormatSpecifier()
+{
+    float demo = 3.2f;
+    printf("문의내용\t%%f\t-> %f\n", demo);
+    printf("해결책(1)\t%%g\t-> %g\n", demo);
+    printf("해결책(2)\t%%.2f\t-> %.1f\n", demo);
+
+    printf("천단위 콤마\t%'0d\n", 1000000000);
+}
+
+// - 백준 1406
+
+//-
+
 int main(void)
 {
     setlocale(LC_NUMERIC, "");
 
     srand(time(NULL));
+
     // 정렬
     int target[MakeRandom(10, 15)];
     int size = sizeof(target) / sizeof(int);
@@ -800,43 +855,12 @@ int main(void)
     ToUniqueSortedArray(temp, 16);
     Print(temp, 16, "중복제거 정렬");
 
-    // 캐시(memoization array)
-    // 초기화
-    for (int i = 20; i <= 50; i++) {
-        for (int j = 0; j < 100; j++) memo[j] = -1;
+    // 메모이제이션 : fibonacci
+    MemoFiboRun();
 
-        int month = i;                            // 3 ~ 50 개월
-        long long sumOfRebbit = Fibonacci(month); // 각 개월 마다 결과
+    // 포맷
+    FormatSpecifier();
 
-        // 출력
-        printf("( \033[31m%d\033[0m ) 개월 후 토끼의 전체 개체수 합 : ( \033[32m%'20lld\033[0m )\n", month, sumOfRebbit);
-    }
-
-    float demo = 3.2f;
-    printf("문의내용\t%%f\t-> %f\n", demo);
-    printf("해결책(1)\t%%g\t-> %g\n", demo);
-    printf("해결책(2)\t%%.2f\t-> %.1f\n", demo);
-
-    char str[100] = "Hello World @$@ 24 134 #$@#$ 86 587 Fine Good! ABCD";
-    int upper_cnt = 0;
-    int lower_cnt = 0;
-    int etc_cnt = 0;
-    int digit_cnt = 0;
-
-    int t = 0;
-
-    for (int i = 0; str[i] != '\0'; i++) {
-
-        // For Uppercase
-        if (str[i] >= 'A' && str[i] <= 'Z') upper_cnt++;
-        // For Lowercase
-        if (str[i] >= 'a' && str[i] <= 'z') lower_cnt++;
-
-        // For Number
-        if (isdigit(str[i])) digit_cnt++;
-
-        // For ETC
-    }
-
-    printf("대문자: %d\n소문자: %d\n숫자: %d\n그 외%d\n", upper_cnt, lower_cnt, digit_cnt, etc_cnt);
+    // 대소문자 기타 갯수
+    Get_CharStatus();
 }
