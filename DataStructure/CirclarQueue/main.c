@@ -1,3 +1,4 @@
+#include <Kernel/stdbool.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h> // malloc
@@ -58,6 +59,7 @@ void EnQueue(Queue *queue, int data, const char *name)
 }
 
 char data[100];
+
 // (2) DeQueue
 char *DeQueue(Queue *queue)
 {
