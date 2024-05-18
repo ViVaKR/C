@@ -25,6 +25,7 @@ void FloatToBinary(float num)
         }
     }
     printf(" x 2^%d\n", exp - 1);
+    // 1 0011 0101 001 1001 0001 0001 1000 0001
 }
 
 /// @brief Memory Bit Reverse
