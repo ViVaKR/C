@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1...3.29.2)
+cmake_minimum_required(VERSION 3.1...3.29.3)
 project(
     vivakr
     VERSION 1.0

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.29.1)
+cmake_minimum_required(VERSION 3.29.3)
 project(Sort)
 add_executable(Sort main.c)
 set(EXECUTABLE_OUTPUT_PATH "bin")

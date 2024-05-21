@@ -460,7 +460,6 @@ void RemoveNodeByValue()
             // 삭제
             free(delNode);
             printf("삭제 완료 하였습니다. ( \n%p => %d ) \n", n, v);
-            free(n);
         }
         prev = delNode;
     }
@@ -1606,7 +1605,7 @@ int main(int argc, char *argv[])
                 for (int i = 0; i < 10; i++) {
                     int data = rand() % 1000;
                     InsertMiddleNode(data);
-                    usleep(1000000);
+                    usleep(100000);
                     DisplayNode();
                 }
 

@@ -26,16 +26,7 @@ void PointerSize()
     // }
 }
 
-void Print(const int *arr, const int size, char *title)
-{
-    printf("%s\t=> ", title);
-    for (int i = 0; i < size; i++) {
-        printf("%3d ", arr[i]);
-    }
-    printf("\n");
-    // sleep(1);
-    // usleep(1000);
-}
+void Print(const int *arr, const int size, char *title);
 
 //=> O(N2)
 // [ 버블정렬 ]
@@ -718,6 +709,9 @@ void StringUtils()
 
     // fclose(file);
 }
+
+void Sort(int ascending, int *arr, int size);
+
 int main(void)
 {
     srand(time(NULL));
@@ -747,13 +741,50 @@ int main(void)
     QuickSort(target, 0, size - 1, 'P'); // 퀵정렬
     Print(target, size, "퀵 정렬");
 
-    //
     VariableSize();
 
     // 중복제거 정렬
     printf("\n");
     int temp[] = {1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4};
     ToUniqueSortedArray(temp, 16);
+    system("clear");
 
+    // Sort (오름차순, 내림차순)
+    int arr[] = {3, 1, 7, 5, 5, 2, 6, 4, 8};
+    int arrSize = sizeof(arr) / sizeof(int);
+    Sort(1, arr, arrSize);
+    Print(arr, arrSize, "오름차순");
+    Sort(0, arr, arrSize);
+    Print(arr, arrSize, "내림차순");
     return 0;
+}
+
+void Sort(int ascending, int *arr, int size)
+{
+    for (int i = 0; i < size; i++) {
+        for (int j = i + 1; j < size; j++) {
+            if (ascending) {
+                if (arr[i] > arr[j]) {
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            } else {
+                if (arr[i] < arr[j]) {
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+    }
+}
+
+void Print(const int *arr, const int size, char *title)
+{
+    printf("\n%s\t=> ", title);
+    for (int i = 0; i < size; i++)
+        printf("%3d ", arr[i]);
+
+    printf("\n\n");
 }
