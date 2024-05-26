@@ -661,7 +661,8 @@ int main()
         case 4: {
             Dijkstra(0, 9);
             // Dijkstra(9, 0);
-        } break;
+        } break; // [ 다익스트라 ]
+
         case 5: EulerRunner(); break;
         case 6: {
             int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
