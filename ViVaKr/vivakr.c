@@ -1588,6 +1588,165 @@ bool IsPrime(int n, int i)
     return IsPrime(n, i + 1);
 }
 
+/* 틱텍톡 게임 */
+void PlayerMove(char *spaces, char player)
+{
+    int number;
+    do {
+
+        printf("%c : Enter a number (1-9): ", player);
+        scanf("%d", &number);
+        fflush(stdin);
+        number--; // 0부터 시작하므로 1을 빼줌, 휴먼 친화적으로 1부터 시작하게 하기 위함
+        if (spaces[number] == ' ') {
+            spaces[number] = player;
+            system("clear");
+            break;
+        }
+
+    } while ((number < 1) || (number > 8));
+}
+void ComputerMove(char *spaces, char computer)
+{
+    int number;
+    srand(time(0));
+    while (true) {
+        number = rand() % 9;
+        if (spaces[number] == ' ') {
+            spaces[number] = computer;
+            system("clear");
+            break;
+        }
+    }
+}
+
+bool CheckWinner(char *spaces, char player, char computer)
+{
+    // 첫번째 행
+    if ((spaces[0] != ' ') && (spaces[0] == spaces[1] && spaces[1] == spaces[2])) {
+        spaces[0] == player
+            ? printf("YOU WIN\n")
+            : printf("YOU LOSE");
+    }
+
+    // 두번째 행
+    else if ((spaces[3] != ' ') && (spaces[3] == spaces[4] && spaces[4] == spaces[5])) {
+        spaces[3] == player
+            ? printf("YOU WIN\n")
+            : printf("YOU LOSE");
+    }
+
+    // 세번째 행
+    else if ((spaces[6] != ' ') && (spaces[6] == spaces[7] && spaces[7] == spaces[8])) {
+        spaces[6] == player
+            ? printf("YOU WIN\n")
+            : printf("YOU LOSE");
+    }
+
+    // 첫번째 열
+    else if ((spaces[0] != ' ') && (spaces[0] == spaces[3] && spaces[3] == spaces[6])) {
+        spaces[0] == player
+            ? printf("YOU WIN\n")
+            : printf("YOU LOSE");
+    }
+    // 두번째 열
+    else if ((spaces[1] != ' ') && (spaces[1] == spaces[4] && spaces[4] == spaces[7])) {
+        spaces[1] == player
+            ? printf("YOU WIN\n")
+            : printf("YOU LOSE");
+    }
+    // 세번째 열
+    else if ((spaces[2] != ' ') && (spaces[2] == spaces[5] && spaces[5] == spaces[8])) {
+        spaces[2] == player
+            ? printf("YOU WIN\n")
+            : printf("YOU LOSE");
+    }
+
+    // 대각선 (우하 방향)
+    else if ((spaces[0] != ' ') && (spaces[0] == spaces[4] && spaces[4] == spaces[8])) {
+        spaces[0] == player
+            ? printf("YOU WIN\n")
+            : printf("YOU LOSE");
+    }
+
+    // 대각선 (좌하 방향)
+    else if ((spaces[2] != ' ') && (spaces[2] == spaces[4] && spaces[4] == spaces[6])) {
+        spaces[2] == player
+            ? printf("YOU WIN\n")
+            : printf("YOU LOSE");
+    }
+
+    // 아직 승부가 나지 않았음
+    else {
+        return false;
+    }
+    return true;
+}
+
+bool CheckTie(char *spaces)
+{
+    for (int i = 0; i < 9; i++)
+        if (spaces[i] == ' ') return false;
+
+    printf("\nIT'S A TIE!\n");
+    return true;
+}
+
+// (2) board
+void DrawBoard(char *spaces)
+{
+    printf("\n");
+    printf(" %c | %c | %c \n", spaces[0], spaces[1], spaces[2]);
+    printf("---|---|---\n");
+    printf(" %c | %c | %c \n", spaces[3], spaces[4], spaces[5]);
+    printf("---|---|---\n");
+    printf(" %c | %c | %c \n", spaces[6], spaces[7], spaces[8]);
+    printf("\n");
+
+    printf("\n\n[ Board ]\n");
+    for (int i = 1; i <= 9; i++) {
+        printf(" %d ", i);
+        if (i % 3 == 0)
+            printf("\n");
+    }
+}
+// (1) runner
+void TicTacToe()
+{
+    // version up
+    char spaces[9] = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
+    char player = 'X';
+    char computer = 'O';
+    bool running = true;
+
+    DrawBoard(spaces);
+
+    while (running) {
+        PlayerMove(spaces, player);
+        DrawBoard(spaces);
+        if (CheckWinner(spaces, player, computer)) {
+            running = false;
+            break;
+        } else if (CheckTie(spaces)) {
+            running = false;
+            break;
+        }
+        ComputerMove(spaces, computer);
+        DrawBoard(spaces);
+        if (CheckWinner(spaces, player, computer)) {
+            running = false;
+            break;
+        } else if (CheckTie(spaces)) {
+            running = false;
+            break;
+        }
+    }
+    printf("\n*** Thanks for playing ***\n");
+}
+/// @brief Main Start
+/// @param argc
+/// @param argv
+/// @return
 int main(int argc, char *argv[])
 {
     setlocale(LC_NUMERIC, "");
@@ -1715,9 +1874,9 @@ int main(int argc, char *argv[])
             case 35: AnsiExample(); break;
             case 36: UniCodeArt(); break;
             case 37: CursorMovement(); break;
-            case 38: FloatPostfix(); break;
+            case 38: AnsiGeneral(); break;
             case 39: Arm64Asm(); break;
-            case 40: AnsiGeneral(); break;
+            case 40: FloatPostfix(); break;
             case 41: PrintSourceCodeItSelf(); break;
             case 42: StringArradWith2D(); break;
             case 43: {
@@ -1788,7 +1947,19 @@ int main(int argc, char *argv[])
                 printf("\n최대 일련번호 갯수 = %d\n", max); // example : 9 - 14 (6ea)
             } break;
 
-            default: return 123;
+            case 50: {
+                // TOTO
+                // PlayTicTacToe();
+
+            } break; // TICTACTOE
+
+            case 51: {
+                TicTacToe();
+            } break;
+
+            case 200: exit(0); break;
+
+            default : return 123;
         }
 
         getchar();
@@ -1815,45 +1986,57 @@ void Menu()
         "\t6. 선택 노드삭제"
         "\t7. 모든 노드제거",
         line,
-        "  8. 문자압축/해제"
+
+        //--> Start <--//
+        "  8. 압축/해제"
         "\t9. 최대 최소값"
         "\t10. fprintf()",
-        " 11. clock()"
-        "\t12. sprintf()"
-        "\t13. assert()",
-        " 14. ctype()"
-        "\t15. sscanf()"
-        "\t16. _Bool()",
-        " 17. PointerArray()"
-        "\t18. Fibonacci()"
-        "\t19. CompareNumbers()",
-        " 20. StringCopy()"
+        " 11. clock"
+        "\t12. sprintf"
+        "\t13. assert",
+        " 14. ctype"
+        "\t15. sscanf"
+        "\t16. _Bool",
+        " 17. Array (1)"
+        "\t18. Fibonacci"
+        "\t19. Compare",
+        " 20. StringCopy"
         "\t21. Signal()"
-        "\t22. Float Memory",
+        "\t22. Float",
         " 23. Big(O)"
-        "\t24. Prime Numbers"
+        "\t24. Prime"
         "\t25. Stack",
         " 26. Movies"
         "\t27. Matrix"
         "\t28. SelfXor",
         " 29. Maze"
-        "\t30. Array 2D"
+        "\t30. Array (2)"
         "\t31. InputItemSwap",
-        " 32. Function pointer"
-        "\t33. Constant pointer"
-        "\t34. Void pointer",
-        " 35. Ansi"
-        "\t36. Ansi Unicode Art"
-        "\t37. Ansi Cursor",
-        " 38. Float Postfix"
-        "\t39. LLDB With ARM64 Asm"
-        "\t40. AnsiGeneral",
-        " 41. PrintSourceCodeItSelf",
-        "200. 프로그램 종료"};
+        " 32. Function"
+        "\t33. Constant"
+        "\t34. Void",
+        " 35. Ansi (1)"
+        "\t36. Ansi (2)"
+        "\t37. Ansi (3)",
+        " 38. Ansi (4)"
+        "\t39. Asembly"
+        "\t40. Float",
+        " 41. ..."
+        "\t42. Array (3)"
+        "\t43. ...",
+        " 44. Factorial"
+        "\t45. BitWise"
+        "\t46. FastSize",
+        " 47. Array (4)"
+        "\t48. Prime (2)"
+        "\t49. Max",
+        " 50. ..."
+        "\t51. TicTacToe"
+        "\n\n200. 프로그램 종료"};
 
-    int count = sizeof(items) / sizeof(*items);
+    int count = sizeof(items) / sizeof(items[0]);
 
-    printf("== Menus ( %d ) ==\n", count);
+    printf("\033[031m== Menus ==\033[0m\n");
 
     for (size_t i = 0; i < count; i++)
         printf("%s\n", items[i]);
