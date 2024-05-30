@@ -1,10 +1,10 @@
-cmake_minimum_required(VERSION 3.1...3.29.2)
+cmake_minimum_required(VERSION 3.29.3)
 project(
     Algorithm
     VERSION 1.0
     LANGUAGES C)
 
-set(CMAKE_C_STANDARD 23)
+set(CMAKE_C_STANDARD 17)
 
 add_executable(Algorithm main.c)
 set(EXECUTABLE_OUTPUT_PATH "bin")

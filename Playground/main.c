@@ -5,18 +5,20 @@
 #include <stdlib.h> // for strtol
 #include <string.h>
 
-void PrintBit(const long long num, const int size) {
+void PrintBit(const long long num, const int size)
+{
     printf("0b_");
     for (long long i = size - 1; i >= 0; --i) {
         printf("%lld", (num >> i) & 1); // 0011
 
-        if (i != 0) // under bar insert, except last char
+        if (i != 0)                     // under bar insert, except last char
             printf("%s", i % 4 == 0 ? "_" : "");
     }
     printf(" ( %+lld ) \n", num);
 }
 
-void BitOperatorRunner() {
+void BitOperatorRunner()
+{
     // 음수 중 가장 큰수 : -1
     // -2,147483,648 ~ 2,147,483,647
 
@@ -45,7 +47,8 @@ void BitOperatorRunner() {
 
 void ReadBit(int num, int cursor) {}
 
-void StringCompress(char *text) {
+void StringCompress(char *text)
+{
     int strLen = strlen(text);
     if (strLen < 2)
         return;
@@ -73,7 +76,8 @@ void StringCompress(char *text) {
     puts("");
 }
 
-void BubbleSort(int *arr, int size) {
+void BubbleSort(int *arr, int size)
+{
     for (size_t i = 0; i < size - 1; i++) {
         for (size_t j = 0; j < size - 1 - i; j++) {
             if (arr[j] > arr[j + 1]) {
@@ -85,13 +89,15 @@ void BubbleSort(int *arr, int size) {
     }
 }
 
-bool GetBit(int index) {
+bool GetBit(int index)
+{
     // index 비트를 제외한 나머지 모두 0으로 셋팅.
     int a = 0b1101;
     return (a & (1 << index));
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
     short originNumber = 30;
     short target = -30;
     printf("\n*** 부호를 가지고 있는 signed short (%hi) 이진표현 ***\n", target);
@@ -102,13 +108,13 @@ int main(int argc, char **argv) {
     // => -30의 이진수 는 => 0b 1111 1111 1110 0010 (2의 보수)
 
     printf("[ ( %hu )을 ( %hi )로 만들어 가는 여정 ]\n(1) 원래의 수 +30\t=>\t", originNumber, target);
-    PrintBit(30, 16); // (1) 30 원래의 수
+    PrintBit(30, 16);          // (1) 30 원래의 수
     printf("(2) +30의 1의 보수\t=>\t");
-    PrintBit(~30, 16); // (2) 30에 대한 1의 보수의
+    PrintBit(~30, 16);         // (2) 30에 대한 1의 보수의
     printf("(3) +30의 2의 보수\t=>\t");
     PrintBit((~30) + 0b1, 16); // (3) 30 에 대한 2의 보수
     printf("(4) -30의 비트 (답)\t=>\t");
-    PrintBit(target, 16); // (재 검증) 출력 확인 파트, 위 3번과 같은 지 확인하기..
+    PrintBit(target, 16);      // (재 검증) 출력 확인 파트, 위 3번과 같은 지 확인하기..
 
     printf("\n[ (2) 부호가 없는 signed short (-30) 이진표현 ]\n");
     // 부호가 없는 변수에 부호가 있으니 원래의 양의 정수로 표현하려면?

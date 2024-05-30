@@ -811,9 +811,56 @@ void FormatSpecifier()
     printf("천단위 콤마\t%'0d\n", 1000000000);
 }
 
-// - 백준 1406
+int Repath(int n)
+{
+    int i;
+    if (n < 1) return 2; // base case
+    else {
+        i = 2 * Repath(n - 1) + 1;
+        printf("%d\n", i);
+        return i;
+    }
+}
 
-//-
+/* 콜하면서 함수를 스택에 쌓아놓고, 정상에서 (base case) -> Last in First out (FILO) 하는 직관 샘플.. */
+
+/* [ 상세 설명 ] */
+// 예를 들어 시작값이 3일때 n-1 로직으로 네번째에서 base case 가되는 예 이지만..?
+// 만일 그 3을 일반화 하여, 사용자가 입력한 임의의 값 n이라면?
+// 런타임에 ...
+// 그 n 번째 까지 아래와 같이 무식하게 함수를 계속 만들어 낼 방법이 없으므로
+// 재귀함수를 위와 같이 사용함.
+// 즉, 동적인 프로그램에서,  코드 가독성과 간결한 유지보수를 위해 재귀함수를 사용함.
+
+int Repath_4()
+{
+    //--> (터닝 포인트, base case , begin return to, Repath_3  -> with 2)
+    return 2;
+}
+
+int Repath_3(int n)
+{
+    //--> (Call Repath_4)
+    int i = 2 * Repath_4() + 1; // 2 * 2 + 1 = 5
+    printf("%d\n", i);          // (첫번째 프린팅) print -> 5
+    return i;                   // return to caller to, Repath_2 -> with 5
+}
+
+int Repath_2(int n)
+{
+    //--> (Call Repath_3)
+    int i = 2 * Repath_3(n - 1) + 1; // 2 * 5 + 1 = 11
+    printf("%d\n", i);               // (두번째 프린팅) print -> 11
+    return i;                        // return to caller to, Repath_1 -> with 11
+}
+
+int Repath_1(int n)
+{
+    //--> (Call Repath_2)
+    int i = 2 * Repath_2(n - 1) + 1; // 2 * 11 + 1 = 23
+    printf("%d\n", i);               // (마지막 프린팅) print -> 23
+    return i;                        // return to caller main -> with 23 (마지막 리턴, 마지막 리턴 값은 의미가 없음)
+}
 
 int main(void)
 {
@@ -863,4 +910,14 @@ int main(void)
 
     // 대소문자 기타 갯수
     Get_CharStatus();
+
+    // 재귀 함수
+    int k;
+    Repath(3);
+
+    // Call 1, 2, 3 함수 호출
+    // Print 답 1, 2, 3 출력 (문의에 대한 답변 )
+    printf("Start ... \n");
+    int result = Repath_1(3);
+    printf("I'll be back\n");
 }

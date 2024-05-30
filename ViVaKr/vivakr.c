@@ -1949,13 +1949,12 @@ int main(int argc, char *argv[])
 
             case 50: {
                 // TOTO
-                // PlayTicTacToe();
 
-            } break; // TICTACTOE
+            } break;
 
             case 51: {
                 TicTacToe();
-            } break;
+            } break; // TICTACTOE
 
             case 200: exit(0); break;
 

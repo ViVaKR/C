@@ -59,6 +59,7 @@ void EulerRunner()
            exp(1));
 }
 
+/* (1) 최단 경로 */
 void FloydWarshall()
 {
     const int INF = 1000000000;
@@ -74,6 +75,7 @@ void FloydWarshall()
             adj[i][j] = 0;
         }
     }
+
     adj[1][2] = 15;
     adj[1][5] = 12;
     adj[2][1] = 15;
@@ -111,6 +113,7 @@ void FloydWarshall()
     adj[10][8] = 15;
     adj[10][9] = 9;
 
+    // D0
     for (int i = 1; i <= size; i++) {
         for (int j = 1; j <= size; j++) {
             if (i == j) {
@@ -134,6 +137,8 @@ void FloydWarshall()
         printf("\n");
     }
     printf("\n");
+
+    // D1 ~ D10
     for (int k = 1; k <= size; k++) {
         for (int i = 1; i <= size; i++) {
             for (int j = 1; j <= size; j++) {
@@ -659,7 +664,7 @@ int main()
         case 2: FloydModel(); break;
         case 3: FloydWarshall(); break;
         case 4: {
-            Dijkstra(0, 9);
+            Dijkstra(9, 0);
             // Dijkstra(9, 0);
         } break; // [ 다익스트라 ]
 
