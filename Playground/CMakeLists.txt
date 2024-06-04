@@ -26,10 +26,6 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${VTK_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}/lib
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${VTK_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}/bin)
 
 
-
-
-
-
 # 1. create folder ./build
 # 2. cd build
 # 3. cmake ..
