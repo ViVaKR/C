@@ -657,15 +657,35 @@ void GraphInit(Graph *g, int vertexCount)
 
 int main()
 {
-    int choice = 4;
+
+    int choice = 1;
     switch (choice) {
         case 0: exit(0); break;
         case 1: FloydCity(); break;
         case 2: FloydModel(); break;
         case 3: FloydWarshall(); break;
         case 4: {
-            Dijkstra(9, 0);
             // Dijkstra(9, 0);
+            printf("서울 (0)\n");
+            printf("원주 (1)\n");
+            printf("강릉 (2)\n");
+            printf("포항 (3)\n");
+            printf("천안 (4)\n");
+            printf("논산 (5)\n");
+            printf("대전 (6)\n");
+            printf("광주 (7)\n");
+            printf("대구 (8)\n");
+            printf("부산 (9)\n");
+
+            int start = 0;
+            printf("출발지를 입력하세요: ");
+            scanf("%d", &start);
+            int destination = 0;
+            printf("도착지를 입력하세요: ");
+            scanf("%d", &destination);
+
+            // 최단 경로 찾기
+            Dijkstra(start, destination);
         } break; // [ 다익스트라 ]
 
         case 5: EulerRunner(); break;
@@ -729,8 +749,23 @@ int main()
             GraphInit(&g, 4);
         } break;
 
-        default:
-            break;
+        default: {
+            printf("Hello World");
+
+            double a = 3.14;
+            int b = (int)a;
+            int *p = (int *)&a; // 포인터 캐스팅
+            printf("b = %d\n %p\n", b, p);
+
+            int arr[5] = {1, 2, 3, 4, 5};
+            int *ptr = arr;
+            int *k = &arr[0];
+
+            int t = (int *)malloc(sizeof(int) * 1024); // 동적할당
+
+            int *s = (int *)b;
+
+        } break;
     }
     {
         char *str = "Hello World";

@@ -7,6 +7,7 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
+#define N         1000
 
 #define CASE_MASK ('A' ^ 'a')
 
@@ -920,4 +921,53 @@ int main(void)
     printf("Start ... \n");
     int result = Repath_1(3);
     printf("I'll be back\n");
+
+    // Spigot Algorithm
+    printf("Spigot Algorithm\n");
+    long long len = floor(10 * N / 3) + 1;
+    long long A[len];
+
+    for (int i = 0; i < len; ++i) {
+        A[i] = 2;
+    }
+
+    int nines = 0;
+    long long predigit = 0;
+
+    for (int j = 1; j < N + 1; ++j) {
+        long long q = 0;
+
+        for (int i = len; i > 0; --i) {
+            long long x = 10 * A[i - 1] + q * i;
+            A[i - 1] = x % (2 * i - 1);
+            q = x / (2 * i - 1);
+        }
+
+        A[0] = q % 10;
+        q = q / 10;
+
+        if (9 == q) {
+            ++nines;
+        } else if (10 == q) {
+            printf("%lld", predigit + 1);
+            for (int k = 0; k < nines; ++k) {
+                printf("%d", 0);
+            }
+            predigit = 0;
+            nines = 0;
+        } else {
+            printf("%lld", predigit);
+            predigit = q;
+
+            if (0 != nines) {
+                for (int k = 0; k < nines; ++k) {
+                    printf("%d", 9);
+                }
+
+                nines = 0;
+            }
+        }
+    }
+    printf("%lld", predigit);
+    printf("\n");
 }
