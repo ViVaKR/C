@@ -330,8 +330,4 @@ void Clear(bool tf)
     undisplay (num) : 변수 표시 취소.
     expr (var) = (value) : 변수 (var) 를 값으로 설정 expr foo = 5
     up and down : 충돌하거나 일시 중지된 프로그램의 백트레이스 (bt)에서 프레임으르 위로 이동하거나 아래로 이동.
-
-
-
-
  */
