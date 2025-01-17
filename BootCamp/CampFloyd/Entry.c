@@ -752,18 +752,18 @@ int main()
         default: {
             printf("Hello World");
 
-            double a = 3.14;
-            int b = (int)a;
-            int *p = (int *)&a; // 포인터 캐스팅
-            printf("b = %d\n %p\n", b, p);
+            // double a = 3.14;
+            // int b = (int)a;
+            // int *p = (int *)&a; // 포인터 캐스팅
+            // printf("b = %d\n %p\n", b, p);
 
-            int arr[5] = {1, 2, 3, 4, 5};
-            int *ptr = arr;
-            int *k = &arr[0];
+            // int arr[5] = {1, 2, 3, 4, 5};
+            // int *ptr = arr;
+            // int *k = &arr[0];
 
-            int t = (int *)malloc(sizeof(int) * 1024); // 동적할당
+            // int t = (int *)malloc(sizeof(int) * 1024); // 동적할당
 
-            int *s = (int *)b;
+            // int *s = (int *)b;
 
         } break;
     }
