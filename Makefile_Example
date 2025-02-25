@@ -1,0 +1,48 @@
+# Makefile
+
+# 변수 정의
+AS = aarch64-linux-gnu-as
+CC = aarch64-linux-gnu-ld
+SRC = hi.s
+OBJ = hi.o
+OUT = hi
+
+# 기본 목표
+all: $(OUT)
+
+# 어셈블리 파일을 객체 파일로 변환
+$(OBJ): $(SRC)
+	@$(AS) $(SRC) -g -o $(OBJ)
+
+# 객체 파일을 실행 파일로 링크
+$(OUT): $(OBJ)
+	@$(CC) $(OBJ) -o $(OUT)
+
+# Clean 목표 (빌드된 파일 삭제)
+clean:
+	@rm -f $(OBJ) $(OUT)
+
+# 실행 목표 (Makefile을 호출한 후 바로 실행)
+run: $(OUT)
+	@./$(OUT)
+
+# Debug 목표 (디버깅 심볼 추가)
+debug: CFLAGS += -g
+debug: $(OUT)
+
+# Rebuild 목표 (모든 파일 강제 재빌드)
+rebuild: clean all
+
+# Install 목표 (실행 파일을 설치)
+install: $(OUT)
+	@cp $(OUT) /usr/local/bin/
+
+# Tar 목표 (프로젝트 파일 압축)
+tar:
+	@tar -czvf $(OUT).tar.gz $(SRC) $(OBJ) $(OUT)
+
+# 상태 출력 목표
+status:
+	@echo "Source files: $(SRC)"
+	@echo "Object files: $(OBJ)"
+	@echo "Output file: $(OUT)"
