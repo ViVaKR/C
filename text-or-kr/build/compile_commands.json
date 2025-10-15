@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/viva/GitWorkspace/C/text-or-kr/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/text-or-kr.dir/main.cpp.o -c /home/viva/GitWorkspace/C/text-or-kr/main.cpp",
+  "file": "/home/viva/GitWorkspace/C/text-or-kr/main.cpp",
+  "output": "CMakeFiles/text-or-kr.dir/main.cpp.o"
+}
+]

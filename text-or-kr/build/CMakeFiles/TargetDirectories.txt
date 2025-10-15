@@ -1,0 +1,3 @@
+/home/viva/GitWorkspace/C/text-or-kr/build/CMakeFiles/text-or-kr.dir
+/home/viva/GitWorkspace/C/text-or-kr/build/CMakeFiles/edit_cache.dir
+/home/viva/GitWorkspace/C/text-or-kr/build/CMakeFiles/rebuild_cache.dir
