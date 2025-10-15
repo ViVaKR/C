@@ -1,0 +1,20 @@
+{
+    "version": 10,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 25,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "clang-ninja",
+            "displayName": "Clang + Ninja (x64)",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "C:/MSys/clang64/bin/clang.exe",
+                "CMAKE_CXX_COMPILER": "C:/MSys/clang64/bin/clang++.exe"
+            }
+        }
+    ]
+}
