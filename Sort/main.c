@@ -48,11 +48,7 @@ void BubleSort(int *arr, const int size)
     for (int i = 0; i < size - 1; i++) {
         // 패스 (행)
         for (int j = 0; j < size - 1 - i; j++) {
-            // i 의 인덱스가 0 부터 시작하므로
-            // 비교횟수 (열)
-
             if (arr[j] > arr[j + 1]) {
-                // 현재 다음 것과 비교하므로
                 const int temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;

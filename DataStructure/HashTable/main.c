@@ -39,7 +39,8 @@ void AddHash(HashTable *htb, int key)
     Node *new = (Node *)malloc(sizeof(Node));
     new->value = key;
     new->next = NULL;
-    if (htb->head[hashIndex] == NULL) {
+    if (htb->head[hashIndex] == NULL)
+    {
         htb->head[hashIndex] = new;
         return;
     }
@@ -54,9 +55,11 @@ int HashFind(HashTable *htb, int target)
     Node *current;
     current = htb->head[findIndex];
 
-    while (current) {
+    while (current)
+    {
 
-        if (current->value == target) {
+        if (current->value == target)
+        {
             printf("Key: (%d),  Value: (%d), Address: (%p)\n", findIndex, current->value, current->next);
             return 1;
         }
@@ -78,20 +81,20 @@ int main(int argc, const char *argv[])
     HashTable htb;
     HashTableInit(&htb, size);
 
-    int keys[] = {79,
-                  49, 7, 35,
-                  24,
-                  28,
-                  16, 2, 51,
-                  20, 65, 58};
-    for (int i = 0; i < sizeof(keys) / sizeof(int); i++) {
+    int keys[] = {79, 49, 7, 35, 24, 28, 16, 2, 51, 20, 65, 58};
+
+    for (int i = 0; i < sizeof(keys) / sizeof(int); i++)
+    {
         AddHash(&htb, keys[i]);
     }
 
     int key = 16;
-    if (HashFind(&htb, 16)) {
+    if (HashFind(&htb, 16))
+    {
         printf("검색완료하였습니다.\n");
-    } else {
+    }
+    else
+    {
         printf("키 %d 에 해당한는 값이 존재하지 않습니다.\n", key);
     }
 

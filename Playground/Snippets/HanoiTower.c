@@ -12,12 +12,18 @@ char a = 'A', b = 'B', c = 'C';
 /// @param right 넣는 판
 void PrintStatus(const char left, const char right)
 {
-    if (left == 'A') StartPeg--;
-    if (right == 'A') StartPeg++;
-    if (left == 'B') TempPeg--;
-    if (right == 'B') TempPeg++;
-    if (left == 'C') EndPeg--;
-    if (right == 'C') EndPeg++;
+    if (left == 'A')
+        StartPeg--;
+    if (right == 'A')
+        StartPeg++;
+    if (left == 'B')
+        TempPeg--;
+    if (right == 'B')
+        TempPeg++;
+    if (left == 'C')
+        EndPeg--;
+    if (right == 'C')
+        EndPeg++;
     printf("H ( %d - %d - %d )\n", StartPeg, TempPeg, EndPeg);
     printf("P ( %d\t%c -> %c )\n\n", StartPeg, left, right);
 }
@@ -27,12 +33,25 @@ void PrintStatus(const char left, const char right)
 /// @param start 출발지
 /// @param end 목적지
 /// @param temp 임시
-void Move(int n, const char start, const char end, const char temp)
+void Move(int n, const char start /* A */, const char end /* B */, const char temp /* C */)
 {
-    if (n <= 0) return;
+    if (n <= 0)
+        return;
+
     Move(n - 1, start, temp, end);
-    printf("Before(H)\t( %c - %c - %c )\nNow(H)\t\t( %c - %c - %c )\n", a, b, c , start, end, temp);
-    a = start; b = end; c = temp;
+
+    // 호출	n	start	end	temp
+    // Move(4, A, C, B)	4	A	C	B
+    // Move(3, A, B, C)	3	A	B	C ← end/temp 자리 바뀜!
+    // Move(2, A, C, B)	2	A	C	B ← 다시 바뀜!
+    // Move(1, A, B, C)	1	A	B	C ← 또 바뀜!
+    // Move(0, A, C, B)	0	A	C	B
+
+    printf("Before(H)\t( %c - %c - %c )\nNow(H)\t\t( %c - %c - %c )\n", a, b, c, start, end, temp);
+
+    a = start;
+    b = end;
+    c = temp;
     PrintStatus(start, end);
     Move(n - 1, temp, end, start);
 }

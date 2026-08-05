@@ -4,9 +4,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+
 void PrintBitsArray(char bits)
 {
-    for (int i = 8 - 1; i >= 0; --i) {
+    for (int i = 8 - 1; i >= 0; --i)
+    {
         char bit = (bits & (1 << i)) > 0 ? '1' : '0';
         printf("%c%c", ((i + 1) % 4 == 0 ? ' ' : '\0'), bit);
     }
@@ -17,7 +19,8 @@ void LoopChar()
     unsigned int n;
     char ch;
     bool check;
-    do { // 오류 검출 (숫자 또는 알파벳 범위 내)
+    do
+    { // 오류 검출 (숫자 또는 알파벳 범위 내)
         fflush(stdin);
         printf("시작문자 입력하세요 : ");
         check = scanf("%c", &ch);
@@ -30,13 +33,17 @@ void LoopChar()
     int i, k = 0;
     char cs[n];
 
-    for (i = ch; i < INT_MAX; i++) {
-        if (n == 0) break;
-        if (i == 123) {
+    for (i = ch; i < INT_MAX; i++)
+    {
+        if (n == 0)
+            break;
+        if (i == 123)
+        {
             i = 96;
             continue;
         };
-        if (i == 91) {
+        if (i == 91)
+        {
             i = 64;
             continue;
         }
@@ -45,13 +52,15 @@ void LoopChar()
         n--;
     }
     printf("\n");
-    for (size_t i = 0; i < sizeof(cs); i++) {
+    for (size_t i = 0; i < sizeof(cs); i++)
+    {
         char temp[sizeof(cs) - i];
         strncpy(temp, cs, sizeof(cs) - i);
         temp[sizeof(cs) - i] = '\0';
         printf("%s\n", temp);
     }
-    for (int i = sizeof(cs) - 2; i >= 0; --i) {
+    for (int i = sizeof(cs) - 2; i >= 0; --i)
+    {
         char temp[sizeof(cs) - i];
         strncpy(temp, cs, sizeof(cs) - i);
         temp[sizeof(cs) - i] = '\0';
@@ -68,9 +77,12 @@ void PyramidA()
     scanf("%c", &start);
     scanf("%d", &line);
 
-    for (i = line - 1; i > -line; i--) {
-        for (j = 0; j < line; j++) {
-            if (i >= j || i <= -j) {
+    for (i = line - 1; i > -line; i--)
+    {
+        for (j = 0; j < line; j++)
+        {
+            if (i >= j || i <= -j)
+            {
                 printf("%c", start + j);
             }
         }
@@ -94,12 +106,14 @@ void Advenced()
     printf("\n***** 시프트 연산자 *****\n");
     // 연산자 우선순위가 낮아 괄호로 사용함
     unsigned short data = 0x01;
-    for (size_t i = 0; i < 8; i++) {
+    for (size_t i = 0; i < 8; i++)
+    {
         printf("Left : %d\n", data << i);
     }
 
     unsigned short max = 0x8000;
-    for (size_t i = 0; i < 8; i++) {
+    for (size_t i = 0; i < 8; i++)
+    {
         printf("Right : %d\n", max >> i);
     }
 
@@ -147,7 +161,8 @@ void Advenced()
     printf("\n");
     unsigned int num = 52;
     printf("%d -> 2진수 : ", num);
-    for (int i = 7; i >= 0; --i) {
+    for (int i = 7; i >= 0; --i)
+    {
         printf("%d", num >> i & 1);
     }
     printf("\n");
@@ -164,9 +179,12 @@ void Etc()
     // 4 > 0xFFFFFFFFFFFFFFFF 이런 결과로서 false 를 반환함
     // 동일하지 않은 데이터 유형끼리의 비교시 -1 정수인지 long 인지에 따라
     // FFFF.... 로 인식 항상 거짓이 됨
-    if (sizeof(int) > -1) {
+    if (sizeof(int) > -1)
+    {
         printf("True");
-    } else {
+    }
+    else
+    {
         printf("False");
     }
     printf("\n");
@@ -178,9 +196,12 @@ void Etc()
     // f 를 두배의 정밀도로 올리면서 값이 달라지게됨으로
     // 거짓을 반환함
     float f = 0.1;
-    if (f == 0.1) {
+    if (f == 0.1)
+    {
         printf("True");
-    } else {
+    }
+    else
+    {
         printf("False");
     }
 
@@ -204,7 +225,8 @@ void Etc()
 
     // case 5
     int k = 1, pp = 3, t = 2;
-    if (k > pp) {
+    if (k > pp)
+    {
         if (pp > t)
             printf("k > pp and pp > t\n");
         else
@@ -216,7 +238,8 @@ void Etc()
 /// @param bits
 void PrintBitsArray(char bits)
 {
-    for (int i = 8 - 1; i >= 0; --i) {
+    for (int i = 8 - 1; i >= 0; --i)
+    {
         char bit = (bits & (1 << i)) > 0 ? '1' : '0';
         printf("%c%c", ((i + 1) % 4 == 0 ? ' ' : '\0'), bit);
     }
@@ -227,7 +250,8 @@ void LoopChar()
     unsigned int n;
     char ch;
     bool check;
-    do { // 오류 검출 (숫자 또는 알파벳 범위 내)
+    do
+    { // 오류 검출 (숫자 또는 알파벳 범위 내)
         fflush(stdin);
         printf("시작문자 입력하세요 : ");
         check = scanf("%c", &ch);
@@ -240,13 +264,17 @@ void LoopChar()
     int i, k = 0;
     char cs[n];
 
-    for (i = ch; i < INT_MAX; i++) {
-        if (n == 0) break;
-        if (i == 123) {
+    for (i = ch; i < INT_MAX; i++)
+    {
+        if (n == 0)
+            break;
+        if (i == 123)
+        {
             i = 96;
             continue;
         };
-        if (i == 91) {
+        if (i == 91)
+        {
             i = 64;
             continue;
         }
@@ -255,13 +283,15 @@ void LoopChar()
         n--;
     }
     printf("\n");
-    for (size_t i = 0; i < sizeof(cs); i++) {
+    for (size_t i = 0; i < sizeof(cs); i++)
+    {
         char temp[sizeof(cs) - i];
         strncpy(temp, cs, sizeof(cs) - i);
         temp[sizeof(cs) - i] = '\0';
         printf("%s\n", temp);
     }
-    for (int i = sizeof(cs) - 2; i >= 0; --i) {
+    for (int i = sizeof(cs) - 2; i >= 0; --i)
+    {
         char temp[sizeof(cs) - i];
         strncpy(temp, cs, sizeof(cs) - i);
         temp[sizeof(cs) - i] = '\0';
@@ -285,9 +315,12 @@ void PyramidA()
     scanf("%c", &start);
     scanf("%d", &line);
 
-    for (i = line - 1; i > -line; i--) {
-        for (j = 0; j < line; j++) {
-            if (i >= j || i <= -j) {
+    for (i = line - 1; i > -line; i--)
+    {
+        for (j = 0; j < line; j++)
+        {
+            if (i >= j || i <= -j)
+            {
                 printf("%c", start + j);
             }
         }
@@ -312,14 +345,16 @@ void Advenced()
     printf("\n***** 시프트 연산자 *****\n");
     // 연산자 우선순위가 낮아 괄호로 사용함
     unsigned short data = 0x01;
-    for (size_t i = 0; i < 8; i++) {
+    for (size_t i = 0; i < 8; i++)
+    {
         printf("Left : %d\n", data << i);
     }
 
     printf("\n");
 
     unsigned short max = 0x8000;
-    for (size_t i = 0; i < 8; i++) {
+    for (size_t i = 0; i < 8; i++)
+    {
         printf("Right : %d\n", max >> i);
     }
 
@@ -349,7 +384,8 @@ void Advenced()
 
     // for루프 100000000번 돌아보기
     int sum = 0;
-    for (int i = 0; i < 1000000; i++) {
+    for (int i = 0; i < 1000000; i++)
+    {
         sum++;
     }
     // for 루프 끝난 시간
@@ -393,7 +429,8 @@ void Advenced()
     printf("\n");
     unsigned int num = 52;
     printf("%d -> 2진수 : ", num);
-    for (int i = 7; i >= 0; --i) {
+    for (int i = 7; i >= 0; --i)
+    {
         printf("%d", num >> i & 1);
     }
     printf("\n");
@@ -410,9 +447,12 @@ void Etc()
     // 4 > 0xFFFFFFFFFFFFFFFF 이런 결과로서 false 를 반환함
     // 동일하지 않은 데이터 유형끼리의 비교시 -1 정수인지 long 인지에 따라
     // FFFF.... 로 인식 항상 거짓이 됨
-    if (sizeof(int) > -1) {
+    if (sizeof(int) > -1)
+    {
         printf("True");
-    } else {
+    }
+    else
+    {
         printf("False");
     }
     printf("\n");
@@ -424,9 +464,12 @@ void Etc()
     // f 를 두배의 정밀도로 올리면서 값이 달라지게됨으로
     // 거짓을 반환함
     float f = 0.1;
-    if (f == 0.1) {
+    if (f == 0.1)
+    {
         printf("True");
-    } else {
+    }
+    else
+    {
         printf("False");
     }
 
@@ -450,7 +493,8 @@ void Etc()
 
     // case 5
     int k = 1, pp = 3, t = 2;
-    if (k > pp) {
+    if (k > pp)
+    {
         if (pp > t)
             printf("k > pp and pp > t\n");
         else

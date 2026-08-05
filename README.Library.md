@@ -2,40 +2,68 @@
 
 ## 함수 시스템 포함 파일함수 프로토타입설명
 
->- abort, stdlib.h, void abort(void);, 비정상적으로 프로그램을 중지합니다.
->- abs, stdlib.h, int abs (int n);, 정수 인수 n의 절대값을 계산합니다.
->- acos, math.h, double acos (이중 x);, x의 역코사인을 계산합니다.
->- asctime, time.h, char *asctime (const struct tm*time);, 구조로 저장된 time을 문자 스트링으로 변환합니다.
+> - `abort` stdlib.h, void abort(void);, 비정상적으로 프로그램을 중지합니다.
+
+> - `abs` stdlib.h, int abs (int n);, 정수 인수 n의 절대값을 계산합니다.
+
+> - acos, math.h, double acos (이중 x);, x의 역코사인을 계산합니다.
+
+> - asctime, time.h, char *asctime (const struct tm*time);, 구조로 저장된 time을 문자 스트링으로 변환합니다.
+
 >- asctime_r, time.h, char *asctime_r (const struct tm*tm, char *buf);, 구조로 저장된 tm을 문자 스트링으로 변환합니다. (asctime의 재시작 가능 버전.)
+
 >- asin, math.h, double asin (double x);, x의 역사인을 계산합니다.
->- assert, assert.h, void assert (int expression);, 진단 메세지를 인쇄하고, 표현식이 false인 경우 프로그램을 종료합니다.
+
+>- `assert` assert.h, void assert (int expression); 진단 메세지를 인쇄하고, 표현식이 false인 경우 프로그램을 종료합니다.
+
 >- atan, math.h, 이중 atan (이중 x);, x의 역탄젠트를 계산합니다.
 >- atan2, math.h, double atan2(double y, double x);, y/x의 역탄젠트를 계산합니다.
+
 >- atexit, stdlib.h, int atexit (void (*func) (void));, 정상 종료 시 호출할 함수를 등록합니다.
+
 >- atof, stdlib.h, double atof (const char *string);, string을 배정밀도 부동 소수점 값으로 변환합니다.
+
 >- atoi, stdlib.h, int atoi (const char *string);, string을 정수로 변환합니다.
+
 >- atol, stdlib.h, long int atol (const char *string);, string을 long integer로 변환합니다.
+
 >- bsearch, stdlib.h, void *bsearch (const void*key, const void *base, size_t num, size_t size, int (*compare) (const void *element1, const void*element2));, num 요소의 배열에서 2진 검색을 수행합니다(각각 size바이트). 배열은 compare로 가리키는 함수에서 오름차순으로 저장되어야 합니다.
+
 >- btowc, stdio.h wchar.h, wint_t btowc (int c);, c가 초기 시프트 상태에서 유효한 멀티바이트 문자를 구성하는지 여부를 판별합니다.
+
 >- calloc, stdlib.h, void * calloc (size_t num, size_t size);, num 요소의 배열에 대한 기억장치 공간을 예약하고(각각 size바이트) 모든 요소 값을 0으로 초기화합니다.
+
 >- catclose6, nl_types.h, int catclose (nl_catd catd);, 이전에 열린 메세지 카탈로그를 닫습니다.
+
 >- catgets6, nl_types.h, char *catgets(nl_catd catd, int set_id, int msg_id, const char*s);, 열린 메세지 카탈로그에서 메세지를 검색합니다.
+
 >- catopen6, nl_types.h, nl_catd catopen (const char *name, int oflag);, 메세지 카탈로그를 엽니다. 이 작업은 메세지를 검색하기 전에 수행해야 합니다.
+
 >- ceil, math.h, 이중 세일 (double ceil) (이중 x);, x 이상의 가장 작은 정수를 나타내는 double 값을 계산합니다.
+
 >- clearerr, stdio.h, void clearerr (FILE *스트림);, stream에 대한 오류 인디케이터 및 파일의 끝 인디케이터를 재설정합니다.
->- clock, time.h, clock_t clock(void);, 작업을 시작한 이후 경과한 프로세서 시간을 리턴합니다.
+
+>- `clock` time.h, clock_t clock(void);, 작업을 시작한 이후 경과한 프로세서 시간을 리턴합니다.
+
 >- cos, math.h, 이중 cos (이중 x);, x의 코사인을 계산합니다.
+
 >- cosh, math.h, 이중 cosh (이중 x);, x의 쌍곡 코사인을 계산합니다.
+
 >- ctime, time.h, char *ctime (const time_t*time);, time을 문자 스트링으로 변환합니다.
+
 >- ctime64, time.h, char *ctime64(const time64_t*time);, time을 문자 스트링으로 변환합니다.
 >- ctime_r, time.h, char *ctime_r(const time_t*time, char *buf);, time을 문자 스트링으로 변환합니다. (ctime의 재시작 가능 버전.)
 >- ctime64_r, time.h, char *ctime64_r(const time64_t*time, char *buf);, time을 문자 스트링으로 변환합니다. (ctime64의 재시작 가능 버전.)
+
 >- difftime, time.h, 이중 difftime (time_t time2, time_t time1);, time2 및 time1 사이의 차이를 계산합니다.
+
 >- difftime64, time.h, double difftime64(time64_t time2, time64_t time1);, time2 및 time1 사이의 차이를 계산합니다.
 >- div, stdlib.h, div_t div (int 분자, int 분모);, numerator를 denominator로 나눈 경우 몫과 나머지를 계산합니다.
 >- erf, math.h, double erf (double x);, x의 오류 함수를 계산합니다.
 >- erfc, math.h, double erfc (double x);, x의 큰 값에 대한 오류 함수를 계산합니다.
->- exit, stdlib.h, void exit (int status);, 정상적으로 프로그램을 종료합니다.
+
+>- `exit` stdlib.h, void exit (int status);, 정상적으로 프로그램을 종료합니다.
+
 >- exp, math.h, double exp (double x);, 부동 소수점 인수 x의 지수 함수를 계산합니다.
 >- fabs, math.h, 이중 fabs (이중 x);, 부동 소수점 인수 x의 절대값을 계산합니다.
 >- fclose, stdio.h, int fclose (FILE *스트림);, 지정된 스트림을 닫습니다.
@@ -70,13 +98,21 @@
 >- fwrite, stdio.h, size_t fwrite (const void *buffer, size_t size, size_t count, FILE*stream);, buffer에서 stream까지 size 길이의 항목을 최대 count회 기록합니다.
 >- fwscanf, stdio.h wchar.h, int fwscanf (FILE *stream, const wchar_t* format, arg-list), stream으로 가리키는 스트림에서 입력을 읽습니다.
 >- gamma, math.h, 이중 감마 (이중 x);, 감마 함수 계산
->- getc, stdio.h, int getc (FILE *스트림);, 입력 stream에서 단일 문자를 읽습니다.
->- getchar, stdio.h, int getchar(void);, stdin에서 단일 문자를 읽습니다.
+
+>- `getc`  stdio.h, int getc (FILE *스트림); 입력 stream에서 단일 문자를 읽습니다.
+
+>- `getchar` stdio.h, int getchar(void);, stdin에서 단일 문자를 읽습니다.
+
 >- getenv, stdlib.h, char *getenv (const char*varname);, varname에 대한 환경 변수를 검색합니다.
+
 >- gets, stdio.h, char *gets (char*버퍼);, stdin에서 스트링을 읽고, buffer에 저장합니다.
+
 >- getwc, stdio.h wchar.h, wint_t getwc (파일 * 스트림);, stream에서 다음 멀티바이트 문자를 읽고 와이드 문자로 변환한 후 stream에 대해 연관된 파일 위치 인디케이터를 진행합니다.
+
 >- getwchar, wchar.h, wint_t getwchar(void);, stdin에서 다음 멀티바이트 문자를 읽고 와이드 문자로 변환한 후 stdin에 대해 연관된 파일 위치 인디케이터를 진행합니다.
+
 >- gmtime, time.h, struct tm *gmtime (const time_t*time);, time 값을 tm 유형의 구조로 변환합니다.
+
 >- gmtime64, time.h, struct tm *gmtime64(const time64_t*time);, time 값을 tm 유형의 구조로 변환합니다.
 >- gmtime_r, time.h, struct tm *gmtime_r (const time_t*time, struct tm *result);, time 값을 tm 유형의 구조로 변환합니다. (gmtime의 재시작 가능 버전.)
 >- gmtime64_r, time.h, struct tm *gmtime64_r (const time64_t*time, struct tm *result);, time 값을 tm 유형의 구조로 변환합니다. (gmtime64의 재시작 가능 버전.)
@@ -106,22 +142,32 @@
 >- iswspace4, wctype.h, int iswspace (wint_t wc);, iswalnum이 false인 와이드 문자의 구현 정의 세트에 대응하는 와이드 문자가 있는지 확인합니다.
 >- iswupper4, wctype.h, int iswupper (wint_t wc);, 대문자 와이드 문자가 있는지 확인합니다.
 >- iswxdigit4, wctype.h, int iswxdigit (wint_t wc);, 16진수 문자가 있는지 확인합니다.
+
 >- isxdigit4, wctype.h, int isxdigit (int c);, c가 16진수인지 테스트합니다.
+
 >- j0, math.h, double j0(double x);, 순서 0의 첫 번째 종류에 대한 베셀 함수 값을 계산합니다.
 >- j1, math.h, double j1(double x);, 순서 1의 첫 번째 종류에 대한 베셀 함수 값을 계산합니다.
 >- jn, math.h, double jn (int n, double x);, 순서 n의 첫 번째 종류에 대한 베셀 함수 값을 계산합니다.
 >- 랩, stdlib.h, long int labs (long int n);, n의 절대값을 계산합니다.
 >- ldexp, math.h, double ldexp (double x, int exp);, x에 (2의 exp제곱)을 곱한 값을 리턴합니다.
+
 >- ldiv, stdlib.h, ldiv_t ldiv (long int numerator, long int 분모);, numerator/denominator 연산의 몫과 나머지를 계산합니다.
+
 >- localeconv, locale.h, struct lconv *localeconv(void);, 현재 로케일에 따라 구조 Iconv에서 숫자 수량을 형식화합니다.
+
 >- localtime, time.h, struct tm *localtime (const time_t*timeval);, timeval을 유형 tm의 구조로 변환합니다.
 >- localtime64, time.h, struct tm *localtime64(const time64_t*timeval);, timeval을 유형 tm의 구조로 변환합니다.
 >- localtime_r, time.h, struct tm *localtime_r (const time_t*timeval, struct tm *result);, time 값을 유형 tm의 구조로 변환합니다. (localtime의 재시작 가능 버전.)
 >- localtime64_r, time.h, struct tm *localtime64_r (const time64_t*timeval, struct tm *result);, time 값을 유형 tm의 구조로 변환합니다. (localtime64의 재시작 가능 버전.)
->- log, math.h, 이중 로그 (이중 x);, x의 자연 로그를 계산합니다.
->- log10, math.h, double log10(double x);, x의 밑이 10인 로그를 계산합니다.
+
+>- `log`  math.h, 이중 로그 (이중 x);, x의 자연 로그를 계산합니다.
+
+>- `log10` math.h, double log10(double x);, x의 밑이 10인 로그를 계산합니다.
+
 >- longjmp, setjmp.h, void longjmp (jmp_buf env, int value);, setjmp 함수에서 env에 전에 설정된 스택 환경을 복원합니다.
->- malloc, stdlib.h, void * malloc (size_t size);, 기억장치 블록을 예약합니다.
+
+>- `malloc`, stdlib.h, void * malloc (size_t size);, 기억장치 블록을 예약합니다.
+
 >- mblen, stdlib.h, int mblen (const char *string, size_t n);, 멀티바이트 문자 string의 길이를 판별합니다.
 >- mbrlen4, wchar.h, int mbrlen (const char *s, size_t n, mbstate_t*ps);, 복수 바이트 문자의 길이를 판별합니다. (mblen의 재시작 가능 버전.)
 >- mbrtowc4, wchar.h, int mbrtowc (wchar_t *pwc, const char*s, size_t n, mbstate_t *ps);, 멀티바이트 문자를 와이드 문자로 변환합니다(mbtowc의 재시작 가능 버전).
@@ -129,9 +175,13 @@
 >- mbsrtowcs4, wchar.h, size_t mbsrtowc (wchar_t *dst, const char **src, size_t len, mbstate_t*ps);, 멀티바이트 스트링을 와이드 문자 스트링으로 변환합니다. (mbstowcs의 재시작 가능 버전.)
 >- mbstowcs, stdlib.h, size_t mbstowcs (wchar_t *pwc, const char*string, size_t n);, string의 멀티바이트 문자를 대응하는 wchar_t 코드로 변환하고 pwc에 n개 이하의 코드를 지정합니다.
 >- mbtowc, stdlib.h, int mbtowc (wchar_t *pwc, const char*string, size_t n);, 멀티바이트 문자 string의 처음 n바이트에 대응하는 wchar_t 코드를 wchar_t 문자 pwc에 저장합니다.
+
 >- memchr, string.h, void *memchr (const void*buf, int c, size_t count);, 부호없는 문자로 변환된 c의 첫 번째 표시를 buf의 처음 count바이트에서 검색합니다.
+
 >- memcmp, string.h, int memcmp (const void *buf1, const void*buf2, size_t count);, buf1 및 buf2의 최대 count바이트를 비교합니다.
+
 >- memcpy, string.h, void *memcpy (void*dest, const void *src, size_t count);, src의 count바이트를 dest에 복사합니다.
+
 >- memmove, string.h, void *memmove (void*dest, const void *src, size_t count);, src의 count바이트를 dest에 복사합니다. 겹치는 오브젝트 간 복사가 허용됩니다.
 >- memset, string.h, void *memset (void*dest, int c, size_t count);, dest에서 count바이트를 값 c로 설정합니다.
 >- mktime, time.h, time_t mktime (struct tm *time);, 로컬 time을 캘린더 시간으로 변환합니다.
@@ -143,15 +193,24 @@
 >- nexttowardl, math.h, long double nexttowardl (long double x, long double y);, x 이후 y 방향으로 다음에 표시 가능한 값을 계산합니다.
 >- nl_langinfo4, langinfo.h, char * nl_langinfo (nl_item item);, item에서 지정하는 요청된 정보를 설명하는 스트링을 현재 로케일에서 검색합니다.
 >- perror, stdio.h, void perror (const char *string);, stderr에 오류 메세지를 인쇄합니다.
+
 >- pow, math.h, 이중 포우 (이중 x, 이중 y);, 값 x의 y제곱을 계산합니다.
+
 >- printf, stdio.h, int printf (const char *format-string, arg-list);, 문자 및 값을 형식화하고 stdout에 인쇄합니다.
+
 >- putc1, stdio.h, int putc (int c, FILE *스트림);, c를 출력 stream에 인쇄합니다.
+
 >- putchar1, stdio.h, int putchar (int c);, c를 stdout에 인쇄합니다.
 >- putenv, stdlib.h, int *putenv (const char*varname);, 기존 변수를 대체하거나 새로 작성하여 환경 변수 값을 설정합니다.
+
 >- puts, stdio.h, int puts (const char *string);, 스트링을 stdout에 인쇄합니다.
+
 >- putwc, stdio.h wchar.h, wint_t putwchar (wchar_t wc, FILE * stream);, 와이드 문자 wc를 멀티바이트 문자로 변환하고 현재 위치에서 스트림에 기록합니다.
 >- putwchar6, wchar.h, wint_t putwchar (wchar_t wc);, 와이드 문자 wc를 멀티바이트 문자로 변환하고 stdout에 기록합니다.
->- qsort, stdlib.h, void qsort (void *base, size_t num, size_t width, int (*compare) (convoid *element1, convoid*element2));, num 요소의 배열을 빠르게 정렬합니다(각각 크기가 width바이트).
+
+>- qsort, stdlib.h, void qsort (void *base, size_t num, size_t width, int (*compare) (convoid *element1, convoid*element2));
+  >>- num 요소의 배열을 빠르게 정렬합니다(각각 크기가 width바이트).
+
 >- quantexpd32, math.h, _Decimal32 quantized32(_Decimal32 x, _Decimal32 y);, 단정밀도 십진 부동 소수값의 퀀텀 지수를 계산합니다.
 >- quantexpd64, math.h, _Decimal64 quantized64(_Decimal64 x, _Decimal64 y);, 배정밀도 십진 부동 소수값의 퀀텀 지수를 계산합니다.
 >- quantexpd128, math.h, _Decimal128 quantized128(_Decimal128 x, _Decimal128 y);, 4배정밀도 십진 부동 소수값의 퀀텀 지수를 계산합니다.
@@ -161,11 +220,17 @@
 >- samequantumd32, math.h, __bool__ samequantumd32(_Decimal32 x,_Decimal32 y);, 두 단정밀도 십진 부동 소수값의 퀀텀 지수가 동일한지 판별합니다.
 >- samequantumd64, math.h, __bool__ samequantumd64(_Decimal64 x,_Decimal64 y);, 두 배정밀도 십진 부동 소수값의 퀀텀 지수가 동일한지 판별합니다.
 >- samequantumd128, math.h, __bool__ samequantumd128(_Decimal128 x,_Decimal128 y);, 두 4배정밀도 십진 부동 소수값의 퀀텀 지수가 동일한지 판별합니다.
+
 >- raise, signal.h, int raise (int sig);, 신호 sig를 실행 중인 프로그램에 전송합니다.
+
 >- rand, stdlib.h, int rand(void);, 의사 난수 정수를 리턴합니다.
+
 >- rand_r, stdlib.h, int rand_r(void);, 의사 난수 정수를 리턴합니다. (재시작 가능 버전)
+
 >- realloc, stdlib.h, void *realloc (void*ptr, size_t size);, 이전에 예약된 기억장치 블록의 size를 변경합니다.
+
 >- regcomp, regex.h, int regcomp (regex_t *preg, const char* pattern, int cflags);, pattern으로 가리키는 소스 정규식을 실행 가능 버전으로 컴파일하고 preg로 가리키는 위치에 저장합니다.
+
 >- regerror, regex.h, size_t regerror (int errcode, const regex_t *preg, char* errbuf, size_t errbuf_size);, 정규식 preg에 대한 오류 코드 errcode의 설명을 찾습니다.
 >- regexec, regex.h, int regexec (const regex_t *preg, const char* string, size_t nmatch, regmatch_t * pmatch, int eflags);, 널 종료 스트링 string을 컴파일된 정규식 preg와 비교하여 둘 사이의 일치를 찾습니다.
 >- regfree, regex.h, void regfree(regex_t *preg);, 정규식 preg를 구현하도록 regcomp에서 할당한 메모리를 해제합니다.
@@ -177,20 +242,30 @@
 >- setjmp, setjmp.h, int setjmp (jmp_buf env);, 스택 환경을 저장합니다. 그러면 후속으로 longjmp에서 복원할 수 있습니다.
 >- setlocale, locale.h, char *setlocale (int category, const char*locale);, locale에 정의된 변수를 변경 또는 쿼리합니다.
 >- setvbuf, stdio.h, int setvbuf (FILE *stream, char*buf, int type, size_t size);, stream에 대한 size 버퍼 및 버퍼링을 제어합니다.
+
 >- signal, signal.h, void (*signal (int sig, void (*func) (int)) (int);, 신호 sig에 대한 신호 핸들러로 func를 등록합니다.
->- sin, math.h, 더블 신 (더블 x);, x의 사인을 계산합니다.
->- sinh, math.h, double sinh (이중 x);, x의 쌍곡 사인을 계산합니다.
+
 >- snprintf, stdio.h, int snprintf(char *outbuf, size_t n, const char*, ...), n자를 outbuf에 기록한 후에 함수가 중단된다는 점을 제외하고 sprintf와 동일합니다.
+
 >- sprintf, stdio.h, int sprintf (char *buffer, const char*format-string, arg-list);, 문자 및 값을 형식화하고 buffer에 저장합니다.
+
 >- sqrt, math.h, double sqrt (더블 x);, x의 제곱근을 계산합니다.
+
 >- srand, stdlib.h, void srand (unsigned int seed);, 의사 난수 생성기에 대한 seed를 설정합니다.
+
 >- sscanf, stdio.h, int sscanf (const char *buffer, const char*format, arg-list);, buffer에서 arg-list로 지정된 위치로 데이터를 읽습니다.
+
 >- strcasecmp, strings.h, int srtcasecmp(const char *string1, const char*string2);, 대소문자를 구분하지 않고 스트링을 비교합니다.
+
 >- strcat, string.h, char *strcat (char*string1, const char *string2);, string2를 string1에 연결합니다.
+
 >- strchr, string.h, char *strchr (const char*string, int c);, string에서 c의 첫 번째 표시를 찾습니다.
+
 >- strcmp, string.h, int strcmp (const char *string1, const char*string2);, string1의 값을 string2와 비교합니다.
 >- strcoll, string.h, int strcoll (const char *string1, const char*string2);, 현재 로케일에서 배열 순서를 사용하여 두 스트링을 비교합니다.
+
 >- strcpy, string.h, char *strcpy (char*string1, const char *string2);, string2를 string1에 복사합니다.
+
 >- strcspn, string.h, size_t strcspn (const char *string1, const char*string2);, string2에 포함되지 않는 문자로 구성된 string1의 초기 서브스트링 길이를 리턴합니다.
 >- strerror, string.h, char * strerror (int errnum);, 오류 메세지 스트링에 errnum의 오류 번호를 맵핑합니다.
 >- strfmon4, wchar.h, int strfmon (char *s, size_t maxsize, const char*format, ...);, 통화 값을 스트링으로 변환합니다.
@@ -218,16 +293,23 @@
 >- strxfrm, string.h, size_t strxfrm (char *string1, const char*string2, size_t count);, string2를 변환하고 string1에 결과를 배치합니다. 변환은 프로그램의 현재 로케일에 의해 판별됩니다.
 >- swprintf, wchar.h, int swprintf (wchar_t *wcsbuffer, size_t n, const wchar_t* format, arg-list);, 와이드 문자 및 값의 시리즈를 형식화하고 와이드 문자 버퍼 wcsbuffer에 저장합니다.
 >- swscanf, wchar.h, int swscanf (const wchar_t *buffer, const wchar_t* format, arg-list), buffer에서 arg-list로 지정한 위치로 데이터를 읽습니다.
+
 >- system, stdlib.h, int 시스템 (const char *string);, string을 시스템 명령 분석기로 전달합니다.
->- tan, math.h, 이중 황갈색 (이중 x);, x의 탄젠트를 계산합니다.
->- tanh, math.h, 이중 tanh (이중 x);, x의 쌍곡 탄젠트를 계산합니다.
+
 >- time, time.h, time_t 시간 (time_t *timeptr);, 현재 캘린더 시간을 리턴합니다.
+
 >- time64, time.h, time64_t time64(time64_t *timeptr);, 현재 캘린더 시간을 리턴합니다.
+
 >- tmpfile, stdio.h, FILE *tmpfile(void);, 임시 2진 파일을 작성하고 엽니다.
+
 >- tmpnam, stdio.h, char *tmpnam (char*string);, 임시 파일명을 생성합니다.
+
 >- toascii, ctype.h, int toascii (int c);, c를 7비트 US-ASCII 문자 세트의 문자로 변환합니다.
+
 >- tolower, ctype.h, int tolower (int c);, c를 소문자로 변환합니다.
+
 >- toupper, ctype.h, int toupper (int c);, c를 대문자로 변환합니다.
+
 >- towctrans, wctype.h, wint_t towctrans (wint_t wc, wctrans_t desc);, desc에서 설명하는 맵핑에 기반하여 와이드 문자 wc를 변환합니다.
 >- towlower4, wctype.h, wint_t towlower(wint_t wc);, 대문자를 소문자로 변환합니다.
 >- towupper4, wctype.h, wint_t towupper(wint_t wc);, 소문자를 대문자로 변환합니다.
@@ -278,7 +360,8 @@
 >- wcstol, wchar.h, long int wcstol (const wchar_t * nptr, wchar_t ** endptr, int base);, nptr로 가리키는 와이드 문자 스트링의 초기 부분을 long integer 값으로 변환합니다.
 >- wcstold, wchar.h, long double wcstold (const wchar_t * nptr, wchar_t ** endptr);, nptr로 가리키는 와이드 문자 스트링의 초기 부분을 long double 값으로 변환합니다.
 >- wcstombs, stdlib.h, size_t wcstombs (char *dest, const wchar_t*string, size_t count);, wchar_t string를 멀티바이트 스트링 dest로 변환합니다.
->- wcstoul, wchar.h, unsigned long int wcstoul (const wchar_t * nptr, wchar_t ** endptr, int base);, nptr로 가리키는 와이드 문자 스트링의 초기 부분을 부호없는 long integer 값으로 변환합니다.
+>- wcstoul, wchar.h, unsigned long int wcstoul (const wchar_t * nptr, wchar_t ** endptr, int base);
+>>- nptr로 가리키는 와이드 문자 스트링의 초기 부분을 부호없는 long integer 값으로 변환합니다.
 >- wcsxfrm4, wchar.h, size_t wcsxfrm (wchar_t *wcs1, const wchar_t*wcs2, size_t n);, 문자 배열 가중치를 나타내는 값으로 와이드 문자 스트링을 변환하고 결과 와이드 문자 스트링을 배열에 배치합니다.
 >- wctob, stdarg.h wchar.h, int wctob (wint_t wc);, 초기 시프트 상태인 경우 멀티바이트 문자 표시가 1바이트인 확장된 문자 세트의 멤버에 wc가 대응하는지 여부를 판별합니다.
 >- wctomb, stdlib.h, int wc고분 (char *string, wchar_t character);, character의 wchar_t 값을 멀티바이트 string으로 변환합니다.
@@ -292,6 +375,7 @@
 >- wmemset, wchar.h, wchar_t *wmemset (wchar_t* s, wchar_t c, size_t n);, s에서 가리킨 오브젝트의 처음 n개 와이드 문자에 c의 값을 복사합니다.
 >- wprintf6, wchar.h, int wprintf (const wchar_t * format, arg-list);, wprintf에 대한 인수 이전에 삽입된 인수 stdout를 포함하는 fwprintf와 동일합니다.
 >- wscanf6, wchar.h, int wscanf (const wchar_t * format, arg-list);, wscanf의 인수 이전에 삽입된 인수 stdin을 포함하는 fwscanf와 동일합니다.
+
 >- y0, math.h, double y0(double x);, 순서 0의 두 번째 종류에 대한 베셀 함수 값을 계산합니다.
 >- y1, math.h, double y1(double x);, 순서 1의 두 번째 종류에 대한 베셀 함수 값을 계산합니다.
 >- yn, math.h, double yn (int n, double x);, 순서 n의 두 번째 종류에 대한 베셀 함수 값을 계산합니다.

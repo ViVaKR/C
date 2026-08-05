@@ -7,7 +7,7 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
-#define N         1000
+#define N 1000
 
 #define CASE_MASK ('A' ^ 'a')
 
@@ -34,7 +34,8 @@ void PointerSize()
 void Print(const int *arr, const int size, char *title)
 {
     printf("%s\t=> ", title);
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++)
+    {
         printf("%3d ", arr[i]);
     }
     printf("\n");
@@ -58,14 +59,12 @@ void Print(const int *arr, const int size, char *title)
 // j => 열
 void BubleSort(int *arr, const int size)
 {
-    for (int i = 0; i < size - 1; i++) {
-        // 패스 (행)
-        for (int j = 0; j < size - 1 - i; j++) {
-            // i 의 인덱스가 0 부터 시작하므로
-            // 비교횟수 (열)
-
-            if (arr[j] > arr[j + 1]) {
-                // 현재 다음 것과 비교하므로
+    for (int i = 0; i < size - 1; i++)
+    {
+        for (int j = 0; j < size - 1 - i; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
                 const int temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
@@ -85,20 +84,23 @@ void SelectionSort(int *arr, const int size)
     int minIdx = 0;
 
     // (1) 원본이 -> {5, 4, 1, 3, 2} 인배열을 오름 차순으로 정렬 하라는 시나리오로 출발
-    for (int i = 0; i < size - 1; i++) {
+    for (int i = 0; i < size - 1; i++)
+    {
 
-        minIdx = i;                          // (2) 예를 들어 처음 i 가 0일 때 arr[0] 은 5가 되고, minIdx에 일단 i 와 동일하게 맞추어 줌. (맞 비교 및 교환용.)
-        for (int j = i + 1; j < size; j++) { // (3) i = 0 일 때 항상 비교 대상은 한발 앞에 있는 (j = i + 1)
-                                             // 즉, 5일 때는 4가 되고 위에서 i 가  size - 1 까지 이므로
-                                             // 서브에서는 size 끝까지 범위 끝까지 를 설정하게 되는 이유
+        minIdx = i; // (2) 예를 들어 처음 i 가 0일 때 arr[0] 은 5가 되고, minIdx에 일단 i 와 동일하게 맞추어 줌. (맞 비교 및 교환용.)
+        for (int j = i + 1; j < size; j++)
+        { // (3) i = 0 일 때 항상 비교 대상은 한발 앞에 있는 (j = i + 1)
+          // 즉, 5일 때는 4가 되고 위에서 i 가  size - 1 까지 이므로
+          // 서브에서는 size 끝까지 범위 끝까지 를 설정하게 되는 이유
 
-            if (arr[minIdx] > arr[j]) {      // (4) 그래서 아무튼 5 하고 4하고 비교하는데,
-                minIdx = j;                  // (5) 5가 4보다 크다면?  minIdx 에 일단 요소 4, 값이 아닌 배열 인덱스 (j)를 저장해 두고, 아니면 (작으면 패스..)
+            if (arr[minIdx] > arr[j])
+            {               // (4) 그래서 아무튼 5 하고 4하고 비교하는데,
+                minIdx = j; // (5) 5가 4보다 크다면?  minIdx 에 일단 요소 4, 값이 아닌 배열 인덱스 (j)를 저장해 두고, 아니면 (작으면 패스..)
             }
         }
-        const int temp = arr[i];             // (6) arr[i] 즉, 요소 5을 임시 변수에 일단 저장해두고,
-        arr[i] = arr[minIdx];                // (7) arr[i] 요소(5) 를 위에 저장해둔 minIdx 를 이용, arr[minIdx] (요소4) 의 값으로 변경하고..(즉, 5 자리에 4를 보내고..)
-        arr[minIdx] = temp;                  // (8) arr[minIdx] 자리에 임시 저장해둔 (요소 5) 로 변경 즉, 5를 원래 4자리로 뒤로 보내라..하는 의미.
+        const int temp = arr[i]; // (6) arr[i] 즉, 요소 5을 임시 변수에 일단 저장해두고,
+        arr[i] = arr[minIdx];    // (7) arr[i] 요소(5) 를 위에 저장해둔 minIdx 를 이용, arr[minIdx] (요소4) 의 값으로 변경하고..(즉, 5 자리에 4를 보내고..)
+        arr[minIdx] = temp;      // (8) arr[minIdx] 자리에 임시 저장해둔 (요소 5) 로 변경 즉, 5를 원래 4자리로 뒤로 보내라..하는 의미.
 
         // (9) 결론 하여 .. 첨부한 그림 처럼, 원본 배열의 인덱스 0번 을 시작으로 인덱스 1번 부터 끝까지 모두 정렬을 반복하라는 알고 리즘..
     }
@@ -111,10 +113,12 @@ void SelectionSort(int *arr, const int size)
 void InsertionSort(int *arr, const int size)
 {
     int j;
-    for (int i = 1; i < size; i++) {
+    for (int i = 1; i < size; i++)
+    {
         const int temp = arr[i]; // 1번 인덱스 부터 카드 뽑기.
 
-        for (j = i; j > 0 && arr[j - 1] > temp; j--) {
+        for (j = i; j > 0 && arr[j - 1] > temp; j--)
+        {
             // 뽑아낸 위치에서 한칸씩 왼쪽(arr[j-1])과 비교 후 `arr[j-1]` 값이 크면 오른쪽 밀기
             arr[j] = arr[j - 1]; // 앞의 것이 크면, 뒤로 밀기
         }
@@ -156,17 +160,20 @@ void QuickSort(int *arr, const int left, const int right, char pos)
     ///      until -> 왼쪽과 오른 쪽이 같거나 크로스 되어 더이상 비교할 데이터가 없을 때 까지...
 
     // printf("(%c) pivot = %3d\n", pos, pivot);
-    do {
+    do
+    {
         // pivot 보다 작은 값인지 큰값인지 체크.
         // 왼쪽 통과 기준 => ++ (인덱스)
         // 피벗보다 크면 계속 왼쪽 인덱스 계속 증가 시키기.
-        while (arr[pL] < pivot) pL++; // 왼쪽에 있어도 되면 pL 을 뿔뿔..
+        while (arr[pL] < pivot)
+            pL++; // 왼쪽에 있어도 되면 pL 을 뿔뿔..
 
         // 이곳에 왔다는 것은 위 pL 너 딱 걸렸어 잠시 대기해.. 하는 순간..
 
         // 피벗보다 작으면 계속 오른쪽 인덱스 계속 감소 시키기.
         // 오른쪽 통과 기준 => -- (인덱스)
-        while (arr[pR] > pivot) pR--; // 오른쪽에 있어도 되면 pR 을 마마..
+        while (arr[pR] > pivot)
+            pR--; // 오른쪽에 있어도 되면 pR 을 마마..
 
         // 역시 이곳에 왔다는 것은 위 pR 이 너도 잠시 대기 해.. 하고
         // 위 pL 과 pR 을 서로 교체 스왑 주는 작업을 아래에서 수행..하는 장면이 됨
@@ -192,7 +199,8 @@ void QuickSort(int *arr, const int left, const int right, char pos)
 
          */
 
-        if (pL <= pR) {
+        if (pL <= pR)
+        {
             const int temp = arr[pL];
             arr[pL] = arr[pR];
             arr[pR] = temp;
@@ -205,8 +213,10 @@ void QuickSort(int *arr, const int left, const int right, char pos)
 
     // 재귀 호출방식으로 계속 2진 트리 형태로 잘게 그룹을 나누는 그룹
     // 원소가 딱 하나 남을때 까지... 하나 남았다는 것은 정렬이 완료되었다는 의미...
-    if (left < pR) QuickSort(arr, left, pR, 'L');   // 왼쪽 그룹, 원소가 하나 남을 때 까지 조건.
-    if (right > pL) QuickSort(arr, pL, right, 'R'); // 오른쪽 그룹, 원소가 하나 남을 때 까지 조건.
+    if (left < pR)
+        QuickSort(arr, left, pR, 'L'); // 왼쪽 그룹, 원소가 하나 남을 때 까지 조건.
+    if (right > pL)
+        QuickSort(arr, pL, right, 'R'); // 오른쪽 그룹, 원소가 하나 남을 때 까지 조건.
 }
 
 // [ 2-2 병합정렬, Merge Sort ]
@@ -235,19 +245,22 @@ void Merge(int *arr, int *arrMerge, const int left, const int mid, const int rig
     int idx2 = mid + 1;
     int idxM = left; // arrMerge's left
 
-    for (int i = 0; i <= right; i++) {
+    for (int i = 0; i <= right; i++)
+    {
         // 일반 복사
         arrMerge[i] = arr[i]; // copy to arrMerge
     }
 
-    while (idx1 <= mid && idx2 <= right) {
+    while (idx1 <= mid && idx2 <= right)
+    {
         if (arrMerge[idx1] < arrMerge[idx2]) // 임시 배열의 값을 비교해서, arrMerge[idx1] 이 작을 때
             arr[idxM++] = arrMerge[idx1++];  // 실제 arr 배열에 넣는 작업
         else
-            arr[idxM++] = arrMerge[idx2++];  // arrMerge[idx2] 작을 때
+            arr[idxM++] = arrMerge[idx2++]; // arrMerge[idx2] 작을 때
     }
 
-    while (idx1 <= mid) {
+    while (idx1 <= mid)
+    {
         // 나머지 채워넣기
         arr[idxM++] = arrMerge[idx1++];
     }
@@ -256,7 +269,8 @@ void Merge(int *arr, int *arrMerge, const int left, const int mid, const int rig
 // [ 2-1 병합정렬 ]
 void MergeSortUtil(int *arr, int *arrMerge, const int left, const int right)
 {
-    if (left < right) {
+    if (left < right)
+    {
         const int mid = (left + right) / 2;
         MergeSortUtil(arr, arrMerge, left, mid);      // left
         MergeSortUtil(arr, arrMerge, mid + 1, right); // right
@@ -283,16 +297,19 @@ void BucketSort(int *arr, const int size, const int range)
     // 배열사이즈, 배열의 범위
     int *bucket = calloc(range, sizeof(int)); //  할당된 메모리가 모두 0으로 채워짐. ( 양동이 )
 
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++)
+    {
         // 버캣의 인덱스가 배열의 값으로 사용됨
         // 버킷 값 0은 없는 값 2 이상은 중복 된 값.
         bucket[arr[i]]++;
     } // 갯수 카운팅 완료.
 
     int idx = 0;
-    for (int i = 1; i < range; i++) {
-        for (int j = 1; j <= bucket[i]; ++j) { // 앞에서 부터 다시 서칭하여 중복된 값 처리 용.
-            arr[idx++] = i;                    // 버킷의 인덱스를 배열의 값으로 재할당 하면서 정렬하기.
+    for (int i = 1; i < range; i++)
+    {
+        for (int j = 1; j <= bucket[i]; ++j)
+        {                   // 앞에서 부터 다시 서칭하여 중복된 값 처리 용.
+            arr[idx++] = i; // 버킷의 인덱스를 배열의 값으로 재할당 하면서 정렬하기.
         }
     }
 
@@ -327,13 +344,16 @@ void BucketSort(int *arr, const int size, const int range)
 void HeapSort(int *heap, const int size)
 {
     // (1) 전체 트리 구조를 최대 힙 구조로 바꾸는 작업
-    for (int i = 1; i < size; ++i) {
+    for (int i = 1; i < size; ++i)
+    {
         int c = i;
-        do {
+        do
+        {
             // 부모가 자식 보다 작은 경우 교체하여 주는 작업
             const int root = (c - 1) / 2;
 
-            if (heap[root] < heap[c]) {
+            if (heap[root] < heap[c])
+            {
                 const int temp = heap[root];
                 heap[root] = heap[c];
                 heap[c] = temp;
@@ -346,7 +366,8 @@ void HeapSort(int *heap, const int size)
     // (2) 크기를 줄여 가면서 반복적으로 힙을 구성 (N 번 반복)
     // 0 번째 인덱가 가장 큰값이므로 그것을 가장 마지막으로 보내는 작업을 반복
     // 가장 큰값을 계속해서 뒤로 보내는 작업
-    for (int i = size - 1; i >= 0; i--) {
+    for (int i = size - 1; i >= 0; i--)
+    {
         // 가장 큰 값을 맨 뒤로 보내는 작업
         int temp = heap[0];
         heap[0] = heap[i];
@@ -356,17 +377,20 @@ void HeapSort(int *heap, const int size)
         int root = 0;
         int c = 1;
 
-        do {
+        do
+        {
             // 힙구조를 만드는 작업
             c = 2 * root + 1;
             // 자식 중에 더 큰 값을 찾기
             // left right 비교  && 범위를 벗어나지 않도록 함.
-            if (heap[c] < heap[c + 1] && c < i - 1) {
+            if (heap[c] < heap[c + 1] && c < i - 1)
+            {
                 c++; // right value 가 더 크다면? 이동.
             }
 
             // 루트보다 자식이 더 크면 교환하고 && 범위를 벗어나지 않도록 함.
-            if (heap[root] < heap[c] && c < i) {
+            if (heap[root] < heap[c] && c < i)
+            {
                 temp = heap[root];
                 heap[root] = heap[c];
                 heap[c] = temp;
@@ -381,11 +405,13 @@ void HeapSort(int *heap, const int size)
 void funPtr(int **p, const int size, int *arr)
 {
     // TODO
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++)
+    {
         p[i] = &arr[i];
     }
 
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++)
+    {
         printf("%d\n", *p[i]);
     }
 }
@@ -410,7 +436,8 @@ void ShiftUp(int *arr, const int childIdx)
 {
     const int parentIdx = (childIdx - 1) / 2;
 
-    if (parentIdx >= 0 && arr[parentIdx] < arr[childIdx]) {
+    if (parentIdx >= 0 && arr[parentIdx] < arr[childIdx])
+    {
         const int temp = arr[parentIdx];
         arr[parentIdx] = arr[childIdx];
         arr[childIdx] = temp;
@@ -436,7 +463,8 @@ void AddHeap(Heap *heap, const int value)
 size_t FindIndex(const int a[], const size_t size, const int value)
 {
     size_t index = 0;
-    while (index < size && a[index] != value) ++index;
+    while (index < size && a[index] != value)
+        ++index;
     return (index == size ? -1 : index);
 }
 
@@ -450,7 +478,8 @@ void HeapRunner()
     // const int values[] = {57, 32, 48, 10, 15, 25, 20, 9, 60};
     const int values[] = {6, 8, 9, 10, 15, 19, 20, 28, 30, 45, 50};
     const int size = sizeof(values) / sizeof(int);
-    for (int i = 0; i < size; ++i) {
+    for (int i = 0; i < size; ++i)
+    {
         AddHeap(&heap, values[i]);
     }
 
@@ -459,7 +488,8 @@ void HeapRunner()
     // printf("현재 저장된 힙 요소 => %d, %d, %d\n", capacity, heap.cursor, heap.capacity);
     // Print(heap.arr, size, "Heap Sorting");
     printf("힙 정렬(Max)\t=>\t");
-    for (int i = 0; i < size; ++i) {
+    for (int i = 0; i < size; ++i)
+    {
         printf("%d", heap.arr[i]);
         printf(" %c ", i < size - 1 ? '-' : ' ');
     }
@@ -497,10 +527,11 @@ int ClearBits(const int num, int i)
 void PrintBit(const long long num, const int size)
 {
     printf("0b_");
-    for (long long i = size - 1; i >= 0; --i) {
+    for (long long i = size - 1; i >= 0; --i)
+    {
         printf("%lld", (num >> i) & 1); // 0011
 
-        if (i != 0)                     // under bar insert, except last char
+        if (i != 0) // under bar insert, except last char
             printf("%s", i % 4 == 0 ? "_" : "");
     }
     printf(" (%lld)\n", num);
@@ -642,13 +673,19 @@ void ToUniqueSortedArray(int *arr, const int size)
     int even = 0;
     int odd = 0;
     int index = 0;
-    for (int i = 0; i < size; i++) {
-        if (arr[i] % 2 == 0) {
-            while (index < size && even_numbers[index] != arr[i]) index++;
+    for (int i = 0; i < size; i++)
+    {
+        if (arr[i] % 2 == 0)
+        {
+            while (index < size && even_numbers[index] != arr[i])
+                index++;
             if (index == size) // 같은 값이 없다는 의미.
                 even_numbers[even++] = arr[i];
-        } else {
-            while (index < size && odd_numbers[index] != arr[i]) index++;
+        }
+        else
+        {
+            while (index < size && odd_numbers[index] != arr[i])
+                index++;
             if (index == size)
                 odd_numbers[odd++] = arr[i];
         }
@@ -685,16 +722,19 @@ void StringUtils()
     float weight, hgnum;
 
     FILE *fp = fopen("hello.txt", "r");
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         perror("Error: Failed to open file.");
         return;
     }
 
     char line[1024];
-    while (fgets(line, 1024, fp)) {
+    while (fgets(line, 1024, fp))
+    {
         char *tmp = strdup(line);
         const char *tok;
-        for (tok = strtok(line, ","); tok && *tok; tok = strtok(NULL, ",")) {
+        for (tok = strtok(line, ","); tok && *tok; tok = strtok(NULL, ","))
+        {
             printf("%s\t", tok);
         }
         printf("\n");
@@ -704,29 +744,23 @@ void StringUtils()
     fclose(fp);
     char temp[] = "   \t  hi  \t  ,  \t  everyone,  \t fine  \t  , thanks , \t  and , you";
     char *t = strtok(temp, ",");
-    while (t != NULL) {
+    while (t != NULL)
+    {
 
         // ltrim
-        while (isspace(*t)) t++;
+        while (isspace(*t))
+            t++;
 
         // rtrim
         char *b = t;
         char *back = b + strlen(b);
-        while (isspace(*--back));
+        while (isspace(*--back))
+            ;
         *(back + 1) = '\0';
         printf("%s-%s\n", t, b);
 
         t = strtok(NULL, ",");
     }
-
-    // FILE *file = fopen("../data/data.txt", "ab+");
-    // if (file == NULL) {
-    //     perror("Error: Failed to open file.");
-    //     return 1;
-    // }
-    // fprintf(file, "Hi Everyone.\n");
-    // // system("touch hello.txt");
-    // fclose(file);
 }
 
 long long memo[100];
@@ -766,8 +800,10 @@ void MemoFiboRun()
 {
     // 캐시(memoization array)
     // 초기화
-    for (int i = 20; i <= 50; i++) {
-        for (int j = 0; j < 100; j++) memo[j] = -1;
+    for (int i = 20; i <= 50; i++)
+    {
+        for (int j = 0; j < 100; j++)
+            memo[j] = -1;
 
         int month = i;                            // 3 ~ 50 개월
         long long sumOfRebbit = Fibonacci(month); // 각 개월 마다 결과
@@ -787,16 +823,20 @@ void Get_CharStatus()
 
     int t = 0;
 
-    for (int i = 0; str[i] != '\0'; i++) {
+    for (int i = 0; str[i] != '\0'; i++)
+    {
 
         // For Uppercase
-        if (str[i] >= 'A' && str[i] <= 'Z') upper_cnt++;
+        if (str[i] >= 'A' && str[i] <= 'Z')
+            upper_cnt++;
 
         // For Lowercase
-        if (str[i] >= 'a' && str[i] <= 'z') lower_cnt++;
+        if (str[i] >= 'a' && str[i] <= 'z')
+            lower_cnt++;
 
         // For Number
-        if (isdigit(str[i])) digit_cnt++;
+        if (isdigit(str[i]))
+            digit_cnt++;
     }
 
     printf("대문자\t:\t%3d\n소문자\t:\t%3d\n숫자\t:\t%3d\n그 외\t:\t%3d\n", upper_cnt, lower_cnt, digit_cnt, etc_cnt);
@@ -815,8 +855,10 @@ void FormatSpecifier()
 int Repath(int n)
 {
     int i;
-    if (n < 1) return 2; // base case
-    else {
+    if (n < 1)
+        return 2; // base case
+    else
+    {
         i = 2 * Repath(n - 1) + 1;
         printf("%d\n", i);
         return i;
@@ -871,6 +913,7 @@ int main(void)
 
     // 정렬
     int target[MakeRandom(10, 15)];
+
     int size = sizeof(target) / sizeof(int);
     for (int i = 0; i < size; i++)
         target[i] = MakeRandom(1, 100);
@@ -889,7 +932,7 @@ int main(void)
     HeapSort(target, size);
     HeapRunner();
 
-    InsertionSort(target, size);         // 삽입정렬
+    InsertionSort(target, size); // 삽입정렬
     Print(target, size, "삽입 정렬");
 
     QuickSort(target, 0, size - 1, 'P'); // 퀵정렬
@@ -927,17 +970,20 @@ int main(void)
     long long len = floor(10 * N / 3) + 1;
     long long A[len];
 
-    for (int i = 0; i < len; ++i) {
+    for (int i = 0; i < len; ++i)
+    {
         A[i] = 2;
     }
 
     int nines = 0;
     long long predigit = 0;
 
-    for (int j = 1; j < N + 1; ++j) {
+    for (int j = 1; j < N + 1; ++j)
+    {
         long long q = 0;
 
-        for (int i = len; i > 0; --i) {
+        for (int i = len; i > 0; --i)
+        {
             long long x = 10 * A[i - 1] + q * i;
             A[i - 1] = x % (2 * i - 1);
             q = x / (2 * i - 1);
@@ -946,21 +992,29 @@ int main(void)
         A[0] = q % 10;
         q = q / 10;
 
-        if (9 == q) {
+        if (9 == q)
+        {
             ++nines;
-        } else if (10 == q) {
+        }
+        else if (10 == q)
+        {
             printf("%lld", predigit + 1);
-            for (int k = 0; k < nines; ++k) {
+            for (int k = 0; k < nines; ++k)
+            {
                 printf("%d", 0);
             }
             predigit = 0;
             nines = 0;
-        } else {
+        }
+        else
+        {
             printf("%lld", predigit);
             predigit = q;
 
-            if (0 != nines) {
-                for (int k = 0; k < nines; ++k) {
+            if (0 != nines)
+            {
+                for (int k = 0; k < nines; ++k)
+                {
                     printf("%d", 9);
                 }
 

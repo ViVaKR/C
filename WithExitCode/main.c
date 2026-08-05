@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <Windows.h>
 #include <limits.h>
 
 // (1) 한글 포함 각종 유니코드 표현용, set console code page to utf-8

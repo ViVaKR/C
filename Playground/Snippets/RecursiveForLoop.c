@@ -1,13 +1,12 @@
-#include "../headers/vivstd.h"
-
 float ByRecursive(int n, float *pSum)
 {
-    if (n < 1) return *pSum;
+    if (n < 1)
+        return *pSum;
 
     *pSum = (n % 2 == 0)
-              ? *pSum - n / (n + 1.0)
-              : *pSum + n / (n + 1.0);
-              
+                ? *pSum - n / (n + 1.0)
+                : *pSum + n / (n + 1.0);
+
     return ByRecursive(n - 1, pSum);
 }
 
@@ -30,7 +29,8 @@ void RecursiveForLoop()
     // 맞는지 확인 용
     printf("\n***** By For Loop *****\n");
     sum = 0;
-    for (i = 1; i <= n; i++) {
+    for (i = 1; i <= n; i++)
+    {
         if (i % 2 == 0)
             sum -= i / (i + 1.0);
         else

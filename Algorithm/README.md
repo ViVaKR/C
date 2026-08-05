@@ -1,9 +1,7 @@
 # Algorithm
 
-/*
-
 * lldb
- x -s1 -fx -c60 -l20 &str
+x -s1 -fx -c60 -l20 &str
 
 memory read -fd -s1 -c60 -l20 &str
 
@@ -55,5 +53,3 @@ frame variable
 frame variable i
 
 frame variable -fd &str[1]
-
-* /

@@ -29,7 +29,8 @@ typedef struct treenode
 
 TreeNode *AddNode(TreeNode *node, int data)
 {
-    if (node == NULL) { // 부모가 있다는 의미
+    if (node == NULL)
+    { // 부모가 있다는 의미
         node = (TreeNode *)malloc(sizeof(TreeNode));
         node->data = data;
         node->left = NULL;
@@ -37,12 +38,14 @@ TreeNode *AddNode(TreeNode *node, int data)
     }
 
     // 1. 값이 작은지 크지 판단 : 왼쪽 (작은값), 오른쪽(큰값) 노드결정
-    else if (node->data > data) { // 삽입할 정수가 더 작은 경우
+    else if (node->data > data)
+    { // 삽입할 정수가 더 작은 경우
         // 왼쪽, 재귀호출
         // (left 3)       (left 1)
         node->left = AddNode(node->left, data);
-
-    } else { // 더 큰 경우
+    }
+    else
+    { // 더 큰 경우
         // 오른쪽
         node->right = AddNode(node->right, data);
     }
@@ -54,7 +57,8 @@ TreeNode *AddNode(TreeNode *node, int data)
 /// @param node
 void DisplayAsc(TreeNode *node)
 {
-    if (node != NULL) {
+    if (node != NULL)
+    {
         DisplayAsc(node->left);
         printf("%d ", node->data);
         DisplayAsc(node->right);
@@ -64,8 +68,10 @@ void DisplayAsc(TreeNode *node)
 // 노드검색
 TreeNode *SearchNode(TreeNode *find, int target)
 {
-    if (find == NULL) return NULL;
-    if (find->data == target) return find;
+    if (find == NULL)
+        return NULL;
+    if (find->data == target)
+        return find;
 
     if (find->data > target)
         return SearchNode(find->left, target);
@@ -76,7 +82,8 @@ TreeNode *SearchNode(TreeNode *find, int target)
 // 최대값
 TreeNode *GetMaxValue(TreeNode *maxData)
 {
-    if (maxData == NULL) return NULL;
+    if (maxData == NULL)
+        return NULL;
     if (maxData->right != NULL)
         return GetMaxValue(maxData->right); // (final)
     return maxData;                         // 위 final 로 돌아감.
@@ -86,7 +93,8 @@ TreeNode *GetMaxValue(TreeNode *maxData)
 TreeNode *GetMinValue(TreeNode *minData)
 {
 
-    if (minData == NULL) return NULL;
+    if (minData == NULL)
+        return NULL;
     if (minData->left != NULL)
         return GetMinValue(minData->left);
 
@@ -99,28 +107,32 @@ TreeNode *RemoveNode(TreeNode *remove, int target)
 {
     TreeNode *temp; // 제거용 임시 노드 포인터 변수.
 
-    if (remove->data == target) {
+    if (remove->data == target)
+    {
         // 노드 삭제
         // case 1. 자식노드가 없는 경우, 삭제 후 부모에게 -> NULL
-        if (remove->left == NULL && remove->right == NULL) {
+        if (remove->left == NULL && remove->right == NULL)
+        {
             free(remove);
             return NULL;
-
         }
         // case 2 - 오른쪽 자식 노드 하나만 있는 경우.
-        else if (remove->left == NULL) {
+        else if (remove->left == NULL)
+        {
             temp = remove->right; // 제거 (remove->right) 하기전에 임시변수에 복사할당.
             free(remove);
-            return temp;          // 오른쪽 자식 노드의 값을 리턴, 부모 에겐 왼쪽 오른쪽 모두 해당함.
+            return temp; // 오른쪽 자식 노드의 값을 리턴, 부모 에겐 왼쪽 오른쪽 모두 해당함.
         }
         // case 2 - 왼쪽 자식 노드 하나만 있는 경우
-        else if (remove->right == NULL) {
+        else if (remove->right == NULL)
+        {
             temp = remove->left;
             free(remove);
             return temp; // 왼쪽 자식 노드의 값을 리턴
         }
         // case 3 - 왼쪽/오른쪽 자식 노드 둘다 있는 경우
-        else { //  (remove->left != NULL && remove->right != NULL)
+        else
+        { //  (remove->left != NULL && remove->right != NULL)
             // (1-left) 왼쪽 : 최대값 찾기 -> GetMax();
             temp = GetMaxValue(remove->left);
             // (2) 최대값을 삭제할 노드에 대입하기
@@ -128,12 +140,14 @@ TreeNode *RemoveNode(TreeNode *remove, int target)
             // (3) 부모로 이동한 자식노드 삭제하기 재귀.
             remove->left = RemoveNode(remove->left, temp->data);
         }
-
-    } else if (remove->data > target) { // 왼쪽
+    }
+    else if (remove->data > target)
+    { // 왼쪽
         // 재귀호출 (with left)
         remove->left = RemoveNode(remove->left, target);
-
-    } else { // 오른쪽
+    }
+    else
+    { // 오른쪽
         // 재귀호출 (with right)
         remove->right = RemoveNode(remove->right, target);
     }
@@ -158,81 +172,97 @@ int main(int argc, const char *argv[])
 
     int data;
     int choice;
-    while (true) {
+    while (true)
+    {
         // Clear(false);
         Menu();
 
         scanf("%d", &choice);
-        switch (choice) {
-            case 1: {
+        switch (choice)
+        {
+        case 1:
+        {
 
-                printf("\n\n\u2766 노드 삽입중\n\u27AD ");
+            printf("\n\n\u2766 노드 삽입중\n\u27AD ");
 
-                while (getchar() != '\n');
-                for (int i = 0; i < 20; i++) {
-                    int rnd = (rand() % 51) + 10;
+            while (getchar() != '\n')
+                ;
+            for (int i = 0; i < 20; i++)
+            {
+                int rnd = (rand() % 51) + 10;
 
-                    printf("%d ", rnd);
-                    fflush(stdout);
-                    usleep(100000);
-                    root = AddNode(root, rnd);
-                }
-                printf("\n");
+                printf("%d ", rnd);
+                fflush(stdout);
+                usleep(100000);
+                root = AddNode(root, rnd);
+            }
+            printf("\n");
+        }
+        break;
+        case 2:
+        {
+            // 노드 제거
+            // 사전 검토 사항
+            // 1. 자식노드가 없는 경우 -> 제거후 널 값을 리턴
+            // 2. 왼쪽 또는 오른쪽 자식 노드만 있는 경우줌
+            //     -> 자식노드를 임시변수에 저장 -> 삭제 -> 자식노드의 값을 부모와 연결
+            // 3. 자식노드가 둘다 있는 경우 -> 왼쪽 트리의 가장 큰값을 부모에게 연결, 오른쪽은 볼필요 없음.
 
-            } break;
-            case 2: {
-                // 노드 제거
-                // 사전 검토 사항
-                // 1. 자식노드가 없는 경우 -> 제거후 널 값을 리턴
-                // 2. 왼쪽 또는 오른쪽 자식 노드만 있는 경우줌
-                //     -> 자식노드를 임시변수에 저장 -> 삭제 -> 자식노드의 값을 부모와 연결
-                // 3. 자식노드가 둘다 있는 경우 -> 왼쪽 트리의 가장 큰값을 부모에게 연결, 오른쪽은 볼필요 없음.
+            printf("\n\u27AD 삭제할 노드 입력\n\u27AD ");
+            scanf("%d", &data);
+            root = RemoveNode(root, data);
+        }
+        break;
 
-                printf("\n\u27AD 삭제할 노드 입력\n\u27AD ");
-                scanf("%d", &data);
-                root = RemoveNode(root, data);
+        // 노드 검색
+        case 3:
+        {
+            printf("\n\n검색할 데이터 입력 (정수)\n\u27Ad ");
 
-            } break;
+            scanf("%d", &data);
 
-            // 노드 검색
-            case 3: {
-                printf("\n\n검색할 데이터 입력 (정수)\n\u27Ad ");
+            find = SearchNode(root, data);
 
-                scanf("%d", &data);
+            if (find == NULL)
+            {
+                printf("\n\n검색한 값은 존재하지 않습니다.\n\n");
+            }
+            else
+            {
+                printf("\n\n검색한 데이터 ( %d ) 를 찾았습니다.\n", find->data);
+            }
+        }
+        break;
 
-                find = SearchNode(root, data);
+        case 4:
+        {
+            // Get Max Value
+            find = GetMaxValue(root);
+            if (find != NULL)
+                printf("\n\n\u27AD 최대값은 \u27AD ( %d )\n", find->data);
+        }
+        break;
+        case 5:
+        {
+            // Get Min Value
+            find = GetMinValue(root);
+            if (find != NULL)
+                printf("\n\n\u27AD 최소값은 \u27AD ( %d )\n", find->data);
+        }
+        break;
+        case 6:
+        {
+            // 출력
+            // 중위 순회 (오름차순): 윈쪽 -> 부모 -> 오른쪽
+            printf("\u27AD 중위순회 출력 \n");
+            DisplayAsc(root);
+        }
+        break;
+        case 0:
+            return 257;
 
-                if (find == NULL) {
-                    printf("\n\n검색한 값은 존재하지 않습니다.\n\n");
-
-                } else {
-                    printf("\n\n검색한 데이터 ( %d ) 를 찾았습니다.\n", find->data);
-                }
-
-            } break;
-
-            case 4: {
-                // Get Max Value
-                find = GetMaxValue(root);
-                if (find != NULL)
-                    printf("\n\n\u27AD 최대값은 \u27AD ( %d )\n", find->data);
-            } break;
-            case 5: {
-                // Get Min Value
-                find = GetMinValue(root);
-                if (find != NULL)
-                    printf("\n\n\u27AD 최소값은 \u27AD ( %d )\n", find->data);
-            } break;
-            case 6: {
-                // 출력
-                // 중위 순회 (오름차순): 윈쪽 -> 부모 -> 오른쪽
-                printf("\u27AD 중위순회 출력 \n");
-                DisplayAsc(root);
-
-            } break;
-            case 0 : return 257;
-
-            default: break;
+        default:
+            break;
         }
     }
     // Clear(true);
@@ -255,7 +285,8 @@ void Clear(bool tf)
 {
 
 #ifdef __APPLE__
-    if (tf) {
+    if (tf)
+    {
         printf("\n\n\u2766 계속하시려면 엔터키를 누르세요...\n\u27AD ");
         system("read");
     }
@@ -286,48 +317,4 @@ void Clear(bool tf)
         - 오른쪽 자식 노드만 있는 경우
         - 자식노드가 둘다 있는 경우
             - 왼쪽 : 왼쪽 자식 노드 중에 최대값을 삭제 자리에 올리고 올린 자식노드를 부모노드에 연결하여 줌.
- */
-
-/*
-    process launch
-    run
-    r
-    frame variable
-    memory read -fx -c4 -s4 &a
-    memory read -fx -c4 -s4 &b
-    display variable-name
-    b 10 (breakpoint)
-    breakpoint set --file main.c --line 6
-    breakpoint set --method foo
-    br s --file main.c --line 13
-    c (continue)
-    clang CalculateApp.c -o ./Bin/Calculate
-
-    register read
-    reg r
-
-    f
-    list main
-    up
-    down
-    step (s)
-    next(n)
-    finish
-    quit
-
-    b (pos)
-    tbreak (pos)
-    breakpoint delete (or br del) : delete all breakpoints
-    breakpoint delete (number) : delete the breakpoint indicated by (number)
-
-
-    print (var)
-    p  (var) : 주어진 변수의 값을 인쇄
-    print *(ptr) : 포인터의 목적지를 인쇄
-    x/(format) (var/address) :
-    display (var) : 프로그램이 일시 중지될 때마다 항상 (var) 값을 표시.
-    display
-    undisplay (num) : 변수 표시 취소.
-    expr (var) = (value) : 변수 (var) 를 값으로 설정 expr foo = 5
-    up and down : 충돌하거나 일시 중지된 프로그램의 백트레이스 (bt)에서 프레임으르 위로 이동하거나 아래로 이동.
  */

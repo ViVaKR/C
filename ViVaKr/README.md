@@ -135,7 +135,6 @@ long *values = new long[9]{...};
 
 memory read -s1 -fx -c 8 0x13af043c8
 
-
 (lldb)  memory read --size 8 --format x --count 1 ($rbp+0x20)
 0x7fff5e348660: 0x0000000000000008
 (lldb)  memory read --size 8 --format x --count 1 ($rbp+0x18)
@@ -144,8 +143,6 @@ memory read -s1 -fx -c 8 0x13af043c8
 0x7fff5e348438: 0x000000000000000a
 (lldb)  memory read --size 8 --format x --count 1 ($rsp+0x10)
 0x7fff5e348440: 0x0000000000000008
-
-
 
 $ lldb hello
 $ lldb
@@ -215,10 +212,9 @@ thread list
 di -n main
 
 ps aux | grep "program_name"
+
 $ leaks <pid>
 
-objdump -d hello.0
+objdump -d hello.o
 objdump -s hello.o # memory view
-
-
 ```
